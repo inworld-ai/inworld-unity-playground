@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
@@ -28,6 +28,7 @@ namespace Inworld.Editors
         [SerializeField] Texture2D m_Banner;
         [FormerlySerializedAs("m_Readme")][SerializeField] InworldReadme m_InworldReadme;
         [SerializeField] bool m_DisplayReadmeOnLoad;
+        [SerializeField] InworldController m_ControllerPrefab;
         [SerializeField] InworldCharacter m_Character2DPrefab;
         // TODO(Yan): Let other package's editor script to Upload those characters.
         [SerializeField] InworldCharacter m_RPMPrefab;
@@ -145,6 +146,10 @@ namespace Inworld.Editors
         /// Gets if it's using Innequin model.
         /// </summary>
         public static bool UseInnequin => Instance.m_InnequinPrefab != null;
+        /// <summary>
+        /// Gets the default prefab for Inworld Controller
+        /// </summary>
+        public InworldController ControllerPrefab => m_ControllerPrefab;
         /// <summary>
         /// Gets the current default prefab for Inworld character.
         /// </summary>

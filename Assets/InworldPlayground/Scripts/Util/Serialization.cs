@@ -21,6 +21,7 @@ namespace Inworld.Playground
     /// </summary>
     public static class Serialization
     {
+        const string playgroundDirectory = "InworldPlayground";
         const string sceneName = "inworld_playground";
         const string gameDataAssetName = "PlaygroundData";
         
@@ -33,9 +34,9 @@ namespace Inworld.Playground
         public static string GetGameDataPath(bool onlyDirectory = false)
         {
             if(onlyDirectory)
-                return $"{InworldEditorUtil.UserDataPath}/{InworldEditor.GameDataPath}/";
+                return $"Assets/{playgroundDirectory}/{InworldEditor.GameDataPath}/";
             else
-                return $"{InworldEditorUtil.UserDataPath}/{InworldEditor.GameDataPath}/{gameDataAssetName}.asset";
+                return $"Assets/{playgroundDirectory}/{InworldEditor.GameDataPath}/{gameDataAssetName}.asset";
         }
 #endif
         /// <summary>
@@ -78,7 +79,6 @@ namespace Inworld.Playground
             gameData.capabilities.triggers = true;
             gameData.capabilities.phonemeInfo = true;
             gameData.capabilities.relations = true;
-            gameData.capabilities.debugInfo = true;
 #if UNITY_EDITOR
             if (!AssetDatabase.Contains(gameData))
             {

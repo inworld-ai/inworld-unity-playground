@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
@@ -32,12 +32,17 @@ namespace Inworld.Assets
                 return;
             base.OnInteraction(incomingPacket);
         }
-        protected override void HandleRelation(RelationPacket packet)
+        protected override void HandleRelation(CustomPacket packet)
         {
             if (!m_Relation)
                 return;
             string result = "";
-            RelationState currentRelation = packet.debugInfo.relation.relationUpdate;
+
+            RelationState currentRelation = new RelationState();
+            foreach (TriggerParameter param in packet.custom.parameters)
+            {
+                currentRelation.UpdateByTrigger(param);
+            }
             if (currentRelation.attraction != 0)
                 result += $"Attraction: {GetRelationIcon(currentRelation.attraction)}\n";
             if (currentRelation.familiar != 0)

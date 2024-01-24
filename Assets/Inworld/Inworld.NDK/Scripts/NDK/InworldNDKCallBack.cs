@@ -1,11 +1,12 @@
 /*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 using AOT;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace Inworld.NDK
 {
@@ -25,6 +26,13 @@ namespace Inworld.NDK
             InworldAI.Log("Get Session ID: " + sessionInfo.sessionId);
             InworldAI.Log("[NDK] Token Generated");
             InworldController.Client.Status = InworldConnectionStatus.Initialized;
+        }
+        [MonoPInvokeCallback(typeof(NDKCallback))]
+        static internal void OnSessionStateReceived()
+        {
+            SessionInfo sessionInfo = Marshal.PtrToStructure<SessionInfo>(NDKInterop.Unity_GetSessionInfo());
+            InworldController.Client.SessionHistory = sessionInfo.sessionSavedState;
+            InworldAI.Log($"[NDK] Session State {InworldController.Client.SessionHistory}");
         }
         [MonoPInvokeCallback(typeof(NDKCallback))]
         static internal void OnSceneLoaded()

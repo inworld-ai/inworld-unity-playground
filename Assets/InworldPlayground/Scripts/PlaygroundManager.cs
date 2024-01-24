@@ -34,9 +34,6 @@ namespace Inworld.Playground
         private PlaygroundSettings m_Settings;
         
         [SerializeField] 
-        private GameObject m_InworldControllerGameObject;
-        
-        [SerializeField] 
         private GameObject m_GameMenu;
         
         [Header("Prefabs")] 
@@ -197,8 +194,8 @@ namespace Inworld.Playground
                 InworldAI.LogWarning("Destroying duplicate instance of PlaygroundManager.");
                 return;
             }
-            
-            m_InworldControllerGameObject.SetActive(true);
+
+            Instantiate(m_InworldControllerWebSocket);
             
             m_GameData = Serialization.GetGameData();
             if (m_GameData == null && SceneManager.GetActiveScene().name != setupSceneName)
@@ -366,10 +363,10 @@ namespace Inworld.Playground
             switch (clientType)
             {
                 case NetworkClient.WebSocket:
-                    Instantiate(m_InworldControllerWebSocket, transform);
+                    Instantiate(m_InworldControllerWebSocket);
                     break;
                 case NetworkClient.NDK:
-                    Instantiate(m_InworldControllerNDK, transform);
+                    Instantiate(m_InworldControllerNDK);
                     break;
             }
             InworldAI.Log("Replacing current Inworld Controller.");

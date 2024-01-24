@@ -622,6 +622,9 @@ MonoBehaviour:
   onRelationUpdated:
     m_PersistentCalls:
       m_Calls: []
+  onCharacterDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6979359975708554958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,10 +671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 407351628279228781}
-  m_DistanceFactor: 10
+  m_Animator: {fileID: 3499833410880441783}
+  m_Character: {fileID: 5004020907478108784}
   m_SightAngle: 122
   m_SightDistance: 5
+  m_DistancePriorityFactor: 10
   m_RefreshRate: 0.25
 --- !u!1 &7239422483727130079
 GameObject:
@@ -1136,11 +1140,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 026a1ca2deceb73438540c38371b4dcb, type: 3}
---- !u!4 &407351628279228781 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -3512545981279201704, guid: 026a1ca2deceb73438540c38371b4dcb, type: 3}
-  m_PrefabInstance: {fileID: 5397522576490774325}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7560105258481829329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6769691430286951708, guid: 026a1ca2deceb73438540c38371b4dcb, type: 3}

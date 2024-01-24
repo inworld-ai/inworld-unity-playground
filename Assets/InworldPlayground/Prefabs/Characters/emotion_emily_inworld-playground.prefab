@@ -666,6 +666,9 @@ MonoBehaviour:
   onRelationUpdated:
     m_PersistentCalls:
       m_Calls: []
+  onCharacterDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4537064637290914104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,10 +715,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 7010716114978291576}
-  m_DistanceFactor: 10
+  m_Animator: {fileID: 6836277416808973287}
+  m_Character: {fileID: 5127670340784287737}
   m_SightAngle: 122
   m_SightDistance: 5
+  m_DistancePriorityFactor: 10
   m_RefreshRate: 0.25
 --- !u!1 &5406179152816764902
 GameObject:
@@ -1139,10 +1143,5 @@ PrefabInstance:
 --- !u!4 &866598373719724996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6769691430286951708, guid: 580693e7c8d858e449bb2899d4370e40, type: 3}
-  m_PrefabInstance: {fileID: 3318026079880587552}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7010716114978291576 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -3512545981279201704, guid: 580693e7c8d858e449bb2899d4370e40, type: 3}
   m_PrefabInstance: {fileID: 3318026079880587552}
   m_PrefabAsset: {fileID: 0}

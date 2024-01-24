@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
@@ -134,7 +134,7 @@ namespace Inworld.Editors
             InworldGameData gameData = _CreateGameDataAssets();
             InworldController controller = Object.FindObjectOfType<InworldController>();
             if (!controller)
-                controller = PrefabUtility.InstantiatePrefab(InworldAI.ControllerPrefab) as InworldController;
+                controller = PrefabUtility.InstantiatePrefab(InworldEditor.Instance.ControllerPrefab) as InworldController;
             if (!controller)
                 return;
             controller.GameData = gameData;

@@ -1,15 +1,13 @@
 ﻿/*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 namespace Inworld.Sample
@@ -19,12 +17,13 @@ namespace Inworld.Sample
         [SerializeField] protected CharSelectingMethod m_SelectingMethod = CharSelectingMethod.SightAngle;
         [Range(0.1f, 1f)]
         [SerializeField] float m_RefreshRate = 0.5f;
+        readonly List<SightAngle> m_SightAngles = new List<SightAngle>();
 
         float m_CurrentTime;
         /// <summary>
         ///     Return if any character is speaking.
         /// </summary>
-        public override bool IsAnyCharacterSpeaking => m_CharacterList.Any(character => character.IsSpeaking);
+        public override bool IsAnyCharacterSpeaking => m_CharacterList.Any(inworldCharacter => inworldCharacter.IsSpeaking);
         /// <summary>
         ///     Get the current Character Selecting Method.
         /// </summary>
@@ -39,7 +38,22 @@ namespace Inworld.Sample
             else if (m_SelectingMethod == CharSelectingMethod.SightAngle)
                 m_SelectingMethod = CharSelectingMethod.KeyCode;
         }
-        
+        /// <summary>
+        /// Get the live session ID for an Inworld character.
+        /// </summary>
+        /// <param name="character">The request Inworld character.</param>
+        public override string GetLiveSessionID(InworldCharacter character)
+        {
+            string sessionID = base.GetLiveSessionID(character);
+            if (string.IsNullOrEmpty(sessionID))
+                return sessionID;
+            SightAngle characterSightAngle = character.GetComponent<SightAngle>();
+            if (!characterSightAngle)
+                return sessionID;
+            if (!m_SightAngles.Contains(characterSightAngle))
+                m_SightAngles.Add(characterSightAngle);
+            return sessionID;
+        }
         void Update()
         {
             switch (m_SelectingMethod)
@@ -60,17 +74,16 @@ namespace Inworld.Sample
             m_CurrentTime = 0;
             float fPriority = float.MaxValue;
             InworldCharacter targetCharacter = null;
-            foreach (InworldCharacter inworldCharacter in m_CharacterList)
+            foreach (SightAngle sight in m_SightAngles)
             {
-                SightAngle sight = inworldCharacter.GetComponent<SightAngle>();
                 if (sight && sight.Priority >= 0 && sight.Priority < fPriority)
                 {
                     fPriority = sight.Priority;
-                    targetCharacter = inworldCharacter;
+                    targetCharacter = sight.Character;
                 }
             }
-
-            CurrentCharacter = targetCharacter;
+            if (targetCharacter)
+                CurrentCharacter = targetCharacter;
         }
         protected virtual void SelectCharacterByKey()
         {
@@ -82,6 +95,16 @@ namespace Inworld.Sample
                 CurrentCharacter = m_CharacterList[i];
                 return;
             }
+        }
+        protected override void OnCharacterDestroyed(InworldCharacter character)
+        {
+            if (character == null || !InworldController.Instance)
+                return;
+            
+            SightAngle sight = character.GetComponent<SightAngle>();
+            m_SightAngles.Remove(sight);
+            
+            base.OnCharacterDestroyed(character);
         }
     }
 }

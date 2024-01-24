@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
@@ -22,12 +22,12 @@ namespace Inworld.AEC
         /// A flag for this component is using AEC (in this class always True)
         /// </summary>
         public override bool EnableAEC => true;
-        
+
         /// <summary>
         ///     Check Available, will add mac support in the next update.
         ///     For mobile device such as Android/iOS they naturally supported via hardware.
         /// </summary>
-        public bool IsAvailable => SystemInfo.operatingSystem.Contains("Windows");
+        public bool IsAvailable => Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor;
 
         protected override void OnDestroy()
         {
@@ -51,6 +51,7 @@ namespace Inworld.AEC
             }
             else
                 m_SamplingMode = MicSampleMode.TURN_BASED;
+            m_LastSampleMode = m_SamplingMode;
             base.Init();
         }
 
@@ -67,7 +68,7 @@ namespace Inworld.AEC
         protected byte[] FilterAudio(short[] inputData, short[] outputData, IntPtr aecHandle)
         {
             List<short> filterBuffer = new List<short>();
-            if (outputData == null || outputData.Length == 0 || !IsAvailable || IsPlayerTurn)
+            if (outputData == null || outputData.Length == 0 || !IsAvailable ||IsPlayerTurn)
             {
                 filterBuffer.AddRange(inputData);
             }
@@ -89,7 +90,6 @@ namespace Inworld.AEC
             Buffer.BlockCopy(filterBuffer.ToArray(), 0, byteArray, 0, filterBuffer.Count * 2);
             return byteArray;
         }
-        
     }
 }
 

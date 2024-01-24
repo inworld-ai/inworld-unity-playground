@@ -667,6 +667,9 @@ MonoBehaviour:
   onRelationUpdated:
     m_PersistentCalls:
       m_Calls: []
+  onCharacterDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &6042682841280510793
 AudioSource:
   m_ObjectHideFlags: 0
@@ -795,10 +798,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 7712990536318244411}
-  m_DistanceFactor: 2
+  m_Animator: {fileID: 0}
+  m_Character: {fileID: -5408584216436277067}
   m_SightAngle: 120
   m_SightDistance: 5
+  m_DistancePriorityFactor: 10
   m_RefreshRate: 0.25
 --- !u!1 &7196103261730395975
 GameObject:
