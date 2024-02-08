@@ -94,3 +94,7 @@ TextMesh Pro.meta
 ProBuilder Data/
 ProBuilder Data.meta
 ProjectSettings/Packages/com.unity.probuilder/
+
+# SpaceNavigator Driver
+SpaceNavigator/
+SpaceNavigator.meta
