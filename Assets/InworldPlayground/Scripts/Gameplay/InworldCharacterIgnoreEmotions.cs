@@ -42,9 +42,6 @@ namespace Inworld.Playground
                 case CustomPacket customPacket:
                     HandleTrigger(customPacket);
                     break;
-                case RelationPacket relationPacket:
-                    HandleRelation(relationPacket);
-                    break;
                 default:
                     InworldAI.LogError($"Received Unknown {incomingPacket}");
                     break;

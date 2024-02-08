@@ -20,8 +20,9 @@ namespace Inworld.Playground
         // YAN: Add other dependencies here.
         static readonly string[] s_DependencyPackages = 
         {
+            "https://github.com/inworld-ai/inworld-unity.git",
             "com.unity.cloud.gltfast",
-            "com.unity.probuilder"
+            "com.unity.probuilder",
         };
         public static async Task InstallDependencies()
         {

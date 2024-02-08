@@ -1233,7 +1233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 2612087345680360057}
+  m_Animator: {fileID: 6488192458725203369}
+  m_Character: {fileID: 2030273176201225856}
   m_DistanceFactor: 10
   m_SightAngle: 150
   m_SightDistance: 10

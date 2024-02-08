@@ -82,6 +82,10 @@ crashlytics-build.properties
 /[Aa]ssets/Inworld/Inworld.AI/Data/GameData/
 /[Aa]ssets/Inworld/Inworld.AI/Data/GameData.meta
 
+# Playground Game Data
+/[Aa]ssets/InworldPlayground/GameData/
+/[Aa]ssets/InworldPlayground/GameData.meta
+
 # TextMesh Pro
 TextMesh Pro/
 TextMesh Pro.meta

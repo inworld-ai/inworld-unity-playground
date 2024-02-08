@@ -1,27 +1,36 @@
 ﻿/*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Inworld.Sample
 {
     public class SightAngle : MonoBehaviour
     {
-        [SerializeField] Transform m_HeadTransform;
-        [SerializeField] float m_DistanceFactor = 10;
+        [SerializeField] Animator m_Animator;
+        [SerializeField] InworldCharacter m_Character;
         [Range(1, 180)]
         [SerializeField] float m_SightAngle = 90f;
         [Range(1, 30)]
         [SerializeField] float m_SightDistance = 10f;
+        [Range(0, 100)]
+        [Tooltip("How much of an impact distance will make in the Priority calculation.")]
+        [SerializeField] float m_DistancePriorityFactor = 10;
         [Range(0.1f, 1f)]
         [SerializeField] float m_RefreshRate = 0.25f;
         
+        Transform m_HeadTransform;
         Transform m_CameraTransform;
         float m_CurrentTime = 0f;
+        /// <summary>
+        /// Get its character.
+        /// </summary>
+        public virtual InworldCharacter Character => m_Character;
         
         /// <summary>
         ///     Returns the priority of the character.
@@ -33,6 +42,14 @@ namespace Inworld.Sample
                                && PlayerController.Instance 
                                && InworldController.CharacterHandler.SelectingMethod == CharSelectingMethod.SightAngle;
 
+        void Awake()
+        {
+            if(m_Animator)
+                m_HeadTransform = m_Animator.GetBoneTransform(HumanBodyBones.Head);
+            if (!m_HeadTransform)
+                m_HeadTransform = transform;
+        }
+        
         void OnEnable()
         {
             if (!m_CameraTransform)
@@ -67,13 +84,14 @@ namespace Inworld.Sample
                 else
                 {
                     Vector3 vecPlayerDirection = -vecDirection;
-                    Priority = Vector3.Angle(vecPlayerDirection, m_CameraTransform.forward) + distance * m_DistanceFactor;
+                    Priority = Vector3.Angle(vecPlayerDirection, m_CameraTransform.forward) + distance * m_DistancePriorityFactor;
                 }
             }
         }
         void OnDrawGizmosSelected()
         {
-            if (m_HeadTransform == null) return;
+            if (!m_HeadTransform)
+                return;
             
             Gizmos.color = Color.cyan;
             Vector3 trPosition = m_HeadTransform.position;

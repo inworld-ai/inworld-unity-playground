@@ -5106,6 +5106,9 @@ MonoBehaviour:
   onRelationUpdated:
     m_PersistentCalls:
       m_Calls: []
+  onCharacterDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1924436188
 GameObject:
   m_ObjectHideFlags: 0

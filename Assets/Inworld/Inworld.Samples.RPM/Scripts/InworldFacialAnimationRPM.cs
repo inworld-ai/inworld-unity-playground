@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2022 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
@@ -32,6 +32,7 @@ namespace Inworld.Sample.RPM
         Vector2 m_CurrViseme = Vector2.zero;
         Vector2 m_LastViseme = Vector2.zero;
 
+        float m_RandomOffset;
         float m_CurrentAudioTime;
 
         SkinnedMeshRenderer m_Skin;
@@ -68,6 +69,7 @@ namespace Inworld.Sample.RPM
                 m_Skin = m_Character.GetComponentInChildren<SkinnedMeshRenderer>();
             if (m_VisemeMap == null)
                 m_VisemeMap = new ConcurrentQueue<Vector2>();
+            m_RandomOffset = Random.Range(0, 6f);
             m_VisemeMap.Clear();
             return _MappingBlendShape();
         }
@@ -95,7 +97,7 @@ namespace Inworld.Sample.RPM
         {
             if (!m_Skin)
                 return;
-            float blendshapeValue = Mathf.Sin(Time.time * 2f) * 100 - 99f;
+            float blendshapeValue = Mathf.Sin(Time.time * 2f + m_RandomOffset) * 100 - 99f;
             blendshapeValue = Mathf.Clamp(blendshapeValue, 0, 1);
             m_Skin.SetBlendShapeWeight(m_BlinkIndex, blendshapeValue);
         }

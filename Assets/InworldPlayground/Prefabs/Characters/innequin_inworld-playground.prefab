@@ -2006,6 +2006,9 @@ MonoBehaviour:
   onRelationUpdated:
     m_PersistentCalls:
       m_Calls: []
+  onCharacterDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2852665269509917512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,10 +2075,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 6761323343535279898}
-  m_DistanceFactor: 10
+  m_Animator: {fileID: 2346687256239508788}
+  m_Character: {fileID: -1426748583640960597}
   m_SightAngle: 150
   m_SightDistance: 5
+  m_DistancePriorityFactor: 10
   m_RefreshRate: 0.25
 --- !u!1 &4792743591842147495
 GameObject:
