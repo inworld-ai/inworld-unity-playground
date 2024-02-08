@@ -6,6 +6,7 @@
  *************************************************************************************************/
 
 using System.Collections;
+using System.Collections.Generic;
 using Inworld.AEC;
 using Inworld.Interactions;
 using Inworld.NDK;
@@ -29,6 +30,9 @@ namespace Inworld.Playground
         
         private const string playgroundSceneName = "Playground";
         private const string setupSceneName = "Setup";
+
+        [SerializeField]
+        private List<InworldSceneMapping> m_InworldSceneMapping;
         
         [SerializeField]
         private PlaygroundSettings m_Settings;
@@ -41,7 +45,8 @@ namespace Inworld.Playground
         private GameObject m_InworldControllerWebSocket;
         [SerializeField]
         private GameObject m_InworldControllerNDK;
-        
+
+        private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
         private Coroutine m_SceneChangeCoroutine;
         private Scene m_CurrentScene;
@@ -52,6 +57,8 @@ namespace Inworld.Playground
         /// </summary>
         public void LoadData()
         {
+            if(m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name, out string inworldSceneName))
+                m_GameData.sceneFullName = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
             InworldController.Instance.LoadData(m_GameData);
         }
         
@@ -194,8 +201,11 @@ namespace Inworld.Playground
                 InworldAI.LogWarning("Destroying duplicate instance of PlaygroundManager.");
                 return;
             }
-
-            Instantiate(m_InworldControllerWebSocket);
+            
+            if(m_Settings.ClientType == NetworkClient.WebSocket)
+                Instantiate(m_InworldControllerWebSocket);
+            else
+                Instantiate(m_InworldControllerNDK);
             
             m_GameData = Serialization.GetGameData();
             if (m_GameData == null && SceneManager.GetActiveScene().name != setupSceneName)
@@ -204,6 +214,10 @@ namespace Inworld.Playground
                 SceneManager.LoadScene(setupSceneName);
                 return;
             }
+
+            m_InworldSceneMappingDictionary = new Dictionary<string, string>();
+            foreach (var sceneMapping in m_InworldSceneMapping)
+                m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
                 
             if (m_GameData != null)
                 m_Settings.WorkspaceId = m_GameData.sceneFullName.Split('/')[1];
@@ -265,12 +279,30 @@ namespace Inworld.Playground
         #region Enumerators
         private IEnumerator IChangeScene(string sceneName)
         {
-            yield return SceneManager.LoadSceneAsync(sceneName);
+            Pause(false);
+            InworldController.Instance.Disconnect();
+            
+            InworldAI.Log("Starting scene load: " + sceneName);
+            var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
+            sceneLoadOperation.allowSceneActivation = false;
+            
+            yield return new WaitUntil(() => sceneLoadOperation.progress >= 0.9f);
+            sceneLoadOperation.allowSceneActivation = true;
+
+            yield return new WaitUntil(() => sceneLoadOperation.isDone);
+            InworldAI.Log("Completed scene load: " + sceneName);
+            
             m_SceneChangeCoroutine = null;
         }
         
         private IEnumerator ISetupScene()
         {
+            while (InworldController.Status == InworldConnectionStatus.Connected)
+            {
+                InworldController.Instance.Disconnect();
+                yield return new WaitForSecondsRealtime(2);
+            }
+            
             SetCharacterBrains();
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
@@ -282,8 +314,6 @@ namespace Inworld.Playground
         
                 yield return new WaitUntil(() => InworldController.Status == InworldConnectionStatus.Connected);
             }
-            else
-                RegisterCharacters();
            
             yield return StartCoroutine(IPlay());
         }
@@ -399,7 +429,7 @@ namespace Inworld.Playground
         }
         #endregion
         
-        private void Pause()
+        private void Pause(bool showGameMenu = true)
         {
             if(m_Paused)
                 return;
@@ -417,7 +447,9 @@ namespace Inworld.Playground
             Subtitle.Instance.Clear();
             
             InworldController.Audio.enabled = false;
-            m_GameMenu.SetActive(true);
+            
+            if(showGameMenu)
+                m_GameMenu.SetActive(true);
 
             m_Paused = true;
         }
@@ -484,15 +516,7 @@ namespace Inworld.Playground
             var characters = FindObjectsOfType<InworldCharacter>(true);
 #endif
             foreach (var character in characters)
-            {
-                string newBrainName = m_GameData.sceneFullName.Substring(0, 
-                    m_GameData.sceneFullName.IndexOf('/', 
-                        m_GameData.sceneFullName.IndexOf('/', 0) + 1) + 1);
-                string oldBrainName = character.Data.brainName;
-                newBrainName += oldBrainName.Substring(oldBrainName.IndexOf('/', 
-                    oldBrainName.IndexOf('/', 0) + 1) + 1);
-                character.Data.brainName = newBrainName;
-            }
+                character.Data.brainName = $"workspaces/{m_Settings.WorkspaceId}/characters/{character.Data.brainName.Split('/')[3]}";
         }
         
         private void RegisterCharacters()

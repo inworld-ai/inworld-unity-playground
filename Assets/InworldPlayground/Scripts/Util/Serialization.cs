@@ -22,7 +22,7 @@ namespace Inworld.Playground
     public static class Serialization
     {
         const string playgroundDirectory = "InworldPlayground";
-        const string sceneName = "inworld_playground";
+        const string sceneName = "inworld_playground_lobby";
         const string gameDataAssetName = "PlaygroundData";
         
 #if UNITY_EDITOR
