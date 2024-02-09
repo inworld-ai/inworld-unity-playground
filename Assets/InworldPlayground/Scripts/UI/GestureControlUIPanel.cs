@@ -6,6 +6,7 @@
  *************************************************************************************************/
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Inworld.Playground
@@ -16,7 +17,7 @@ namespace Inworld.Playground
     public class GestureControlUIPanel : ControlUIPanel
     {
         [SerializeField] private float m_TransitionTime = 0.5f;
-        [SerializeField] private Animator m_Animator;
+        [SerializeField] private List<Animator> m_Animators;
 
         static readonly int s_Gesture = Animator.StringToHash("Gesture");
 
@@ -37,14 +38,17 @@ namespace Inworld.Playground
 
         private IEnumerator IPlayGesture()
         {
-            m_Animator.SetInteger(s_Gesture, m_SelectionIndex);
+            foreach (var animator in m_Animators)
+                animator.SetInteger(s_Gesture, m_SelectionIndex);
             m_PlayButton.interactable = false;
             // Wait for transition
             yield return new WaitForSeconds(m_TransitionTime);
             // Wait for animation clip to finish
-            yield return new WaitForSeconds(m_Animator.GetCurrentAnimatorClipInfo(1)[0].clip.length);
+            yield return new WaitForSeconds(m_Animators[0].GetCurrentAnimatorClipInfo(1)[0].clip.length);
             
-            m_Animator.SetInteger(s_Gesture, 0);
+            foreach (var animator in m_Animators)
+                animator.SetInteger(s_Gesture, 0);
+
             m_PlayButton.interactable = true;
         }
     }
