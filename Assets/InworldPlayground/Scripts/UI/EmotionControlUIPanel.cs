@@ -22,13 +22,13 @@ namespace Inworld.Playground
         [SerializeField] private EmotionMap m_EmotionMap;
         
         private void Awake()
-        {
+        {               
             m_Dropdown.options.Clear();
             foreach (var emotion in m_EmotionMap.data)
-            {
+            {           
                 m_Dropdown.options.Add(new TMP_Dropdown.OptionData(emotion.name));
-            }
-        }
+            }   
+        }   
         
         protected override void OnDropdownValueChanged(int value)
         {

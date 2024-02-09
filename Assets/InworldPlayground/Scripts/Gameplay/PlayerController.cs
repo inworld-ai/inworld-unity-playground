@@ -30,6 +30,8 @@ namespace Inworld.Playground
             }
         }
         
+        public bool BlockKeyInput { get; set; }
+        
         [Header("Movement")]
         [SerializeField] private float m_MoveSpeed = 5;
         [Range(0, 1)]
@@ -68,20 +70,23 @@ namespace Inworld.Playground
         {
             if(PlaygroundManager.Instance.Paused)
                 return;
-            
-            base.HandleInput();
-            
-            if (Input.GetKeyUp(KeyCode.BackQuote))
+
+            if (!BlockKeyInput)
             {
-                if (!m_ChatCanvas.activeSelf)
+                base.HandleInput();
+            
+                if (Input.GetKeyUp(KeyCode.BackQuote))
                 {
-                    CursorHandler.LockCursor();
-                    PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
-                }
-                else
-                {
-                    CursorHandler.UnlockCursor();
-                    PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
+                    if (!m_ChatCanvas.activeSelf)
+                    {
+                        CursorHandler.LockCursor();
+                        PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
+                    }
+                    else
+                    {
+                        CursorHandler.UnlockCursor();
+                        PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
+                    }
                 }
             }
             
@@ -99,9 +104,10 @@ namespace Inworld.Playground
             Vector3 newEuler = transform.localEulerAngles + mouseDelta * m_RotSpeed;
             float xClamped = Mathf.Clamp(newEuler.x, newEuler.x <= 180 ? -89f : 271, newEuler.x <= 180 ? 89f : 360);
             transform.localEulerAngles = new Vector3(xClamped, newEuler.y, newEuler.z);
+
+            if (BlockKeyInput) return;
             
             float newHorizontalAxis = 0, newVerticalAxis = 0;
-            
             if (Input.GetKey(KeyCode.W))
                 newVerticalAxis += 1;
             if (Input.GetKey(KeyCode.S))

@@ -22,7 +22,7 @@ namespace Inworld.Playground
     public static class Serialization
     {
         const string playgroundDirectory = "InworldPlayground";
-        const string sceneName = "inworld_playground";
+        const string sceneName = "inworld_playground_lobby";
         const string gameDataAssetName = "PlaygroundData";
         
 #if UNITY_EDITOR
@@ -79,9 +79,9 @@ namespace Inworld.Playground
             gameData.capabilities.triggers = true;
             gameData.capabilities.phonemeInfo = true;
             gameData.capabilities.relations = true;
-#if UNITY_EDITOR
+#if UNITY_EDITOR    
             if (!AssetDatabase.Contains(gameData))
-            {
+            {   
                 if (!Directory.Exists(GetGameDataPath(true)))
                     Directory.CreateDirectory(GetGameDataPath(true));
                 AssetDatabase.CreateAsset(gameData, GetGameDataPath());
