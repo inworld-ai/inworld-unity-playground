@@ -71,7 +71,7 @@ namespace Inworld.Assets
                 HandleMainStatus(AnimMainStatus.Goodbye);
             }
             if (newChar && newChar.BrainName == m_Character.Data.brainName)
-            {       
+            {
                 HandleMainStatus(AnimMainStatus.Hello);
             }
         }

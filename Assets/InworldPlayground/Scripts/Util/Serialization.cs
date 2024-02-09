@@ -79,9 +79,9 @@ namespace Inworld.Playground
             gameData.capabilities.triggers = true;
             gameData.capabilities.phonemeInfo = true;
             gameData.capabilities.relations = true;
-#if UNITY_EDITOR    
+#if UNITY_EDITOR
             if (!AssetDatabase.Contains(gameData))
-            {   
+            {
                 if (!Directory.Exists(GetGameDataPath(true)))
                     Directory.CreateDirectory(GetGameDataPath(true));
                 AssetDatabase.CreateAsset(gameData, GetGameDataPath());
