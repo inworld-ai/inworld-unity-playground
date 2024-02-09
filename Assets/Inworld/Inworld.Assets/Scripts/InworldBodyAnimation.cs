@@ -12,7 +12,7 @@ namespace Inworld.Assets
 {
     public class InworldBodyAnimation : InworldAnimation
     {
-        [SerializeField] Animator m_BodyAnimator;
+        [SerializeField] protected Animator m_BodyAnimator;
         
         Transform m_HeadTransform;
         Vector3 m_vecInitPosition;
