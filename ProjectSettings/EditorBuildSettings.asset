@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/InworldPlayground/Scenes/Template/ExampleRoom.unity
     guid: 211a872b940a08349bb471b6dbbcc935
+  - enabled: 1
+    path: Assets/InworldPlayground/Scenes/Mutations.unity
+    guid: e6a4043543d723940b81f2c9546a85c1
   m_configObjects: {}
