@@ -26,7 +26,7 @@ namespace Inworld.Playground
             m_SelectionIndex = 1;
         }
 
-        protected override void OnDropdownValueChanged(int value)
+        public override void OnDropdownValueChanged(int value)
         {
             m_SelectionIndex = value + 1;
         }

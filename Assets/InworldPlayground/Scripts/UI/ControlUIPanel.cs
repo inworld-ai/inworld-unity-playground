@@ -37,7 +37,7 @@ namespace Inworld.Playground
                 m_PlayButton.onClick.RemoveListener(OnPlayButtonClicked);
         }
         
-        protected virtual void OnDropdownValueChanged(int value)
+        public virtual void OnDropdownValueChanged(int value)
         {
             m_SelectionIndex = value;
         }

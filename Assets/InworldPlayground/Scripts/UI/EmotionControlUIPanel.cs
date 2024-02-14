@@ -23,19 +23,15 @@ namespace Inworld.Playground
         
         private void Awake()
         {
-            m_Dropdown.options.Clear();
-            foreach (var emotion in m_EmotionMap.data)
-            {
-                m_Dropdown.options.Add(new TMP_Dropdown.OptionData(emotion.name));
-            }
+            // m_Dropdown.options.Clear();
+            // foreach (var emotion in m_EmotionMap.data)
+            //     m_Dropdown.options.Add(new TMP_Dropdown.OptionData(emotion.name));
         }
         
-        protected override void OnDropdownValueChanged(int value)
+        public override void OnDropdownValueChanged(int value)
         {
             foreach (var inworldCharacter in m_InworldCharacters)
-            {
-                SpoofEmotionPacket(inworldCharacter, m_EmotionMap.data[value]);
-            }
+                inworldCharacter.SendTrigger($"emotion_{m_EmotionMap.data[value].name}");
         }
 
         private void SpoofEmotionPacket(InworldCharacter inworldCharacter, EmotionMapData emotionData)
