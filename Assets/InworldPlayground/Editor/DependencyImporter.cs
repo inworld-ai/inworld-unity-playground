@@ -23,6 +23,7 @@ namespace Inworld.Playground
             "https://github.com/inworld-ai/inworld-unity.git",
             "com.unity.cloud.gltfast",
             "com.unity.probuilder",
+            "com.unity.ai.navigation"
         };
         public static async Task InstallDependencies()
         {
