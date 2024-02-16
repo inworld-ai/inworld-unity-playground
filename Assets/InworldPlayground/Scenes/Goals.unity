@@ -1865,7 +1865,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8de6a45a586014e8555a1366bbda63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inworldPlaygroundCharacter: {fileID: 1818624551}
+  m_SanFranciscoPopulation: 0
+  m_NewYorkCityPopulation: 0
+  m_InworldPlaygroundCharacter: {fileID: 1818624551}
 --- !u!114 &785905706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3871,7 +3873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ask me what the population is in either New York or San Francisco.
+  m_text: 'Ask me what the population is in either New York City or San Francisco.
 
 '
   m_isRightToLeft: 0

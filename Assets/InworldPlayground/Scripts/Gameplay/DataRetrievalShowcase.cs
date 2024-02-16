@@ -19,47 +19,52 @@ namespace Inworld.Playground
     [RequireComponent(typeof(APIHandler))]
     public class DataRetrievalShowcase : MonoBehaviour
     {
-        private const string sanFranciscoGeoEndpoint = "";
-        private const string newYorkGeoEndpoint = "";
-        
-        [SerializeField] private InworldPlaygroundCharacter inworldPlaygroundCharacter;
+        const string sanFranciscoGeoEndpoint = "";
+        const string newYorkCityGeoEndpoint = "";
 
-        private APIHandler m_APIHandler;
-        private UnityWebRequest.Result m_LastResult = 0;
-        private string m_LastResponseBody = "";
+        [SerializeField] int m_SanFranciscoPopulation;
+        [SerializeField] int m_NewYorkCityPopulation;
+        [SerializeField] InworldPlaygroundCharacter m_InworldPlaygroundCharacter;
 
-        private void Awake()
+        APIHandler m_APIHandler;
+        UnityWebRequest.Result m_LastResult = 0;
+        string m_LastResponseBody = "";
+
+        void Awake()
         {
             m_APIHandler = GetComponent<APIHandler>();
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             m_APIHandler.onResponseEvent.AddListener(OnResponseEvent);
-            inworldPlaygroundCharacter.onServerTrigger.AddListener(OnDataRetrievalBotServerTrigger);
+            m_InworldPlaygroundCharacter.onServerTrigger.AddListener(OnDataRetrievalBotServerTrigger);
         }
         
-        private void OnDisable()
+        void OnDisable()
         {
             m_APIHandler.onResponseEvent.RemoveListener(OnResponseEvent);
-            if(inworldPlaygroundCharacter)
-                inworldPlaygroundCharacter.onServerTrigger.RemoveListener(OnDataRetrievalBotServerTrigger);
+            if(m_InworldPlaygroundCharacter)
+                m_InworldPlaygroundCharacter.onServerTrigger.RemoveListener(OnDataRetrievalBotServerTrigger);
         }
 
-        private void OnResponseEvent(UnityWebRequest.Result result, string body)
+        void OnResponseEvent(UnityWebRequest.Result result, string body)
         {
             m_LastResult = result;
             m_LastResponseBody = body;
         }
         
-        private void OnDataRetrievalBotServerTrigger(string triggerName, Dictionary<string, string> parameters) 
+        void OnDataRetrievalBotServerTrigger(string triggerName, Dictionary<string, string> parameters) 
         {
             switch (triggerName)
             {
                 case "get_population":
                     if (!parameters.TryGetValue("city", out var city) || string.IsNullOrEmpty(city))
                     {
-                        Debug.LogWarning("City is not supported.");
+                        InworldController.Instance.SendTrigger("unsupported_city", m_InworldPlaygroundCharacter.ID, new Dictionary<string, string>
+                        {
+                            { "city", city }
+                        });
                         break;
                     }
                     StartCoroutine((GetPopulation(city)));
@@ -67,42 +72,44 @@ namespace Inworld.Playground
             }
         }
         
-        private IEnumerator GetPopulation(string city)
+        IEnumerator GetPopulation(string city)
         {
             Debug.Log("Getting population data for: " + city);
             
-            string endpoint;
+            // string endpoint;
             switch (city)
             {
                 case "San Francisco":
-                    endpoint = sanFranciscoGeoEndpoint;
+                    // endpoint = sanFranciscoGeoEndpoint;
+                    GivePopulationInfo("San Francisco", m_SanFranciscoPopulation.ToString());
                     break;
                 case "New York City":
-                    endpoint = newYorkGeoEndpoint;
+                    // endpoint = newYorkCityGeoEndpoint;
+                    GivePopulationInfo("New York City", m_NewYorkCityPopulation.ToString());
                     break;
                 default:
                     yield break;
             }
             
-            Debug.Log("Sending Get Request: " + endpoint);
+            // Debug.Log("Sending Get Request: " + endpoint);
             
             // Get the population for the city.
-            yield return m_APIHandler.SendGetRequest(endpoint);
-            if (!HandleResponse(m_LastResult))
-                yield break;
-            
-            try
-            {
-                var population = m_LastResponseBody;
-
-            }
-            catch (Exception e)
-            {
-                HandleError(e.ToString());
-            }
+            // yield return m_APIHandler.SendGetRequest(endpoint);
+            // if (!HandleResponse(m_LastResult))
+            //     yield break;
+            //
+            // try
+            // {
+            //     var population = m_LastResponseBody;
+            //
+            // }
+            // catch (Exception e)
+            // {
+            //     HandleError(e.ToString());
+            // }
         }
 
-        private void GivePopulationInfo(string city, string population)
+        void GivePopulationInfo(string city, string population)
         {
             var parameters = new Dictionary<string, string>
             {
@@ -110,11 +117,11 @@ namespace Inworld.Playground
                 { "population", population }
             };
 
-            InworldController.Instance.SendTrigger("provide_population", inworldPlaygroundCharacter.ID, parameters);
+            InworldController.Instance.SendTrigger("provide_population", m_InworldPlaygroundCharacter.ID, parameters);
         }
 
 
-        private bool HandleResponse(UnityWebRequest.Result result)
+        bool HandleResponse(UnityWebRequest.Result result)
         {
             if (result is not UnityWebRequest.Result.Success)
             {
@@ -124,11 +131,11 @@ namespace Inworld.Playground
             return true;
         }
 
-        private void HandleError(string errorMessage)
+        void HandleError(string errorMessage)
         {
             Debug.LogError("Web request failed: " + m_LastResult);
             var parameters = new Dictionary<string, string> { { "error", errorMessage } };
-            InworldController.Instance.SendTrigger("error_fetching_data", inworldPlaygroundCharacter.ID, parameters);
+            InworldController.Instance.SendTrigger("error_fetching_data", m_InworldPlaygroundCharacter.ID, parameters);
         }
     }
 }
