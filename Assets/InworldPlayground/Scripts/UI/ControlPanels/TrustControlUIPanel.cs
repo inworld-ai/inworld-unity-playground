@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,27 +17,51 @@ namespace Inworld.Playground
     /// </summary>
     public class TrustControlUIPanel : MonoBehaviour
     {
-        [SerializeField] private InworldCharacter m_InworldCharacter;
-        
+        [SerializeField] InworldCharacter m_InworldCharacter;
+
+        int m_CurrentTrustLevel = 1;
+
         public void OnSuspiciousToggleValueChanged(bool value)
         {
-            if (!value) return;
+            if (!value || m_CurrentTrustLevel == 1) return;
 
+            m_CurrentTrustLevel = 1;
             m_InworldCharacter.SendTrigger("trust_level1");
         }
 
         public void OnUncertainToggleValueChanged(bool value)
         {
-            if (!value) return;
-            
+            if (!value || m_CurrentTrustLevel == 2) return;
+
+            m_CurrentTrustLevel = 2;
             m_InworldCharacter.SendTrigger("trust_level2");
         }
         
         public void OnTrustingToggleValueChanged(bool value)
         {
-            if (!value) return;
-            
+            if (!value || m_CurrentTrustLevel == 3) return;
+
+            m_CurrentTrustLevel = 3;
             m_InworldCharacter.SendTrigger("trust_level3");
+        }
+
+        void OnEnable()
+        {
+            InworldController.Client.OnStatusChanged += ClientOnOnStatusChanged;
+        }
+        
+        void OnDisable()
+        {
+            if(InworldController.Instance)
+                InworldController.Client.OnStatusChanged -= ClientOnOnStatusChanged;
+        }
+        
+        void ClientOnOnStatusChanged(InworldConnectionStatus status)
+        {
+            if (status == InworldConnectionStatus.Connected)
+            {
+                m_InworldCharacter.SendTrigger($"trust_level{m_CurrentTrustLevel}");
+            }
         }
     }
 }
