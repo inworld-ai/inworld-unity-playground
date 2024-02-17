@@ -6,10 +6,9 @@
  *************************************************************************************************/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Inworld.Playground.Data;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace Inworld.Playground
 {
@@ -19,41 +18,19 @@ namespace Inworld.Playground
     [RequireComponent(typeof(APIHandler))]
     public class DataRetrievalShowcase : MonoBehaviour
     {
-        const string sanFranciscoGeoEndpoint = "";
-        const string newYorkCityGeoEndpoint = "";
-
-        [SerializeField] int m_SanFranciscoPopulation;
-        [SerializeField] int m_NewYorkCityPopulation;
         [SerializeField] InworldPlaygroundCharacter m_InworldPlaygroundCharacter;
-
-        APIHandler m_APIHandler;
-        UnityWebRequest.Result m_LastResult = 0;
-        string m_LastResponseBody = "";
-
-        void Awake()
-        {
-            m_APIHandler = GetComponent<APIHandler>();
-        }
 
         void OnEnable()
         {
-            m_APIHandler.onResponseEvent.AddListener(OnResponseEvent);
             m_InworldPlaygroundCharacter.onServerTrigger.AddListener(OnDataRetrievalBotServerTrigger);
         }
         
         void OnDisable()
         {
-            m_APIHandler.onResponseEvent.RemoveListener(OnResponseEvent);
             if(m_InworldPlaygroundCharacter)
                 m_InworldPlaygroundCharacter.onServerTrigger.RemoveListener(OnDataRetrievalBotServerTrigger);
         }
 
-        void OnResponseEvent(UnityWebRequest.Result result, string body)
-        {
-            m_LastResult = result;
-            m_LastResponseBody = body;
-        }
-        
         void OnDataRetrievalBotServerTrigger(string triggerName, Dictionary<string, string> parameters) 
         {
             switch (triggerName)
@@ -67,75 +44,43 @@ namespace Inworld.Playground
                         });
                         break;
                     }
-                    StartCoroutine((GetPopulation(city)));
+                    GetPopulation(city);
                     break;
             }
         }
         
-        IEnumerator GetPopulation(string city)
+        void GetPopulation(string cityName)
         {
-            Debug.Log("Getting population data for: " + city);
-            
-            // string endpoint;
-            switch (city)
+            Debug.Log("Getting population data for: " + cityName);
+            try
             {
-                case "San Francisco":
-                    // endpoint = sanFranciscoGeoEndpoint;
-                    GivePopulationInfo("San Francisco", m_SanFranciscoPopulation.ToString());
-                    break;
-                case "New York City":
-                    // endpoint = newYorkCityGeoEndpoint;
-                    GivePopulationInfo("New York City", m_NewYorkCityPopulation.ToString());
-                    break;
-                default:
-                    yield break;
+                TextAsset populationDataTextAsset = Resources.Load<TextAsset>("PopulationData");
+                var populationData = JsonUtility.FromJson<PopulationData>(populationDataTextAsset.text);
+            
+                foreach (City city in populationData.Cities)
+                {
+                    if (city.Name == cityName)
+                    {
+                        GivePopulationInfo(cityName, city.Population.ToString());
+                        break;
+                    }
+                }
             }
-            
-            // Debug.Log("Sending Get Request: " + endpoint);
-            
-            // Get the population for the city.
-            // yield return m_APIHandler.SendGetRequest(endpoint);
-            // if (!HandleResponse(m_LastResult))
-            //     yield break;
-            //
-            // try
-            // {
-            //     var population = m_LastResponseBody;
-            //
-            // }
-            // catch (Exception e)
-            // {
-            //     HandleError(e.ToString());
-            // }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Failed to get population data for: {cityName}, error: {e}");                
+            }
         }
 
-        void GivePopulationInfo(string city, string population)
+        void GivePopulationInfo(string cityName, string population)
         {
             var parameters = new Dictionary<string, string>
             {
-                { "city", city },
+                { "city", cityName },
                 { "population", population }
             };
 
             InworldController.Instance.SendTrigger("provide_population", m_InworldPlaygroundCharacter.ID, parameters);
-        }
-
-
-        bool HandleResponse(UnityWebRequest.Result result)
-        {
-            if (result is not UnityWebRequest.Result.Success)
-            {
-                HandleError(m_LastResult.ToString());
-                return false;
-            }
-            return true;
-        }
-
-        void HandleError(string errorMessage)
-        {
-            Debug.LogError("Web request failed: " + m_LastResult);
-            var parameters = new Dictionary<string, string> { { "error", errorMessage } };
-            InworldController.Instance.SendTrigger("error_fetching_data", m_InworldPlaygroundCharacter.ID, parameters);
         }
     }
 }
