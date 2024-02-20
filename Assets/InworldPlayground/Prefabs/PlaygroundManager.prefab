@@ -694,6 +694,8 @@ MonoBehaviour:
     InworldSceneName: animation_showcase
   - UnitySceneName: Goals
     InworldSceneName: goals_gym
+  - UnitySceneName: Mutations
+    InworldSceneName: goals_gym
   m_Settings:
     PlayerName: 
     WorkspaceId: 
