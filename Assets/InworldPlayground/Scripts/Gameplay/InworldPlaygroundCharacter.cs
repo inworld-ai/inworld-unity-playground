@@ -34,6 +34,11 @@ namespace Inworld.Playground
         
         protected override void HandleTrigger(CustomPacket customPacket)
         {
+            base.HandleTrigger(customPacket);
+            
+            if (customPacket.Message == InworldMessage.RelationUpdate)
+                return;
+            
             var parameterDictionary = new Dictionary<string, string>();
             foreach (var parameter in customPacket.custom.parameters)
                 parameterDictionary.Add(parameter.name, parameter.value);

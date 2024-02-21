@@ -90,6 +90,9 @@ namespace Inworld.Playground
                 }
             }
             
+            if(Input.GetMouseButtonDown(0) && InteractionSystem.Instance.IsHoveringInteractable)
+                InteractionSystem.Instance.Interact();
+            
             if (!m_ChatCanvas.activeSelf)
                 HandleMovement();
         }
