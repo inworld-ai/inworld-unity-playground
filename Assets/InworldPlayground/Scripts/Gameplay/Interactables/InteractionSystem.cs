@@ -65,7 +65,7 @@ namespace Inworld.Playground
 
             m_CurrentInteractable = null;
             if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out RaycastHit hitInfo, m_Range))
-                m_CurrentInteractable = hitInfo.collider.GetComponent<Interactable>();
+                m_CurrentInteractable = hitInfo.collider.GetComponentInParent<Interactable>();
         }
     }
 }

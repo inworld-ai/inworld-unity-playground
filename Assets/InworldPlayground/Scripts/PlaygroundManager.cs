@@ -51,6 +51,8 @@ namespace Inworld.Playground
         private Coroutine m_SceneChangeCoroutine;
         private Scene m_CurrentScene;
         private bool m_Paused;
+
+        private string m_LobbyHistory;
         
         /// <summary>
         ///     Loads the current Game Data object into the Inworld Controller for the Playground Workspace.
@@ -263,7 +265,11 @@ namespace Inworld.Playground
                     InworldController.Instance.Reconnect();
                     break;
                 case InworldConnectionStatus.Initialized:
-                    InworldController.Instance.LoadScene();
+                    InworldController.Client.SessionHistory = null;
+                    if(m_CurrentScene.name == playgroundSceneName)
+                        InworldController.Instance.LoadScene("", m_LobbyHistory);
+                    else
+                        InworldController.Instance.LoadScene();
                     break;
             }
         }
@@ -281,6 +287,9 @@ namespace Inworld.Playground
         {
             Pause(false);
             InworldController.Instance.Disconnect();
+
+            if (m_CurrentScene.name == playgroundSceneName)
+                m_LobbyHistory = InworldController.Client.SessionHistory;
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
