@@ -62,9 +62,11 @@ namespace Inworld.Assets
             {
                 case "AFFECTION":
                 case "INTEREST":
-                    _ProcessEmotion("Anticipation");
+                    _ProcessEmotion("Affection");
                     break;
                 case "HUMOR":
+                    _ProcessEmotion("Humor");
+                    break;
                 case "JOY":
                     _ProcessEmotion("Joy");
                     break;
@@ -76,7 +78,7 @@ namespace Inworld.Assets
                 case "BELLIGERENCE":
                 case "DOMINEERING":
                 case "ANGER":
-                    _ProcessEmotion("Anger");
+                    _ProcessEmotion("Angry");
                     break;
                 case "TENSION":
                 case "STONEWALLING":
@@ -86,7 +88,7 @@ namespace Inworld.Assets
                     break;
                 case "WHINING":
                 case "SADNESS":
-                    _ProcessEmotion("Sadness");
+                    _ProcessEmotion("Sad");
                     break;
                 case "SURPRISE":
                     _ProcessEmotion("Surprise");
