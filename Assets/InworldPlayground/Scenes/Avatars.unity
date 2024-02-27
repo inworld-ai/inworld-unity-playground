@@ -4180,6 +4180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1023523205}
     m_Modifications:
+    - target: {fileID: 221341588342235210, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
+      propertyPath: m_EmotionMap
+      value: 
+      objectReference: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
     - target: {fileID: 900466721184246333, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

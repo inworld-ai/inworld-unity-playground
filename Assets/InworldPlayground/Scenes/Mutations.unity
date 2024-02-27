@@ -5242,7 +5242,7 @@ PrefabInstance:
     - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Character
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1989651471}
     - target: {fileID: 8255734518283041070, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 1076

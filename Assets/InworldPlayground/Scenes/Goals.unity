@@ -9028,7 +9028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActive: 0
   m_InworldCharacter: {fileID: 2005311948}
-  m_TriggerName: angry_interaction
+  m_TriggerName: angry_interacted
   m_TriggerParameterList:
   - Key: action
     Value: knocking over
@@ -10468,10 +10468,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActive: 0
   m_InworldCharacter: {fileID: 2005311948}
-  m_TriggerName: item_interaction
+  m_TriggerName: item_interacted
   m_TriggerParameterList:
   - Key: action
-    Value: changing the material of
+    Value: touching
   - Key: item
     Value: Toy Innequin Doll
   m_Materials:
