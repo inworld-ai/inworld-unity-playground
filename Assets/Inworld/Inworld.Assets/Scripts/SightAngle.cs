@@ -44,10 +44,7 @@ namespace Inworld.Sample
 
         void Awake()
         {
-            if(m_Animator)
-                m_HeadTransform = m_Animator.GetBoneTransform(HumanBodyBones.Head);
-            if (!m_HeadTransform)
-                m_HeadTransform = transform;
+            m_HeadTransform = m_Animator.GetBoneTransform(HumanBodyBones.Head);
         }
         
         void OnEnable()

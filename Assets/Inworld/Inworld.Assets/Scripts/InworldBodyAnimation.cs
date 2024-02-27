@@ -64,15 +64,16 @@ namespace Inworld.Assets
         {
             HandleMainStatus(isStarting ? AnimMainStatus.Talking : AnimMainStatus.Neutral);
         }
-        
         protected virtual void OnCharChanged(InworldCharacter oldChar, InworldCharacter newChar)
         {
             if (oldChar && oldChar.BrainName == m_Character.Data.brainName)
             {
                 HandleMainStatus(AnimMainStatus.Goodbye);
+                m_BodyAnimator.enabled = false;
             }
             if (newChar && newChar.BrainName == m_Character.Data.brainName)
             {
+                m_BodyAnimator.enabled = true;
                 HandleMainStatus(AnimMainStatus.Hello);
             }
         }
