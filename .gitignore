@@ -99,10 +99,6 @@ ProjectSettings/Packages/com.unity.probuilder/
 SpaceNavigator/
 SpaceNavigator.meta
 
-# Exports
-Exports/
-Exports.meta
-
 # Inworld Package Files
 InworldPlaygroundAssets.unitypackage
 InworldPlaygroundAssets.unitypackage.meta

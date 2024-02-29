@@ -35,7 +35,7 @@ namespace Inworld.Playground
         static void ExportPlaygroundPackage()
         {
             AssetDatabase.ExportPackage(s_PlaygroundAssetPathNames, $"{Application.dataPath}/Inworld/InworldPlaygroundAssets.unitypackage", ExportPackageOptions.Recurse);
-            AssetDatabase.ExportPackage(s_CompletePackageAssetPathNames, $"{Application.dataPath}/Exports/InworldAI.Playground.unitypackage", ExportPackageOptions.Recurse);
+            AssetDatabase.ExportPackage(s_CompletePackageAssetPathNames, $"{Application.dataPath}/InworldAI.Playground.unitypackage", ExportPackageOptions.Recurse);
         }
     }
 }
