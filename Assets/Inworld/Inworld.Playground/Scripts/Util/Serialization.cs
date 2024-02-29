@@ -21,7 +21,7 @@ namespace Inworld.Playground
     /// </summary>
     public static class Serialization
     {
-        const string playgroundDirectory = "InworldPlayground";
+        const string playgroundDirectory = "Inworld/Inworld.Playground";
         const string sceneName = "inworld_playground_lobby";
         const string gameDataAssetName = "PlaygroundData";
         

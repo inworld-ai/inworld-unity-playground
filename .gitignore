@@ -83,8 +83,8 @@ crashlytics-build.properties
 /[Aa]ssets/Inworld/Inworld.AI/Data/GameData.meta
 
 # Playground Game Data
-/[Aa]ssets/InworldPlayground/GameData/
-/[Aa]ssets/InworldPlayground/GameData.meta
+/[Aa]ssets/Inworld/Inworld.Playground/GameData/
+/[Aa]ssets/Inworld/Inworld.Playground/GameData.meta
 
 # TextMesh Pro
 TextMesh Pro/
@@ -98,3 +98,13 @@ ProjectSettings/Packages/com.unity.probuilder/
 # SpaceNavigator Driver
 SpaceNavigator/
 SpaceNavigator.meta
+
+# Exports
+Exports/
+Exports.meta
+
+# Inworld Package Files
+InworldPlaygroundAssets.unitypackage
+InworldPlaygroundAssets.unitypackage.meta
+InworldAI.Playground.unitypackage
+InworldAI.Playground.unitypackage.meta

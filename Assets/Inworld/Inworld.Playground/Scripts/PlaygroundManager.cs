@@ -204,10 +204,16 @@ namespace Inworld.Playground
                 return;
             }
             
+            DontDestroyOnLoad(gameObject);
+            
             if(m_Settings.ClientType == NetworkClient.WebSocket)
                 Instantiate(m_InworldControllerWebSocket);
             else
                 Instantiate(m_InworldControllerNDK);
+            
+            m_InworldSceneMappingDictionary = new Dictionary<string, string>();
+            foreach (var sceneMapping in m_InworldSceneMapping)
+                m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
             
             m_GameData = Serialization.GetGameData();
             if (m_GameData == null && SceneManager.GetActiveScene().name != setupSceneName)
@@ -216,18 +222,12 @@ namespace Inworld.Playground
                 SceneManager.LoadScene(setupSceneName);
                 return;
             }
-
-            m_InworldSceneMappingDictionary = new Dictionary<string, string>();
-            foreach (var sceneMapping in m_InworldSceneMapping)
-                m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
-                
+            
             if (m_GameData != null)
                 m_Settings.WorkspaceId = m_GameData.sceneFullName.Split('/')[1];
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
-            
-            DontDestroyOnLoad(gameObject);
         }
 
         private void OnEnable()

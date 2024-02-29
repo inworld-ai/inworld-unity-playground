@@ -1,11 +1,10 @@
 ﻿/*************************************************************************************************
- * Copyright 2022-2024 Theai, Inc. dba Inworld AI
+ * Copyright 2024 Theai, Inc. (DBA Inworld)
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 #if UNITY_EDITOR
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -14,70 +13,64 @@ using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 
-namespace Inworld
+namespace Inworld.Playground
 {
-    [InitializeOnLoad]
-    public class DependencyImporter : AssetPostprocessor
+    public static class DependencyImporter
     {
-        const string k_Pathv2 = "Assets/Inworld.AI";
-        const string k_Pathv3 = "Assets/Inworld/Inworld.AI"; // YAN: These 2 folders are incompatible.
-        const string k_UpgradeTitle = "Legacy Inworld found";
-        const string k_UpgradeContent = "Unable to upgrade. Please delete the folder Assets/Inworld, and reimport this package";
-        const string k_DependencyPackages = "https://github.com/inworld-ai/inworld-unity.git#yj3.2";
-        static DependencyImporter()
+        static readonly string[] s_DependencyPackagesInstall = 
         {
-            AssetDatabase.importPackageCompleted += async packageName =>
-            {
-                await InstallDependencies();
-            };
-        }
+            "com.unity.probuilder",
+            "com.unity.ai.navigation",
+            "https://github.com/inworld-ai/inworld-unity.git#yj3.2"
+        };
         
-
-        public static async Task InstallDependencies()
+        static readonly string[] s_DependencyPackagesCheck = 
         {
-            if (Directory.Exists(k_Pathv2) || Directory.Exists(k_Pathv3))
+            "com.unity.probuilder",
+            "com.unity.ai.navigation",
+            "com.inworld.unity"
+        };
+        
+        public static async Task<bool> InstallDependencies()
+        {
+            Debug.Log("Importing Dependency Packages...");
+            AddAndRemoveRequest request = Client.AddAndRemove(s_DependencyPackagesInstall);
+            
+            while (!request.IsCompleted)
             {
-                if (EditorUtility.DisplayDialog(k_UpgradeTitle, k_UpgradeContent, "OK"))
-                    return;
-            } 
-            Debug.Log("Import Dependency Packages...");
-            await _AddPackage(k_DependencyPackages);
+                EditorUtility.DisplayProgressBar("Inworld Playground", "Importing Dependencies...", 0.2f);
+                await Task.Yield();
+            }
+            EditorUtility.ClearProgressBar();
+            
+            if (request.Status != StatusCode.Success)
+            {
+                Debug.LogError($"Failed to add dependency packages. {request.Error}.");
+                return false;
+            }
+            Debug.Log($"Importing Dependencies Completed.");
+            return true;
         }
 
-
-        static async Task _AddPackage(string packageFullName)
+        public static async Task<bool> CheckDependencies()
         {
-            ListRequest listRequest = Client.List();
-
-            while (!listRequest.IsCompleted)
+            ListRequest request = Client.List();
+            
+            while (!request.IsCompleted)
             {
+                EditorUtility.DisplayProgressBar("Inworld Playground", "Fetching packages...", 0.2f);
                 await Task.Yield();
             }
-            if (listRequest.Status != StatusCode.Success)
+            EditorUtility.ClearProgressBar();
+            
+            if (request.Status != StatusCode.Success)
             {
-                Debug.LogError(listRequest.Error.ToString());
-                return;
-            }
-            if (listRequest.Result.Any(x => x.name == packageFullName))
-            {
-                Debug.Log($"{packageFullName} Found.");
-                return;
+                Debug.LogError($"Failed to fetch packages. {request.Error}.");
+                return false;
             }
 
-            AddRequest addRequest = Client.Add(packageFullName);
-            while (!addRequest.IsCompleted)
-            {
-                await Task.Yield();
-            }
-
-            if (addRequest.Status != StatusCode.Success)
-            {
-                Debug.LogError($"Failed to add {packageFullName}.");
-                return;
-            }
-            Debug.Log($"Import {packageFullName} Completed");
-            if (!Directory.Exists("Assets/Inworld/Inworld.Assets") && File.Exists("Assets/Inworld/InworldExtraAssets.unitypackage"))
-                AssetDatabase.ImportPackage("Assets/Inworld/InworldExtraAssets.unitypackage", false);
+            return !s_DependencyPackagesCheck.Any(dependency =>
+                request.Result.All(x => x.name != dependency));
         }
     }
 }
