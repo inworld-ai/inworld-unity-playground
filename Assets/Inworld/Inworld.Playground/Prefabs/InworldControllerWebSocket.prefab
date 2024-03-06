@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2395919966041133306, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      propertyPath: m_GameData
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395919966041133306, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
       propertyPath: m_AutoStart
       value: 0
       objectReference: {fileID: 0}
@@ -65,6 +69,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3989058389384028254, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      propertyPath: m_DeviceName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989058389384028254, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
       propertyPath: m_SamplingMode
       value: 1
       objectReference: {fileID: 0}
@@ -106,6 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3241affa9c0462fa7193839038c32c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ManualAudioHandling: 0
+  m_ManualAudioHandling: 1
   m_SelectingMethod: 2
   m_RefreshRate: 0.5
