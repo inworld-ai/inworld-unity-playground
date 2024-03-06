@@ -250,6 +250,9 @@ namespace Inworld.Playground
                 if(!m_GameMenu.activeSelf)
                     Pause();
             }
+            
+            if((Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) && Input.GetKeyDown(KeyCode.F4))
+                Application.Quit();
         }
         #endregion
         
