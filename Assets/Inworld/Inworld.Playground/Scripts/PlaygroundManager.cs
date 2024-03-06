@@ -36,6 +36,9 @@ namespace Inworld.Playground
         
         [SerializeField]
         private PlaygroundSettings m_Settings;
+
+        [SerializeField]
+        private float m_NetworkCheckRate = 2;
         
         [SerializeField] 
         private GameObject m_GameMenu;
@@ -49,6 +52,7 @@ namespace Inworld.Playground
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
         private Coroutine m_SceneChangeCoroutine;
+        private Coroutine m_NetworkCoroutine;
         private Scene m_CurrentScene;
         private bool m_Paused;
 
@@ -259,21 +263,14 @@ namespace Inworld.Playground
         #region Event Callback Functions
         private void OnStatusChanged(InworldConnectionStatus status)
         {
-            switch (status)
+            Debug.Log("Status Changed: " + status);
+            if (status == InworldConnectionStatus.Initialized)
             {
-                case InworldConnectionStatus.InitFailed:
-                case InworldConnectionStatus.LostConnect:
-                case InworldConnectionStatus.Error:
-                    // TODO: handle error cases
-                    InworldController.Instance.Reconnect();
-                    break;
-                case InworldConnectionStatus.Initialized:
-                    InworldController.Client.SessionHistory = null;
-                    if(m_CurrentScene.name == playgroundSceneName)
-                        InworldController.Instance.LoadScene("", m_LobbyHistory);
-                    else
-                        InworldController.Instance.LoadScene();
-                    break;
+                InworldController.Client.SessionHistory = null;
+                if(m_CurrentScene.name == playgroundSceneName)
+                    InworldController.Instance.LoadScene("", m_LobbyHistory);
+                else
+                    InworldController.Instance.LoadScene();
             }
         }
         
@@ -286,6 +283,33 @@ namespace Inworld.Playground
         #endregion
         
         #region Enumerators
+        private IEnumerator NetworkStatusCheck()
+        {
+            float networkCheckTime = m_NetworkCheckRate;
+            while (true)
+            {
+                switch (InworldController.Status)
+                {
+                    case InworldConnectionStatus.Connected:
+                        networkCheckTime = m_NetworkCheckRate;
+                        break;
+                    case InworldConnectionStatus.Idle:
+                    case InworldConnectionStatus.LostConnect:
+                        InworldAI.Log("Attempting soft-reconnect");
+                        InworldController.Instance.Reconnect();
+                        networkCheckTime += m_NetworkCheckRate;
+                        break;
+                    case InworldConnectionStatus.Error:
+                        InworldAI.Log("Attempting hard-reconnect");
+                        InworldController.Instance.Disconnect();
+                        InworldController.Instance.Init();
+                        networkCheckTime += m_NetworkCheckRate;
+                        break;
+                }
+                
+                yield return new WaitForSecondsRealtime(networkCheckTime);
+            }
+        }
         private IEnumerator IChangeScene(string sceneName)
         {
             Pause(false);
@@ -373,6 +397,8 @@ namespace Inworld.Playground
             ResumeAllCharacterInteractions();
             
             EnableAllWorldSpaceGraphicRaycasters();
+
+            m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
             
             m_Paused = false;
         }
@@ -445,6 +471,12 @@ namespace Inworld.Playground
         {
             if(m_Paused)
                 return;
+
+            if (m_NetworkCoroutine != null)
+            {
+                StopCoroutine(m_NetworkCoroutine);
+                m_NetworkCoroutine = null;
+            }
             
             DisableAllWorldSpaceGraphicRaycasters();
             
