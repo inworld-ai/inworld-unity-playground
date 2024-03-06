@@ -266,7 +266,7 @@ namespace Inworld.Playground
             Debug.Log("Status Changed: " + status);
             if (status == InworldConnectionStatus.Initialized)
             {
-                InworldController.Client.SessionHistory = null;
+                InworldController.Client.SessionHistory = "";
                 if(m_CurrentScene.name == playgroundSceneName)
                     InworldController.Instance.LoadScene("", m_LobbyHistory);
                 else
@@ -347,8 +347,21 @@ namespace Inworld.Playground
                 
                 LoadData();
                 InworldController.Instance.Init();
-        
-                yield return new WaitUntil(() => InworldController.Status == InworldConnectionStatus.Connected);
+
+                float connectionCheckTime = m_NetworkCheckRate;
+                while (InworldController.Status != InworldConnectionStatus.Connected)
+                {
+                    if (InworldController.Status == InworldConnectionStatus.Error ||
+                        InworldController.Status == InworldConnectionStatus.Idle ||
+                        InworldController.Status == InworldConnectionStatus.LostConnect ||
+                        InworldController.Status == InworldConnectionStatus.InitFailed)
+                    {
+                        InworldController.Instance.Disconnect();
+                        InworldController.Instance.Init();
+                        connectionCheckTime += m_NetworkCheckRate;
+                    }
+                    yield return new WaitForSecondsRealtime(connectionCheckTime);
+                }
             }
            
             yield return StartCoroutine(IPlay());
