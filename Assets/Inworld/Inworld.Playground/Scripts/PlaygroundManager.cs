@@ -232,6 +232,8 @@ namespace Inworld.Playground
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
+            
+            Time.timeScale = 0;
         }
 
         private void OnEnable()
