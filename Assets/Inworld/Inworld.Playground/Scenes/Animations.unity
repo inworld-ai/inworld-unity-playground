@@ -792,6 +792,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1023523205}
     m_Modifications:
     - target: {fileID: 2049912337102572863, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
+      propertyPath: m_Character
+      value: 
+      objectReference: {fileID: 397673525}
+    - target: {fileID: 2049912337102572863, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
       propertyPath: m_SightAngle
       value: 180
       objectReference: {fileID: 0}
@@ -855,20 +859,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4557301663564552460, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
+      propertyPath: m_Character
+      value: 
+      objectReference: {fileID: 397673525}
     - target: {fileID: 5302111882359236030, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
       propertyPath: m_Name
       value: emotion_emily_inworld-playground
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5127670340784287737, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5302111882359236030, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 397673525}
   m_SourcePrefab: {fileID: 100100000, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
 --- !u!4 &397673523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4550034613420978969, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
   m_PrefabInstance: {fileID: 397673522}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &397673524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5302111882359236030, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
+  m_PrefabInstance: {fileID: 397673522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &397673525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397673524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613ac1f8d252b24428cb15dd2a560c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Data:
+    agentId: 
+    brainName: workspaces/inworld-playground/characters/emotion_emily
+    givenName: Emotion Emily
+    characterAssets:
+      rpmModelUri: 
+      rpmImageUriPortrait: 
+      rpmImageUriPosture: 
+      avatarImg: 
+      avatarImgOriginal: 
+      thumbnailProgress: 0
+      avatarProgress: 0
+    thumbnail: {fileID: 2800000, guid: 27a406e3292ecb74484b5dcfd17e6cb6, type: 3}
+  m_VerboseLog: 0
+  onBeginSpeaking:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndSpeaking:
+    m_PersistentCalls:
+      m_Calls: []
+  onPacketReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onCharacterSpeaks:
+    m_PersistentCalls:
+      m_Calls: []
+  onEmotionChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onGoalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelationUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  onCharacterDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  onServerTrigger:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &398136009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1727,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Neutral
+  m_text: NEUTRAL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2742,17 +2812,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1194687210 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5127670340784287737, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
-  m_PrefabInstance: {fileID: 397673522}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b438b557296b4c809bc75304ddf07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1196663879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3818,15 +3877,25 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Neutral
+    - m_Text: NEUTRAL
+      m_Image: {fileID: 0}
+    - m_Text: JOY
+      m_Image: {fileID: 0}
+    - m_Text: ANGER
+      m_Image: {fileID: 0}
+    - m_Text: SURPRISE
+      m_Image: {fileID: 0}
+    - m_Text: SADNESS
+      m_Image: {fileID: 0}
+    - m_Text: DISGUST
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2114821707}
-        m_TargetAssemblyTypeName: Inworld.Playground.EmotionControlPanel, Assembly-CSharp
-        m_MethodName: OnSelectEmotion
-        m_Mode: 1
+        m_TargetAssemblyTypeName: Inworld.Playground.EmotionControlUIPanel, Assembly-CSharp
+        m_MethodName: OnDropdownValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4969,6 +5038,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1115.9998
       objectReference: {fileID: 0}
+    - target: {fileID: 2814743248686960371, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3152606534328830438, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3152606534328830438, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -325
+      objectReference: {fileID: 0}
     - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -5016,7 +5097,7 @@ PrefabInstance:
     - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Character
       value: 
-      objectReference: {fileID: 1903234861}
+      objectReference: {fileID: 1903234854}
     - target: {fileID: 8255734518283041070, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 1076
@@ -5028,7 +5109,7 @@ PrefabInstance:
     - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Character
       value: 
-      objectReference: {fileID: 1903234861}
+      objectReference: {fileID: 1903234854}
     - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SightAngle
       value: 180
@@ -5052,15 +5133,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1903234861}
+      insertIndex: -1
+      addedObject: {fileID: 1903234854}
   m_SourcePrefab: {fileID: 100100000, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
 --- !u!4 &1903234853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
   m_PrefabInstance: {fileID: 1903234852}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1903234861
+--- !u!114 &1903234854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5069,7 +5150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1046674485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b438b557296b4c809bc75304ddf07, type: 3}
+  m_Script: {fileID: 11500000, guid: 613ac1f8d252b24428cb15dd2a560c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Data:
@@ -7011,8 +7092,8 @@ MonoBehaviour:
   m_Dropdown: {fileID: 1521429005}
   m_PlayButton: {fileID: 0}
   m_InworldCharacters:
-  - {fileID: 1903234861}
-  - {fileID: 1194687210}
+  - {fileID: 1903234854}
+  - {fileID: 397673525}
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
 --- !u!114 &2114821708
 MonoBehaviour:
