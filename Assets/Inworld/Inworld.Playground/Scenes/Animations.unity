@@ -1140,10 +1140,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402836062}
   m_CullTransparentMesh: 1
+--- !u!1 &425561280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6554292623040994231, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
+  m_PrefabInstance: {fileID: 1647970121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &460498565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6761323343535279898, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
   m_PrefabInstance: {fileID: 1903234852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &464555627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+  m_PrefabInstance: {fileID: 1989651468}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &533703217
 GameObject:
@@ -3991,6 +4001,10 @@ PrefabInstance:
       propertyPath: m_EmotionMap
       value: 
       objectReference: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+    - target: {fileID: 3499833410880441783, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 202ac3f7d6a9ccb40b5af3e9fe94e4e3, type: 2}
     - target: {fileID: 6374059062776168329, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -4051,10 +4065,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6979359975708554958, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6554292623040994231, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1647970130}
   m_SourcePrefab: {fileID: 100100000, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
 --- !u!4 &1647970122 stripped
 Transform:
@@ -4066,6 +4084,20 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3499833410880441783, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
   m_PrefabInstance: {fileID: 1647970121}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1647970130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425561280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ccfe945f04dcd4d90ffada593d13ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_BodyAnimator: {fileID: 1647970123}
 --- !u!1 &1650239007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,15 +4225,15 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Sad
       m_Image: {fileID: 0}
-    - m_Text: Point
-      m_Image: {fileID: 0}
-    - m_Text: Think
-      m_Image: {fileID: 0}
-    - m_Text: Thank
+    - m_Text: Surprise
       m_Image: {fileID: 0}
     - m_Text: Tell To Listen
       m_Image: {fileID: 0}
-    - m_Text: Surprise
+    - m_Text: Thank
+      m_Image: {fileID: 0}
+    - m_Text: Think
+      m_Image: {fileID: 0}
+    - m_Text: Point
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5285,6 +5317,10 @@ PrefabInstance:
       propertyPath: m_Data.givenName
       value: Emotion Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 202ac3f7d6a9ccb40b5af3e9fe94e4e3, type: 2}
     - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -5371,9 +5407,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 2553018661288249884, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1989651478}
   m_SourcePrefab: {fileID: 100100000, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
 --- !u!4 &1989651469 stripped
 Transform:
@@ -5390,7 +5430,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
   m_PrefabInstance: {fileID: 1989651468}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 464555627}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 613ac1f8d252b24428cb15dd2a560c23, type: 3}
@@ -5401,6 +5441,20 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
   m_PrefabInstance: {fileID: 1989651468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1989651478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464555627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ccfe945f04dcd4d90ffada593d13ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_BodyAnimator: {fileID: 1989651472}
 --- !u!43 &1993247715
 Mesh:
   m_ObjectHideFlags: 0

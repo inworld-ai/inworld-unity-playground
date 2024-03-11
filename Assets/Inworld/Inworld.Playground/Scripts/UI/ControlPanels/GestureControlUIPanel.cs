@@ -42,10 +42,13 @@ namespace Inworld.Playground
                 animator.SetInteger(s_Gesture, m_SelectionIndex);
             m_PlayButton.interactable = false;
             // Wait for transition
-            yield return new WaitForSeconds(m_TransitionTime);
+            while (m_Animators[0].GetCurrentAnimatorClipInfo(1) == null ||
+                   m_Animators[0].GetCurrentAnimatorClipInfo(1).Length == 0)
+                yield return new WaitForEndOfFrame();
+            
             // Wait for animation clip to finish
             yield return new WaitForSeconds(m_Animators[0].GetCurrentAnimatorClipInfo(1)[0].clip.length);
-            
+
             foreach (var animator in m_Animators)
                 animator.SetInteger(s_Gesture, 0);
 
