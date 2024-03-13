@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_ChatCanvas: {fileID: 5228085510032170784}
   m_BubblePanel: {fileID: 8853781112703536260}
   m_MoveSpeed: 4
-  m_MoveInterpolationFactor: 0.6
+  m_MoveInterpolationFactor: 0.8
   m_RotSpeed: 2
 --- !u!114 &8853781112703536260
 MonoBehaviour:

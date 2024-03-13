@@ -93,7 +93,7 @@ namespace Inworld.Assets
                 return;
             }
             m_BodyAnimator.SetInteger(s_Emotion, (int)emoMapData.bodyEmotion);
-            m_BodyAnimator.SetInteger(s_Gesture, (int)emoMapData.bodyGesture);
+            m_BodyAnimator.SetTrigger("Gesture_" + (int)emoMapData.bodyGesture);
         }
         void _StartLookAt(Vector3 lookPos)
         {
