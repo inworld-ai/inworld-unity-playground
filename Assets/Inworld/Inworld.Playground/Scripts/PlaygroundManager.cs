@@ -24,6 +24,8 @@ namespace Inworld.Playground
     public class PlaygroundManager : SingletonBehavior<PlaygroundManager>
     {
         public UnityEvent OnClientChanged;
+        public UnityEvent OnPlay;
+        public UnityEvent OnPause;
         
         public InworldGameData GameData => m_GameData;
         public bool Paused => m_Paused;
@@ -416,6 +418,7 @@ namespace Inworld.Playground
             m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
             
             m_Paused = false;
+            OnPlay?.Invoke();
         }
         
         private IEnumerator IUpdateNetworkClient(NetworkClient clientType)
@@ -511,6 +514,7 @@ namespace Inworld.Playground
                 m_GameMenu.SetActive(true);
 
             m_Paused = true;
+            OnPause?.Invoke();
         }
         
         private bool CheckAudioComponent()

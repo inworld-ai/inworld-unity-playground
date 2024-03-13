@@ -67,8 +67,18 @@ namespace Inworld.Playground
 
         protected override void HandlePTT()
         {
-            if(!PlaygroundManager.Instance.Paused)
-                base.HandlePTT();
+            if (PlaygroundManager.Instance.Paused || InworldController.CurrentCharacter == null) return;
+            
+            if (Input.GetKeyDown(m_PushToTalkKey))
+            {
+                m_PTTKeyPressed = true;
+                InworldController.Instance.StartAudio();
+            }
+            else if (Input.GetKeyUp(m_PushToTalkKey))
+            {
+                m_PTTKeyPressed = false;
+                InworldController.Instance.PushAudio();
+            }
         }
 
         protected override void HandleInput()
