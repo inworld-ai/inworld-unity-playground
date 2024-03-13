@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7534447453935462706}
   - component: {fileID: 4509375910348143425}
   - component: {fileID: 4214152399600001475}
+  - component: {fileID: 7668982177845918985}
   m_Layer: 0
   m_Name: Controls
   m_TagString: Untagged
@@ -74,6 +75,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7668982177845918985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837242077840291153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc9733c081b82d4f81dd7e89f09a8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PushToTalkControl: {fileID: 1693437508579756779}
 --- !u!1 &842424358805306968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,6 +2282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PTT
       objectReference: {fileID: 0}
+    - target: {fileID: 7252544317421802149, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
+      propertyPath: m_text
+      value: V
+      objectReference: {fileID: 0}
     - target: {fileID: 7820990281515757226, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2283,6 +2301,10 @@ PrefabInstance:
     - target: {fileID: 7820990281515757226, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384355983669593599, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
+      propertyPath: m_text
+      value: 'Push-to-Talk:'
       objectReference: {fileID: 0}
     - target: {fileID: 8989417148807750270, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2305,6 +2327,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
+--- !u!1 &1693437508579756779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6490075241904537581, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
+  m_PrefabInstance: {fileID: 5589298618637939974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7887667081634435758 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2371059516933547944, guid: cf501385ab86edf4c8a34ef5882c6dc4, type: 3}
