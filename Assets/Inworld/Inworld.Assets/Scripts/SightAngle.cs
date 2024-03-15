@@ -77,7 +77,7 @@ namespace Inworld.Sample
             {
                 Vector3 vecDirection = (m_CameraTransform.position - m_HeadTransform.position).normalized;
                 float fAngle = Vector3.Angle(vecDirection, transform.forward);
-                if (fAngle > m_SightAngle * 0.5f)
+                if (fAngle > m_SightAngle)
                 {
                     Priority = -1f;
                 }
