@@ -95,7 +95,7 @@ namespace Inworld.Sample
             
             Gizmos.color = Color.cyan;
             Vector3 trPosition = m_HeadTransform.position;
-            for (float angle = m_SightAngle * -0.5f; angle < m_SightAngle * 0.5f; angle += m_SightAngle * 0.05f)
+            for (float angle = -m_SightAngle; angle < m_SightAngle; angle += m_SightAngle * 0.05f)
             {
                 Gizmos.DrawLine(trPosition, trPosition + Quaternion.AngleAxis(angle, transform.up) * transform.forward * m_SightDistance);
             }
