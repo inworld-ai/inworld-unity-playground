@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Inworld/Inworld.Playground/Scenes/Setup.unity
     guid: 41d518c89c031c84ea8c9a621a159b4e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Inworld/Inworld.Playground/Scenes/Playground.unity
     guid: c5238ee9c48032340805785f84024341
   - enabled: 1
