@@ -1,14 +1,23 @@
 {
   "dependencies": {
     "com.inworld.unity": {
-      "version": "https://github.com/inworld-ai/inworld-unity.git",
+      "version": "https://github.com/inworld-ai/inworld-unity.git#yj3.2",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.textmeshpro": "3.0.6"
       },
-      "hash": "d11afb21f653a994db54e7a5bf94467a7d3195a2"
+      "hash": "14296f2e05416421544a0b12db2dddf99dea0e0a"
+    },
+    "com.unity.ai.navigation": {
+      "version": "1.1.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.ai": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
       "version": "1.8.11",

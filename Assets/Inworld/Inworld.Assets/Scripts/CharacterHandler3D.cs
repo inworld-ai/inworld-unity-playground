@@ -82,8 +82,7 @@ namespace Inworld.Sample
                     targetCharacter = sight.Character;
                 }
             }
-            if (targetCharacter)
-                CurrentCharacter = targetCharacter;
+            CurrentCharacter = targetCharacter;
         }
         protected virtual void SelectCharacterByKey()
         {

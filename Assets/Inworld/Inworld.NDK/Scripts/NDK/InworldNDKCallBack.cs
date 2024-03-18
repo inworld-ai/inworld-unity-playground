@@ -60,9 +60,12 @@ namespace Inworld.NDK
                     InworldAI.LogError($"[NDK]: {log}");
                     if (log.Contains("inactivity"))
                         InworldController.Client.Status = InworldConnectionStatus.LostConnect;
+                    else
+                        InworldController.Client.Status = InworldConnectionStatus.Error;
                     break;
                 case 3:
                     InworldAI.LogException($"[NDK]: {log}");
+                    InworldController.Client.Status = InworldConnectionStatus.Error;
                     break;
                 default:
                     InworldAI.Log($"[NDK]: {log}");
