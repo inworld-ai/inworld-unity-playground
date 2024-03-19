@@ -54,9 +54,8 @@ namespace Inworld.Playground
             InworldController.CharacterHandler.ManualAudioHandling = m_ChatCanvas.activeSelf || m_PushToTalk;
         }
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             m_CharacterController = GetComponent<CharacterController>();
         }
 

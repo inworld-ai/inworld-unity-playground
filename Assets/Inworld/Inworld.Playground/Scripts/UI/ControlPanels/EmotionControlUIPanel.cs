@@ -41,35 +41,5 @@ namespace Inworld.Playground
             foreach (var inworldCharacter in m_InworldCharacters)
                 inworldCharacter.SendTrigger($"emotion_{m_EmotionMap.data[value].name}");
         }
-
-        private void SpoofEmotionPacket(InworldCharacter inworldCharacter, EmotionMapData emotionData)
-        {
-            var emotionPacket = new EmotionPacket()
-            {
-                routing = new Routing()
-                {
-                    source = new Source
-                    {
-                        name = inworldCharacter.ID,
-                        type = "AGENT",
-                        isCharacter = true,
-                        isPlayer = false
-                    },
-                    target = new Source
-                    {
-                        name = "player",
-                        type = "PLAYER",
-                        isPlayer = true,
-                        isCharacter = false
-                    }
-                },
-                emotion = new EmotionEvent
-                {
-                    behavior = emotionData.name
-                }
-            };
-
-            InworldController.Instance.CharacterInteract(emotionPacket);
-        }
     }
 }
