@@ -475,6 +475,11 @@ namespace Inworld.Playground
         
         private IEnumerator IUpdateAudioComponent(bool enableAEC)
         {
+            if (InworldController.Audio)
+                InworldController.Audio.enabled = false;
+            
+            yield return new WaitForEndOfFrame();
+            
             if(enableAEC)
                 InworldController.Instance.AddComponent<InworldAECAudioCapture>();
             else
