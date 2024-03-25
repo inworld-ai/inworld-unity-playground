@@ -270,11 +270,11 @@ namespace Inworld.Playground
             Debug.Log("Status Changed: " + status);
             if (status == InworldConnectionStatus.Initialized)
             {
-                InworldController.Client.SessionHistory = "";
-                if(m_CurrentScene.name == playgroundSceneName)
-                    InworldController.Instance.LoadScene("", m_LobbyHistory);
+                if (m_CurrentScene.name == playgroundSceneName)
+                    InworldController.Client.SessionHistory = m_LobbyHistory;
                 else
-                    InworldController.Instance.LoadScene();
+                    InworldController.Client.SessionHistory = "";
+                InworldController.Instance.LoadScene();
             }
         }
         
@@ -298,7 +298,6 @@ namespace Inworld.Playground
                         networkCheckTime = m_NetworkCheckRate;
                         break;
                     case InworldConnectionStatus.Idle:
-                    case InworldConnectionStatus.LostConnect:
                         InworldAI.Log("Attempting soft-reconnect");
                         InworldController.Instance.Reconnect();
                         networkCheckTime += m_NetworkCheckRate;
@@ -356,9 +355,7 @@ namespace Inworld.Playground
                 while (InworldController.Status != InworldConnectionStatus.Connected)
                 {
                     if (InworldController.Status == InworldConnectionStatus.Error ||
-                        InworldController.Status == InworldConnectionStatus.Idle ||
-                        InworldController.Status == InworldConnectionStatus.LostConnect ||
-                        InworldController.Status == InworldConnectionStatus.InitFailed)
+                        InworldController.Status == InworldConnectionStatus.Idle)
                     {
                         InworldController.Instance.Disconnect();
                         InworldController.Instance.Init();
@@ -591,7 +588,7 @@ namespace Inworld.Playground
 #endif
             foreach (var character in characters)
             {
-                character.RegisterLiveSession();
+                InworldController.CharacterHandler.Register(character);
             }
         }
     }

@@ -24,6 +24,17 @@ namespace Inworld.Playground
         /// </summary>
         public UnityEvent<string, Dictionary<string, string>> onServerTrigger;
 
+        protected virtual void Start()
+        {
+            InworldController.CharacterHandler.Register(this);
+        }
+        
+        protected override void HandleText(TextPacket packet)
+        {
+            base.HandleText(packet);
+            Subtitle.Instance.SetSubtitle(Name, packet.text.text);
+        }
+        
         protected override void HandleTrigger(CustomPacket customPacket)
         {
             base.HandleTrigger(customPacket);
