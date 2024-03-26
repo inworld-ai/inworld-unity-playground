@@ -59,6 +59,11 @@ namespace Inworld.Playground
             m_CharacterController = GetComponent<CharacterController>();
         }
 
+        protected override void Start()
+        {
+            
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();

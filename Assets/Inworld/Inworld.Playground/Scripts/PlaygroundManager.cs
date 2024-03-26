@@ -274,7 +274,7 @@ namespace Inworld.Playground
                     InworldController.Client.SessionHistory = m_LobbyHistory;
                 else
                     InworldController.Client.SessionHistory = "";
-                InworldController.Instance.LoadScene();
+                // InworldController.Instance.LoadScene();
             }
         }
         
@@ -412,7 +412,7 @@ namespace Inworld.Playground
             
             EnableAllWorldSpaceGraphicRaycasters();
 
-            m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
+            // m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
             
             m_Paused = false;
             OnPlay?.Invoke();
