@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Inworld.AEC;
 using Inworld.Interactions;
-using Inworld.NDK;
 using Inworld.Sample;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -48,8 +47,6 @@ namespace Inworld.Playground
         [Header("Prefabs")] 
         [SerializeField]
         private GameObject m_InworldControllerWebSocket;
-        [SerializeField]
-        private GameObject m_InworldControllerNDK;
 
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
@@ -214,8 +211,6 @@ namespace Inworld.Playground
             
             if(m_Settings.ClientType == NetworkClient.WebSocket)
                 Instantiate(m_InworldControllerWebSocket);
-            else
-                Instantiate(m_InworldControllerNDK);
             
             m_InworldSceneMappingDictionary = new Dictionary<string, string>();
             foreach (var sceneMapping in m_InworldSceneMapping)
@@ -448,9 +443,6 @@ namespace Inworld.Playground
                 case NetworkClient.WebSocket:
                     Instantiate(m_InworldControllerWebSocket);
                     break;
-                case NetworkClient.NDK:
-                    Instantiate(m_InworldControllerNDK);
-                    break;
             }
             InworldAI.Log("Replacing current Inworld Controller.");
             yield return new WaitForEndOfFrame();
@@ -531,8 +523,6 @@ namespace Inworld.Playground
             {
                 case NetworkClient.WebSocket:
                     return InworldController.Instance.GetComponent<InworldWebSocketClient>();
-                case NetworkClient.NDK:
-                    return InworldController.Instance.GetComponent<InworldNDKClient>();
             }
             return false;
         }
