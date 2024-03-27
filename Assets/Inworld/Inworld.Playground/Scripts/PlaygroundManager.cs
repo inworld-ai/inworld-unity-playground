@@ -269,7 +269,7 @@ namespace Inworld.Playground
                     InworldController.Client.SessionHistory = m_LobbyHistory;
                 else
                     InworldController.Client.SessionHistory = "";
-                // InworldController.Instance.LoadScene();
+                InworldController.Client.StartSession();
             }
         }
         
@@ -340,8 +340,8 @@ namespace Inworld.Playground
             SetCharacterBrains();
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
-                if (!CheckNetworkComponent())
-                    yield return StartCoroutine(IUpdateNetworkClient(m_Settings.ClientType));
+                // if (!CheckNetworkComponent())
+                //     yield return StartCoroutine(IUpdateNetworkClient(m_Settings.ClientType));
                 
                 LoadData();
                 InworldController.Instance.Init();
@@ -407,7 +407,7 @@ namespace Inworld.Playground
             
             EnableAllWorldSpaceGraphicRaycasters();
 
-            // m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
+            m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
             
             m_Paused = false;
             OnPlay?.Invoke();
@@ -464,6 +464,11 @@ namespace Inworld.Playground
         
         private IEnumerator IUpdateAudioComponent(bool enableAEC)
         {
+            if (InworldController.Audio)
+                InworldController.Audio.enabled = false;
+
+            yield return new WaitForEndOfFrame();
+
             if(enableAEC)
                 InworldController.Instance.AddComponent<InworldAECAudioCapture>();
             else

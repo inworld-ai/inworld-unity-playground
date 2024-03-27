@@ -31,8 +31,13 @@ namespace Inworld.Playground
         
         protected override void HandleText(TextPacket packet)
         {
+            if (packet.text == null || string.IsNullOrWhiteSpace(packet.text.text))
+                return;
+            
             base.HandleText(packet);
-            Subtitle.Instance.SetSubtitle(Name, packet.text.text);
+            
+            if (packet.Source == SourceType.AGENT && packet.IsSource(ID))
+                Subtitle.Instance.SetSubtitle(Name, packet.text.text);
         }
         
         protected override void HandleTrigger(CustomPacket customPacket)
