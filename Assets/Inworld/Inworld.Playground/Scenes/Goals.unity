@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1881337299}
-  m_IndirectSpecularColor: {r: 0.5185351, g: 0.6187405, b: 0.7630209, a: 1}
+  m_IndirectSpecularColor: {r: 0.51853484, g: 0.61874014, b: 0.7630204, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2874,6 +2874,10 @@ PrefabInstance:
     - target: {fileID: 2334020721576214248, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.050783023
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -10475,7 +10479,7 @@ MonoBehaviour:
   m_TriggerName: item_interacted
   m_TriggerParameterList:
   - Key: action
-    Value: touching
+    Value: changing the costume of
   - Key: item
     Value: Toy Innequin Doll
   m_Materials:
@@ -11626,6 +11630,10 @@ PrefabInstance:
     - target: {fileID: 2334020721576214248, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.050783023
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -20526,6 +20534,10 @@ PrefabInstance:
     - target: {fileID: 2334020721576214248, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.050783023
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
