@@ -40,17 +40,6 @@ Add all the scenes within `Assets/Inworld/Inworld.Playground/Scenes/` to the **B
 - Goals
 - Mutations
 
-### Common Issues
-
-Upon installing the Playground Demo package you may come across multiple errors similar to the one below:
-```
-Problem detected while importing the Prefab file: 'Assets/Inworld/Inworld.Playground/Prefabs/Characters/Animations/gesture_george_inworld-playground.prefab'.
-The file might be corrupt or have a missing Variant parent or nested Prefabs. See details below.
-Errors:
-	Nested Prefab problem. Missing Nested Prefab Asset: 'Armature (Missing Prefab with guid: 026a1ca2deceb73438540c38371b4dcb)'
-```
-These can be safely ignored, as the issue will be fixed once the [Unity glTFast package](https://docs.unity3d.com/Packages/com.unity.cloud.gltfast@6.0/manual/index.html) is installed.
-
 ## Controls
 - Movement: 'WASD' & 'Mouse'
 - Select: 'Left Mouse Click'
