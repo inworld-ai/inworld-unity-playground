@@ -104,3 +104,6 @@ InworldPlaygroundAssets.unitypackage
 InworldPlaygroundAssets.unitypackage.meta
 InworldAI.Playground.unitypackage
 InworldAI.Playground.unitypackage.meta
+
+# Mac
+.DS_Store
