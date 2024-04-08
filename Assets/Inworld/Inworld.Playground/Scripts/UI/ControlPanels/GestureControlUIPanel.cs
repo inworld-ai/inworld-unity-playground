@@ -39,7 +39,7 @@ namespace Inworld.Playground
         private IEnumerator IPlayGesture()
         {
             foreach (var animator in m_Animators)
-                animator.SetInteger(s_Gesture, m_SelectionIndex);
+                animator.SetTrigger("Gesture_" + m_SelectionIndex);
             m_PlayButton.interactable = false;
             // Wait for transition
             while (m_Animators[0].GetCurrentAnimatorClipInfo(1) == null ||
@@ -48,9 +48,6 @@ namespace Inworld.Playground
             
             // Wait for animation clip to finish
             yield return new WaitForSeconds(m_Animators[0].GetCurrentAnimatorClipInfo(1)[0].clip.length);
-
-            foreach (var animator in m_Animators)
-                animator.SetInteger(s_Gesture, 0);
 
             m_PlayButton.interactable = true;
         }
