@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Inworld/Inworld.Playground/Scenes/Mutations.unity
     guid: e6a4043543d723940b81f2c9546a85c1
+  - enabled: 1
+    path: Assets/Inworld/Inworld.Playground/Scenes/NarratedActions.unity
+    guid: 757dd6331e129ed498a3ac6c80e2f9a4
   m_configObjects: {}
