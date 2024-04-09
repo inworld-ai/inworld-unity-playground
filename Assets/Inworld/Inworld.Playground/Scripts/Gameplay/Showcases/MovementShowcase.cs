@@ -24,15 +24,15 @@ namespace Inworld.Playground
         
         protected virtual void OnEnable()
         {
-            m_InworldCharacter.onGoalCompleted.AddListener(OnInworldCharacterGoalCompleted);
+            m_InworldCharacter.Event.onGoalCompleted.AddListener(OnInworldCharacterGoalCompleted);
         }
 
         protected virtual void OnDisable()
         {
-            m_InworldCharacter.onGoalCompleted.RemoveListener(OnInworldCharacterGoalCompleted);
+            m_InworldCharacter.Event.onGoalCompleted.RemoveListener(OnInworldCharacterGoalCompleted);
         }
 
-        protected virtual void OnInworldCharacterGoalCompleted(string triggerName)
+        protected virtual void OnInworldCharacterGoalCompleted(string brainName, string triggerName)
         {
 
         }

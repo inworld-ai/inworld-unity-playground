@@ -19,7 +19,7 @@ namespace Inworld.Playground
         [SerializeField]
         Transform m_AreaBTransform;
 
-        protected override void OnInworldCharacterGoalCompleted(string triggerName)
+        protected override void OnInworldCharacterGoalCompleted(string brainName, string triggerName)
         {
             switch (triggerName)
             {

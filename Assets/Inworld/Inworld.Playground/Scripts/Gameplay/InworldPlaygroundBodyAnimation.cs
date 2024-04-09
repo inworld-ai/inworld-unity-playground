@@ -20,11 +20,17 @@ namespace Inworld.Playground
         protected const int MovementAnimMainStatus = 4;
         
         [SerializeField] NavMeshAgent m_NavMeshAgent;
-        
-        protected override void OnStartStopInteraction(bool isStarting)
+
+        protected override void OnCharacterStartSpeaking(string brainName)
         {
             if (m_NavMeshAgent.velocity.magnitude == 0)
-                base.OnStartStopInteraction(isStarting);
+                base.OnCharacterStartSpeaking(brainName);
+        }
+
+        protected override void OnCharacterEndSpeaking(string brainName)
+        {
+            if (m_NavMeshAgent.velocity.magnitude == 0)
+                base.OnCharacterEndSpeaking(brainName);
         }
 
         void Update()

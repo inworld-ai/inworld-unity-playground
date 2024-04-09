@@ -54,15 +54,31 @@ namespace Inworld.Playground
             InworldController.CharacterHandler.ManualAudioHandling = m_ChatCanvas.activeSelf || m_PushToTalk;
         }
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             m_CharacterController = GetComponent<CharacterController>();
         }
 
         protected override void Start()
         {
             
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            onPlayerSpeaks.AddListener(OnPlayerSpeaks);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            onPlayerSpeaks.RemoveListener(OnPlayerSpeaks);
+        }
+
+        void OnPlayerSpeaks(string text)
+        {
+            Subtitle.Instance.SetSubtitle(InworldAI.User.Name, text);
         }
 
         protected override void HandlePTT()

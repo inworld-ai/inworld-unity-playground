@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Inworld.AEC;
 using Inworld.Interactions;
-using Inworld.NDK;
 using Inworld.Sample;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -48,8 +47,6 @@ namespace Inworld.Playground
         [Header("Prefabs")] 
         [SerializeField]
         private GameObject m_InworldControllerWebSocket;
-        [SerializeField]
-        private GameObject m_InworldControllerNDK;
 
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
@@ -214,8 +211,6 @@ namespace Inworld.Playground
             
             if(m_Settings.ClientType == NetworkClient.WebSocket)
                 Instantiate(m_InworldControllerWebSocket);
-            else
-                Instantiate(m_InworldControllerNDK);
             
             m_InworldSceneMappingDictionary = new Dictionary<string, string>();
             foreach (var sceneMapping in m_InworldSceneMapping)
@@ -270,11 +265,11 @@ namespace Inworld.Playground
             Debug.Log("Status Changed: " + status);
             if (status == InworldConnectionStatus.Initialized)
             {
-                InworldController.Client.SessionHistory = "";
-                if(m_CurrentScene.name == playgroundSceneName)
-                    InworldController.Instance.LoadScene("", m_LobbyHistory);
+                if (m_CurrentScene.name == playgroundSceneName)
+                    InworldController.Client.SessionHistory = m_LobbyHistory;
                 else
-                    InworldController.Instance.LoadScene();
+                    InworldController.Client.SessionHistory = "";
+                InworldController.Client.StartSession();
             }
         }
         
@@ -298,7 +293,6 @@ namespace Inworld.Playground
                         networkCheckTime = m_NetworkCheckRate;
                         break;
                     case InworldConnectionStatus.Idle:
-                    case InworldConnectionStatus.LostConnect:
                         InworldAI.Log("Attempting soft-reconnect");
                         InworldController.Instance.Reconnect();
                         networkCheckTime += m_NetworkCheckRate;
@@ -346,8 +340,8 @@ namespace Inworld.Playground
             SetCharacterBrains();
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
-                if (!CheckNetworkComponent())
-                    yield return StartCoroutine(IUpdateNetworkClient(m_Settings.ClientType));
+                // if (!CheckNetworkComponent())
+                //     yield return StartCoroutine(IUpdateNetworkClient(m_Settings.ClientType));
                 
                 LoadData();
                 InworldController.Instance.Init();
@@ -356,9 +350,7 @@ namespace Inworld.Playground
                 while (InworldController.Status != InworldConnectionStatus.Connected)
                 {
                     if (InworldController.Status == InworldConnectionStatus.Error ||
-                        InworldController.Status == InworldConnectionStatus.Idle ||
-                        InworldController.Status == InworldConnectionStatus.LostConnect ||
-                        InworldController.Status == InworldConnectionStatus.InitFailed)
+                        InworldController.Status == InworldConnectionStatus.Idle)
                     {
                         InworldController.Instance.Disconnect();
                         InworldController.Instance.Init();
@@ -451,9 +443,6 @@ namespace Inworld.Playground
                 case NetworkClient.WebSocket:
                     Instantiate(m_InworldControllerWebSocket);
                     break;
-                case NetworkClient.NDK:
-                    Instantiate(m_InworldControllerNDK);
-                    break;
             }
             InworldAI.Log("Replacing current Inworld Controller.");
             yield return new WaitForEndOfFrame();
@@ -477,9 +466,9 @@ namespace Inworld.Playground
         {
             if (InworldController.Audio)
                 InworldController.Audio.enabled = false;
-            
+
             yield return new WaitForEndOfFrame();
-            
+
             if(enableAEC)
                 InworldController.Instance.AddComponent<InworldAECAudioCapture>();
             else
@@ -539,8 +528,6 @@ namespace Inworld.Playground
             {
                 case NetworkClient.WebSocket:
                     return InworldController.Instance.GetComponent<InworldWebSocketClient>();
-                case NetworkClient.NDK:
-                    return InworldController.Instance.GetComponent<InworldNDKClient>();
             }
             return false;
         }
@@ -596,7 +583,7 @@ namespace Inworld.Playground
 #endif
             foreach (var character in characters)
             {
-                character.RegisterLiveSession();
+                InworldController.CharacterHandler.Register(character);
             }
         }
     }

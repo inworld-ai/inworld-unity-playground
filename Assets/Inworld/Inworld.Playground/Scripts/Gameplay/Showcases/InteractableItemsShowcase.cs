@@ -20,15 +20,15 @@ namespace Inworld.Playground
 
         void OnEnable()
         {
-            m_InworldCharacter.onGoalCompleted.AddListener(OnInworldCharacterGoalComplete);
+            m_InworldCharacter.Event.onGoalCompleted.AddListener(OnInworldCharacterGoalComplete);
         }
 
         void OnDisable()
         {
-            m_InworldCharacter.onGoalCompleted.RemoveListener(OnInworldCharacterGoalComplete);
+            m_InworldCharacter.Event.onGoalCompleted.RemoveListener(OnInworldCharacterGoalComplete);
         }
 
-        void OnInworldCharacterGoalComplete(string triggerName)
+        void OnInworldCharacterGoalComplete(string brainName, string triggerName)
         {
             switch (triggerName)
             {
