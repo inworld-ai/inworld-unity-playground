@@ -16,7 +16,6 @@ namespace Inworld.Playground
     /// </summary>
     public class GestureControlUIPanel : ControlUIPanel
     {
-        [SerializeField] private float m_TransitionTime = 0.5f;
         [SerializeField] private List<Animator> m_Animators;
 
         static readonly int s_Gesture = Animator.StringToHash("Gesture");
