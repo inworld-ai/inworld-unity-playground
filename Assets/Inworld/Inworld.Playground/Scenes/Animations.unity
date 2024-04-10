@@ -4012,7 +4012,7 @@ PrefabInstance:
     - target: {fileID: 3499833410880441783, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: cb9b9f1cf610d5848b0679542d1c0be1, type: 2}
+      objectReference: {fileID: 9100000, guid: d7be7ebcd25e3e743a26b66c20de24ea, type: 2}
     - target: {fileID: 3499833410880441783, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -5336,7 +5336,7 @@ PrefabInstance:
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: cb9b9f1cf610d5848b0679542d1c0be1, type: 2}
+      objectReference: {fileID: 9100000, guid: d7be7ebcd25e3e743a26b66c20de24ea, type: 2}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -5715,7 +5715,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Dropdown: {fileID: 1650239009}
   m_PlayButton: {fileID: 4432066}
-  m_TransitionTime: 0.5
   m_Animators:
   - {fileID: 1989651472}
   - {fileID: 1647970123}
