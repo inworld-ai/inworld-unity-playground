@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.inworld.unity.core": {
-      "version": "file:../Assets/Inworld/com.inworld.unity.core-3.3.0.tgz",
+      "version": "file:../Assets/Inworld/com.inworld.unity.core-3.3.2.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -122,6 +122,17 @@
         "com.unity.settings-manager": "1.0.3",
         "com.unity.modules.physics": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.sentis": {
+      "version": "1.2.0-exp.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.4",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

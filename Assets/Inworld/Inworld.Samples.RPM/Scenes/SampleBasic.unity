@@ -355,25 +355,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2181744917861107564, guid: 809fb4511befe9142893b7b016bea809, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2717743084740492485, guid: 809fb4511befe9142893b7b016bea809, type: 3}
       propertyPath: m_Name
       value: Alice the Guide (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4590294231651289280, guid: 809fb4511befe9142893b7b016bea809, type: 3}
-      propertyPath: m_VerboseLog
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2717743084740492485, guid: 809fb4511befe9142893b7b016bea809, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 891453311}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 809fb4511befe9142893b7b016bea809, type: 3}
 --- !u!4 &367072179 stripped
 Transform:
@@ -474,29 +463,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 131.568, y: 0, z: 0}
---- !u!1 &891453304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2717743084740492485, guid: 809fb4511befe9142893b7b016bea809, type: 3}
-  m_PrefabInstance: {fileID: 367072178}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &891453311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891453304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
-  m_SightAngle: 90
-  m_SightDistance: 10
-  m_DistancePriorityFactor: 10
-  m_RefreshRate: 0.25
 --- !u!1001 &934002599
 PrefabInstance:
   m_ObjectHideFlags: 0
