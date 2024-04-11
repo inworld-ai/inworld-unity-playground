@@ -41,27 +41,10 @@ namespace Inworld.Playground
         private CharacterController m_CharacterController;
         private float horizontalAxis = 0, verticalAxis = 0;
         private bool inFocus;
-        
-        /// <summary>
-        ///     Set whether this player is currently using push-to-talk to speak with Inworld characters.
-        /// </summary>
-        /// <param name="isOn">Whether to enable/disable push-to-talk (isOn == enable).</param>
-        public void SetPushToTalk(bool isOn)
-        {
-            m_PushToTalk = isOn;
-            
-            InworldController.Audio.AutoPush = !m_ChatCanvas.activeSelf && !m_PushToTalk;
-            InworldController.CharacterHandler.ManualAudioHandling = m_ChatCanvas.activeSelf || m_PushToTalk;
-        }
 
         protected void Awake()
         {
             m_CharacterController = GetComponent<CharacterController>();
-        }
-
-        protected override void Start()
-        {
-            
         }
 
         protected override void OnEnable()
@@ -79,22 +62,6 @@ namespace Inworld.Playground
         void OnPlayerSpeaks(string text)
         {
             Subtitle.Instance.SetSubtitle(InworldAI.User.Name, text);
-        }
-
-        protected override void HandlePTT()
-        {
-            if (PlaygroundManager.Instance.Paused || InworldController.CurrentCharacter == null) return;
-            
-            if (Input.GetKeyDown(m_PushToTalkKey))
-            {
-                m_PTTKeyPressed = true;
-                InworldController.Instance.StartAudio();
-            }
-            else if (Input.GetKeyUp(m_PushToTalkKey))
-            {
-                m_PTTKeyPressed = false;
-                InworldController.Instance.PushAudio();
-            }
         }
 
         protected override void HandleInput()

@@ -455,9 +455,9 @@ GameObject:
   - component: {fileID: 4472744466570671365}
   - component: {fileID: 3009096547279513657}
   - component: {fileID: 5127670340784287737}
-  - component: {fileID: 4537064637290914104}
   - component: {fileID: 3541915529858783742}
   - component: {fileID: 2049912337102572863}
+  - component: {fileID: 223203700561416751}
   m_Layer: 0
   m_Name: emotion_emily_inworld-playground
   m_TagString: Untagged
@@ -492,7 +492,7 @@ Animator:
   m_GameObject: {fileID: 5302111882359236030}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ba5173a85368a4f4eb45fbc497be292c, type: 2}
-  m_Controller: {fileID: 9100000, guid: 60e9fcbe60a6d424691cb4279d56ecc2, type: 2}
+  m_Controller: {fileID: 9100000, guid: f531218c7a9352a43aa354a687ca805c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -679,20 +679,6 @@ MonoBehaviour:
   onServerTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4537064637290914104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302111882359236030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28951a4e1a362741ac8288d7560535e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
-  m_BodyAnimator: {fileID: 6836277416808973287}
 --- !u!114 &3541915529858783742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +699,7 @@ MonoBehaviour:
   m_VisemeSil: viseme_sil
   m_BlinkBlendShape: eyesClosed
   m_CustomModel: 0
+  m_Model: {fileID: 0}
 --- !u!114 &2049912337102572863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +720,21 @@ MonoBehaviour:
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!114 &223203700561416751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302111882359236030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94868fca0ec8bb34ab3e92d36a425f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_BodyAnimator: {fileID: 6836277416808973287}
+  m_NavMeshAgent: {fileID: 0}
 --- !u!1 &5406179152816764902
 GameObject:
   m_ObjectHideFlags: 0

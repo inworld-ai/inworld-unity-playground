@@ -383,19 +383,26 @@ namespace Inworld.Playground
             switch (m_Settings.InteractionMode)
             {
                 case MicrophoneMode.Interactive:
-                    PlayerController.Instance.SetPushToTalk(false);
-                    InworldController.Audio.SampleMode = MicSampleMode.AEC;
+                    if(m_Settings.EnableAEC)
+                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
+                    else
+                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
                     
                     if(InworldController.Status == InworldConnectionStatus.Connected && 
                        InworldController.CurrentCharacter != null)
                         InworldController.Instance.StartAudio();
                     break;
                 case MicrophoneMode.PushToTalk:
-                    PlayerController.Instance.SetPushToTalk(true);
+                    if(m_Settings.EnableAEC)
+                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
+                    else
+                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
                     break;
                 case MicrophoneMode.TurnByTurn:
-                    PlayerController.Instance.SetPushToTalk(false);
-                    InworldController.Audio.SampleMode = MicSampleMode.TURN_BASED;
+                    if(m_Settings.EnableAEC)
+                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
+                    else
+                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
                     
                     if(InworldController.Status == InworldConnectionStatus.Connected && 
                        InworldController.CurrentCharacter != null)
@@ -470,9 +477,9 @@ namespace Inworld.Playground
             yield return new WaitForEndOfFrame();
 
             if(enableAEC)
-                InworldController.Instance.AddComponent<InworldAECAudioCapture>();
+                InworldController.Instance.AddComponent<PlaygroundAECAudioCapture>();
             else
-                InworldController.Instance.AddComponent<AudioCapture>();
+                InworldController.Instance.AddComponent<PlaygroundAudioCapture>();
                 
             Destroy(InworldController.Audio);
             yield return new WaitForEndOfFrame();
@@ -518,8 +525,8 @@ namespace Inworld.Playground
                 return false;
             
             return m_Settings.EnableAEC
-                ? audioCapture is InworldAECAudioCapture
-                : audioCapture is not InworldAECAudioCapture;
+                ? audioCapture is PlaygroundAECAudioCapture
+                : audioCapture is PlaygroundAudioCapture;
         }
 
         private bool CheckNetworkComponent()
