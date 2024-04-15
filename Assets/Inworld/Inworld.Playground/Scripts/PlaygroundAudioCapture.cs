@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Inworld.Playground
 {
     /// <summary>
-    ///     Base audio capture with support for toggleable push-to-talk.
+    ///     Base audio capture with support for updating the default sample mode.
     /// </summary>
     public class PlaygroundAudioCapture : AudioCapture
     {

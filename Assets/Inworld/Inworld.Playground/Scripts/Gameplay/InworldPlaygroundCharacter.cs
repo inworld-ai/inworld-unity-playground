@@ -24,6 +24,11 @@ namespace Inworld.Playground
         /// </summary>
         public UnityEvent<string, Dictionary<string, string>> onServerTrigger;
 
+        public void SendTrigger(string triggerName)
+        {
+            base.SendTrigger(triggerName);
+        }
+        
         protected virtual void Start()
         {
             InworldController.CharacterHandler.Register(this);

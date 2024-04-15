@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f40c86af979ecc44914c937f05d1428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SamplingMode: 1
+  m_SamplingMode: 0
   m_PushToTalkKey: 0
   m_PlayerVolumeThreshold: 2
   m_BufferSeconds: 1

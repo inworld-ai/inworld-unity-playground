@@ -340,9 +340,6 @@ namespace Inworld.Playground
             SetCharacterBrains();
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
-                // if (!CheckNetworkComponent())
-                //     yield return StartCoroutine(IUpdateNetworkClient(m_Settings.ClientType));
-                
                 LoadData();
                 InworldController.Instance.Init();
 
@@ -378,8 +375,7 @@ namespace Inworld.Playground
             Time.timeScale = 1;
             
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
-            InworldController.Audio.enabled = true;
-            
+
             switch (m_Settings.InteractionMode)
             {
                 case MicrophoneMode.Interactive:
@@ -387,10 +383,6 @@ namespace Inworld.Playground
                         ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
                     else
                         ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
-                    
-                    if(InworldController.Status == InworldConnectionStatus.Connected && 
-                       InworldController.CurrentCharacter != null)
-                        InworldController.Instance.StartAudio();
                     break;
                 case MicrophoneMode.PushToTalk:
                     if(m_Settings.EnableAEC)
@@ -403,10 +395,6 @@ namespace Inworld.Playground
                         ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
                     else
                         ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
-                    
-                    if(InworldController.Status == InworldConnectionStatus.Connected && 
-                       InworldController.CurrentCharacter != null)
-                        InworldController.Instance.StartAudio();
                     break;
             }
             
@@ -483,6 +471,15 @@ namespace Inworld.Playground
                 
             Destroy(InworldController.Audio);
             yield return new WaitForEndOfFrame();
+            
+            // Re-register all characters to update the new AudioCapture component.
+            var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
+            var characterList = InworldController.CharacterHandler.CurrentCharacters.ToArray();
+            InworldController.CharacterHandler.UnregisterAll();
+            foreach (var character in characterList)
+                InworldController.CharacterHandler.Register(character);
+            if(currentCharacter)
+                InworldController.CurrentCharacter = currentCharacter;
         }
         #endregion
         
@@ -505,11 +502,9 @@ namespace Inworld.Playground
             
             PauseAllCharacterInteractions();
             
-            InworldController.Instance.StopAudio();
+            InworldController.Audio.IsCapturing = false;
             
             Subtitle.Instance.Clear();
-            
-            InworldController.Audio.enabled = false;
             
             if(showGameMenu)
                 m_GameMenu.SetActive(true);

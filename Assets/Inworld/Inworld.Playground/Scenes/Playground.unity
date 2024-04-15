@@ -3413,6 +3413,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6824202508536700761, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_Settings.EnableAEC
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824202508536700761, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
       propertyPath: m_Settings.InteractionMode
       value: 0
       objectReference: {fileID: 0}
@@ -7873,6 +7877,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1023523205}
     m_Modifications:
+    - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_VerboseLog
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
       value: workspaces/inworld-playground/characters/guide

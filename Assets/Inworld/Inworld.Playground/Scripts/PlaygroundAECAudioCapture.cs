@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Inworld.Playground
 {
     /// <summary>
-    ///     AEC enabled audio capture with support for toggleable push-to-talk.
+    ///     AEC enabled audio capture with support for updating the default sample mode.
     /// </summary>
     public class PlaygroundAECAudioCapture : InworldAECAudioCapture
     {
