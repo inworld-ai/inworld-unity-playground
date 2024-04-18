@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using Inworld.Assets;
 using Inworld.Sample;
 using UnityEngine;
 
@@ -38,13 +39,20 @@ namespace Inworld.Playground
         [SerializeField] private float m_MoveInterpolationFactor = 0.6f;
         [SerializeField] private float m_RotSpeed = 2;
         
+        private FeedbackCanvas m_FeedbackDlg;
         private CharacterController m_CharacterController;
         private float horizontalAxis = 0, verticalAxis = 0;
         private bool inFocus;
+        
+        public override void OpenFeedback(string interactionID, string correlationID)
+        {
+            m_FeedbackDlg.Open(interactionID, correlationID);
+        }
 
         protected void Awake()
         {
             m_CharacterController = GetComponent<CharacterController>();
+            m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
         }
 
         protected override void OnEnable()
