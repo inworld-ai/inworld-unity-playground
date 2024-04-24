@@ -459,10 +459,13 @@ namespace Inworld.Playground
         
         private IEnumerator IUpdateAudioComponent(bool enableAEC)
         {
+            var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
+            InworldController.CharacterHandler.CurrentCharacter = null;
+            
             if (InworldController.Audio)
                 InworldController.Audio.enabled = false;
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
 
             if(enableAEC)
                 InworldController.Instance.AddComponent<PlaygroundAECAudioCapture>();
@@ -470,10 +473,10 @@ namespace Inworld.Playground
                 InworldController.Instance.AddComponent<PlaygroundAudioCapture>();
                 
             Destroy(InworldController.Audio);
-            yield return new WaitForEndOfFrame();
+            yield return null;
             
             // Re-register all characters to update the new AudioCapture component.
-            var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
+            
             var characterList = InworldController.CharacterHandler.CurrentCharacters.ToArray();
             InworldController.CharacterHandler.UnregisterAll();
             foreach (var character in characterList)
