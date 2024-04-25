@@ -331,10 +331,16 @@ namespace Inworld.Playground
         
         private IEnumerator ISetupScene()
         {
+            float timer = 0;
             while (InworldController.Status == InworldConnectionStatus.Connected)
             {
-                InworldController.Instance.Disconnect();
-                yield return new WaitForSecondsRealtime(2);
+                timer += Time.unscaledDeltaTime;
+                if (timer >= 2)
+                {
+                    InworldController.Instance.Disconnect();
+                    timer = 0;
+                }
+                yield return null;
             }
             
             SetCharacterBrains();

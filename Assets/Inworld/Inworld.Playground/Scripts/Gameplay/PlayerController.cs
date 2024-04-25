@@ -32,7 +32,7 @@ namespace Inworld.Playground
         }
         
         public bool BlockKeyInput { get; set; }
-        
+
         [Header("Movement")]
         [SerializeField] private float m_MoveSpeed = 5;
         [Range(0, 1)]
@@ -41,8 +41,9 @@ namespace Inworld.Playground
         
         private FeedbackCanvas m_FeedbackDlg;
         private CharacterController m_CharacterController;
-        private float horizontalAxis = 0, verticalAxis = 0;
-        private bool inFocus;
+        private Camera m_Camera;
+        private float m_HorizontalAxis = 0, m_VerticalAxis = 0;
+        private bool m_InFocus;
         
         public override void OpenFeedback(string interactionID, string correlationID)
         {
@@ -53,6 +54,7 @@ namespace Inworld.Playground
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
+            m_Camera = Camera.main;
         }
 
         protected override void OnEnable()
@@ -110,9 +112,9 @@ namespace Inworld.Playground
             
             Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
 
-            Vector3 newEuler = transform.localEulerAngles + mouseDelta * m_RotSpeed;
+            Vector3 newEuler = m_Camera.transform.localEulerAngles + mouseDelta * m_RotSpeed;
             float xClamped = Mathf.Clamp(newEuler.x, newEuler.x <= 180 ? -89f : 271, newEuler.x <= 180 ? 89f : 360);
-            transform.localEulerAngles = new Vector3(xClamped, newEuler.y, newEuler.z);
+            m_Camera.transform.localEulerAngles = new Vector3(xClamped, newEuler.y, newEuler.z);
 
             if (BlockKeyInput) return;
             
@@ -121,15 +123,15 @@ namespace Inworld.Playground
                 newVerticalAxis += 1;
             if (Input.GetKey(KeyCode.S))
                 newVerticalAxis += -1;
-            verticalAxis = Mathf.Lerp(verticalAxis, newVerticalAxis, m_MoveInterpolationFactor);
+            m_VerticalAxis = Mathf.Lerp(m_VerticalAxis, newVerticalAxis, m_MoveInterpolationFactor);
             
             if (Input.GetKey(KeyCode.A))
                 newHorizontalAxis += -1;
             if (Input.GetKey(KeyCode.D))
                 newHorizontalAxis += 1;
-            horizontalAxis = Mathf.Lerp(horizontalAxis, newHorizontalAxis, m_MoveInterpolationFactor);
-            Vector3 inputAxis = new Vector3(horizontalAxis, 0, verticalAxis);
-            Vector3 direction = Matrix4x4.Rotate(transform.rotation) * inputAxis;
+            m_HorizontalAxis = Mathf.Lerp(m_HorizontalAxis, newHorizontalAxis, m_MoveInterpolationFactor);
+            Vector3 inputAxis = new Vector3(m_HorizontalAxis, 0, m_VerticalAxis);
+            Vector3 direction = Matrix4x4.Rotate(m_Camera.transform.rotation) * inputAxis;
             direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
                             
             m_CharacterController.SimpleMove(direction * m_MoveSpeed);
