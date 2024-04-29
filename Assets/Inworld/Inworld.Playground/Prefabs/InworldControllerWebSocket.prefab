@@ -90,12 +90,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4769464275635075730, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+    - {fileID: -4074574829800160846, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+    - {fileID: 3989058389384028254, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5556377780116934527, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
-      insertIndex: 2
+      insertIndex: -1
       addedObject: {fileID: 5147641123205807620}
+    - targetCorrespondingSourceObject: {fileID: 5556377780116934527, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6360700846011763873}
+    - targetCorrespondingSourceObject: {fileID: 5556377780116934527, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4825892512553095352}
   m_SourcePrefab: {fileID: 100100000, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
 --- !u!1 &3459579374091715376 stripped
 GameObject:
@@ -117,3 +125,58 @@ MonoBehaviour:
   m_ManualAudioHandling: 1
   m_SelectingMethod: 2
   m_RefreshRate: 0.5
+--- !u!114 &6360700846011763873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459579374091715376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5db5b813fe746f9a9ce5602a5521235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ServerConfig: {fileID: 11400000, guid: 5d4b4994cd4c627409e9c619e5e369e5, type: 2}
+  m_SceneFullName: 
+  m_APIKey: 
+  m_APISecret: 
+  m_CustomToken: 
+  m_PublicWorkspace: 
+  m_AutoScene: 0
+  m_Continuation:
+    continuationType: 0
+    dialogHistory:
+      history: []
+    externallySavedState: 
+  m_MaxWaitingListSize: 100
+--- !u!114 &-4825892512553095352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459579374091715376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f40c86af979ecc44914c937f05d1428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SamplingMode: 0
+  m_PushToTalkKey: 0
+  m_PlayerVolumeThreshold: 2
+  m_BufferSeconds: 1
+  m_AudioToPushCapacity: 1000
+  m_DeviceName: 
+  OnRecordingStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRecordingEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerStartSpeaking:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerStopSpeaking:
+    m_PersistentCalls:
+      m_Calls: []

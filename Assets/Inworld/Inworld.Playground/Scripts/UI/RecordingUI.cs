@@ -19,7 +19,9 @@ namespace Inworld.Playground
 
         private void Update()
         {
-            m_RecordingIcon.enabled = InworldController.Audio && InworldController.Audio.IsCapturing;
+            m_RecordingIcon.enabled = InworldController.Audio.SampleMode == MicSampleMode.PUSH_TO_TALK ? 
+                                          Input.GetKey(KeyCode.V) :
+                                          InworldController.Audio && InworldController.Audio.IsCapturing;
         }
     }
 }

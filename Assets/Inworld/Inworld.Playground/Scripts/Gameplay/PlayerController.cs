@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using Inworld.Assets;
 using Inworld.Sample;
 using UnityEngine;
 
@@ -38,47 +39,37 @@ namespace Inworld.Playground
         [SerializeField] private float m_MoveInterpolationFactor = 0.6f;
         [SerializeField] private float m_RotSpeed = 2;
         
+        private FeedbackCanvas m_FeedbackDlg;
         private CharacterController m_CharacterController;
         private float horizontalAxis = 0, verticalAxis = 0;
         private bool inFocus;
         
-        /// <summary>
-        ///     Set whether this player is currently using push-to-talk to speak with Inworld characters.
-        /// </summary>
-        /// <param name="isOn">Whether to enable/disable push-to-talk (isOn == enable).</param>
-        public void SetPushToTalk(bool isOn)
+        public override void OpenFeedback(string interactionID, string correlationID)
         {
-            m_PushToTalk = isOn;
-            
-            InworldController.Audio.AutoPush = !m_ChatCanvas.activeSelf && !m_PushToTalk;
-            InworldController.CharacterHandler.ManualAudioHandling = m_ChatCanvas.activeSelf || m_PushToTalk;
+            m_FeedbackDlg.Open(interactionID, correlationID);
         }
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             m_CharacterController = GetComponent<CharacterController>();
+            m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
         }
 
-        protected override void Start()
+        protected override void OnEnable()
         {
-            
+            base.OnEnable();
+            onPlayerSpeaks.AddListener(OnPlayerSpeaks);
         }
 
-        protected override void HandlePTT()
+        protected override void OnDisable()
         {
-            if (PlaygroundManager.Instance.Paused || InworldController.CurrentCharacter == null) return;
-            
-            if (Input.GetKeyDown(m_PushToTalkKey))
-            {
-                m_PTTKeyPressed = true;
-                InworldController.Instance.StartAudio();
-            }
-            else if (Input.GetKeyUp(m_PushToTalkKey))
-            {
-                m_PTTKeyPressed = false;
-                InworldController.Instance.PushAudio();
-            }
+            base.OnDisable();
+            onPlayerSpeaks.RemoveListener(OnPlayerSpeaks);
+        }
+
+        void OnPlayerSpeaks(string text)
+        {
+            Subtitle.Instance.SetSubtitle(InworldAI.User.Name, text);
         }
 
         protected override void HandleInput()

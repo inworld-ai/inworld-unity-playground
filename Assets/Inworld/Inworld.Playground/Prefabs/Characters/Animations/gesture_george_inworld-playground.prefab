@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ContentAnchor: {fileID: 9140899352933009873}
-  m_BubbleLeft: {fileID: -5829000521551651004, guid: 6e31716df34c4f04a8a382ad03c5790d, type: 3}
-  m_BubbleRight: {fileID: 7032387963612836835, guid: ce19183024b657340b5e830b1549618e, type: 3}
+  m_BubbleLeft: {fileID: 4509999281063372584, guid: 6e31716df34c4f04a8a382ad03c5790d, type: 3}
+  m_BubbleRight: {fileID: 3731111879171280928, guid: ce19183024b657340b5e830b1549618e, type: 3}
   m_ChatOptions:
     audio: 0
     text: 1
@@ -412,9 +412,9 @@ GameObject:
   - component: {fileID: 5562486995670114283}
   - component: {fileID: 4302150272645563157}
   - component: {fileID: 5004020907478108784}
-  - component: {fileID: 6979359975708554958}
   - component: {fileID: 2534369982693319387}
   - component: {fileID: 7991732895614096428}
+  - component: {fileID: 926127629799650180}
   m_Layer: 0
   m_Name: gesture_george_inworld-playground
   m_TagString: Untagged
@@ -449,7 +449,7 @@ Animator:
   m_GameObject: {fileID: 6554292623040994231}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ba5173a85368a4f4eb45fbc497be292c, type: 2}
-  m_Controller: {fileID: 9100000, guid: 60e9fcbe60a6d424691cb4279d56ecc2, type: 2}
+  m_Controller: {fileID: 9100000, guid: f531218c7a9352a43aa354a687ca805c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -601,48 +601,41 @@ MonoBehaviour:
       thumbnailProgress: 0
       avatarProgress: 0
     thumbnail: {fileID: 2800000, guid: 2da3eeb7827414448b312caca09019d4, type: 3}
+  m_CharacterEvents:
+    onCharacterSelected:
+      m_PersistentCalls:
+        m_Calls: []
+    onCharacterDeselected:
+      m_PersistentCalls:
+        m_Calls: []
+    onCharacterDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+    onBeginSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onEndSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onPacketReceived:
+      m_PersistentCalls:
+        m_Calls: []
+    onCharacterSpeaks:
+      m_PersistentCalls:
+        m_Calls: []
+    onEmotionChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    onGoalCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    onRelationUpdated:
+      m_PersistentCalls:
+        m_Calls: []
   m_VerboseLog: 0
-  onBeginSpeaking:
-    m_PersistentCalls:
-      m_Calls: []
-  onEndSpeaking:
-    m_PersistentCalls:
-      m_Calls: []
-  onPacketReceived:
-    m_PersistentCalls:
-      m_Calls: []
-  onCharacterSpeaks:
-    m_PersistentCalls:
-      m_Calls: []
-  onEmotionChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  onGoalCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  onRelationUpdated:
-    m_PersistentCalls:
-      m_Calls: []
-  onCharacterDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
   onServerTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6979359975708554958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554292623040994231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28951a4e1a362741ac8288d7560535e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
-  m_BodyAnimator: {fileID: 3499833410880441783}
 --- !u!114 &2534369982693319387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +656,7 @@ MonoBehaviour:
   m_VisemeSil: viseme_sil
   m_BlinkBlendShape: eyesClosed
   m_CustomModel: 0
+  m_Model: {fileID: 0}
 --- !u!114 &7991732895614096428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,12 +669,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 3499833410880441783}
-  m_Character: {fileID: 5004020907478108784}
+  m_HeadTransform: {fileID: 0}
+  m_CameraTransform: {fileID: 0}
   m_SightAngle: 122
   m_SightDistance: 5
-  m_DistancePriorityFactor: 10
+  m_PlayerAngleWeight: 1
+  m_DistanceWeight: 0.5
+  m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!114 &926127629799650180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554292623040994231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94868fca0ec8bb34ab3e92d36a425f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_BodyAnimator: {fileID: 3499833410880441783}
+  m_NavMeshAgent: {fileID: 0}
 --- !u!1 &7239422483727130079
 GameObject:
   m_ObjectHideFlags: 0

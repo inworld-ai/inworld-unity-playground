@@ -31,7 +31,7 @@ namespace Inworld.Playground
             SetSignDisabled(m_RightSignText, "Right");
         }
 
-        protected override void OnInworldCharacterGoalCompleted(string triggerName)
+        protected override void OnInworldCharacterGoalCompleted(string brainName, string triggerName)
         {
             switch (triggerName)
             {

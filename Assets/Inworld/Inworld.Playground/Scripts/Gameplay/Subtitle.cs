@@ -39,51 +39,18 @@ namespace Inworld.Playground
             m_TextElement.color = Color.clear;
         }
 
-        private void OnEnable()
+        public void SetSubtitle(string agentName, string text)
         {
-            InworldController.Instance.OnCharacterInteraction += OnInteraction;
-        }
-
-        private void OnDisable()
-        {
-            if (InworldController.Instance)
-                InworldController.Instance.OnCharacterInteraction -= OnInteraction;
-        }
-
-        private void OnInteraction(InworldPacket packet)
-        {
-            if (packet is not TextPacket textPacket)
-                return;
-            if (textPacket.text == null || 
-                string.IsNullOrEmpty(textPacket.text.text) || 
-                string.IsNullOrWhiteSpace(textPacket.text.text))
-                return;
-            
             if (m_FadeCoroutine != null)
                 StopCoroutine(m_FadeCoroutine);
 
-            string agentName = "";
-            
-            switch (packet.routing.source.type.ToUpper())
-            {
-                case "AGENT":
-                    var character = InworldController.CharacterHandler.GetCharacterDataByID(packet.routing.source.name);
-                    agentName = character.givenName;
-                    break;
-                case "PLAYER":
-                    agentName = InworldAI.User.Name;
-                    break;
-                default:
-                    return;
-            }
-            
-            m_FadeCoroutine = StartCoroutine(ISetSubtitle(agentName, textPacket.text.text));
+            m_FadeCoroutine = StartCoroutine(ISetSubtitle(agentName, text));
         }
 
-        private IEnumerator ISetSubtitle(string name, string text)
+        private IEnumerator ISetSubtitle(string agentName, string text)
         {
-            m_TextElement.text = $"{name.FirstCharacterToUpper()}: {text}";
-            Color textColor = name == InworldAI.User.Name ? m_PlayerTextColor : m_CharacterTextColor;
+            m_TextElement.text = $"{agentName.FirstCharacterToUpper()}: {text}";
+            Color textColor = agentName == InworldAI.User.Name ? m_PlayerTextColor : m_CharacterTextColor;
         
             m_TextElement.color = textColor;
 

@@ -15,7 +15,6 @@ namespace Inworld.Playground
     }
     public enum NetworkClient
     {
-        WebSocket,
-        NDK
+        WebSocket
     }
 }

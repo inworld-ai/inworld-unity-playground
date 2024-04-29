@@ -15,13 +15,22 @@ namespace Inworld.Playground
     /// </summary>
     public class InworldNoIdleBodyAnimation : InworldBodyAnimation
     {
-        protected override void OnStartStopInteraction(bool isStarting)
+        protected override void OnCharacterSelected(string braiName)
         {
 
         }
-        protected override void OnCharChanged(InworldCharacter oldChar, InworldCharacter newChar)
+        protected override void OnCharacterDeselected(string braiName)
         {
 
+        }
+        protected override void OnCharacterStartSpeaking(string brainName)
+        {
+            
+        }
+
+        protected override void OnCharacterEndSpeaking(string brainName)
+        {
+            
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1788233854}
-  m_IndirectSpecularColor: {r: 0.5185367, g: 0.61874187, b: 0.7630199, a: 1}
+  m_IndirectSpecularColor: {r: 0.51853704, g: 0.61874217, b: 0.7630206, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3410,6 +3410,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593351496906298277, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824202508536700761, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_Settings.EnableAEC
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824202508536700761, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_Settings.InteractionMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7818464701975237251, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
@@ -7870,6 +7878,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1023523205}
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_VerboseLog
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
       value: workspaces/inworld-playground/characters/guide
       objectReference: {fileID: 0}
@@ -8324,21 +8336,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 607874754379855962, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713453429312522785, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
-      propertyPath: m_RotSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4706117144054210568, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4706117144054210568, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.397
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4706117144054210568, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8375,10 +8379,6 @@ PrefabInstance:
     - target: {fileID: 6907045597421658342, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
       propertyPath: m_Name
       value: PlayerController
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907045597421658342, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

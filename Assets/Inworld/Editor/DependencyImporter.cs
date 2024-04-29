@@ -21,14 +21,18 @@ namespace Inworld.Playground
         {
             "com.unity.probuilder",
             "com.unity.ai.navigation",
-            "https://github.com/inworld-ai/inworld-unity.git#yj3.2"
+            "com.unity.sentis",
+            $"file:{Application.dataPath}/Inworld/com.inworld.unity.core-3.3.2.tgz"
         };
         
         static readonly string[] s_DependencyPackagesCheck = 
         {
             "com.unity.probuilder",
             "com.unity.ai.navigation",
-            "com.inworld.unity"
+            "com.inworld.unity.core"
+#if UNITY_2022_3_OR_NEWER
+            ,"com.unity.sentis"
+#endif
         };
         
         public static async Task<bool> InstallDependencies()

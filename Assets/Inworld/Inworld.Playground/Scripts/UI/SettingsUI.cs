@@ -85,14 +85,12 @@ namespace Inworld.Playground
         {
             switch (InworldController.Status)
             {
-                case InworldConnectionStatus.Idle:
-                case InworldConnectionStatus.InitFailed:
                 case InworldConnectionStatus.Error:
                     PlaygroundManager.Instance.LoadData();
                     InworldController.Instance.Init();
                     m_ConnectButton.interactable = false;
                     break;
-                case InworldConnectionStatus.LostConnect:
+                case InworldConnectionStatus.Idle:
                     InworldController.Instance.Reconnect();
                     break;
                 case InworldConnectionStatus.Connected:
@@ -159,13 +157,11 @@ namespace Inworld.Playground
             m_ConnectionStatusText.text = status.ToString();
             switch (status)
             {
-                case InworldConnectionStatus.Idle:
-                case InworldConnectionStatus.InitFailed:
                 case InworldConnectionStatus.Error:
                     m_ConnectButton.GetComponentInChildren<TMP_Text>().text = "Connect";
                     m_ConnectButton.interactable = true;
                     break;
-                case InworldConnectionStatus.LostConnect:
+                case InworldConnectionStatus.Idle:
                     m_ConnectButton.GetComponentInChildren<TMP_Text>().text = "Reconnect";
                     m_ConnectButton.interactable = true;
                     break;

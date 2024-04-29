@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Inworld.AEC;
 using Inworld.Interactions;
-using Inworld.NDK;
 using Inworld.Sample;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -48,8 +47,6 @@ namespace Inworld.Playground
         [Header("Prefabs")] 
         [SerializeField]
         private GameObject m_InworldControllerWebSocket;
-        [SerializeField]
-        private GameObject m_InworldControllerNDK;
 
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
@@ -214,8 +211,6 @@ namespace Inworld.Playground
             
             if(m_Settings.ClientType == NetworkClient.WebSocket)
                 Instantiate(m_InworldControllerWebSocket);
-            else
-                Instantiate(m_InworldControllerNDK);
             
             m_InworldSceneMappingDictionary = new Dictionary<string, string>();
             foreach (var sceneMapping in m_InworldSceneMapping)
@@ -270,11 +265,11 @@ namespace Inworld.Playground
             Debug.Log("Status Changed: " + status);
             if (status == InworldConnectionStatus.Initialized)
             {
-                InworldController.Client.SessionHistory = "";
-                if(m_CurrentScene.name == playgroundSceneName)
-                    InworldController.Instance.LoadScene("", m_LobbyHistory);
+                if (m_CurrentScene.name == playgroundSceneName)
+                    InworldController.Client.SessionHistory = m_LobbyHistory;
                 else
-                    InworldController.Instance.LoadScene();
+                    InworldController.Client.SessionHistory = "";
+                InworldController.Client.StartSession();
             }
         }
         
@@ -298,7 +293,6 @@ namespace Inworld.Playground
                         networkCheckTime = m_NetworkCheckRate;
                         break;
                     case InworldConnectionStatus.Idle:
-                    case InworldConnectionStatus.LostConnect:
                         InworldAI.Log("Attempting soft-reconnect");
                         InworldController.Instance.Reconnect();
                         networkCheckTime += m_NetworkCheckRate;
@@ -346,9 +340,6 @@ namespace Inworld.Playground
             SetCharacterBrains();
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
-                if (!CheckNetworkComponent())
-                    yield return StartCoroutine(IUpdateNetworkClient(m_Settings.ClientType));
-                
                 LoadData();
                 InworldController.Instance.Init();
 
@@ -356,9 +347,7 @@ namespace Inworld.Playground
                 while (InworldController.Status != InworldConnectionStatus.Connected)
                 {
                     if (InworldController.Status == InworldConnectionStatus.Error ||
-                        InworldController.Status == InworldConnectionStatus.Idle ||
-                        InworldController.Status == InworldConnectionStatus.LostConnect ||
-                        InworldController.Status == InworldConnectionStatus.InitFailed)
+                        InworldController.Status == InworldConnectionStatus.Idle)
                     {
                         InworldController.Instance.Disconnect();
                         InworldController.Instance.Init();
@@ -386,28 +375,26 @@ namespace Inworld.Playground
             Time.timeScale = 1;
             
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
-            InworldController.Audio.enabled = true;
-            
+
             switch (m_Settings.InteractionMode)
             {
                 case MicrophoneMode.Interactive:
-                    PlayerController.Instance.SetPushToTalk(false);
-                    InworldController.Audio.SampleMode = MicSampleMode.AEC;
-                    
-                    if(InworldController.Status == InworldConnectionStatus.Connected && 
-                       InworldController.CurrentCharacter != null)
-                        InworldController.Instance.StartAudio();
+                    if(m_Settings.EnableAEC)
+                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
+                    else
+                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
                     break;
                 case MicrophoneMode.PushToTalk:
-                    PlayerController.Instance.SetPushToTalk(true);
+                    if(m_Settings.EnableAEC)
+                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
+                    else
+                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
                     break;
                 case MicrophoneMode.TurnByTurn:
-                    PlayerController.Instance.SetPushToTalk(false);
-                    InworldController.Audio.SampleMode = MicSampleMode.TURN_BASED;
-                    
-                    if(InworldController.Status == InworldConnectionStatus.Connected && 
-                       InworldController.CurrentCharacter != null)
-                        InworldController.Instance.StartAudio();
+                    if(m_Settings.EnableAEC)
+                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
+                    else
+                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
                     break;
             }
             
@@ -451,9 +438,6 @@ namespace Inworld.Playground
                 case NetworkClient.WebSocket:
                     Instantiate(m_InworldControllerWebSocket);
                     break;
-                case NetworkClient.NDK:
-                    Instantiate(m_InworldControllerNDK);
-                    break;
             }
             InworldAI.Log("Replacing current Inworld Controller.");
             yield return new WaitForEndOfFrame();
@@ -475,18 +459,30 @@ namespace Inworld.Playground
         
         private IEnumerator IUpdateAudioComponent(bool enableAEC)
         {
+            var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
+            InworldController.CharacterHandler.CurrentCharacter = null;
+            
             if (InworldController.Audio)
                 InworldController.Audio.enabled = false;
-            
-            yield return new WaitForEndOfFrame();
-            
+
+            yield return null;
+
             if(enableAEC)
-                InworldController.Instance.AddComponent<InworldAECAudioCapture>();
+                InworldController.Instance.AddComponent<PlaygroundAECAudioCapture>();
             else
-                InworldController.Instance.AddComponent<AudioCapture>();
+                InworldController.Instance.AddComponent<PlaygroundAudioCapture>();
                 
             Destroy(InworldController.Audio);
-            yield return new WaitForEndOfFrame();
+            yield return null;
+            
+            // Re-register all characters to update the new AudioCapture component.
+            
+            var characterList = InworldController.CharacterHandler.CurrentCharacters.ToArray();
+            InworldController.CharacterHandler.UnregisterAll();
+            foreach (var character in characterList)
+                InworldController.CharacterHandler.Register(character);
+            if(currentCharacter)
+                InworldController.CurrentCharacter = currentCharacter;
         }
         #endregion
         
@@ -509,11 +505,9 @@ namespace Inworld.Playground
             
             PauseAllCharacterInteractions();
             
-            InworldController.Instance.StopAudio();
+            InworldController.Audio.IsCapturing = false;
             
             Subtitle.Instance.Clear();
-            
-            InworldController.Audio.enabled = false;
             
             if(showGameMenu)
                 m_GameMenu.SetActive(true);
@@ -529,8 +523,8 @@ namespace Inworld.Playground
                 return false;
             
             return m_Settings.EnableAEC
-                ? audioCapture is InworldAECAudioCapture
-                : audioCapture is not InworldAECAudioCapture;
+                ? audioCapture is PlaygroundAECAudioCapture
+                : audioCapture is PlaygroundAudioCapture;
         }
 
         private bool CheckNetworkComponent()
@@ -539,8 +533,6 @@ namespace Inworld.Playground
             {
                 case NetworkClient.WebSocket:
                     return InworldController.Instance.GetComponent<InworldWebSocketClient>();
-                case NetworkClient.NDK:
-                    return InworldController.Instance.GetComponent<InworldNDKClient>();
             }
             return false;
         }
@@ -596,7 +588,7 @@ namespace Inworld.Playground
 #endif
             foreach (var character in characters)
             {
-                character.RegisterLiveSession();
+                InworldController.CharacterHandler.Register(character);
             }
         }
     }

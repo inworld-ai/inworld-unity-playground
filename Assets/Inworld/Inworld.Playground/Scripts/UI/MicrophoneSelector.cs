@@ -40,9 +40,7 @@ namespace Inworld.Playground
                 return;
 
             m_MicIndex = nIndex;
-            StopRecording();
             ChangeInputDevice(Microphone.devices[m_MicIndex]);
-            StartRecording();
             PlaygroundManager.Instance.SetMicrophoneDevice(Microphone.devices[m_MicIndex]);
             m_Button.interactable = true;
             m_Button.image.sprite = m_MicOn;

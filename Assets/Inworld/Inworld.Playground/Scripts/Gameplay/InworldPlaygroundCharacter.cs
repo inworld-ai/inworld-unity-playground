@@ -23,13 +23,26 @@ namespace Inworld.Playground
         /// Includes the trigger name and parameters as a dictionary. 
         /// </summary>
         public UnityEvent<string, Dictionary<string, string>> onServerTrigger;
-        
-        /// <summary>
-        /// Register live session. Get the live session ID for this character, and also assign it to this character's components.
-        /// </summary>
-        public override void RegisterLiveSession()
+
+        public void SendTrigger(string triggerName)
         {
-            m_Interaction.LiveSessionID = Data.agentId = InworldController.CharacterHandler.GetLiveSessionID(this);
+            base.SendTrigger(triggerName);
+        }
+        
+        protected virtual void Start()
+        {
+            InworldController.CharacterHandler.Register(this);
+        }
+        
+        protected override void HandleText(TextPacket packet)
+        {
+            if (packet.text == null || string.IsNullOrWhiteSpace(packet.text.text))
+                return;
+            
+            base.HandleText(packet);
+            
+            if (packet.Source == SourceType.AGENT && packet.IsSource(ID))
+                Subtitle.Instance.SetSubtitle(Name, packet.text.text);
         }
         
         protected override void HandleTrigger(CustomPacket customPacket)
@@ -43,12 +56,6 @@ namespace Inworld.Playground
             foreach (var parameter in customPacket.custom.parameters)
                 parameterDictionary.Add(parameter.name, parameter.value);
             onServerTrigger.Invoke(customPacket.TriggerName, parameterDictionary);
-        }
-        
-        protected override void OnCharRegistered(InworldCharacterData charData)
-        {
-            if (charData.brainName == Data.brainName)
-                RegisterLiveSession();
         }
     }
 }
