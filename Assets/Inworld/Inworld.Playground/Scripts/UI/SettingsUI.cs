@@ -86,12 +86,10 @@ namespace Inworld.Playground
             switch (InworldController.Status)
             {
                 case InworldConnectionStatus.Error:
+                case InworldConnectionStatus.Idle:
                     PlaygroundManager.Instance.LoadData();
                     InworldController.Instance.Init();
                     m_ConnectButton.interactable = false;
-                    break;
-                case InworldConnectionStatus.Idle:
-                    InworldController.Instance.Reconnect();
                     break;
                 case InworldConnectionStatus.Connected:
                     InworldController.Instance.Disconnect();
@@ -158,11 +156,8 @@ namespace Inworld.Playground
             switch (status)
             {
                 case InworldConnectionStatus.Error:
-                    m_ConnectButton.GetComponentInChildren<TMP_Text>().text = "Connect";
-                    m_ConnectButton.interactable = true;
-                    break;
                 case InworldConnectionStatus.Idle:
-                    m_ConnectButton.GetComponentInChildren<TMP_Text>().text = "Reconnect";
+                    m_ConnectButton.GetComponentInChildren<TMP_Text>().text = "Connect";
                     m_ConnectButton.interactable = true;
                     break;
                 case InworldConnectionStatus.Connected:
