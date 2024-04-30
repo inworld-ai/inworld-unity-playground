@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.41960785, g: 0.47843137, b: 0.627451, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 7e665a58fbfb6984d8e9f79a22d216ad, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.1417046, g: 0.5593125, b: 1.764141, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1890,6 +1890,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1901821084}
     m_Modifications:
+    - target: {fileID: 114903914655093364, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903914655093364, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903914655093364, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903914655093364, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903914655093364, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1703430128175800395, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1926,6 +1946,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 566249351}
+    - target: {fileID: 3786173572672006331, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786173572672006331, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786173572672006331, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786173572672006331, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786173572672006331, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3972203975126277510, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1998,6 +2038,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 569391082}
+    - target: {fileID: 5722311060444608022, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722311060444608022, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722311060444608022, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722311060444608022, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722311060444608022, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5762368358679686561, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2090,6 +2150,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1842438260}
+    - target: {fileID: 8369790251944653897, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8427136078408285148, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
