@@ -4544,6 +4544,10 @@ PrefabInstance:
       propertyPath: m_SceneName
       value: Goals
       objectReference: {fileID: 0}
+    - target: {fileID: 8798537966899908354, guid: d1a73f5653a696f48b3cc7f299f2271a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 835738e896cfbef439dd2219a96f004c, type: 2}
     - target: {fileID: 8826069310678237624, guid: d1a73f5653a696f48b3cc7f299f2271a, type: 3}
       propertyPath: m_ObjectToFace
       value: 
@@ -4770,6 +4774,10 @@ PrefabInstance:
       propertyPath: m_SceneName
       value: Animations
       objectReference: {fileID: 0}
+    - target: {fileID: 8798537966899908354, guid: d1a73f5653a696f48b3cc7f299f2271a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9d74254284fe7ab4f9645131b88d7ef4, type: 2}
     - target: {fileID: 8826069310678237624, guid: d1a73f5653a696f48b3cc7f299f2271a, type: 3}
       propertyPath: m_ObjectToFace
       value: 
@@ -10434,6 +10442,10 @@ PrefabInstance:
       propertyPath: m_SceneName
       value: Mutations
       objectReference: {fileID: 0}
+    - target: {fileID: 8798537966899908354, guid: d1a73f5653a696f48b3cc7f299f2271a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62b05d4c73e76ae4a863a9c548e65822, type: 2}
     - target: {fileID: 8826069310678237624, guid: d1a73f5653a696f48b3cc7f299f2271a, type: 3}
       propertyPath: m_ObjectToFace
       value: 
