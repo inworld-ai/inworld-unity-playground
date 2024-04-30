@@ -27,7 +27,7 @@ namespace Inworld.Playground
         /// </summary>
         public void Activate()
         {
-            var playerTransform = PlayerController.Instance.transform;
+            var playerTransform = Camera.main.transform;
             var position = playerTransform.position + playerTransform.forward * m_TipDistance;
             var tipGameObject = Instantiate(m_TipPrefab, position, Quaternion.identity);
             Tip tip = tipGameObject.GetComponent<Tip>();

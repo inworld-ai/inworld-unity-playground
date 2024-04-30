@@ -107,3 +107,7 @@ InworldAI.Playground.unitypackage.meta
 
 # Mac
 .DS_Store
+
+# Other
+PlaygroundAssetNames.csv
+PlaygroundAssetNames.csv.meta
