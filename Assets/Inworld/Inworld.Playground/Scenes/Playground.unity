@@ -10335,6 +10335,89 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 069da0c13f0b73d4aa304c7e2ec7eee5, type: 3}
   m_PrefabInstance: {fileID: 1415214711}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1488392631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1512318857}
+    m_Modifications:
+    - target: {fileID: 4475720632629173847, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_text
+      value: '?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475720632629173847, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778646073423824933, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_Name
+      value: FeedbackTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_TipText
+      value: In the Chat Panel (<b>~</b>) you can submit feedback for a character
+        response by clicking the chat bubble.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_TipDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557243871365585421, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_ObjectToFace
+      value: 
+      objectReference: {fileID: 4136739464733512739}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+--- !u!4 &1488392632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+  m_PrefabInstance: {fileID: 1488392631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1512318856
 GameObject:
   m_ObjectHideFlags: 0
@@ -10368,6 +10451,7 @@ Transform:
   - {fileID: 993514756}
   - {fileID: 1977745379}
   - {fileID: 1358654310}
+  - {fileID: 1488392632}
   m_Father: {fileID: 1901821084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1515451059
