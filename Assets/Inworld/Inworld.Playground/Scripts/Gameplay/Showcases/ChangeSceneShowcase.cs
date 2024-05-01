@@ -13,7 +13,8 @@ using UnityEngine;
 namespace Inworld.Playground
 {
     /// <summary>
-    ///     
+    ///     Handles the Change Scene showcase which shows how you can update the current Inworld scene dynamically
+    ///         and how different scenes can effect the characters.
     /// </summary>
     public class ChangeSceneShowcase : MonoBehaviour
     {
@@ -47,7 +48,10 @@ namespace Inworld.Playground
             else
                 m_LightBulbMeshRenderer.materials[0].DisableKeyword("_EMISSION");
         }
-
+        
+        /// <summary>
+        ///     Switch the Inworld scene from Day to Night or vice versa.
+        /// </summary>
         public void SwitchScene()
         {
             SetTimeOfDay(!m_IsDay);
