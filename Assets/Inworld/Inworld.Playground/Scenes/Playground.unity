@@ -8054,14 +8054,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6824202508536700761, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
-      propertyPath: m_Settings.EnableAEC
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6824202508536700761, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
-      propertyPath: m_Settings.InteractionMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7818464701975237251, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
       propertyPath: m_Name
       value: PlaygroundManager

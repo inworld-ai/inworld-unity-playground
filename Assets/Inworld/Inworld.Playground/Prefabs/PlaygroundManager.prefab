@@ -706,6 +706,8 @@ MonoBehaviour:
     InworldSceneName: day
   - UnitySceneName: Environment
     InworldSceneName: goals_gym
+  - UnitySceneName: Interactions
+    InworldSceneName: interactions_showcase
   m_Settings:
     PlayerName: 
     WorkspaceId: 
