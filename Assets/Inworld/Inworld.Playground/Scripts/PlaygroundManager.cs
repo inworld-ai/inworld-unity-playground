@@ -292,9 +292,10 @@ namespace Inworld.Playground
         #endregion
         
         #region Enumerators
-        private IEnumerator ChangeInworldSceneEnumerator(string sceneName)
+        private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
         {
-            Pause(false);
+            if(pause)
+                Pause(false);
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
             InworldController.Client.LoadScene($"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}");
@@ -304,7 +305,9 @@ namespace Inworld.Playground
             
             if(currentCharacter)
                 InworldController.CurrentCharacter = currentCharacter;
-            Play();
+            
+            if(pause)
+                Play();
         }
         
         private IEnumerator NetworkStatusCheck()
@@ -336,10 +339,7 @@ namespace Inworld.Playground
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             Pause(false);
-            InworldController.Instance.Disconnect();
-
-            if (m_CurrentScene.name == playgroundSceneName)
-                m_LobbyHistory = InworldController.Client.SessionHistory;
+            m_LobbyHistory = m_CurrentScene.name == playgroundSceneName ? InworldController.Client.SessionHistory : null;
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -356,22 +356,11 @@ namespace Inworld.Playground
         
         private IEnumerator SetupScene()
         {
-            float timer = 0;
-            while (InworldController.Status == InworldConnectionStatus.Connected)
-            {
-                timer += Time.unscaledDeltaTime;
-                if (timer >= 2)
-                {
-                    InworldController.Instance.Disconnect();
-                    timer = 0;
-                }
-                yield return null;
-            }
-            
+            LoadData();
             SetCharacterBrains();
+            
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
-                LoadData();
                 InworldController.Instance.Init();
 
                 float connectionCheckTime = m_NetworkCheckRate;
@@ -387,6 +376,11 @@ namespace Inworld.Playground
                     yield return new WaitForSecondsRealtime(connectionCheckTime);
                 }
             }
+            
+            if(m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name, out string inworldSceneName))
+                yield return ChangeInworldSceneEnumerator(inworldSceneName, false);
+            else
+                InworldAI.LogException("Missing scene in InworldSceneMappingDictionary: " + SceneManager.GetActiveScene().name);
            
             yield return StartCoroutine(PlayEnumerator());
         }
