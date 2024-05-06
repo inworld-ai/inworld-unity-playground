@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Inworld.Entities;
 using Inworld.Interactions;
-using Inworld.Packet;
 using Inworld.Sample;
 using Unity.VisualScripting;
 using UnityEngine;
