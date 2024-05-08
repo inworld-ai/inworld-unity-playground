@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Inworld.Playground
 {
-    public class InworldFaceAnimationInnequinV2 : InworldFacialAnimation
+    public class InworldFaceAnimationInnequinVariant : InworldFacialAnimation
     {
         [SerializeField] Animator m_EmoteAnimator;
         [SerializeField] SkinnedMeshRenderer m_BrowsMesh;
