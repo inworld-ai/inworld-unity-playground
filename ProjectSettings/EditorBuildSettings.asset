@@ -19,8 +19,17 @@ EditorBuildSettings:
     guid: fb3e1555e4f01d74bbd875100aa88f95
   - enabled: 1
     path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Goals.unity
-    guid: 703e384df6606804c8e87f163d1a42c5
+    guid: 65ba4427987bcef4e9fca9a3d7252475
   - enabled: 1
     path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Mutations.unity
     guid: e6a4043543d723940b81f2c9546a85c1
+  - enabled: 1
+    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Environment.unity
+    guid: c4b921adf14b2254781e02a2d099a0f6
+  - enabled: 1
+    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Scene.unity
+    guid: 05f532fca441e7f4baaa21e118ccf927
+  - enabled: 1
+    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Interactions.unity
+    guid: 060664be02e4043409f05cc342f67a2f
   m_configObjects: {}

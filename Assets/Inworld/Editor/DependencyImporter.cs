@@ -21,7 +21,10 @@ namespace Inworld.Playground
         {
             "com.unity.probuilder",
             "com.unity.ai.navigation",
+            "com.unity.shadergraph",
+#if UNITY_2022_3_OR_NEWER
             "com.unity.sentis",
+#endif
             $"file:{Application.dataPath}/Inworld/com.inworld.unity.core-3.3.2.tgz"
         };
         
@@ -29,10 +32,11 @@ namespace Inworld.Playground
         {
             "com.unity.probuilder",
             "com.unity.ai.navigation",
-            "com.inworld.unity.core"
+            "com.unity.shadergraph",
 #if UNITY_2022_3_OR_NEWER
-            ,"com.unity.sentis"
+            "com.unity.sentis",
 #endif
+            "com.inworld.unity.core"
         };
         
         public static async Task<bool> InstallDependencies()

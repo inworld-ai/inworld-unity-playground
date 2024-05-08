@@ -28,7 +28,24 @@ namespace Inworld.Playground
         {
             base.SendTrigger(triggerName);
         }
-        
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            m_CharacterEvents.onCharacterDeselected.AddListener(OnCharacterDeselected);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            m_CharacterEvents?.onCharacterDeselected.RemoveListener(OnCharacterDeselected);
+        }
+
+        protected virtual void OnCharacterDeselected(string brainName)
+        {
+            CancelResponse();
+        }
+
         protected virtual void Start()
         {
             InworldController.CharacterHandler.Register(this);

@@ -685,6 +685,12 @@ MonoBehaviour:
   OnClientChanged:
     m_PersistentCalls:
       m_Calls: []
+  OnPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPause:
+    m_PersistentCalls:
+      m_Calls: []
   m_InworldSceneMapping:
   - UnitySceneName: Playground
     InworldSceneName: inworld_playground_lobby
@@ -696,6 +702,12 @@ MonoBehaviour:
     InworldSceneName: goals_gym
   - UnitySceneName: Mutations
     InworldSceneName: goals_gym
+  - UnitySceneName: Scene
+    InworldSceneName: day
+  - UnitySceneName: Environment
+    InworldSceneName: goals_gym
+  - UnitySceneName: Interactions
+    InworldSceneName: interactions_showcase
   m_Settings:
     PlayerName: 
     WorkspaceId: 
@@ -703,9 +715,9 @@ MonoBehaviour:
     InteractionMode: 0
     ClientType: 0
     EnableAEC: 1
+  m_NetworkCheckRate: 2
   m_GameMenu: {fileID: 5555797869773105223}
   m_InworldControllerWebSocket: {fileID: 3459579374091715376, guid: 738784237e74a1240b5b283ede315300, type: 3}
-  m_InworldControllerNDK: {fileID: 5478745959641116049, guid: b1c59f2507faf9f418fc70f089967276, type: 3}
 --- !u!1 &9086650760301671909
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Inworld.AEC;
+using Inworld.Entities;
 using Inworld.Interactions;
 using Inworld.Sample;
 using Unity.VisualScripting;
@@ -68,6 +68,15 @@ namespace Inworld.Playground
         }
         
         /// <summary>
+        ///     Changes the current Inworld Scene to the one specified by sceneName.
+        /// </summary>
+        /// <param name="sceneName">The name of the Inworld Scene to load.</param>
+        public void ChangeInworldScene(string sceneName)
+        {
+            StartCoroutine(ChangeInworldSceneEnumerator(sceneName));
+        }
+        
+        /// <summary>
         ///     Creates a new Game Data object using the provided key and secret.
         /// </summary>
         /// <param name="key">The API key for the Playground Workspace.</param>
@@ -84,7 +93,7 @@ namespace Inworld.Playground
         public void ChangeScene(string sceneName)
         {
             if(m_SceneChangeCoroutine == null)
-                m_SceneChangeCoroutine = StartCoroutine(IChangeScene(sceneName));
+                m_SceneChangeCoroutine = StartCoroutine(ChangeSceneEnumerator(sceneName));
         }
         
         /// <summary>
@@ -95,7 +104,7 @@ namespace Inworld.Playground
             if (m_CurrentScene.name == setupSceneName)
                 SceneManager.LoadScene(playgroundSceneName);
             else
-                StartCoroutine(IPlay());
+                StartCoroutine(PlayEnumerator());
         }
         
         /// <summary>
@@ -188,7 +197,7 @@ namespace Inworld.Playground
             if (m_Settings.ClientType == clientType) return;
             
             m_Settings.ClientType = clientType;
-            StartCoroutine(IUpdateNetworkClient(clientType));
+            StartCoroutine(UpdateNetworkClientEnumerator(clientType));
         }
 
         public void UpdateEnableAEC(bool enableAEC)
@@ -242,7 +251,7 @@ namespace Inworld.Playground
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            if(InworldController.Client)
+            if (InworldController.Client)
                 InworldController.Client.OnStatusChanged -= OnStatusChanged;
         }
 
@@ -277,11 +286,29 @@ namespace Inworld.Playground
         {
             m_CurrentScene = scene;
             if (m_CurrentScene.name != setupSceneName && m_GameData != null)
-                StartCoroutine(ISetupScene());
+                StartCoroutine(SetupScene());
         }
         #endregion
         
         #region Enumerators
+        private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
+        {
+            if(pause)
+                Pause(false);
+            var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
+            InworldController.CharacterHandler.CurrentCharacter = null;
+            InworldController.Client.LoadScene($"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}");
+            
+            LoadSceneResponse loadSceneResponse = InworldController.Client.GetLiveSessionInfo();
+            yield return new WaitWhile(() => InworldController.Client.GetLiveSessionInfo() == loadSceneResponse);
+            
+            if(currentCharacter)
+                InworldController.CurrentCharacter = currentCharacter;
+            
+            if(pause)
+                Play();
+        }
+        
         private IEnumerator NetworkStatusCheck()
         {
             float networkCheckTime = m_NetworkCheckRate;
@@ -308,13 +335,10 @@ namespace Inworld.Playground
                 yield return new WaitForSecondsRealtime(networkCheckTime);
             }
         }
-        private IEnumerator IChangeScene(string sceneName)
+        private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             Pause(false);
-            InworldController.Instance.Disconnect();
-
-            if (m_CurrentScene.name == playgroundSceneName)
-                m_LobbyHistory = InworldController.Client.SessionHistory;
+            m_LobbyHistory = m_CurrentScene.name == playgroundSceneName ? InworldController.Client.SessionHistory : null;
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -329,24 +353,13 @@ namespace Inworld.Playground
             m_SceneChangeCoroutine = null;
         }
         
-        private IEnumerator ISetupScene()
+        private IEnumerator SetupScene()
         {
-            float timer = 0;
-            while (InworldController.Status == InworldConnectionStatus.Connected)
-            {
-                timer += Time.unscaledDeltaTime;
-                if (timer >= 2)
-                {
-                    InworldController.Instance.Disconnect();
-                    timer = 0;
-                }
-                yield return null;
-            }
-            
+            LoadData();
             SetCharacterBrains();
+            
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
-                LoadData();
                 InworldController.Instance.Init();
 
                 float connectionCheckTime = m_NetworkCheckRate;
@@ -362,11 +375,16 @@ namespace Inworld.Playground
                     yield return new WaitForSecondsRealtime(connectionCheckTime);
                 }
             }
+            
+            if(m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name, out string inworldSceneName))
+                yield return ChangeInworldSceneEnumerator(inworldSceneName, false);
+            else
+                InworldAI.LogException("Missing scene in InworldSceneMappingDictionary: " + SceneManager.GetActiveScene().name);
            
-            yield return StartCoroutine(IPlay());
+            yield return StartCoroutine(PlayEnumerator());
         }
         
-        private IEnumerator IPlay()
+        private IEnumerator PlayEnumerator()
         {
             m_GameMenu.SetActive(false);
             
@@ -374,7 +392,7 @@ namespace Inworld.Playground
                 throw new MissingComponentException("Missing or incorrect Inworld client");
             
             if (!CheckAudioComponent())
-                yield return StartCoroutine(IUpdateAudioComponent(m_Settings.EnableAEC));
+                yield return StartCoroutine(UpdateAudioComponent(m_Settings.EnableAEC));
             
             CursorHandler.LockCursor();
 
@@ -414,7 +432,7 @@ namespace Inworld.Playground
             OnPlay?.Invoke();
         }
         
-        private IEnumerator IUpdateNetworkClient(NetworkClient clientType)
+        private IEnumerator UpdateNetworkClientEnumerator(NetworkClient clientType)
         {
             InworldController.Instance.Disconnect();
 #if UNITY_2022_3_OR_NEWER
@@ -463,7 +481,7 @@ namespace Inworld.Playground
             OnStatusChanged(InworldController.Status);
         }
         
-        private IEnumerator IUpdateAudioComponent(bool enableAEC)
+        private IEnumerator UpdateAudioComponent(bool enableAEC)
         {
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
@@ -505,8 +523,6 @@ namespace Inworld.Playground
             
             DisableAllWorldSpaceGraphicRaycasters();
             
-            CursorHandler.UnlockCursor();
-
             Time.timeScale = 0;
             
             PauseAllCharacterInteractions();
@@ -514,10 +530,13 @@ namespace Inworld.Playground
             InworldController.Audio.IsCapturing = false;
             
             Subtitle.Instance.Clear();
-            
-            if(showGameMenu)
-                m_GameMenu.SetActive(true);
 
+            if (showGameMenu)
+            {
+                CursorHandler.UnlockCursor();
+                m_GameMenu.SetActive(true);
+            }
+            
             m_Paused = true;
             OnPause?.Invoke();
         }

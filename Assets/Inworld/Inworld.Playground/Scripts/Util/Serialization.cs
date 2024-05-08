@@ -75,6 +75,7 @@ namespace Inworld.Playground
             gameData.capabilities.emotions = true;
             gameData.capabilities.interruptions = true;
             gameData.capabilities.narratedActions = true;
+            gameData.capabilities.regenerateResponse = true;
             gameData.capabilities.text = true;
             gameData.capabilities.triggers = true;
             gameData.capabilities.phonemeInfo = true;
