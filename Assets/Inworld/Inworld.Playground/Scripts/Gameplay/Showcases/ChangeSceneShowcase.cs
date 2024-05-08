@@ -22,8 +22,8 @@ namespace Inworld.Playground
         [SerializeField] private string m_DaySceneName = "day";
         [SerializeField] private string m_NightSceneName = "night";
         [Header("Objects")]
-        [SerializeField] private Light m_LightBulbSource;
-        [SerializeField] private MeshRenderer m_LightBulbMeshRenderer;
+        [SerializeField] private List<Light> m_LightBulbSources;
+        [SerializeField] private List<MeshRenderer> m_LightBulbMeshRenderers;
         [SerializeField] private Light m_DayLightSource;
         [SerializeField] private Light m_NightLightSource;
         [SerializeField] private Material m_DayMaterial;
@@ -39,14 +39,20 @@ namespace Inworld.Playground
         void SetTimeOfDay(bool isDay)
         {
             m_IsDay = isDay;
-            m_LightBulbSource.enabled = m_IsDay;
+            foreach (Light lightBulbSource in m_LightBulbSources)
+                lightBulbSource.enabled = m_IsDay;
+            
             m_DayLightSource.enabled = m_IsDay;
             m_NightLightSource.enabled = !m_IsDay;
             RenderSettings.skybox = m_IsDay ? m_DayMaterial : m_NightMaterial;
-            if(m_IsDay)
-                m_LightBulbMeshRenderer.materials[0].EnableKeyword("_EMISSION");
-            else
-                m_LightBulbMeshRenderer.materials[0].DisableKeyword("_EMISSION");
+
+            foreach (MeshRenderer meshRenderer in m_LightBulbMeshRenderers)
+            {
+                if(m_IsDay)
+                    meshRenderer.materials[0].EnableKeyword("_EMISSION");
+                else
+                    meshRenderer.materials[0].DisableKeyword("_EMISSION");
+            }
         }
         
         /// <summary>

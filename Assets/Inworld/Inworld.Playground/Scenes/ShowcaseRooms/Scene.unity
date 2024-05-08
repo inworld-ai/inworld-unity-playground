@@ -4527,6 +4527,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!23 &1394027595 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 7e43c2b34d8a29f47a92c2e2c47a5d4a, type: 3}
+  m_PrefabInstance: {fileID: 1394027590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1433043089
 Mesh:
   m_ObjectHideFlags: 0
@@ -8041,8 +8046,12 @@ MonoBehaviour:
   m_StartAsDay: 1
   m_DaySceneName: day
   m_NightSceneName: night
-  m_LightBulbSource: {fileID: 5210668580255322073}
-  m_LightBulbMeshRenderer: {fileID: 7518813428977697}
+  m_LightBulbSources:
+  - {fileID: 95027171}
+  - {fileID: 5210668580255322073}
+  m_LightBulbMeshRenderers:
+  - {fileID: 7518813428977697}
+  - {fileID: 1394027595}
   m_DayLightSource: {fileID: 960314390}
   m_NightLightSource: {fileID: 1502878194}
   m_DayMaterial: {fileID: 2100000, guid: f329dede4ebe9134c8e448736df09780, type: 2}
