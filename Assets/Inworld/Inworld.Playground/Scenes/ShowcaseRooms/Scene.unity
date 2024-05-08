@@ -7811,8 +7811,7 @@ PrefabInstance:
     - target: {fileID: 9091835806708737824, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_text
       value: The Player's name can be updated dynamically at runtime. Enter in a
-        new name for the Player using the input box below and then try asking Name
-        Innequin what your name is.
+        new name for the Player using the input box below.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8084,11 +8083,11 @@ PrefabInstance:
       objectReference: {fileID: 760817647}
     - target: {fileID: 2892343459262759819, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/night_owl
+      value: workspaces/inworld-playground/characters/night_innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2892343459262759819, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
       propertyPath: m_Data.givenName
-      value: Night Owl
+      value: Night Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 4119652818424122717, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
       propertyPath: m_SizeDelta.y
@@ -8343,11 +8342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4032040907208412069, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/day_tripper
+      value: workspaces/inworld-playground/characters/day_innequin
       objectReference: {fileID: 0}
     - target: {fileID: 4032040907208412069, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
       propertyPath: m_Data.givenName
-      value: Day Tripper
+      value: Day Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 7085265507373803714, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
       propertyPath: m_LocalPosition.x
