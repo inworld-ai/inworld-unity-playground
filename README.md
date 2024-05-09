@@ -25,8 +25,8 @@ In case something goes wrong during the install process, here are the required d
 - [com.unity.cloud.gltfast](https://docs.unity3d.com/Packages/com.unity.cloud.gltfast@6.0/manual/index.html)
 - [com.unity.probuilder](https://docs.unity3d.com/Packages/com.unity.probuilder@6.0/manual/index.html)
 - [com.unity.ai.navigation](https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/)
-- [com.unity.shadergraph](https://docs.unity3d.com/Manual/shader-graph.html)
-- [com.unity.sentis](https://unity.com/products/sentis) (if using Unity 2022.3 or newer)
+- [com.unity.shadergraph](https://docs.unity3d.com/Packages/com.unity.shadergraph@17.0/manual/index.html)
+- [com.unity.sentis](https://docs.unity3d.com/Packages/com.unity.sentis@1.4/manual/index.html) (if using Unity 2022.3 or newer)
 
 #### Packages
 
