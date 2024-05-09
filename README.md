@@ -21,10 +21,12 @@ In case something goes wrong during the install process, here are the required d
 
 #### Dependencies
 
-- [com.inworld.unity](https://github.com/inworld-ai/inworld-unity.git#yj3.2)
+- **com.inworld.unity** (use package included in project: `Assets/Inworld/com.inworld.unity.core-3.3.2.tgz`)
 - [com.unity.cloud.gltfast](https://docs.unity3d.com/Packages/com.unity.cloud.gltfast@6.0/manual/index.html)
 - [com.unity.probuilder](https://docs.unity3d.com/Packages/com.unity.probuilder@6.0/manual/index.html)
 - [com.unity.ai.navigation](https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/)
+- [com.unity.shadergraph](https://docs.unity3d.com/Manual/shader-graph.html)
+- [com.unity.sentis](https://unity.com/products/sentis) (if using Unity 2022.3 or newer)
 
 #### Packages
 
@@ -39,6 +41,9 @@ Add all the scenes within `Assets/Inworld/Inworld.Playground/Scenes/` to the **B
 - Avatars
 - Goals
 - Mutations
+- Environment
+- Scene
+- Interactions
 
 ## Controls
 - Movement: 'WASD' & 'Mouse'
