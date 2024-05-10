@@ -14,7 +14,7 @@ namespace Inworld.Playground
         {
             "Assets/Inworld/Inworld.Assets",
             "Assets/Inworld/Inworld.Editor",
-            "Assets/Inworld/Inworld.NDK",
+            "Assets/Inworld/Inworld.Native",
             "Assets/Inworld/Inworld.Samples.Innequin",
             "Assets/Inworld/Inworld.Samples.RPM",
             "Assets/Inworld/InworldUnitySDKManual.pdf",
@@ -22,19 +22,26 @@ namespace Inworld.Playground
             "Assets/Inworld/Inworld.Playground/Prefabs",
             "Assets/Inworld/Inworld.Playground/Resources",
             "Assets/Inworld/Inworld.Playground/Scenes",
-            "Assets/Inworld/Inworld.Playground/Scripts"
+            "Assets/Inworld/Inworld.Playground/Scripts",
+            "Assets/Inworld/Inworld.Playground/Settings",
         };
         
         static string[] s_CompletePackageAssetPathNames = 
         {
             "Assets/Inworld/Editor",
-            "Assets/Inworld/InworldPlaygroundAssets.unitypackage"
+            "Assets/Inworld/InworldPlaygroundAssets.unitypackage",
+            "Assets/Inworld/com.inworld.unity.core-3.3.2.tgz"
         };
         
-        [MenuItem("Inworld/Playground/Export", priority = 101)]
-        static void ExportPlaygroundPackage()
+        [MenuItem("Inworld/Playground/Export Assets", priority = 101)]
+        static void ExportPlaygroundAssetsPackage()
         {
             AssetDatabase.ExportPackage(s_PlaygroundAssetPathNames, $"{Application.dataPath}/Inworld/InworldPlaygroundAssets.unitypackage", ExportPackageOptions.Recurse);
+        }
+        
+        [MenuItem("Inworld/Playground/Export Complete Package", priority = 101)]
+        static void ExportPlaygroundCompletePackage()
+        {
             AssetDatabase.ExportPackage(s_CompletePackageAssetPathNames, $"{Application.dataPath}/InworldAI.Playground.unitypackage", ExportPackageOptions.Recurse);
         }
     }
