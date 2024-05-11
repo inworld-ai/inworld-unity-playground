@@ -19,7 +19,6 @@ namespace Inworld.Playground
         [SerializeField] private Toggle m_AudioToggle;
         [SerializeField] private Toggle m_EmotionToggle;
         [SerializeField] private Toggle m_RelationToggle;
-        [SerializeField] private Toggle m_NarratedActionToggle;
         [SerializeField] private Toggle m_LipsyncToggle;
 
         private Capabilities m_Capabilities;
@@ -34,7 +33,6 @@ namespace Inworld.Playground
             m_Capabilities.audio = m_AudioToggle.isOn;
             m_Capabilities.emotions = m_EmotionToggle.isOn;
             m_Capabilities.relations = m_RelationToggle.isOn;
-            m_Capabilities.narratedActions = m_NarratedActionToggle.isOn;
             m_Capabilities.phonemeInfo = m_LipsyncToggle.isOn;
             InworldAI.Capabilities = m_Capabilities;
             InworldController.Client.SendCapabilities();

@@ -56,6 +56,8 @@ namespace Inworld.Playground
                 EditorUtility.DisplayDialog("Inworld Playground", "Installation Failed.", "Ok");
                 return;
             }
+            
+            QualitySettings.pixelLightCount = 8;
                         
             if (File.Exists($"Assets/Inworld/InworldPlaygroundAssets.unitypackage"))
             {
