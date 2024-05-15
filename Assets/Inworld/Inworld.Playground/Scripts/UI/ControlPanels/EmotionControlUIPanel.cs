@@ -27,7 +27,7 @@ namespace Inworld.Playground
         {
             m_Dropdown.options.Clear();
             foreach (var emotion in m_EmotionMap.data)
-                m_Dropdown.options.Add(new TMP_Dropdown.OptionData(emotion.name));
+                m_Dropdown.options.Add(new TMP_Dropdown.OptionData(emotion.name.ToString()));
 
             currentEmotionIndex = 0;
         }
