@@ -8,7 +8,7 @@
       "url": "https://packages.unity.com"
     },
     "com.inworld.unity.core": {
-      "version": "file:../Assets/Inworld/com.inworld.unity.core-3.3.2.tgz",
+      "version": "file:C:/Users/mattw/Documents/Inworld/inworld-unity-sdk-v3/Assets/Inworld/com.inworld.unity.core-3.3.2.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {

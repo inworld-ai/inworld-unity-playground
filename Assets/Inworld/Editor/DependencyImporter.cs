@@ -1,84 +1,102 @@
 ﻿/*************************************************************************************************
- * Copyright 2024 Theai, Inc. (DBA Inworld)
+ * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 #if UNITY_EDITOR
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using TMPro;
+using TMPro.EditorUtilities;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 
-namespace Inworld.Playground
+namespace Inworld
 {
-    public static class DependencyImporter
+    [InitializeOnLoad]
+    public class DependencyImporter : AssetPostprocessor
     {
-        static readonly string[] s_DependencyPackagesInstall = 
-        {
-            "com.unity.probuilder",
-            "com.unity.ai.navigation",
-            "com.unity.shadergraph",
-#if UNITY_2022_3_OR_NEWER
-            "com.unity.sentis",
-#endif
-            $"file:{Application.dataPath}/Inworld/com.inworld.unity.core-3.3.2.tgz"
-        };
+        const string k_Pathv2 = "Assets/Inworld.AI";
+        const string k_Pathv3 = "Assets/Inworld/Inworld.AI"; // YAN: These 2 folders are incompatible.
+        const string k_UpgradeTitle = "Legacy Inworld found";
+        const string k_UpgradeContent = "Unable to upgrade. Please delete the folder Assets/Inworld, and reimport this package";
+        const string k_DependencyPackage = "com.inworld.unity.core";
+        const string k_InworldAssetsPath = "Assets/Inworld/Inworld.Assets";
+        const string k_ExtraPackagePath = "Assets/Inworld/InworldExtraAssets.unitypackage";
         
-        static readonly string[] s_DependencyPackagesCheck = 
+        static DependencyImporter()
         {
-            "com.unity.probuilder",
-            "com.unity.ai.navigation",
-            "com.unity.shadergraph",
-#if UNITY_2022_3_OR_NEWER
-            "com.unity.sentis",
-#endif
-            "com.inworld.unity.core"
-        };
+            AssetDatabase.importPackageCompleted += _ =>
+            {
+                InstallDependencies();
+            };
+        }
         
-        public static async Task<bool> InstallDependencies()
+        [MenuItem("Inworld/Export Package/Install Dependencies")]
+        public static async void InstallDependencies()
         {
-            Debug.Log("Importing Dependency Packages...");
-            AddAndRemoveRequest request = Client.AddAndRemove(s_DependencyPackagesInstall);
-            
-            while (!request.IsCompleted)
+            if (Directory.Exists(k_Pathv2) || Directory.Exists(k_Pathv3))
             {
-                EditorUtility.DisplayProgressBar("Inworld Playground", "Importing Dependencies...", 0.2f);
-                await Task.Yield();
-            }
-            EditorUtility.ClearProgressBar();
-            
-            if (request.Status != StatusCode.Success)
-            {
-                Debug.LogError($"Failed to add dependency packages. {request.Error}.");
-                return false;
-            }
-            Debug.Log($"Importing Dependencies Completed.");
-            return true;
+                if (EditorUtility.DisplayDialog(k_UpgradeTitle, k_UpgradeContent, "OK"))
+                    return;
+            } 
+            Debug.Log("Import Dependency Packages...");
+            await _AddPackage(); 
         }
 
-        public static async Task<bool> CheckDependencies()
+        static string _GetTgzFileName()
         {
-            ListRequest request = Client.List();
-            
-            while (!request.IsCompleted)
+            string searchDirectory = Path.Combine(Application.dataPath, "Inworld");
+            string[] tgzFiles = Directory.GetFiles(searchDirectory, "*.tgz", SearchOption.TopDirectoryOnly);
+            return tgzFiles.Length > 0 ? $"file:{tgzFiles[0]}" : "";
+        }
+        static async Task _AddUnityPackage(string package, string detail = "")
+        {
+            ListRequest listRequest = Client.List();
+
+            while (!listRequest.IsCompleted)
             {
-                EditorUtility.DisplayProgressBar("Inworld Playground", "Fetching packages...", 0.2f);
                 await Task.Yield();
             }
-            EditorUtility.ClearProgressBar();
-            
-            if (request.Status != StatusCode.Success)
+            if (listRequest.Status != StatusCode.Success)
             {
-                Debug.LogError($"Failed to fetch packages. {request.Error}.");
-                return false;
+                Debug.LogError(listRequest.Error.ToString());
+                return;
             }
-
-            return !s_DependencyPackagesCheck.Any(dependency =>
-                request.Result.All(x => x.name != dependency));
+            if (listRequest.Result.Any(x => x.name == package))
+            {
+                Debug.Log($"{package} Found.");
+                return;
+            }
+            string pkgToLoad = string.IsNullOrEmpty(detail) ? package : detail;
+            AddRequest addRequest = Client.Add(pkgToLoad);
+            while (!addRequest.IsCompleted)
+            {
+                await Task.Yield();
+            }
+            if (addRequest.Status != StatusCode.Success)
+            {
+                Debug.LogError($"Failed to add {package}.");
+                return;
+            }
+            Debug.Log($"Import {package} Completed");
+        }
+        
+        static async Task _AddPackage()
+        {
+            await _AddUnityPackage(k_DependencyPackage, _GetTgzFileName());
+            if (!Directory.Exists(k_InworldAssetsPath) && File.Exists(k_ExtraPackagePath))
+                AssetDatabase.ImportPackage(k_ExtraPackagePath, false);
+            if (!File.Exists("Assets/TextMesh Pro/Resources/TMP Settings.asset"))
+            {
+                string packageFullPath = TMP_EditorUtility.packageFullPath;
+                AssetDatabase.ImportPackage(packageFullPath + "/Package Resources/TMP Essential Resources.unitypackage", false);
+            }
         }
     }
 }
