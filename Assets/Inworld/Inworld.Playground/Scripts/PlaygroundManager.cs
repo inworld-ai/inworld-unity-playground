@@ -274,10 +274,6 @@ namespace Inworld.Playground
             Debug.Log("Status Changed: " + status);
             if (status == InworldConnectionStatus.Initialized)
             {
-                if (m_CurrentScene.name == playgroundSceneName)
-                    InworldController.Client.SessionHistory = m_LobbyHistory;
-                else
-                    InworldController.Client.SessionHistory = "";
                 InworldController.Client.StartSession();
             }
         }
@@ -338,7 +334,8 @@ namespace Inworld.Playground
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             Pause(false);
-            m_LobbyHistory = m_CurrentScene.name == playgroundSceneName ? InworldController.Client.SessionHistory : null;
+            if(m_CurrentScene.name == playgroundSceneName)
+                m_LobbyHistory = InworldController.Client.SessionHistory;
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -383,6 +380,14 @@ namespace Inworld.Playground
             {
                 yield return StartCoroutine(ChangeInworldSceneEnumerator(inworldSceneName, false));
             }
+
+            if (m_CurrentScene.name == playgroundSceneName)
+            {
+                InworldController.Client.SessionHistory = m_LobbyHistory;
+                InworldController.Client.SendHistory();
+            }
+            else
+                InworldController.Client.SessionHistory = "";
            
             yield return StartCoroutine(PlayEnumerator());
         }
@@ -401,8 +406,8 @@ namespace Inworld.Playground
 
             Time.timeScale = 1;
             
-            InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
             InworldController.Audio.enabled = true;
+            InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
 
             switch (m_Settings.InteractionMode)
             {

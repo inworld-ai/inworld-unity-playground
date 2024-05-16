@@ -13,7 +13,7 @@ namespace Inworld.Playground
     ///     Body Animation handling for the Gesture showcase Inworld characters.
     ///     Removes Idle animation handling from the base InworldBodyAnimation class.
     /// </summary>
-    public class InworldNoIdleBodyAnimation : InworldBodyAnimation
+    public class InworldNoIdleBodyAnimation : InworldPlaygroundBodyAnimation
     {
         protected override void OnCharacterSelected(string braiName)
         {
