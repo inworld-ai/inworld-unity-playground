@@ -274,10 +274,6 @@ namespace Inworld.Playground
             Debug.Log("Status Changed: " + status);
             if (status == InworldConnectionStatus.Initialized)
             {
-                if (m_CurrentScene.name == playgroundSceneName)
-                    InworldController.Client.SessionHistory = m_LobbyHistory;
-                else
-                    InworldController.Client.SessionHistory = "";
                 InworldController.Client.StartSession();
             }
         }
@@ -338,7 +334,8 @@ namespace Inworld.Playground
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             Pause(false);
-            m_LobbyHistory = m_CurrentScene.name == playgroundSceneName ? InworldController.Client.SessionHistory : null;
+            if(m_CurrentScene.name == playgroundSceneName)
+                m_LobbyHistory = InworldController.Client.SessionHistory;
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -357,9 +354,13 @@ namespace Inworld.Playground
         {
             LoadData();
             SetCharacterBrains();
+
+            if (!m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name, out string inworldSceneName))
+                InworldAI.LogException("Missing scene in InworldSceneMappingDictionary: " + SceneManager.GetActiveScene().name);
             
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
+                InworldController.Client.CurrentScene = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
                 InworldController.Instance.Init();
 
                 float connectionCheckTime = m_NetworkCheckRate;
@@ -375,11 +376,18 @@ namespace Inworld.Playground
                     yield return new WaitForSecondsRealtime(connectionCheckTime);
                 }
             }
-            
-            if(m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name, out string inworldSceneName))
-                yield return ChangeInworldSceneEnumerator(inworldSceneName, false);
             else
-                InworldAI.LogException("Missing scene in InworldSceneMappingDictionary: " + SceneManager.GetActiveScene().name);
+            {
+                yield return StartCoroutine(ChangeInworldSceneEnumerator(inworldSceneName, false));
+            }
+
+            if (m_CurrentScene.name == playgroundSceneName)
+            {
+                InworldController.Client.SessionHistory = m_LobbyHistory;
+                InworldController.Client.SendHistory();
+            }
+            else
+                InworldController.Client.SessionHistory = "";
            
             yield return StartCoroutine(PlayEnumerator());
         }
@@ -398,6 +406,7 @@ namespace Inworld.Playground
 
             Time.timeScale = 1;
             
+            InworldController.Audio.enabled = true;
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
 
             switch (m_Settings.InteractionMode)
@@ -498,6 +507,8 @@ namespace Inworld.Playground
                 
             Destroy(InworldController.Audio);
             yield return null;
+
+            InworldController.Audio.enabled = false;
             
             // Re-register all characters to update the new AudioCapture component.
             
@@ -526,8 +537,8 @@ namespace Inworld.Playground
             Time.timeScale = 0;
             
             PauseAllCharacterInteractions();
-            
-            InworldController.Audio.IsCapturing = false;
+
+            InworldController.Audio.enabled = false;
             
             Subtitle.Instance.Clear();
 

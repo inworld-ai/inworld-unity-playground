@@ -56,13 +56,13 @@ namespace Inworld.Playground
                 return;
             if (m_Button.image.sprite == m_MicOn)
             {
-                StopRecording();
+                IsRecording = false;
                 m_Button.image.sprite = m_MicOff;
                 m_Volume.fillAmount = 0;
             }
             else
             {
-                StartRecording();
+                IsRecording = true;
                 m_Button.image.sprite = m_MicOn;
             }
         }
