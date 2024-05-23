@@ -113,3 +113,8 @@ InworldExtraAssets.unitypackage.meta
 # Other
 PlaygroundAssetNames.csv
 PlaygroundAssetNames.csv.meta
+
+# Unity Asset Store
+com.unity.asset-store-tools/
+Assets/Editor/
+Assets/Editor.meta
