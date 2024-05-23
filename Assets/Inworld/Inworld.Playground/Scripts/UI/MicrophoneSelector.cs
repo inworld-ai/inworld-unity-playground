@@ -85,6 +85,7 @@ namespace Inworld.Playground
 
         protected override void OnEnable()
         {
+#if !UNITY_WEBGL
             string currentMicDevice = PlaygroundManager.Instance.GetMicrophoneDevice();
             for(var i = 0; i < m_Dropdown.options.Count; i++)
             {
@@ -95,6 +96,7 @@ namespace Inworld.Playground
             
             if (Microphone.devices.Length > m_MicIndex)
                 UpdateAudioInput(m_MicIndex);
+#endif
             base.OnEnable();
         }
         

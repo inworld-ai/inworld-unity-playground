@@ -36,6 +36,9 @@ namespace Inworld.Playground
         private List<InworldSceneMapping> m_InworldSceneMapping;
         
         [SerializeField]
+        private InworldGameData m_GameData;
+        
+        [SerializeField]
         private PlaygroundSettings m_Settings;
 
         [SerializeField]
@@ -49,7 +52,6 @@ namespace Inworld.Playground
         private GameObject m_InworldControllerWebSocket;
 
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
-        private InworldGameData m_GameData;
         private Coroutine m_SceneChangeCoroutine;
         private Coroutine m_NetworkCoroutine;
         private Scene m_CurrentScene;
@@ -225,7 +227,9 @@ namespace Inworld.Playground
             foreach (var sceneMapping in m_InworldSceneMapping)
                 m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
             
-            m_GameData = Serialization.GetGameData();
+            if(m_GameData == null)
+                m_GameData = Serialization.GetGameData();
+            
             if (m_GameData == null && SceneManager.GetActiveScene().name != setupSceneName)
             {
                 InworldAI.Log("The Playground GameData could not be found, switching to Setup Scene.");
