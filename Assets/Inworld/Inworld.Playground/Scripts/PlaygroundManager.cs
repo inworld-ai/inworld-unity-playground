@@ -13,6 +13,7 @@ using Inworld.Sample;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
@@ -50,6 +51,7 @@ namespace Inworld.Playground
 
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
+        private EventSystem m_EventSystem;
         private Coroutine m_SceneChangeCoroutine;
         private Coroutine m_NetworkCoroutine;
         private Scene m_CurrentScene;
@@ -209,10 +211,11 @@ namespace Inworld.Playground
         #region Unity Event Functions
         private void Awake()
         {
+            m_EventSystem = GetComponentInChildren<EventSystem>();
             if (Instance != this)
             {
                 Destroy(gameObject);
-                InworldAI.LogWarning("Destroying duplicate instance of PlaygroundManager.");
+                InworldAI.Log("Destroying duplicate instance of PlaygroundManager.");
                 return;
             }
             
@@ -240,6 +243,11 @@ namespace Inworld.Playground
                 SetPlayerName("Player");
             
             Time.timeScale = 0;
+        }
+
+        private void Start()
+        {
+            m_EventSystem.enabled = true;
         }
 
         private void OnEnable()
