@@ -7434,7 +7434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17439e5ab7920b41b31294da44d2b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Range: 3
+  m_Range: 4
 --- !u!114 &3482120479099838503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7450,6 +7450,7 @@ MonoBehaviour:
   m_Board: {fileID: 1720639803517878975}
   m_Indicator: {fileID: 399670652562362028}
   m_Error: {fileID: 1676412510569029844}
+  m_NoMic: {fileID: 0}
 --- !u!1 &6946270576473902794
 GameObject:
   m_ObjectHideFlags: 0
