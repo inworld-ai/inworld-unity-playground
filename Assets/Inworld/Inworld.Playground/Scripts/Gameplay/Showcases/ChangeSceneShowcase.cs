@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Inworld.Playground.Data;
 using UnityEngine;
 
@@ -28,6 +29,8 @@ namespace Inworld.Playground
         [SerializeField] private Light m_NightLightSource;
         [SerializeField] private Material m_DayMaterial;
         [SerializeField] private Material m_NightMaterial;
+        [SerializeField] private Material m_BulbOnMaterial;
+        [SerializeField] private Material m_BulbOffMaterial;
 
         private bool m_IsDay;
 
@@ -48,10 +51,12 @@ namespace Inworld.Playground
 
             foreach (MeshRenderer meshRenderer in m_LightBulbMeshRenderers)
             {
+                var materials = meshRenderer.materials;
                 if(m_IsDay)
-                    meshRenderer.materials[0].EnableKeyword("_EMISSION");
+                    materials[0] = m_BulbOnMaterial;
                 else
-                    meshRenderer.materials[0].DisableKeyword("_EMISSION");
+                    materials[0] = m_BulbOffMaterial;
+                meshRenderer.materials = materials;
             }
         }
         

@@ -7682,6 +7682,8 @@ MonoBehaviour:
   m_NightLightSource: {fileID: 1502878194}
   m_DayMaterial: {fileID: 2100000, guid: f329dede4ebe9134c8e448736df09780, type: 2}
   m_NightMaterial: {fileID: 2100000, guid: a6af46c2a273148498aa2a87dbad9a9a, type: 2}
+  m_BulbOnMaterial: {fileID: 2100000, guid: 75433d682830125438f8c2777f0d7edb, type: 2}
+  m_BulbOffMaterial: {fileID: 2100000, guid: 34dd0a53cc41458408fc2458d07d6083, type: 2}
 --- !u!114 &4035806282240565532
 MonoBehaviour:
   m_ObjectHideFlags: 0
