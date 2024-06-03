@@ -38,9 +38,6 @@ namespace Inworld.Playground
         [SerializeField]
         private PlaygroundSettings m_Settings;
 
-        [SerializeField]
-        private float m_NetworkCheckRate = 2;
-        
         [SerializeField] 
         private GameObject m_GameMenu;
         
@@ -51,7 +48,6 @@ namespace Inworld.Playground
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
         private Coroutine m_SceneChangeCoroutine;
-        private Coroutine m_NetworkCoroutine;
         private Scene m_CurrentScene;
         private bool m_Paused;
 
@@ -191,14 +187,6 @@ namespace Inworld.Playground
         {
             m_Settings.InteractionMode = microphoneMode;
         }
-        
-        public void UpdateNetworkClient(NetworkClient clientType)
-        {
-            if (m_Settings.ClientType == clientType) return;
-            
-            m_Settings.ClientType = clientType;
-            StartCoroutine(UpdateNetworkClientEnumerator(clientType));
-        }
 
         public void UpdateEnableAEC(bool enableAEC)
         {
@@ -305,32 +293,6 @@ namespace Inworld.Playground
                 Play();
         }
         
-        private IEnumerator NetworkStatusCheck()
-        {
-            float networkCheckTime = m_NetworkCheckRate;
-            while (true)
-            {
-                switch (InworldController.Status)
-                {
-                    case InworldConnectionStatus.Connected:
-                        networkCheckTime = m_NetworkCheckRate;
-                        break;
-                    case InworldConnectionStatus.Idle:
-                        InworldAI.Log("Attempting soft-reconnect");
-                        InworldController.Instance.Reconnect();
-                        networkCheckTime += m_NetworkCheckRate;
-                        break;
-                    case InworldConnectionStatus.Error:
-                        InworldAI.Log("Attempting hard-reconnect");
-                        InworldController.Instance.Disconnect();
-                        InworldController.Instance.Init();
-                        networkCheckTime += m_NetworkCheckRate;
-                        break;
-                }
-                
-                yield return new WaitForSecondsRealtime(networkCheckTime);
-            }
-        }
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             Pause(false);
@@ -361,20 +323,6 @@ namespace Inworld.Playground
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
                 InworldController.Client.CurrentScene = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
-                InworldController.Instance.Init();
-
-                float connectionCheckTime = m_NetworkCheckRate;
-                while (InworldController.Status != InworldConnectionStatus.Connected)
-                {
-                    if (InworldController.Status == InworldConnectionStatus.Error ||
-                        InworldController.Status == InworldConnectionStatus.Idle)
-                    {
-                        InworldController.Instance.Disconnect();
-                        InworldController.Instance.Init();
-                        connectionCheckTime += m_NetworkCheckRate;
-                    }
-                    yield return new WaitForSecondsRealtime(connectionCheckTime);
-                }
             }
             else
             {
@@ -435,59 +383,8 @@ namespace Inworld.Playground
             
             EnableAllWorldSpaceGraphicRaycasters();
 
-            m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
-            
             m_Paused = false;
             OnPlay?.Invoke();
-        }
-        
-        private IEnumerator UpdateNetworkClientEnumerator(NetworkClient clientType)
-        {
-            InworldController.Instance.Disconnect();
-#if UNITY_2022_3_OR_NEWER
-            var characters = FindObjectsByType<InworldCharacter>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-#else
-            var characters = FindObjectsOfType<InworldCharacter>();
-#endif
-            if (PlayerController.Instance)
-            {
-                PlayerController.Instance.GetComponent<ChatPanel>().enabled = false;
-                PlayerController.Instance.enabled = false;
-            }
-            foreach (var character in characters)
-                character.gameObject.SetActive(false);
-            if(Subtitle.Instance)
-                Subtitle.Instance.gameObject.SetActive(false);
-            
-            yield return new WaitForEndOfFrame();
-
-            yield return new WaitUntil(() => InworldController.Status != InworldConnectionStatus.Connected);
-            
-            Destroy(InworldController.Instance.gameObject);
-            yield return new WaitForEndOfFrame();
-
-            switch (clientType)
-            {
-                case NetworkClient.WebSocket:
-                    Instantiate(m_InworldControllerWebSocket);
-                    break;
-            }
-            InworldAI.Log("Replacing current Inworld Controller.");
-            yield return new WaitForEndOfFrame();
-            
-            if (PlayerController.Instance)
-            {
-                PlayerController.Instance.GetComponent<ChatPanel>().enabled = true;
-                PlayerController.Instance.enabled = true;
-            }
-            if(Subtitle.Instance)
-                Subtitle.Instance.gameObject.SetActive(true);
-            foreach (var character in characters)
-                character.gameObject.SetActive(true);
-            
-            OnClientChanged?.Invoke();
-            InworldController.Client.OnStatusChanged += OnStatusChanged;
-            OnStatusChanged(InworldController.Status);
         }
         
         private IEnumerator UpdateAudioComponent(bool enableAEC)
@@ -525,12 +422,6 @@ namespace Inworld.Playground
         {
             if(m_Paused)
                 return;
-
-            if (m_NetworkCoroutine != null)
-            {
-                StopCoroutine(m_NetworkCoroutine);
-                m_NetworkCoroutine = null;
-            }
             
             DisableAllWorldSpaceGraphicRaycasters();
             

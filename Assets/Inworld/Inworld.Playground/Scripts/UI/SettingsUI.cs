@@ -65,17 +65,6 @@ namespace Inworld.Playground
             m_PlaygroundManager.UpdateMicrophoneMode(MicrophoneMode.TurnByTurn);
         }
         
-        public void SetNetworkClient(int index)
-        {
-            var networkClient = (NetworkClient)index;
-            if (m_PlaygroundManager.GetClientType() != networkClient)
-            {
-                m_ConnectButton.interactable = false;
-                m_PlayButton.interactable = false;
-                m_PlaygroundManager.UpdateNetworkClient(networkClient);
-            }
-        }
-        
         public void SetAECEnabled(bool value)
         {
             m_PlaygroundManager.UpdateEnableAEC(value);
