@@ -5,7 +5,6 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -15,8 +14,10 @@ namespace Inworld.Sample
     public class CharacterHandler3D : CharacterHandler
     {
         [SerializeField] protected CharSelectingMethod m_SelectingMethod = CharSelectingMethod.SightAngle;
-        [Range(0.1f, 1f)]
-        [SerializeField] float m_RefreshRate = 0.5f;
+        [Tooltip("Only the priority lower that threshold would be selected.")][Range(0.1f, 1f)]
+        [SerializeField] protected float m_SelectingThreshold = 0.5f;
+        [Tooltip("How often do we calculate the priority:")][Range(0.1f, 1f)]
+        [SerializeField] protected float m_RefreshRate = 0.5f;
 
         float m_CurrentTime;
 
@@ -26,19 +27,25 @@ namespace Inworld.Sample
         public override CharSelectingMethod SelectingMethod
         {
             get => m_SelectingMethod;
-            set => m_SelectingMethod = value;
+            set
+            {
+                if (m_SelectingMethod == value)
+                    return;
+                m_SelectingMethod = value;
+                Event.onCharacterSelectingModeUpdated?.Invoke(m_SelectingMethod);
+            }
         }
         /// <summary>
         ///     Change the method of how to select character.
         /// </summary>
         public override void ChangeSelectingMethod()
         {
-            if (m_SelectingMethod == CharSelectingMethod.Manual || m_SelectingMethod == CharSelectingMethod.KeyCode)
-                m_SelectingMethod = CharSelectingMethod.SightAngle;
-            else if (m_SelectingMethod == CharSelectingMethod.SightAngle)
-                m_SelectingMethod = CharSelectingMethod.AutoChat;
-            else if (m_SelectingMethod == CharSelectingMethod.AutoChat)
-                m_SelectingMethod = CharSelectingMethod.KeyCode;
+            if (SelectingMethod == CharSelectingMethod.Manual || SelectingMethod == CharSelectingMethod.KeyCode)
+                SelectingMethod = CharSelectingMethod.SightAngle;
+            else if (SelectingMethod == CharSelectingMethod.SightAngle)
+                SelectingMethod = CharSelectingMethod.AutoChat;
+            else if (SelectingMethod == CharSelectingMethod.AutoChat)
+                SelectingMethod = CharSelectingMethod.KeyCode;
         }
 
         void Update()
@@ -59,7 +66,7 @@ namespace Inworld.Sample
             if (m_CurrentTime < m_RefreshRate)
                 return;
             m_CurrentTime = 0;
-            float fPriority = float.MaxValue;
+            float fPriority = m_SelectingThreshold;
             InworldCharacter targetCharacter = null;
             foreach (InworldCharacter character in m_CharacterList.Where(character => character && character.Priority >= 0 && character.Priority < fPriority))
             {
