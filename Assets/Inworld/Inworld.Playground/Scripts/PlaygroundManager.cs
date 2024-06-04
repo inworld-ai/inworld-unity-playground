@@ -25,6 +25,10 @@ namespace Inworld.Playground
         public UnityEvent OnClientChanged;
         public UnityEvent OnPlay;
         public UnityEvent OnPause;
+        public UnityEvent OnStartSceneChange;
+        public UnityEvent OnEndSceneChange;
+        public UnityEvent OnStartInworldSceneChange;
+        public UnityEvent OnEndInworldSceneChange;
         
         public InworldGameData GameData => m_GameData;
         public bool Paused => m_Paused;
@@ -227,7 +231,8 @@ namespace Inworld.Playground
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
             
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
+            m_Paused = true;
         }
 
         private void OnEnable()
@@ -277,6 +282,7 @@ namespace Inworld.Playground
         #region Enumerators
         private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
         {
+            OnStartInworldSceneChange?.Invoke();
             if(pause)
                 Pause(false);
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
@@ -291,10 +297,12 @@ namespace Inworld.Playground
             
             if(pause)
                 Play();
+            OnEndInworldSceneChange?.Invoke();
         }
         
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
+            OnStartSceneChange?.Invoke();
             Pause(false);
             if(m_CurrentScene.name == playgroundSceneName)
                 m_LobbyHistory = InworldController.Client.SessionHistory;
@@ -310,6 +318,7 @@ namespace Inworld.Playground
             InworldAI.Log("Completed scene load: " + sceneName);
             
             m_SceneChangeCoroutine = null;
+            OnEndSceneChange?.Invoke();
         }
         
         private IEnumerator SetupScene()
@@ -352,7 +361,7 @@ namespace Inworld.Playground
             
             CursorHandler.LockCursor();
 
-            Time.timeScale = 1;
+            // Time.timeScale = 1;
             
             InworldController.Audio.enabled = true;
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
@@ -425,7 +434,7 @@ namespace Inworld.Playground
             
             DisableAllWorldSpaceGraphicRaycasters();
             
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
             
             PauseAllCharacterInteractions();
 
