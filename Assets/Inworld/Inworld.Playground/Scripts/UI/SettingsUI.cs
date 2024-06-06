@@ -127,6 +127,7 @@ namespace Inworld.Playground
             m_AECToggle.isOn = aecEnabled;
             
             OnStatusChanged(InworldController.Status);
+            UpdatePlayButton(true);
         }
 
         private void OnDisable()
@@ -158,7 +159,6 @@ namespace Inworld.Playground
                     m_ConnectButton.interactable = false;
                     break;
             }
-            UpdatePlayButton(status == InworldConnectionStatus.Connected);
         }
         
         private void OnClientChanged()

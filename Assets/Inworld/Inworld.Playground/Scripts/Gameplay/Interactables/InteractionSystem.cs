@@ -52,7 +52,8 @@ namespace Inworld.Playground
                 
                 foreach (var result in m_RaycastResults)
                 {
-                    if (result.gameObject.GetComponentInParent<Selectable>())
+                    Selectable selectable = result.gameObject.GetComponentInParent<Selectable>();
+                    if (selectable && selectable.interactable)
                     {
                         m_IsHoveringUI = true;
                         break;
