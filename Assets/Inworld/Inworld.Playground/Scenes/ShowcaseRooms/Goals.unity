@@ -493,6 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InworldCharacter: {fileID: 1629856993}
   m_InputField: {fileID: 114802572}
+  m_Button: {fileID: 56000242}
 --- !u!1 &56000240
 GameObject:
   m_ObjectHideFlags: 0

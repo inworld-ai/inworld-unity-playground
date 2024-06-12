@@ -772,6 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89d59afe746604459dd9e591114f6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Button: {fileID: 1110065752}
   m_AudioToggle: {fileID: 2105130480}
   m_EmotionToggle: {fileID: 1528745300}
   m_RelationToggle: {fileID: 1619646002}
@@ -7720,6 +7721,9 @@ MonoBehaviour:
   m_StartAsDay: 1
   m_DaySceneName: day
   m_NightSceneName: night
+  m_Interactables:
+  - {fileID: 1394027594}
+  - {fileID: 5759573534603357786}
   m_LightBulbSources:
   - {fileID: 95027171}
   - {fileID: 5210668580255322073}

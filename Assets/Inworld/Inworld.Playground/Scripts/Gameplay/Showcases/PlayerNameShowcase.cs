@@ -15,6 +15,29 @@ namespace Inworld.Playground
     /// </summary>
     public class PlayerNameShowcase : InputShowcase
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            m_Button.interactable = false;
+        }
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            InworldController.Client.OnStatusChanged += OnStatusChanged;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if(InworldController.Client)
+                InworldController.Client.OnStatusChanged -= OnStatusChanged;
+        }
+        
+        private void OnStatusChanged(InworldConnectionStatus status)
+        {
+            m_Button.interactable = status == InworldConnectionStatus.Connected;
+        }
+
         public void SendPlayerNameChangeRequest()
         {
             if (PlaygroundManager.Instance.GetPlayerName() == m_InputField.text)
