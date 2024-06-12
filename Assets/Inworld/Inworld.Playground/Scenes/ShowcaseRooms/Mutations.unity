@@ -840,6 +840,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+--- !u!4 &152140015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 810005299097699529, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+  m_PrefabInstance: {fileID: 152140014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &211150426
 Mesh:
   m_ObjectHideFlags: 0
@@ -5637,6 +5642,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: innequin_inworld-playground
       objectReference: {fileID: 0}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1903234855}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 152140015}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5658,6 +5671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613ac1f8d252b24428cb15dd2a560c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1903234855 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6761323343535279898, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+  m_PrefabInstance: {fileID: 1903234852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981669164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,6 +5863,10 @@ PrefabInstance:
       propertyPath: m_DistanceFactor
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 152140015}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []

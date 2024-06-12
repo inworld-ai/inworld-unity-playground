@@ -18,7 +18,6 @@ namespace Inworld.Playground
         public string WorkspaceId;
         public string MicrophoneDevice;
         public MicrophoneMode InteractionMode;
-        public NetworkClient ClientType;
         public bool EnableAEC = true;
     }
 }

@@ -3320,6 +3320,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+--- !u!4 &1165479446 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 810005299097699529, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+  m_PrefabInstance: {fileID: 1165479445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1166133328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5117,6 +5122,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: innequin_inworld-playground
       objectReference: {fileID: 0}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1877435973}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5136,6 +5149,11 @@ MonoBehaviour:
 --- !u!4 &1877435972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+  m_PrefabInstance: {fileID: 1877435970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1877435973 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6761323343535279898, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
   m_PrefabInstance: {fileID: 1877435970}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901821083

@@ -16,6 +16,11 @@ namespace Inworld.Playground
     public class PlaygroundAECAudioCapture : InworldAECAudioCapture
     {
         /// <summary>
+        /// A flag for this component is using AEC
+        /// </summary>
+        public override bool EnableAEC => PlaygroundManager.Instance.GetEnableAEC();
+        
+        /// <summary>
         ///     Updates the default sample mode. 
         /// </summary>
         /// <param name="micSampleMode">The sample mode to set as default.</param>

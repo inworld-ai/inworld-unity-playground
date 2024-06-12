@@ -65,15 +65,17 @@ MonoBehaviour:
   m_SceneFullName: 
   m_APIKey: 
   m_APISecret: 
-  m_CustomToken: 
-  m_PublicWorkspace: 
   m_AutoScene: 0
+  m_MaxWaitingListSize: 100
   m_Continuation:
     continuationType: 0
     dialogHistory:
       history: []
     externallySavedState: 
-  m_MaxWaitingListSize: 100
+  m_EnableGroupChat: 0
+  m_CustomToken: 
+  m_PublicWorkspace: 
+  m_GameSessionID: 
 --- !u!114 &2995019885456371670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3241affa9c0462fa7193839038c32c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ManualAudioHandling: 0
   m_SelectingMethod: 2
+  m_SelectingThreshold: 0.5
   m_RefreshRate: 0.5
 --- !u!114 &3331053244747017235
 MonoBehaviour:
@@ -108,16 +110,23 @@ MonoBehaviour:
   m_AudioToPushCapacity: 100
   m_DeviceName: 
   m_DetectPlayerSpeaking: 1
-  OnRecordingStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnRecordingEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerStartSpeaking:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerStopSpeaking:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DumpAudioHotKey: 48
+  m_AudioEvent:
+    onStartCalibrating:
+      m_PersistentCalls:
+        m_Calls: []
+    onStopCalibrating:
+      m_PersistentCalls:
+        m_Calls: []
+    onRecordingStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onRecordingEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onPlayerStartSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onPlayerStopSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+  m_DumpAudioHotKey: 0

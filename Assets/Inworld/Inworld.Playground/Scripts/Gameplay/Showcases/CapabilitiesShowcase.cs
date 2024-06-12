@@ -35,7 +35,7 @@ namespace Inworld.Playground
             m_Capabilities.relations = m_RelationToggle.isOn;
             m_Capabilities.phonemeInfo = m_LipsyncToggle.isOn;
             InworldAI.Capabilities = m_Capabilities;
-            InworldController.Client.SendCapabilities();
+            InworldController.Client.SendSessionConfig(false);
         }
     }
 }

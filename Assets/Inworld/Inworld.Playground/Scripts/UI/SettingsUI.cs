@@ -26,8 +26,6 @@ namespace Inworld.Playground
         [SerializeField] 
         private Toggle m_AECToggle;
         [SerializeField] 
-        private TMP_Dropdown m_ClientDropdown;
-        [SerializeField] 
         private Button m_PlayButton;
         [SerializeField]
         private Button m_ConnectButton;
@@ -119,9 +117,6 @@ namespace Inworld.Playground
                     m_MicModePTTToggle.isOn = false;
                     break;
             }
-
-            var networkClient = m_PlaygroundManager.GetClientType();
-            m_ClientDropdown.value = (int)networkClient;
             
             var aecEnabled = m_PlaygroundManager.GetEnableAEC();
             m_AECToggle.isOn = aecEnabled;
@@ -153,7 +148,6 @@ namespace Inworld.Playground
                 case InworldConnectionStatus.Connected:
                     m_ConnectButton.GetComponentInChildren<TMP_Text>().text = "Disconnect";
                     m_ConnectButton.interactable = true;
-                    m_PlayButton.interactable = true;
                     break;
                 default:
                     m_ConnectButton.interactable = false;
