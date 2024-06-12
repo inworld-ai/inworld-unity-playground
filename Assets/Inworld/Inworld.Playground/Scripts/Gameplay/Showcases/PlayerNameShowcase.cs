@@ -20,7 +20,7 @@ namespace Inworld.Playground
             if (PlaygroundManager.Instance.GetPlayerName() == m_InputField.text)
                 return;
             PlaygroundManager.Instance.SetPlayerName(m_InputField.text);
-            InworldController.Client.SendUserConfig();
+            InworldController.Client.SendSessionConfig(false);
         }
     }
 }

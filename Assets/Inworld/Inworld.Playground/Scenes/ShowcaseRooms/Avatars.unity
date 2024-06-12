@@ -1626,9 +1626,17 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 666417442}
+    - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
       propertyPath: m_SightDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 585208267440054937}
     - target: {fileID: 4680326775755363266, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -1689,6 +1697,11 @@ PrefabInstance:
 --- !u!4 &666417441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8460584197298896669, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
+  m_PrefabInstance: {fileID: 666417440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &666417442 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7705032967038396266, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
   m_PrefabInstance: {fileID: 666417440}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &733215792
@@ -4469,6 +4482,14 @@ PrefabInstance:
       value: "Meet Innequin, Inworld\u2019s AI-powered brand ambassador, designed
         by Huck Gee."
       objectReference: {fileID: 0}
+    - target: {fileID: 8908969069333667741, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1915667238}
+    - target: {fileID: 8908969069333667741, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 585208267440054937}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1265259917224866506, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
@@ -4486,6 +4507,11 @@ Transform:
 --- !u!4 &1915667237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4337401034770921047, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
+  m_PrefabInstance: {fileID: 1915667235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1915667238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6750683188212575086, guid: cf8eb4dbfdd10cb45b0d0854be7124a1, type: 3}
   m_PrefabInstance: {fileID: 1915667235}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2020276677
@@ -5035,6 +5061,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+--- !u!4 &585208267440054937 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 810005299097699529, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+  m_PrefabInstance: {fileID: 585208267440054936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4321962935467169224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5079,6 +5110,10 @@ PrefabInstance:
       propertyPath: m_SightDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6679664519424819857, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 585208267440054937}
     - target: {fileID: 7142177979337930576, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_Name
       value: orby_inworld-playground

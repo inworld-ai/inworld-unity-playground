@@ -1612,6 +1612,10 @@ PrefabInstance:
       propertyPath: m_DistanceFactor
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2049912337102572863, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1073447593}
     - target: {fileID: 2275298012262028986, guid: efaddf512ef8f0745a30b0b83daba6af, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -1730,6 +1734,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     onEndSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onInteractionEnd:
       m_PersistentCalls:
         m_Calls: []
     onPacketReceived:
@@ -3516,6 +3523,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7866834567027865405, guid: d39cc204955468f45bd044a0899c3cf3, type: 3}
   m_PrefabInstance: {fileID: 1053078143}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1073447593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 810005299097699529, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+  m_PrefabInstance: {fileID: 152140014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1079968213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407351628279228781, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
@@ -5090,6 +5102,10 @@ PrefabInstance:
       propertyPath: m_SightDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7991732895614096428, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1073447593}
     - target: {fileID: 9140899352933009873, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -5128,6 +5144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_BodyAnimator: {fileID: 1647970123}
+  m_NavMeshAgent: {fileID: 0}
 --- !u!1 &1650239007
 GameObject:
   m_ObjectHideFlags: 0
@@ -5947,6 +5964,10 @@ PrefabInstance:
       propertyPath: m_DistanceFactor
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1073447593}
     m_RemovedComponents:
     - {fileID: 2498218821945013124, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
     - {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
@@ -6001,6 +6022,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     onEndSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onInteractionEnd:
       m_PersistentCalls:
         m_Calls: []
     onPacketReceived:
@@ -6205,6 +6229,10 @@ PrefabInstance:
       propertyPath: m_DistanceFactor
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1073447593}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 2553018661288249884, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
@@ -6256,6 +6284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_BodyAnimator: {fileID: 1989651472}
+  m_NavMeshAgent: {fileID: 0}
 --- !u!1 &1999139847
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ namespace Inworld.AEC
         /// <summary>
         /// A flag for this component is using AEC (in this class always True)
         /// </summary>
-        public override bool EnableAEC => true;
+        public override bool EnableAEC => IsAvailable && !IsPlayerTurn;
 
         /// <summary>
         ///     Check Available, will add mac support in the next update.
@@ -61,8 +61,6 @@ namespace Inworld.AEC
             if (m_AudioToPush.Count > m_AudioToPushCapacity)
                 m_AudioToPush.TryDequeue(out AudioChunk chunk);
         }
-        // YAN: Currently if you'd like to use AEC. The Audio Setting for output has to be 16000 sample rate, and mono.
-        //      We'll add resampling features in the next update.
         protected override void Init()
         {
             if (IsAvailable)
@@ -113,12 +111,12 @@ namespace Inworld.AEC
             AudioListener.GetOutputData(m_OutputBuffer, 0); 
             float[] resampledBuffer = Resample(m_OutputBuffer);
             short[] outputBuffer = WavUtility.ConvertAudioClipDataToInt16Array(resampledBuffer, nSize * m_Recording.channels); 
-            return FilterAudio(inputBuffer, outputBuffer, m_AECHandle);
+            return FilterAudio(inputBuffer, outputBuffer);
         }
-        protected byte[] FilterAudio(short[] inputData, short[] outputData, IntPtr aecHandle)
+        protected byte[] FilterAudio(short[] inputData, short[] outputData)
         {
             List<short> filterBuffer = new List<short>();
-            if (outputData == null || outputData.Length == 0 || !IsAvailable ||IsPlayerTurn)
+            if (outputData == null || outputData.Length == 0 || !EnableAEC)
             {
                 filterBuffer.AddRange(inputData);
             }

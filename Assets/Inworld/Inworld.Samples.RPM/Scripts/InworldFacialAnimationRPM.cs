@@ -158,8 +158,6 @@ namespace Inworld.Sample.RPM
 
         protected override void Reset()
         {
-            if (m_CurrViseme == Vector2.zero && m_LastViseme == Vector2.zero)
-                return;
             ResetVisemeMap();
             m_CurrViseme = Vector2.zero;
             m_LastViseme = Vector2.zero;

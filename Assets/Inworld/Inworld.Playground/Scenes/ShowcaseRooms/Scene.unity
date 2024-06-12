@@ -1114,8 +1114,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Capabilities:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3ee56cbf89b448144afa6e6c7a3c20aa, type: 2}
-  m_sharedMaterial: {fileID: -1364544073298407895, guid: 3ee56cbf89b448144afa6e6c7a3c20aa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3351,6 +3351,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+--- !u!4 &1165479446 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 810005299097699529, guid: 89eaf17df811b1c40ad802bd5d747667, type: 3}
+  m_PrefabInstance: {fileID: 1165479445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1167891081
 Mesh:
   m_ObjectHideFlags: 0
@@ -3961,6 +3966,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 56630828658099626, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1340465219}
+    - target: {fileID: 56630828658099626, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
     - target: {fileID: 693597697506258123, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_text
       value: 'Within Unity you may have characters that exist as objects within a
@@ -4055,11 +4068,11 @@ PrefabInstance:
     - target: {fileID: 2704668049054388297, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1921822503}
+      objectReference: {fileID: 220342271}
     - target: {fileID: 3071704404352209655, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1772756304}
+      objectReference: {fileID: 1246086167}
     - target: {fileID: 3293931260288672672, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4083,7 +4096,7 @@ PrefabInstance:
     - target: {fileID: 4629513933542821729, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 641750995}
+      objectReference: {fileID: 709025526}
     - target: {fileID: 5753381309170506365, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.75
@@ -4203,7 +4216,7 @@ PrefabInstance:
     - target: {fileID: 8216859450393777452, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 508487450}
+      objectReference: {fileID: 645642345}
     - target: {fileID: 8892163106795063773, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_text
       value: Scene Change Part 2
@@ -4235,6 +4248,11 @@ PrefabInstance:
 --- !u!4 &1340465218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5753381309170506365, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+  m_PrefabInstance: {fileID: 1340465217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1340465219 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2793652119713837401, guid: 2169a82b51834044f880b758dbacb249, type: 3}
   m_PrefabInstance: {fileID: 1340465217}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1394027590
@@ -6775,8 +6793,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Player Name:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3ee56cbf89b448144afa6e6c7a3c20aa, type: 2}
-  m_sharedMaterial: {fileID: -1364544073298407895, guid: 3ee56cbf89b448144afa6e6c7a3c20aa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7181,6 +7199,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 56630828658099626, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1426649419701092370}
+    - target: {fileID: 56630828658099626, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
+    - target: {fileID: 326300375107900585, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 693597697506258123, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_text
       value: Inworld Scenes can be updated dynamically at runtime. Click the light
@@ -7379,6 +7409,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6903854029701407348, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1426649419701092369}
+    - target: {fileID: 6903854029701407348, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
     - target: {fileID: 6958506601963480757, guid: 2169a82b51834044f880b758dbacb249, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7454,6 +7492,16 @@ PrefabInstance:
       addedObject: {fileID: 6094677596294780907}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+--- !u!4 &1426649419701092369 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8773944546037831303, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+  m_PrefabInstance: {fileID: 1426649419701092368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1426649419701092370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2793652119713837401, guid: 2169a82b51834044f880b758dbacb249, type: 3}
+  m_PrefabInstance: {fileID: 1426649419701092368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1783276474508935211
 Transform:
   m_ObjectHideFlags: 0
@@ -7716,6 +7764,14 @@ PrefabInstance:
       propertyPath: m_Data.givenName
       value: Night Innequin
       objectReference: {fileID: 0}
+    - target: {fileID: 3407385768473455988, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 4113577275443176202}
+    - target: {fileID: 3407385768473455988, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
     - target: {fileID: 4119652818424122717, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -7785,6 +7841,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
+--- !u!4 &4113577275443176202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 554626961145322717, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
+  m_PrefabInstance: {fileID: 4113577275443176201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4155168507638891190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7975,6 +8036,14 @@ PrefabInstance:
       propertyPath: m_Data.givenName
       value: Day Innequin
       objectReference: {fileID: 0}
+    - target: {fileID: 5509555223321962496, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 4704226581719413274}
+    - target: {fileID: 5509555223321962496, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
     - target: {fileID: 7085265507373803714, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -8024,6 +8093,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
+--- !u!4 &4704226581719413274 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4669864818962017100, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
+  m_PrefabInstance: {fileID: 4704226581719413273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4840820109252166464
 RectTransform:
   m_ObjectHideFlags: 0
