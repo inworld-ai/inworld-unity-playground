@@ -454,10 +454,10 @@ GameObject:
   - component: {fileID: 6836277416808973287}
   - component: {fileID: 4472744466570671365}
   - component: {fileID: 3009096547279513657}
-  - component: {fileID: 5127670340784287737}
   - component: {fileID: 3541915529858783742}
-  - component: {fileID: 2049912337102572863}
   - component: {fileID: 223203700561416751}
+  - component: {fileID: 1757959859848508943}
+  - component: {fileID: 6990636592307854137}
   m_Layer: 0
   m_Name: emotion_emily_inworld-playground
   m_TagString: Untagged
@@ -619,7 +619,42 @@ MonoBehaviour:
   m_MaxItemCount: 100
   m_TextSpeedMultipler: 0.02
   m_VolumeOnPlayerSpeaking: 1
---- !u!114 &5127670340784287737
+--- !u!114 &3541915529858783742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302111882359236030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7927d62727111e741ac14fc7566d7f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_LipsyncMap: {fileID: 11400000, guid: 0e4837ff3c714034a885f361813776b2, type: 2}
+  m_FacialEmotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
+  m_LipExpression: 0.7
+  m_MorphTime: 0.5
+  m_VisemeSil: viseme_sil
+  m_BlinkBlendShape: eyesClosed
+  m_CustomModel: 0
+--- !u!114 &223203700561416751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302111882359236030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94868fca0ec8bb34ab3e92d36a425f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_BodyAnimator: {fileID: 6836277416808973287}
+  m_NavMeshAgent: {fileID: 0}
+--- !u!114 &1757959859848508943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -660,6 +695,9 @@ MonoBehaviour:
     onEndSpeaking:
       m_PersistentCalls:
         m_Calls: []
+    onInteractionEnd:
+      m_PersistentCalls:
+        m_Calls: []
     onPacketReceived:
       m_PersistentCalls:
         m_Calls: []
@@ -679,7 +717,7 @@ MonoBehaviour:
   onServerTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3541915529858783742
+--- !u!114 &6990636592307854137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -688,53 +726,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5302111882359236030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7927d62727111e741ac14fc7566d7f74, type: 3}
+  m_Script: {fileID: 11500000, guid: dbb3c93b43267f44e96777b62139ba40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
-  m_LipsyncMap: {fileID: 11400000, guid: 0e4837ff3c714034a885f361813776b2, type: 2}
-  m_FacialEmotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
-  m_LipExpression: 0.7
-  m_MorphTime: 0.5
-  m_VisemeSil: viseme_sil
-  m_BlinkBlendShape: eyesClosed
-  m_CustomModel: 0
-  m_Model: {fileID: 0}
---- !u!114 &2049912337102572863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302111882359236030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
+  m_HeadTransform: {fileID: 7010716114978291576}
+  m_PlayerTransform: {fileID: 0}
   m_SightAngle: 122
   m_SightDistance: 5
   m_PlayerAngleWeight: 1
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
---- !u!114 &223203700561416751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302111882359236030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94868fca0ec8bb34ab3e92d36a425f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
-  m_BodyAnimator: {fileID: 6836277416808973287}
-  m_NavMeshAgent: {fileID: 0}
 --- !u!1 &5406179152816764902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1099,8 @@ MonoBehaviour:
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 2414774307476128223}
   m_EmoIcon: {fileID: 757176413122187244}
-  m_Character: {fileID: 5127670340784287737}
+  m_Dots: {fileID: 0}
+  m_Character: {fileID: 1757959859848508943}
 --- !u!1001 &3318026079880587552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1158,5 +1161,10 @@ PrefabInstance:
 --- !u!4 &866598373719724996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6769691430286951708, guid: 580693e7c8d858e449bb2899d4370e40, type: 3}
+  m_PrefabInstance: {fileID: 3318026079880587552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7010716114978291576 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3512545981279201704, guid: 580693e7c8d858e449bb2899d4370e40, type: 3}
   m_PrefabInstance: {fileID: 3318026079880587552}
   m_PrefabAsset: {fileID: 0}

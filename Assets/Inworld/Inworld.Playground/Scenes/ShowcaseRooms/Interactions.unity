@@ -2517,6 +2517,14 @@ PrefabInstance:
         he still remembers. Then try again, but this time hit ''Save'' before restarting
         the session.'
       objectReference: {fileID: 0}
+    - target: {fileID: 2957222819890415036, guid: 98dad5e47b5103b4595e2b1fd4b4db97, type: 3}
+      propertyPath: m_HeadTransform
+      value: 
+      objectReference: {fileID: 1777787067}
+    - target: {fileID: 2957222819890415036, guid: 98dad5e47b5103b4595e2b1fd4b4db97, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 1165479446}
     - target: {fileID: 3917493093446228821, guid: 98dad5e47b5103b4595e2b1fd4b4db97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4682,6 +4690,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1777787067 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1082571185590415695, guid: 98dad5e47b5103b4595e2b1fd4b4db97, type: 3}
+  m_PrefabInstance: {fileID: 896840539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1836988917
 PrefabInstance:
   m_ObjectHideFlags: 0

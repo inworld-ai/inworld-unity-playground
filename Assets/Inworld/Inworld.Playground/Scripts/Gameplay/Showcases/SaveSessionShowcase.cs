@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -79,7 +78,7 @@ namespace Inworld.Playground
             yield return new WaitWhile(() => InworldController.Status == InworldConnectionStatus.Connected);
 
             m_InworldCharacter = Instantiate(m_InnequinCharacterPrefab, characterPosition, characterRotation, parentTransform).GetComponent<InworldCharacter>();
-            
+
             yield return null;
             
             InworldController.CharacterHandler.Register(m_InworldCharacter);

@@ -1621,33 +1621,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1915667236}
     m_Modifications:
-    - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_SightAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_HeadTransform
-      value: 
-      objectReference: {fileID: 666417442}
-    - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_SightDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 125936340085669092, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_PlayerTransform
-      value: 
-      objectReference: {fileID: 585208267440054937}
-    - target: {fileID: 4680326775755363266, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5510870168005725327, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
       propertyPath: m_Name
       value: ready_player_me_brie_inworld-playground
-      objectReference: {fileID: 0}
-    - target: {fileID: 5557258756447846255, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8460584197298896669, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1697,11 +1673,6 @@ PrefabInstance:
 --- !u!4 &666417441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8460584197298896669, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-  m_PrefabInstance: {fileID: 666417440}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &666417442 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7705032967038396266, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
   m_PrefabInstance: {fileID: 666417440}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &733215792
@@ -5074,46 +5045,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1808943603}
     m_Modifications:
-    - target: {fileID: 221341588342235210, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_EmotionMap
-      value: 
-      objectReference: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
     - target: {fileID: 900466721184246333, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 900466721184246333, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1116.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1718450668228817350, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1076
-      objectReference: {fileID: 0}
-    - target: {fileID: 1718450668228817350, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1718450668228817350, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 851
-      objectReference: {fileID: 0}
-    - target: {fileID: 6679664519424819857, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_SightAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 6679664519424819857, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_HeadTransform
-      value: 
-      objectReference: {fileID: 488126648}
-    - target: {fileID: 6679664519424819857, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_SightDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6679664519424819857, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_PlayerTransform
-      value: 
-      objectReference: {fileID: 585208267440054937}
     - target: {fileID: 7142177979337930576, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_Name
       value: orby_inworld-playground
@@ -5157,18 +5092,6 @@ PrefabInstance:
     - target: {fileID: 7712990536318244411, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8562110519382368806, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8562110519382368806, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8562110519382368806, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
