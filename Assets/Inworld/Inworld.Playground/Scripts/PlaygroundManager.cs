@@ -259,8 +259,7 @@ namespace Inworld.Playground
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
-            
-            // Time.timeScale = 0;
+
             m_Paused = true;
         }
 
@@ -396,9 +395,7 @@ namespace Inworld.Playground
                 return;
             
             DisableAllWorldSpaceGraphicRaycasters();
-            
-            // Time.timeScale = 0;
-            
+
             PauseAllCharacterInteractions();
 
             InworldController.Audio.enabled = false;

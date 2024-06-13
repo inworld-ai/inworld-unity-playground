@@ -17,8 +17,6 @@ namespace Inworld.Playground
     /// </summary>
     public class PlaygroundStatusPanel : StatusPanel
     {
-        // private CursorLockMode m_PrevCursorLockMode;
-        
         private void Awake()
         {
             if (m_Board)
@@ -57,15 +55,12 @@ namespace Inworld.Playground
                 m_Board.SetActive(true);
             if (m_Indicator)
                 m_Indicator.text = "Changing Inworld Scene";
-            // m_PrevCursorLockMode = Cursor.lockState;
-            // Cursor.lockState = CursorLockMode.None;
         }
         
         void OnEndInworldSceneChange()
         {
             if (m_Board)
                 m_Board.SetActive(false);
-            // Cursor.lockState = m_PrevCursorLockMode;
         }
     }
 }

@@ -27,15 +27,17 @@ namespace Inworld.Playground
 
         private void Awake()
         {
-            m_ClearButton.interactable = false;
+            if(m_ClearButton)
+                m_ClearButton.interactable = false;
         }
 
         private void OnEnable()
         {
             InworldController.Client.OnStatusChanged += ClientOnStatusChanged;
-            
-            m_SaveButton.interactable = InworldController.Status == InworldConnectionStatus.Connected;
-            m_RestartButton.interactable = InworldController.Status == InworldConnectionStatus.Connected;
+            if(m_SaveButton)
+                m_SaveButton.interactable = InworldController.Status == InworldConnectionStatus.Connected;
+            if(m_RestartButton)
+                m_RestartButton.interactable = InworldController.Status == InworldConnectionStatus.Connected;
         }
 
 
@@ -52,14 +54,16 @@ namespace Inworld.Playground
 
         public void OnSaveButtonPress()
         {
-            m_ClearButton.interactable = true;
+            if(m_ClearButton)
+                m_ClearButton.interactable = true;
             InworldController.Client.GetHistoryAsync(InworldController.Instance.CurrentScene);
             m_SaveDataText.text = "Conversation Saved at: " + DateTime.Now;
         }
         
         public void OnClearButtonPress()
         {
-            m_ClearButton.interactable = false;
+            if(m_ClearButton)
+                m_ClearButton.interactable = false;
             InworldController.Client.SessionHistory = "";
             m_SaveDataText.text = "No Save Data";
         }
@@ -86,8 +90,10 @@ namespace Inworld.Playground
         
         private void ClientOnStatusChanged(InworldConnectionStatus status)
         {
-            m_SaveButton.interactable = status == InworldConnectionStatus.Connected;
-            m_RestartButton.interactable = status == InworldConnectionStatus.Connected;
+            if(m_SaveButton)
+                m_SaveButton.interactable = status == InworldConnectionStatus.Connected;
+            if(m_RestartButton)
+                m_RestartButton.interactable = status == InworldConnectionStatus.Connected;
         }
 
     }

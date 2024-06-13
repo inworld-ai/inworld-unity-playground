@@ -27,7 +27,8 @@ namespace Inworld.Playground
         private void Awake()
         {
             m_Capabilities = new Capabilities(InworldAI.Capabilities);
-            m_Button.interactable = false;
+            if(m_Button)
+                m_Button.interactable = false;
         }
         
         private void OnEnable()
@@ -43,7 +44,8 @@ namespace Inworld.Playground
         
         private void OnStatusChanged(InworldConnectionStatus status)
         {
-            m_Button.interactable = status == InworldConnectionStatus.Connected;
+            if(m_Button)
+                m_Button.interactable = status == InworldConnectionStatus.Connected;
         }
 
         public void SendCapabilitiesRequest()
