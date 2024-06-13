@@ -744,7 +744,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameData: {fileID: 0}
-  m_SceneFullName: 
 --- !u!114 &702165050075810327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SamplingMode: 1
   m_PushToTalkKey: 0
-  m_PlayerVolumeThreshold: 10
+  m_PlayerVolumeThreshold: 6
   m_BufferSeconds: 1
   m_AudioToPushCapacity: 100
   m_DeviceName: 

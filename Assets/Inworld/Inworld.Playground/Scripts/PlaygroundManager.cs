@@ -340,7 +340,7 @@ namespace Inworld.Playground
             Debug.Log("Loading Inworld Scene: " + $"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}" + " current: " + m_CurrentInworldScene);
             InworldController.Client.LoadScene($"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}");
             
-            yield return new WaitWhile(() => currentInworldScene == m_CurrentInworldScene);
+            yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
             
             if(currentCharacter)
                 InworldController.CurrentCharacter = currentCharacter;
