@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 4966716988318337426}
   m_EmoIcon: {fileID: 5753834255191271509}
+  m_Dots: {fileID: 0}
   m_Character: {fileID: 5004020907478108784}
 --- !u!1 &4397567280205412672
 GameObject:
@@ -412,9 +413,9 @@ GameObject:
   - component: {fileID: 5562486995670114283}
   - component: {fileID: 4302150272645563157}
   - component: {fileID: 5004020907478108784}
+  - component: {fileID: 6920489047905803357}
   - component: {fileID: 2534369982693319387}
-  - component: {fileID: 7991732895614096428}
-  - component: {fileID: 926127629799650180}
+  - component: {fileID: 6704086183249758322}
   m_Layer: 0
   m_Name: gesture_george_inworld-playground
   m_TagString: Untagged
@@ -430,7 +431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6554292623040994231}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -449,7 +450,7 @@ Animator:
   m_GameObject: {fileID: 6554292623040994231}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ba5173a85368a4f4eb45fbc497be292c, type: 2}
-  m_Controller: {fileID: 9100000, guid: f531218c7a9352a43aa354a687ca805c, type: 2}
+  m_Controller: {fileID: 9100000, guid: d7be7ebcd25e3e743a26b66c20de24ea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -617,6 +618,9 @@ MonoBehaviour:
     onEndSpeaking:
       m_PersistentCalls:
         m_Calls: []
+    onInteractionEnd:
+      m_PersistentCalls:
+        m_Calls: []
     onPacketReceived:
       m_PersistentCalls:
         m_Calls: []
@@ -636,6 +640,21 @@ MonoBehaviour:
   onServerTrigger:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6920489047905803357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554292623040994231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ccfe945f04dcd4d90ffada593d13ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_BodyAnimator: {fileID: 3499833410880441783}
+  m_NavMeshAgent: {fileID: 0}
 --- !u!114 &2534369982693319387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,8 +675,7 @@ MonoBehaviour:
   m_VisemeSil: viseme_sil
   m_BlinkBlendShape: eyesClosed
   m_CustomModel: 0
-  m_Model: {fileID: 0}
---- !u!114 &7991732895614096428
+--- !u!114 &6704086183249758322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,32 +684,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6554292623040994231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
+  m_Script: {fileID: 11500000, guid: dbb3c93b43267f44e96777b62139ba40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
+  m_HeadTransform: {fileID: 407351628279228781}
+  m_PlayerTransform: {fileID: 0}
   m_SightAngle: 122
   m_SightDistance: 5
   m_PlayerAngleWeight: 1
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
---- !u!114 &926127629799650180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554292623040994231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94868fca0ec8bb34ab3e92d36a425f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
-  m_BodyAnimator: {fileID: 3499833410880441783}
-  m_NavMeshAgent: {fileID: 0}
 --- !u!1 &7239422483727130079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1158,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 026a1ca2deceb73438540c38371b4dcb, type: 3}
+--- !u!4 &407351628279228781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3512545981279201704, guid: 026a1ca2deceb73438540c38371b4dcb, type: 3}
+  m_PrefabInstance: {fileID: 5397522576490774325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7560105258481829329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6769691430286951708, guid: 026a1ca2deceb73438540c38371b4dcb, type: 3}

@@ -478,8 +478,8 @@ GameObject:
   - component: {fileID: 6002721619249533418}
   - component: {fileID: -5507854072997562813}
   - component: {fileID: 6101837304953191395}
-  - component: {fileID: 125936340085669092}
   - component: {fileID: -3813923921187074844}
+  - component: {fileID: 2435686829982685765}
   m_Layer: 0
   m_Name: ready_player_me_brie_inworld-playground
   m_TagString: Untagged
@@ -495,7 +495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5510870168005725327}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -682,6 +682,9 @@ MonoBehaviour:
     onEndSpeaking:
       m_PersistentCalls:
         m_Calls: []
+    onInteractionEnd:
+      m_PersistentCalls:
+        m_Calls: []
     onPacketReceived:
       m_PersistentCalls:
         m_Calls: []
@@ -721,27 +724,6 @@ MonoBehaviour:
   m_VisemeSil: viseme_sil
   m_BlinkBlendShape: eyesClosed
   m_CustomModel: 0
-  m_Model: {fileID: 0}
---- !u!114 &125936340085669092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5510870168005725327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
-  m_SightAngle: 122
-  m_SightDistance: 5
-  m_PlayerAngleWeight: 1
-  m_DistanceWeight: 0.5
-  m_CharacterAngleWeight: 0.15
-  m_RefreshRate: 0.25
 --- !u!114 &-3813923921187074844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,6 +739,26 @@ MonoBehaviour:
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_BodyAnimator: {fileID: 4680326775755363266}
   m_NavMeshAgent: {fileID: 0}
+--- !u!114 &2435686829982685765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510870168005725327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb3c93b43267f44e96777b62139ba40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HeadTransform: {fileID: 7705032967038396266}
+  m_PlayerTransform: {fileID: 0}
+  m_SightAngle: 122
+  m_SightDistance: 5
+  m_PlayerAngleWeight: 1
+  m_DistanceWeight: 0.5
+  m_CharacterAngleWeight: 0.15
+  m_RefreshRate: 0.25
 --- !u!1 &7536534441954930037
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +827,7 @@ MonoBehaviour:
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 295876353961630660}
   m_EmoIcon: {fileID: 6417631853609710982}
+  m_Dots: {fileID: 0}
   m_Character: {fileID: -5507854072997562813}
 --- !u!1 &7875173153286672988
 GameObject:
@@ -1158,5 +1161,10 @@ PrefabInstance:
 --- !u!4 &549457991005539286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6769691430286951708, guid: b95e473f883be5e499d7c43a1e42521a, type: 3}
+  m_PrefabInstance: {fileID: 2714870832099750194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7705032967038396266 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3512545981279201704, guid: b95e473f883be5e499d7c43a1e42521a, type: 3}
   m_PrefabInstance: {fileID: 2714870832099750194}
   m_PrefabAsset: {fileID: 0}

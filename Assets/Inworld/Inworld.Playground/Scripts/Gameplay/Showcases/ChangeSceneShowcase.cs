@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Inworld.Playground.Data;
 using UnityEngine;
 
@@ -22,21 +23,43 @@ namespace Inworld.Playground
         [SerializeField] private string m_DaySceneName = "day";
         [SerializeField] private string m_NightSceneName = "night";
         [Header("Objects")]
+        [SerializeField] private List<Interactable> m_Interactables;
         [SerializeField] private List<Light> m_LightBulbSources;
         [SerializeField] private List<MeshRenderer> m_LightBulbMeshRenderers;
         [SerializeField] private Light m_DayLightSource;
         [SerializeField] private Light m_NightLightSource;
         [SerializeField] private Material m_DayMaterial;
         [SerializeField] private Material m_NightMaterial;
+        [SerializeField] private Material m_BulbOnMaterial;
+        [SerializeField] private Material m_BulbOffMaterial;
 
         private bool m_IsDay;
 
         private void Awake()
         {
             SetTimeOfDay(m_StartAsDay);
+            foreach (Interactable interactable in m_Interactables)
+                interactable.IsActive = false;
+        }
+        
+        private void OnEnable()
+        {
+            InworldController.Client.OnStatusChanged += OnStatusChanged;
         }
 
-        void SetTimeOfDay(bool isDay)
+        private void OnDisable()
+        {
+            if(InworldController.Client)
+                InworldController.Client.OnStatusChanged -= OnStatusChanged;
+        }
+        
+        private void OnStatusChanged(InworldConnectionStatus status)
+        {
+            foreach (Interactable interactable in m_Interactables)
+                interactable.IsActive = status == InworldConnectionStatus.Connected;
+        }
+
+        private void SetTimeOfDay(bool isDay)
         {
             m_IsDay = isDay;
             foreach (Light lightBulbSource in m_LightBulbSources)
@@ -48,10 +71,12 @@ namespace Inworld.Playground
 
             foreach (MeshRenderer meshRenderer in m_LightBulbMeshRenderers)
             {
+                var materials = meshRenderer.materials;
                 if(m_IsDay)
-                    meshRenderer.materials[0].EnableKeyword("_EMISSION");
+                    materials[0] = m_BulbOnMaterial;
                 else
-                    meshRenderer.materials[0].DisableKeyword("_EMISSION");
+                    materials[0] = m_BulbOffMaterial;
+                meshRenderer.materials = materials;
             }
         }
         

@@ -107,7 +107,7 @@ namespace Inworld.Playground
 
         protected void HandleMovement()
         {
-            if (Time.timeScale == 0)
+            if (PlaygroundManager.Instance.Paused)
                 return;
             
             Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);

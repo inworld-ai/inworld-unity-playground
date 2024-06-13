@@ -223,14 +223,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4718736243210347511}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0009999999, y: 0.0009999999, z: 0.0009999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8209998789479497346}
   m_Father: {fileID: 7712990536318244411}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: -5408584216436277067}
   - component: {fileID: 6042682841280510793}
   - component: {fileID: 7875638674686581422}
-  - component: {fileID: 6679664519424819857}
+  - component: {fileID: 7440755404964317608}
   m_Layer: 0
   m_Name: orby_inworld-playground
   m_TagString: Untagged
@@ -659,6 +659,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     onEndSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onInteractionEnd:
       m_PersistentCalls:
         m_Calls: []
     onPacketReceived:
@@ -796,7 +799,7 @@ MonoBehaviour:
   m_MaxItemCount: 100
   m_TextSpeedMultipler: 0.02
   m_VolumeOnPlayerSpeaking: 1
---- !u!114 &6679664519424819857
+--- !u!114 &7440755404964317608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -805,12 +808,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7142177979337930576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
+  m_Script: {fileID: 11500000, guid: dbb3c93b43267f44e96777b62139ba40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
-  m_SightAngle: 120
+  m_HeadTransform: {fileID: 7712990536318244411}
+  m_PlayerTransform: {fileID: 0}
+  m_SightAngle: 122
   m_SightDistance: 5
   m_PlayerAngleWeight: 1
   m_DistanceWeight: 0.5
@@ -880,10 +883,11 @@ MonoBehaviour:
     relation: 1
     trigger: 0
     longBubbleMode: 0
-  m_EmotionMap: {fileID: 0}
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 5685645793644611199}
   m_EmoIcon: {fileID: 3546727862453168552}
+  m_Dots: {fileID: 0}
   m_Character: {fileID: -5408584216436277067}
 --- !u!1 &7750576216944126322
 GameObject:
@@ -921,7 +925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1116.0001}
+  m_AnchoredPosition: {x: 0, y: -1116.001}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6883699974448427548
@@ -1035,7 +1039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 700}
+  m_AnchoredPosition: {x: 0, y: 851}
   m_SizeDelta: {x: 2000, y: 1076}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &8549516012875326519

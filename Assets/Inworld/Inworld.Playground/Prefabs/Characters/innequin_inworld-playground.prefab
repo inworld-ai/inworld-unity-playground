@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 1542126654848210090}
   m_EmoIcon: {fileID: 316426146568463460}
+  m_Dots: {fileID: 0}
   m_Character: {fileID: -1426748583640960597}
 --- !u!1 &332486187020409065
 GameObject:
@@ -1816,8 +1817,8 @@ GameObject:
   - component: {fileID: -1426748583640960597}
   - component: {fileID: 2852665269509917512}
   - component: {fileID: 3301041991868291101}
-  - component: {fileID: 8924218559802244073}
   - component: {fileID: -5582474277413410702}
+  - component: {fileID: 992398165037816486}
   m_Layer: 0
   m_Name: innequin_inworld-playground
   m_TagString: Untagged
@@ -1856,7 +1857,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f531218c7a9352a43aa354a687ca805c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2001,6 +2002,9 @@ MonoBehaviour:
     onEndSpeaking:
       m_PersistentCalls:
         m_Calls: []
+    onInteractionEnd:
+      m_PersistentCalls:
+        m_Calls: []
     onPacketReceived:
       m_PersistentCalls:
         m_Calls: []
@@ -2060,26 +2064,6 @@ MonoBehaviour:
   m_DefaultMouth: {fileID: 2800000, guid: 521bfee8a24170b46ad2720f99ec56ca, type: 3}
   m_Facial: {fileID: 2100000, guid: d3f813bf6ca82f640936c4c08e041cbb, type: 2}
   m_BlinkRate: -0.999
---- !u!114 &8924218559802244073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4722740852517928817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
-  m_SightAngle: 150
-  m_SightDistance: 5
-  m_PlayerAngleWeight: 1
-  m_DistanceWeight: 0.5
-  m_CharacterAngleWeight: 0.15
-  m_RefreshRate: 0.25
 --- !u!114 &-5582474277413410702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,6 +2079,26 @@ MonoBehaviour:
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_BodyAnimator: {fileID: 2346687256239508788}
   m_NavMeshAgent: {fileID: 0}
+--- !u!114 &992398165037816486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722740852517928817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb3c93b43267f44e96777b62139ba40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HeadTransform: {fileID: 6761323343535279898}
+  m_PlayerTransform: {fileID: 0}
+  m_SightAngle: 122
+  m_SightDistance: 5
+  m_PlayerAngleWeight: 1
+  m_DistanceWeight: 0.5
+  m_CharacterAngleWeight: 0.15
+  m_RefreshRate: 0.25
 --- !u!1 &4792743591842147495
 GameObject:
   m_ObjectHideFlags: 0

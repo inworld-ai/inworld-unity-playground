@@ -9,10 +9,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Inworld.Entities;
 using Inworld.Interactions;
+using Inworld.Packet;
 using Inworld.Sample;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
@@ -25,6 +27,10 @@ namespace Inworld.Playground
         public UnityEvent OnClientChanged;
         public UnityEvent OnPlay;
         public UnityEvent OnPause;
+        public UnityEvent OnStartSceneChange;
+        public UnityEvent OnEndSceneChange;
+        public UnityEvent OnStartInworldSceneChange;
+        public UnityEvent OnEndInworldSceneChange;
         
         public InworldGameData GameData => m_GameData;
         public bool Paused => m_Paused;
@@ -38,24 +44,16 @@ namespace Inworld.Playground
         [SerializeField]
         private PlaygroundSettings m_Settings;
 
-        [SerializeField]
-        private float m_NetworkCheckRate = 2;
-        
         [SerializeField] 
         private GameObject m_GameMenu;
-        
-        [Header("Prefabs")] 
-        [SerializeField]
-        private GameObject m_InworldControllerWebSocket;
 
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
+        private EventSystem m_EventSystem;
         private Coroutine m_SceneChangeCoroutine;
-        private Coroutine m_NetworkCoroutine;
         private Scene m_CurrentScene;
+        private string m_CurrentInworldScene;
         private bool m_Paused;
-
-        private string m_LobbyHistory;
         
         /// <summary>
         ///     Loads the current Game Data object into the Inworld Controller for the Playground Workspace.
@@ -102,9 +100,46 @@ namespace Inworld.Playground
         public void Play()
         {
             if (m_CurrentScene.name == setupSceneName)
+            {
                 SceneManager.LoadScene(playgroundSceneName);
-            else
-                StartCoroutine(PlayEnumerator());
+                return;
+            }
+            
+            m_GameMenu.SetActive(false);
+            
+            if (!CheckNetworkComponent())
+                throw new MissingComponentException("Missing Inworld client.");
+            
+            if (!CheckAudioComponent())
+                throw new MissingComponentException("Missing PlaygroundAECAudioCapture component.");
+            
+            CursorHandler.LockCursor();
+
+            // Time.timeScale = 1;
+            
+            InworldController.Audio.enabled = true;
+            InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
+
+            PlaygroundAECAudioCapture audioCapture = (PlaygroundAECAudioCapture)InworldController.Audio;
+            switch (m_Settings.InteractionMode)
+            {
+                case MicrophoneMode.Interactive:
+                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.AEC);
+                    break;
+                case MicrophoneMode.PushToTalk:
+                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
+                    break;
+                case MicrophoneMode.TurnByTurn:
+                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
+                    break;
+            }
+
+            ResumeAllCharacterInteractions();
+            
+            EnableAllWorldSpaceGraphicRaycasters();
+
+            m_Paused = false;
+            OnPlay?.Invoke();
         }
         
         /// <summary>
@@ -161,11 +196,6 @@ namespace Inworld.Playground
             return m_Settings.InteractionMode;
         }
         
-        public NetworkClient GetClientType()
-        {
-            return m_Settings.ClientType;
-        }
-        
         public bool GetEnableAEC()
         {
             return m_Settings.EnableAEC;
@@ -191,14 +221,6 @@ namespace Inworld.Playground
         {
             m_Settings.InteractionMode = microphoneMode;
         }
-        
-        public void UpdateNetworkClient(NetworkClient clientType)
-        {
-            if (m_Settings.ClientType == clientType) return;
-            
-            m_Settings.ClientType = clientType;
-            StartCoroutine(UpdateNetworkClientEnumerator(clientType));
-        }
 
         public void UpdateEnableAEC(bool enableAEC)
         {
@@ -209,17 +231,16 @@ namespace Inworld.Playground
         #region Unity Event Functions
         private void Awake()
         {
+            m_EventSystem = GetComponentInChildren<EventSystem>();
             if (Instance != this)
             {
+                gameObject.SetActive(false);
                 Destroy(gameObject);
-                InworldAI.LogWarning("Destroying duplicate instance of PlaygroundManager.");
+                InworldAI.Log("Destroying duplicate instance of PlaygroundManager.");
                 return;
             }
             
             DontDestroyOnLoad(gameObject);
-            
-            if(m_Settings.ClientType == NetworkClient.WebSocket)
-                Instantiate(m_InworldControllerWebSocket);
             
             m_InworldSceneMappingDictionary = new Dictionary<string, string>();
             foreach (var sceneMapping in m_InworldSceneMapping)
@@ -238,21 +259,30 @@ namespace Inworld.Playground
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
-            
-            Time.timeScale = 0;
+
+            m_Paused = true;
+        }
+
+        private void Start()
+        {
+            m_EventSystem.enabled = true;
         }
 
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
             InworldController.Client.OnStatusChanged += OnStatusChanged;
+            InworldController.Client.OnPacketReceived += OnPacketReceived;
         }
 
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
             if (InworldController.Client)
+            {
                 InworldController.Client.OnStatusChanged -= OnStatusChanged;
+                InworldController.Client.OnPacketReceived -= OnPacketReceived;
+            }
         }
 
         private void Update()
@@ -278,6 +308,16 @@ namespace Inworld.Playground
             }
         }
         
+        private void OnPacketReceived(InworldPacket incomingPacket)
+        {
+            if (incomingPacket is ControlPacket controlPacket &&
+                controlPacket.control is CurrentSceneStatusEvent currentSceneStatusEvent)
+            {
+                InworldAI.Log("Inworld Scene Changed: " + currentSceneStatusEvent.currentSceneStatus.sceneName);
+                m_CurrentInworldScene = currentSceneStatusEvent.currentSceneStatus.sceneName;
+            }
+        }
+        
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             m_CurrentScene = scene;
@@ -289,53 +329,30 @@ namespace Inworld.Playground
         #region Enumerators
         private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
         {
+            OnStartInworldSceneChange?.Invoke();
             if(pause)
                 Pause(false);
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
+            
+            string currentInworldScene = m_CurrentInworldScene;
+            Debug.Log("Loading Inworld Scene: " + $"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}" + " current: " + m_CurrentInworldScene);
             InworldController.Client.LoadScene($"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}");
             
-            LoadSceneResponse loadSceneResponse = InworldController.Client.GetLiveSessionInfo();
-            yield return new WaitWhile(() => InworldController.Client.GetLiveSessionInfo() == loadSceneResponse);
+            yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
             
             if(currentCharacter)
                 InworldController.CurrentCharacter = currentCharacter;
             
             if(pause)
                 Play();
+            OnEndInworldSceneChange?.Invoke();
         }
         
-        private IEnumerator NetworkStatusCheck()
-        {
-            float networkCheckTime = m_NetworkCheckRate;
-            while (true)
-            {
-                switch (InworldController.Status)
-                {
-                    case InworldConnectionStatus.Connected:
-                        networkCheckTime = m_NetworkCheckRate;
-                        break;
-                    case InworldConnectionStatus.Idle:
-                        InworldAI.Log("Attempting soft-reconnect");
-                        InworldController.Instance.Reconnect();
-                        networkCheckTime += m_NetworkCheckRate;
-                        break;
-                    case InworldConnectionStatus.Error:
-                        InworldAI.Log("Attempting hard-reconnect");
-                        InworldController.Instance.Disconnect();
-                        InworldController.Instance.Init();
-                        networkCheckTime += m_NetworkCheckRate;
-                        break;
-                }
-                
-                yield return new WaitForSecondsRealtime(networkCheckTime);
-            }
-        }
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
+            OnStartSceneChange?.Invoke();
             Pause(false);
-            if(m_CurrentScene.name == playgroundSceneName)
-                m_LobbyHistory = InworldController.Client.SessionHistory;
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -348,6 +365,7 @@ namespace Inworld.Playground
             InworldAI.Log("Completed scene load: " + sceneName);
             
             m_SceneChangeCoroutine = null;
+            OnEndSceneChange?.Invoke();
         }
         
         private IEnumerator SetupScene()
@@ -361,163 +379,13 @@ namespace Inworld.Playground
             if (InworldController.Status != InworldConnectionStatus.Connected)
             {
                 InworldController.Client.CurrentScene = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
-                InworldController.Instance.Init();
-
-                float connectionCheckTime = m_NetworkCheckRate;
-                while (InworldController.Status != InworldConnectionStatus.Connected)
-                {
-                    if (InworldController.Status == InworldConnectionStatus.Error ||
-                        InworldController.Status == InworldConnectionStatus.Idle)
-                    {
-                        InworldController.Instance.Disconnect();
-                        InworldController.Instance.Init();
-                        connectionCheckTime += m_NetworkCheckRate;
-                    }
-                    yield return new WaitForSecondsRealtime(connectionCheckTime);
-                }
             }
             else
             {
                 yield return StartCoroutine(ChangeInworldSceneEnumerator(inworldSceneName, false));
             }
 
-            if (m_CurrentScene.name == playgroundSceneName)
-            {
-                InworldController.Client.SessionHistory = m_LobbyHistory;
-                InworldController.Client.SendHistory();
-            }
-            else
-                InworldController.Client.SessionHistory = "";
-           
-            yield return StartCoroutine(PlayEnumerator());
-        }
-        
-        private IEnumerator PlayEnumerator()
-        {
-            m_GameMenu.SetActive(false);
-            
-            if (!CheckNetworkComponent())
-                throw new MissingComponentException("Missing or incorrect Inworld client");
-            
-            if (!CheckAudioComponent())
-                yield return StartCoroutine(UpdateAudioComponent(m_Settings.EnableAEC));
-            
-            CursorHandler.LockCursor();
-
-            Time.timeScale = 1;
-            
-            InworldController.Audio.enabled = true;
-            InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
-
-            switch (m_Settings.InteractionMode)
-            {
-                case MicrophoneMode.Interactive:
-                    if(m_Settings.EnableAEC)
-                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
-                    else
-                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.AEC);
-                    break;
-                case MicrophoneMode.PushToTalk:
-                    if(m_Settings.EnableAEC)
-                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
-                    else
-                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
-                    break;
-                case MicrophoneMode.TurnByTurn:
-                    if(m_Settings.EnableAEC)
-                        ((PlaygroundAECAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
-                    else
-                        ((PlaygroundAudioCapture)InworldController.Audio).UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
-                    break;
-            }
-            
-            ResumeAllCharacterInteractions();
-            
-            EnableAllWorldSpaceGraphicRaycasters();
-
-            m_NetworkCoroutine = StartCoroutine(NetworkStatusCheck());
-            
-            m_Paused = false;
-            OnPlay?.Invoke();
-        }
-        
-        private IEnumerator UpdateNetworkClientEnumerator(NetworkClient clientType)
-        {
-            InworldController.Instance.Disconnect();
-#if UNITY_2022_3_OR_NEWER
-            var characters = FindObjectsByType<InworldCharacter>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-#else
-            var characters = FindObjectsOfType<InworldCharacter>();
-#endif
-            if (PlayerController.Instance)
-            {
-                PlayerController.Instance.GetComponent<ChatPanel>().enabled = false;
-                PlayerController.Instance.enabled = false;
-            }
-            foreach (var character in characters)
-                character.gameObject.SetActive(false);
-            if(Subtitle.Instance)
-                Subtitle.Instance.gameObject.SetActive(false);
-            
-            yield return new WaitForEndOfFrame();
-
-            yield return new WaitUntil(() => InworldController.Status != InworldConnectionStatus.Connected);
-            
-            Destroy(InworldController.Instance.gameObject);
-            yield return new WaitForEndOfFrame();
-
-            switch (clientType)
-            {
-                case NetworkClient.WebSocket:
-                    Instantiate(m_InworldControllerWebSocket);
-                    break;
-            }
-            InworldAI.Log("Replacing current Inworld Controller.");
-            yield return new WaitForEndOfFrame();
-            
-            if (PlayerController.Instance)
-            {
-                PlayerController.Instance.GetComponent<ChatPanel>().enabled = true;
-                PlayerController.Instance.enabled = true;
-            }
-            if(Subtitle.Instance)
-                Subtitle.Instance.gameObject.SetActive(true);
-            foreach (var character in characters)
-                character.gameObject.SetActive(true);
-            
-            OnClientChanged?.Invoke();
-            InworldController.Client.OnStatusChanged += OnStatusChanged;
-            OnStatusChanged(InworldController.Status);
-        }
-        
-        private IEnumerator UpdateAudioComponent(bool enableAEC)
-        {
-            var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
-            InworldController.CharacterHandler.CurrentCharacter = null;
-            
-            if (InworldController.Audio)
-                InworldController.Audio.enabled = false;
-
-            yield return null;
-
-            if(enableAEC)
-                InworldController.Instance.AddComponent<PlaygroundAECAudioCapture>();
-            else
-                InworldController.Instance.AddComponent<PlaygroundAudioCapture>();
-                
-            Destroy(InworldController.Audio);
-            yield return null;
-
-            InworldController.Audio.enabled = false;
-            
-            // Re-register all characters to update the new AudioCapture component.
-            
-            var characterList = InworldController.CharacterHandler.CurrentCharacters.ToArray();
-            InworldController.CharacterHandler.UnregisterAll();
-            foreach (var character in characterList)
-                InworldController.CharacterHandler.Register(character);
-            if(currentCharacter)
-                InworldController.CurrentCharacter = currentCharacter;
+            Play();
         }
         #endregion
         
@@ -525,17 +393,9 @@ namespace Inworld.Playground
         {
             if(m_Paused)
                 return;
-
-            if (m_NetworkCoroutine != null)
-            {
-                StopCoroutine(m_NetworkCoroutine);
-                m_NetworkCoroutine = null;
-            }
             
             DisableAllWorldSpaceGraphicRaycasters();
-            
-            Time.timeScale = 0;
-            
+
             PauseAllCharacterInteractions();
 
             InworldController.Audio.enabled = false;
@@ -554,23 +414,12 @@ namespace Inworld.Playground
         
         private bool CheckAudioComponent()
         {
-            var audioCapture = InworldController.Instance.GetComponent<AudioCapture>();
-            if (!audioCapture)
-                return false;
-            
-            return m_Settings.EnableAEC
-                ? audioCapture is PlaygroundAECAudioCapture
-                : audioCapture is PlaygroundAudioCapture;
+            return InworldController.Instance.GetComponent<PlaygroundAECAudioCapture>();
         }
 
         private bool CheckNetworkComponent()
         {
-            switch (m_Settings.ClientType)
-            {
-                case NetworkClient.WebSocket:
-                    return InworldController.Instance.GetComponent<InworldWebSocketClient>();
-            }
-            return false;
+            return InworldController.Instance.GetComponent<InworldClient>();
         }
         
         private void PauseAllCharacterInteractions()

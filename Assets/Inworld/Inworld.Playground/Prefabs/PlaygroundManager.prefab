@@ -302,7 +302,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5684189192639795991}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
@@ -646,6 +646,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5593351496906298277}
   - component: {fileID: 6824202508536700761}
+  - component: {fileID: 9078245995055248184}
+  - component: {fileID: 702165050075810327}
+  - component: {fileID: 694066665452716828}
+  - component: {fileID: 2840956508465157608}
   m_Layer: 0
   m_Name: PlaygroundManager
   m_TagString: Untagged
@@ -691,6 +695,18 @@ MonoBehaviour:
   OnPause:
     m_PersistentCalls:
       m_Calls: []
+  OnStartSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartInworldSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndInworldSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
   m_InworldSceneMapping:
   - UnitySceneName: Playground
     InworldSceneName: inworld_playground_lobby
@@ -713,11 +729,115 @@ MonoBehaviour:
     WorkspaceId: 
     MicrophoneDevice: 
     InteractionMode: 0
-    ClientType: 0
     EnableAEC: 1
-  m_NetworkCheckRate: 2
   m_GameMenu: {fileID: 5555797869773105223}
-  m_InworldControllerWebSocket: {fileID: 3459579374091715376, guid: 738784237e74a1240b5b283ede315300, type: 3}
+--- !u!114 &9078245995055248184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818464701975237251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78696971f17345f8b3a604c50919e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GameData: {fileID: 0}
+--- !u!114 &702165050075810327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818464701975237251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a83291b474642d697cd7963c55a608e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ServerConfig: {fileID: 11400000, guid: 5d4b4994cd4c627409e9c619e5e369e5, type: 2}
+  m_SceneFullName: 
+  m_APIKey: 
+  m_APISecret: 
+  m_AutoScene: 0
+  m_MaxWaitingListSize: 100
+  m_Continuation:
+    continuationType: 0
+    dialogHistory:
+      history: []
+    externallySavedState: 
+  m_EnableGroupChat: 0
+  m_CustomToken: 
+  m_PublicWorkspace: 
+  m_GameSessionID: 
+--- !u!114 &694066665452716828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818464701975237251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3241affa9c0462fa7193839038c32c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    onCharacterSelectingModeUpdated:
+      m_PersistentCalls:
+        m_Calls: []
+    onCharacterListJoined:
+      m_PersistentCalls:
+        m_Calls: []
+    onCharacterListLeft:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationUpdated:
+      m_PersistentCalls:
+        m_Calls: []
+  m_SelectingMethod: 2
+  m_SelectingThreshold: 0.5
+  m_RefreshRate: 0.5
+--- !u!114 &2840956508465157608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818464701975237251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9d55fbf3d84ce4f85a7e2685fac37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SamplingMode: 1
+  m_PushToTalkKey: 0
+  m_PlayerVolumeThreshold: 6
+  m_BufferSeconds: 1
+  m_AudioToPushCapacity: 100
+  m_DeviceName: 
+  m_DetectPlayerSpeaking: 1
+  m_AudioEvent:
+    onStartCalibrating:
+      m_PersistentCalls:
+        m_Calls: []
+    onStopCalibrating:
+      m_PersistentCalls:
+        m_Calls: []
+    onRecordingStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onRecordingEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onPlayerStartSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onPlayerStopSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+  m_DumpAudioHotKey: 0
 --- !u!1 &9086650760301671909
 GameObject:
   m_ObjectHideFlags: 0

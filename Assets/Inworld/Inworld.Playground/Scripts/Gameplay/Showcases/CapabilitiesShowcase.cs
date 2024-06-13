@@ -16,6 +16,7 @@ namespace Inworld.Playground
     /// </summary>
     public class CapabilitiesShowcase : MonoBehaviour
     {
+        [SerializeField] private Button m_Button;
         [SerializeField] private Toggle m_AudioToggle;
         [SerializeField] private Toggle m_EmotionToggle;
         [SerializeField] private Toggle m_RelationToggle;
@@ -26,6 +27,25 @@ namespace Inworld.Playground
         private void Awake()
         {
             m_Capabilities = new Capabilities(InworldAI.Capabilities);
+            if(m_Button)
+                m_Button.interactable = false;
+        }
+        
+        private void OnEnable()
+        {
+            InworldController.Client.OnStatusChanged += OnStatusChanged;
+        }
+
+        private void OnDisable()
+        {
+            if(InworldController.Client)
+                InworldController.Client.OnStatusChanged -= OnStatusChanged;
+        }
+        
+        private void OnStatusChanged(InworldConnectionStatus status)
+        {
+            if(m_Button)
+                m_Button.interactable = status == InworldConnectionStatus.Connected;
         }
 
         public void SendCapabilitiesRequest()
@@ -35,7 +55,7 @@ namespace Inworld.Playground
             m_Capabilities.relations = m_RelationToggle.isOn;
             m_Capabilities.phonemeInfo = m_LipsyncToggle.isOn;
             InworldAI.Capabilities = m_Capabilities;
-            InworldController.Client.SendCapabilities();
+            InworldController.Client.SendSessionConfig(false);
         }
     }
 }
