@@ -983,6 +983,7 @@ MonoBehaviour:
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 7538353914859535353}
   m_EmoIcon: {fileID: 7869331970769063011}
+  m_Dots: {fileID: 0}
   m_Character: {fileID: 0}
 --- !u!1 &3127867755331056890
 GameObject:
@@ -4110,6 +4111,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8568479454753094815}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5725365063865495493}
   m_SourcePrefab: {fileID: 100100000, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
 --- !u!95 &3797598418246447800 stripped
 Animator:
@@ -4263,6 +4267,9 @@ MonoBehaviour:
     onEndSpeaking:
       m_PersistentCalls:
         m_Calls: []
+    onInteractionEnd:
+      m_PersistentCalls:
+        m_Calls: []
     onPacketReceived:
       m_PersistentCalls:
         m_Calls: []
@@ -4315,7 +4322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
+  m_PlayerTransform: {fileID: 0}
   m_SightAngle: 150
   m_SightDistance: 5
   m_PlayerAngleWeight: 1
@@ -4360,3 +4367,26 @@ MonoBehaviour:
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_BodyAnimator: {fileID: 3797598418246447800}
   m_NavMeshAgent: {fileID: 0}
+--- !u!136 &5725365063865495493
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572868589785952888}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
