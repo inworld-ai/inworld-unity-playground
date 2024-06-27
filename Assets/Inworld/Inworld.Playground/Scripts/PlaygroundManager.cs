@@ -35,7 +35,7 @@ namespace Inworld.Playground
         public InworldGameData GameData => m_GameData;
         public bool Paused => m_Paused;
         
-        private const string playgroundSceneName = "Playground";
+        private const string lobbySceneName = "Lobby";
         private const string setupSceneName = "Setup";
 
         [SerializeField]
@@ -101,7 +101,7 @@ namespace Inworld.Playground
         {
             if (m_CurrentScene.name == setupSceneName)
             {
-                SceneManager.LoadScene(playgroundSceneName);
+                SceneManager.LoadScene(lobbySceneName);
                 return;
             }
             

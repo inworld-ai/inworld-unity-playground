@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 6920489047905803357}
   - component: {fileID: 2534369982693319387}
   - component: {fileID: 6704086183249758322}
+  - component: {fileID: -5168182558471201366}
   m_Layer: 0
   m_Name: gesture_george_inworld-playground
   m_TagString: Untagged
@@ -695,6 +696,29 @@ MonoBehaviour:
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!136 &-5168182558471201366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554292623040994231}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &7239422483727130079
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,6 @@ namespace Inworld.Playground
         [SerializeField] private List<Light> m_LightBulbSources;
         [SerializeField] private List<MeshRenderer> m_LightBulbMeshRenderers;
         [SerializeField] private Light m_DayLightSource;
-        [SerializeField] private Light m_NightLightSource;
         [SerializeField] private Material m_DayMaterial;
         [SerializeField] private Material m_NightMaterial;
         [SerializeField] private Material m_BulbOnMaterial;
@@ -66,7 +65,6 @@ namespace Inworld.Playground
                 lightBulbSource.enabled = m_IsDay;
             
             m_DayLightSource.enabled = m_IsDay;
-            m_NightLightSource.enabled = !m_IsDay;
             RenderSettings.skybox = m_IsDay ? m_DayMaterial : m_NightMaterial;
 
             foreach (MeshRenderer meshRenderer in m_LightBulbMeshRenderers)

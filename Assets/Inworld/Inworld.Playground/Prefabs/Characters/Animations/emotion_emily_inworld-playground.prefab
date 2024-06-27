@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 223203700561416751}
   - component: {fileID: 1757959859848508943}
   - component: {fileID: 6990636592307854137}
+  - component: {fileID: -1612793128926588284}
   m_Layer: 0
   m_Name: emotion_emily_inworld-playground
   m_TagString: Untagged
@@ -737,6 +738,29 @@ MonoBehaviour:
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!136 &-1612793128926588284
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302111882359236030}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &5406179152816764902
 GameObject:
   m_ObjectHideFlags: 0

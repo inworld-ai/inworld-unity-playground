@@ -21,11 +21,10 @@ In case something goes wrong during the install process, here are the required d
 
 #### Dependencies
 
-- com.inworld.unity (use package included in project: `Assets/Inworld/com.inworld.unity.core-3.3.2.tgz`)
+- com.inworld.unity (use package included in project: `Assets/Inworld/com.inworld.unity.core-3.4.0.tgz`)
 - [com.unity.cloud.gltfast](https://docs.unity3d.com/Packages/com.unity.cloud.gltfast@6.0/manual/index.html)
 - [com.unity.probuilder](https://docs.unity3d.com/Packages/com.unity.probuilder@6.0/manual/index.html)
 - [com.unity.ai.navigation](https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/)
-- [com.unity.shadergraph](https://docs.unity3d.com/Packages/com.unity.shadergraph@17.0/manual/index.html)
 - [com.unity.sentis](https://docs.unity3d.com/Packages/com.unity.sentis@1.4/manual/index.html) (if using Unity 2022.3 or newer)
 
 #### Packages
@@ -36,7 +35,7 @@ In case something goes wrong during the install process, here are the required d
 Add all the scenes within `Assets/Inworld/Inworld.Playground/Scenes/` to the **Build Settings**. Scenes listed below:
 
 - Setup
-- Playground
+- Lobby
 - Animations
 - Avatars
 - Goals
@@ -44,11 +43,6 @@ Add all the scenes within `Assets/Inworld/Inworld.Playground/Scenes/` to the **B
 - Environment
 - Scene
 - Interactions
-
-#### Project Settings
-The Unity Playground demo utilizes **Realtime Global Illumination** for scene lighting. To ensure the best possible experience, please configure the following settings in the **Quality** section of the **Project Settings**:
-
-- Pixel Light Count: 8
 
 ## Controls
 - Movement: 'WASD' & 'Mouse'
