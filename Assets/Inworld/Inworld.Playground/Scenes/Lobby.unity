@@ -6968,11 +6968,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/guide
+      value: workspaces/inworld-playground-v2/characters/playground_guide
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Guide
+      value: Playground Guide
       objectReference: {fileID: 0}
     - target: {fileID: 32423342252497747, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_StaticEditorFlags

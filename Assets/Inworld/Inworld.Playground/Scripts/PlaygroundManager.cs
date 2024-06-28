@@ -249,13 +249,23 @@ namespace Inworld.Playground
             m_GameData = Serialization.GetGameData();
             if (m_GameData == null && SceneManager.GetActiveScene().name != setupSceneName)
             {
-                InworldAI.Log("The Playground GameData could not be found, switching to Setup Scene.");
+                InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
                 SceneManager.LoadScene(setupSceneName);
                 return;
             }
-            
+
             if (m_GameData != null)
+            {
                 m_Settings.WorkspaceId = m_GameData.sceneFullName.Split('/')[1];
+
+                int vIndex = m_Settings.WorkspaceId.IndexOf('v');
+                if (vIndex == -1 || int.Parse(m_Settings.WorkspaceId.Substring(vIndex + 1)) != PlaygroundSettings.WorkspaceVersion)
+                {
+                    InworldAI.LogWarning($"The Playground workspace is outdated, switching to Setup scene. Please follow the setup process to clone the latest Playground workspace: inworld-playground-v{PlaygroundSettings.WorkspaceVersion}");
+                    SceneManager.LoadScene(setupSceneName);
+                    return;
+                }
+            }
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");

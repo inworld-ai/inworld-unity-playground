@@ -1897,17 +1897,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2407389061291265451}
     m_Modifications:
-    - target: {fileID: 900466721184246333, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7142177979337930576, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_Name
       value: orby_inworld-playground
-      objectReference: {fileID: 0}
-    - target: {fileID: 7142177979337930576, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7712990536318244411, guid: 74b32f58b6184f14084d96858b3690b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1965,10 +1957,6 @@ PrefabInstance:
     - target: {fileID: 5510870168005725327, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
       propertyPath: m_Name
       value: ready_player_me_brie_inworld-playground
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510870168005725327, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5557258756447846255, guid: 319804f42865e4a49ba9437ea4b36df3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6651,12 +6639,12 @@ PrefabInstance:
     - {fileID: 5648117767717332377, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
     - {fileID: 8087491130708150664, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4835664362678650872, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2407389061291265451}
     - targetCorrespondingSourceObject: {fileID: 7768242188074654496, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3850461815497188368}
+    - targetCorrespondingSourceObject: {fileID: 4835664362678650872, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2407389061291265451}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
 --- !u!4 &638675762590823071 stripped

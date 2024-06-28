@@ -709,21 +709,21 @@ MonoBehaviour:
       m_Calls: []
   m_InworldSceneMapping:
   - UnitySceneName: Lobby
-    InworldSceneName: inworld_playground_lobby
+    InworldSceneName: playground_lobby
   - UnitySceneName: Avatars
-    InworldSceneName: avatar_showcase
+    InworldSceneName: avatars_room
   - UnitySceneName: Animations
-    InworldSceneName: animation_showcase
+    InworldSceneName: animations_room
   - UnitySceneName: Goals
-    InworldSceneName: goals_gym
+    InworldSceneName: goals_room
   - UnitySceneName: Mutations
-    InworldSceneName: goals_gym
+    InworldSceneName: mutations_room
   - UnitySceneName: Scene
-    InworldSceneName: day
+    InworldSceneName: scene_room_daytime
   - UnitySceneName: Environment
-    InworldSceneName: goals_gym
+    InworldSceneName: environment_room
   - UnitySceneName: Interactions
-    InworldSceneName: interactions_showcase
+    InworldSceneName: interactions_room
   m_Settings:
     PlayerName: 
     WorkspaceId: 

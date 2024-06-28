@@ -3039,11 +3039,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/patrol_bot
+      value: workspaces/inworld-playground-v2/characters/patrol_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Patrol Bot
+      value: Patrol Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Controller
@@ -9470,11 +9470,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/data_retrieval_bot
+      value: workspaces/inworld-playground-v2/characters/data_retrieval_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Data Retrieval Bot
+      value: Data Retrieval Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -13517,11 +13517,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/rhyme_bot
+      value: workspaces/inworld-playground-v2/characters/rhyme_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Rhyme Bot
+      value: Rhyme Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -18645,11 +18645,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/goals_bot
+      value: workspaces/inworld-playground-v2/characters/goals_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Goals Bot
+      value: Goals Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Controller

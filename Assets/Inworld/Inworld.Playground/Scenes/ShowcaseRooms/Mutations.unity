@@ -1891,11 +1891,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/trust_bot
+      value: workspaces/inworld-playground-v2/characters/trust_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Trust Bot
+      value: Trust Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -3254,11 +3254,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/mutations_bot
+      value: workspaces/inworld-playground-v2/characters/mutations_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Mutations Bot
+      value: Mutations Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_ApplyRootMotion

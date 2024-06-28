@@ -14,6 +14,7 @@ namespace Inworld.Playground
     [Serializable]
     public class PlaygroundSettings
     {
+        public const int WorkspaceVersion = 2;
         public string PlayerName = "Player";
         public string WorkspaceId;
         public string MicrophoneDevice;
