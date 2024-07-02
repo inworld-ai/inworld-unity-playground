@@ -21,8 +21,7 @@ namespace Inworld.Playground
     /// </summary>
     public static class Serialization
     {
-        const string playgroundDirectory = "Inworld/Inworld.Playground";
-        const string sceneName = "inworld_playground_lobby";
+        const string sceneName = "playground_lobby";
         const string gameDataAssetName = "PlaygroundData";
         
 #if UNITY_EDITOR
@@ -34,9 +33,9 @@ namespace Inworld.Playground
         public static string GetGameDataPath(bool onlyDirectory = false)
         {
             if(onlyDirectory)
-                return $"Assets/{playgroundDirectory}/{InworldEditor.GameDataPath}/";
+                return $"{InworldEditor.UserDataPath}/Playground";
             else
-                return $"Assets/{playgroundDirectory}/{InworldEditor.GameDataPath}/{gameDataAssetName}.asset";
+                return $"{InworldEditor.UserDataPath}/Playground/{gameDataAssetName}.asset";
         }
 #endif
         /// <summary>
@@ -71,21 +70,15 @@ namespace Inworld.Playground
             gameData.apiSecret = secret;
             if(gameData.capabilities == null)
                 gameData.capabilities = new Capabilities();
-            gameData.capabilities.audio = true;
-            gameData.capabilities.emotions = true;
-            gameData.capabilities.interruptions = true;
-            gameData.capabilities.narratedActions = true;
-            gameData.capabilities.regenerateResponse = true;
-            gameData.capabilities.text = true;
-            gameData.capabilities.triggers = true;
-            gameData.capabilities.phonemeInfo = true;
-            gameData.capabilities.relations = true;
+            gameData.capabilities.CopyFrom(InworldAI.Capabilities);
+
 #if UNITY_EDITOR
             if (!AssetDatabase.Contains(gameData))
             {
                 if (!Directory.Exists(GetGameDataPath(true)))
                     Directory.CreateDirectory(GetGameDataPath(true));
                 AssetDatabase.CreateAsset(gameData, GetGameDataPath());
+                InworldAI.Log($"Created Playground Game Data at {GetGameDataPath()}");
             }
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
