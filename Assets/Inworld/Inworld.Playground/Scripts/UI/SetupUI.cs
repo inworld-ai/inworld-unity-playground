@@ -49,7 +49,7 @@ namespace Inworld.Playground
         #region UI Callback Functions
         public void CloneWorkspace()
         {
-            if(!Regex.IsMatch(m_WorkspaceCloningToken,"[^a-zA-Z0-9]"))
+            if(Regex.IsMatch(m_WorkspaceCloningToken, "^[a-zA-Z0-9]+$"))
                 Application.OpenURL($"https://studio.inworld.ai/workspaces?workspaceCloningToken={m_WorkspaceCloningToken}");
         }
 
@@ -57,7 +57,7 @@ namespace Inworld.Playground
         {
             string workspaceId = m_PlaygroundManager.GetWorkspaceId();
             
-            if(!Regex.IsMatch(workspaceId,"[^a-z0-9-_]"))
+            if(Regex.IsMatch(workspaceId,"^[a-z0-9-_]+$"))
                 Application.OpenURL($"https://studio.inworld.ai/workspaces/{workspaceId}/integrations");
         }
         
