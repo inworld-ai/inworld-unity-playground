@@ -47,6 +47,11 @@ namespace Inworld.Playground
         private PlaygroundManager m_PlaygroundManager;
 
         #region UI Callback Functions
+        public void OpenWorkspacesWebpageHttp()
+        {
+            Application.OpenURL("https://studio.inworld.ai/workspaces");
+        }
+        
         public void CloneWorkspace()
         {
             if(Regex.IsMatch(m_WorkspaceCloningToken, "^[a-zA-Z0-9]+$"))
@@ -119,13 +124,13 @@ namespace Inworld.Playground
                         string workspaceId = m_PlaygroundManager.GameData.sceneFullName.Substring(m_PlaygroundManager.
                             GameData.sceneFullName.IndexOf('/') + 1);
                         workspaceId = workspaceId.Substring(0, workspaceId.IndexOf('/'));
-                        m_PlaygroundManager.SetWorkspaceId(workspaceId);
                         
                         int vIndex = workspaceId.IndexOf('v');
                         if (vIndex == -1 || int.Parse(workspaceId.Substring(vIndex + 1)) != PlaygroundSettings.WorkspaceVersion)
                             break;
                         
-                        m_WorkspaceInputField.text = "workspaces/" + m_PlaygroundManager.GetWorkspaceId();
+                        m_PlaygroundManager.SetWorkspaceId(workspaceId);
+                        m_WorkspaceInputField.text = "workspaces/" + workspaceId;
 
                         m_Key = m_PlaygroundManager.GameData.apiKey;
                         m_Secret = m_PlaygroundManager.GameData.apiSecret;
@@ -190,16 +195,6 @@ namespace Inworld.Playground
             
             m_PlaygroundManager.SetPlayerName("");
             UpdateControlButtons();
-        }
-
-        private void OnEnable()
-        {
-            m_IntegrationsLinkButton.onClick.AddListener(OnIntegrationsLinkClick);
-        }
-
-        private void OnDisable()
-        {
-            m_IntegrationsLinkButton.onClick.RemoveListener(OnIntegrationsLinkClick);
         }
         #endregion
         
