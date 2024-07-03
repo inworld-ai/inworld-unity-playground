@@ -634,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data:
     agentId: 
-    brainName: workspaces/inworld-playground/characters/orby
+    brainName: workspaces/inworld-playground-v2/characters/orby
     givenName: Orby
     characterAssets:
       rpmModelUri: 

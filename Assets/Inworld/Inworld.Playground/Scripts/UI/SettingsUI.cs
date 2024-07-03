@@ -121,12 +121,15 @@ namespace Inworld.Playground
             var aecEnabled = m_PlaygroundManager.GetEnableAEC();
             m_AECToggle.isOn = aecEnabled;
             
+            if(PlaygroundManager.Instance.CurrentScene.name != PlaygroundManager.SetupSceneName)
+                UpdatePlayButton(true);
+            
             OnStatusChanged(InworldController.Status);
-            UpdatePlayButton(true);
         }
 
         private void OnDisable()
         {
+            UpdatePlayButton(false);
             if(PlaygroundManager.Instance)
                 PlaygroundManager.Instance.OnClientChanged.RemoveListener(OnClientChanged);
             if(InworldController.Instance)
@@ -153,6 +156,8 @@ namespace Inworld.Playground
                     m_ConnectButton.interactable = false;
                     break;
             }
+            if(PlaygroundManager.Instance.CurrentScene.name == PlaygroundManager.SetupSceneName)
+                UpdatePlayButton(status == InworldConnectionStatus.Connected);
         }
         
         private void OnClientChanged()

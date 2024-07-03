@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data:
     agentId: 
-    brainName: workspaces/inworld-playground/characters/innequin
+    brainName: workspaces/inworld-playground-v2/characters/innequin
     givenName: Innequin
     characterAssets:
       rpmModelUri: 

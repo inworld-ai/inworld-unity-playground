@@ -4872,7 +4872,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/mr_toyman
+      value: workspaces/inworld-playground-v2/characters/mr_toyman
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName

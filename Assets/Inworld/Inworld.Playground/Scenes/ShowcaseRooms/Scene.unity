@@ -1242,7 +1242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4032040907208412069, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/day_innequin
+      value: workspaces/inworld-playground-v2/characters/day_innequin
       objectReference: {fileID: 0}
     - target: {fileID: 4032040907208412069, guid: 33cc974f899cce448b98f5c875483bdf, type: 3}
       propertyPath: m_Data.givenName
@@ -1666,7 +1666,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/timekeeper
+      value: workspaces/inworld-playground-v2/characters/timekeeper
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
@@ -1722,7 +1722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Name
-      value: innequin_inworld-playground (2)
+      value: innequin_inworld-playground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2613,7 +2613,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/name_innequin
+      value: workspaces/inworld-playground-v2/characters/name_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
@@ -2669,7 +2669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Name
-      value: innequin_inworld-playground (1)
+      value: innequin_inworld-playground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5278,7 +5278,7 @@ PrefabInstance:
       objectReference: {fileID: 1053772067}
     - target: {fileID: 2892343459262759819, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/night_innequin
+      value: workspaces/inworld-playground-v2/characters/night_innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2892343459262759819, guid: ca30e3e073fe27f418f925b16539e9dc, type: 3}
       propertyPath: m_Data.givenName
@@ -9888,7 +9888,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/capability_innequin
+      value: workspaces/inworld-playground-v2/characters/capability_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName

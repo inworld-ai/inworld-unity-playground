@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace Inworld.Playground
     /// </summary>
     public class SetupUI : MonoBehaviour
     {
+        [SerializeField] private string m_WorkspaceCloningToken;
         [Header("Main")] 
         [SerializeField] private List<GameObject> pages;
         [SerializeField] private Button m_NextButton;
@@ -27,6 +29,9 @@ namespace Inworld.Playground
         [Header("Page 0")]
         [SerializeField]
         private TMP_InputField m_NameInputField;
+        [Header("Page 1")]
+        [SerializeField]
+        private Button m_WorkspaceCloningButton;
         [Header("Page 2")]
         [SerializeField]
         private TMP_InputField m_WorkspaceInputField;
@@ -38,10 +43,29 @@ namespace Inworld.Playground
         
         private int m_CurrentPage;
         private string m_InworldStudioIntegrationsURL;
-        private string m_Base64AuthToken;
+        private string m_Key, m_Secret;
         private PlaygroundManager m_PlaygroundManager;
 
         #region UI Callback Functions
+        public void OpenWorkspacesWebpageHttp()
+        {
+            Application.OpenURL("https://studio.inworld.ai/workspaces");
+        }
+        
+        public void CloneWorkspace()
+        {
+            if(Regex.IsMatch(m_WorkspaceCloningToken, "^[a-zA-Z0-9]+$"))
+                Application.OpenURL($"https://studio.inworld.ai/workspaces?workspaceCloningToken={m_WorkspaceCloningToken}");
+        }
+
+        public void OpenIntegrationsTabHttp()
+        {
+            string workspaceId = m_PlaygroundManager.GetWorkspaceId();
+            
+            if(Regex.IsMatch(workspaceId,"^[a-z0-9-_]+$"))
+                Application.OpenURL($"https://studio.inworld.ai/workspaces/{workspaceId}/integrations");
+        }
+        
         public void NameInputValueChanged()
         {
             m_PlaygroundManager.SetPlayerName(m_NameInputField.text);
@@ -51,19 +75,37 @@ namespace Inworld.Playground
         public void WorkspaceInputValueChanged()
         {
             string workspaceId = m_WorkspaceInputField.text;
-            if (!workspaceId.Contains("workspaces/"))
-                return;
-            workspaceId = workspaceId.Substring(11);
+            if (workspaceId.StartsWith("workspaces/"))
+                workspaceId = workspaceId.Substring(11);
+
+            workspaceId = Regex.Replace(workspaceId, "[^a-z0-9-_]", "");
                 
             m_PlaygroundManager.SetWorkspaceId(workspaceId);
-            m_InworldStudioIntegrationsURL = $"https://studio.inworld.ai/workspaces/{m_PlaygroundManager.GetWorkspaceId()}/integrations";
+            m_InworldStudioIntegrationsURL = $"https://studio.inworld.ai/workspaces/{workspaceId}/integrations";
             m_IntegrationsLinkButton.GetComponentInChildren<TMP_Text>().text = m_InworldStudioIntegrationsURL;
             UpdateControlButtons();
         }
 
         public void AuthInputValueChanged()
         {
-            m_Base64AuthToken = m_AuthInputField.text;
+            m_Key = "";
+            m_Secret = "";
+            string base64AuthToken = m_AuthInputField.text;
+            try
+            {
+                var authBytes = Convert.FromBase64String(base64AuthToken);
+                var authString = Encoding.ASCII.GetString(authBytes);
+                m_Key = authString.Substring(0, authString.IndexOf(':'));
+                m_Secret = authString.Substring(authString.IndexOf(':') + 1, authString.Length - (m_Key.Length + 1));
+                
+                m_Key = Regex.Replace(m_Key, "[^a-zA-Z0-9]", "");
+                m_Secret = Regex.Replace(m_Secret, "[^a-zA-Z0-9]", "");
+            }
+            catch
+            {
+                // ignored
+            }
+
             UpdateControlButtons();
         }
         
@@ -81,13 +123,18 @@ namespace Inworld.Playground
                     {
                         string workspaceId = m_PlaygroundManager.GameData.sceneFullName.Substring(m_PlaygroundManager.
                             GameData.sceneFullName.IndexOf('/') + 1);
-                        m_PlaygroundManager.SetWorkspaceId(workspaceId.Substring(0, workspaceId.IndexOf('/')));
+                        workspaceId = workspaceId.Substring(0, workspaceId.IndexOf('/'));
                         
-                        m_WorkspaceInputField.text = "workspaces/" + m_PlaygroundManager.GetWorkspaceId();
+                        int vIndex = workspaceId.IndexOf('v');
+                        if (vIndex == -1 || int.Parse(workspaceId.Substring(vIndex + 1)) != PlaygroundSettings.WorkspaceVersion)
+                            break;
+                        
+                        m_PlaygroundManager.SetWorkspaceId(workspaceId);
+                        m_WorkspaceInputField.text = "workspaces/" + workspaceId;
 
-                        m_Base64AuthToken = Convert.ToBase64String(Encoding.ASCII.GetBytes(m_PlaygroundManager.
-                                GameData.apiKey + ":" + m_PlaygroundManager.GameData.apiSecret));
-                        m_AuthInputField.text = m_Base64AuthToken;
+                        m_Key = m_PlaygroundManager.GameData.apiKey;
+                        m_Secret = m_PlaygroundManager.GameData.apiSecret;
+                        m_AuthInputField.text = Convert.ToBase64String(Encoding.ASCII.GetBytes(m_Key + ":" + m_Secret));
                         
                         pages[m_CurrentPage].SetActive(false);
                         m_CurrentPage = 3;
@@ -118,6 +165,7 @@ namespace Inworld.Playground
             {
                 m_NextButton.gameObject.SetActive(true);
                 m_PlayButton.gameObject.SetActive(false);
+                InworldController.Instance.Disconnect();
             }
             
             pages[m_CurrentPage--].SetActive(false);
@@ -134,6 +182,10 @@ namespace Inworld.Playground
         private void Awake()
         {
             m_PlaygroundManager = PlaygroundManager.Instance;
+
+            TMP_Text workspaceCloningButtonText = m_WorkspaceCloningButton.GetComponentInChildren<TMP_Text>();
+            if (workspaceCloningButtonText)
+                workspaceCloningButtonText.text = $"https://studio.inworld.ai/workspaces?workspaceCloningToken={m_WorkspaceCloningToken}";
             
             foreach (var page in pages)
                 page.SetActive(false);
@@ -144,25 +196,13 @@ namespace Inworld.Playground
             m_PlaygroundManager.SetPlayerName("");
             UpdateControlButtons();
         }
-
-        private void OnEnable()
-        {
-            m_IntegrationsLinkButton.onClick.AddListener(OnIntegrationsLinkClick);
-        }
-
-        private void OnDisable()
-        {
-            m_IntegrationsLinkButton.onClick.RemoveListener(OnIntegrationsLinkClick);
-        }
         #endregion
         
         private void CreateGameData()
         {
-            var authBytes = Convert.FromBase64String(m_Base64AuthToken);
-            var authString = Encoding.ASCII.GetString(authBytes);
-            var key = authString.Substring(0, authString.IndexOf(':'));
-            var secret = authString.Substring(authString.IndexOf(':') + 1, authString.Length - (key.Length + 1));
-            m_PlaygroundManager.CreateGameData(key, secret);
+            if (string.IsNullOrEmpty(m_Key) || string.IsNullOrEmpty(m_Secret)) return;
+            
+            m_PlaygroundManager.CreateGameData(m_Key, m_Secret);
         }
 
         private void UpdateControlButtons()
@@ -176,7 +216,7 @@ namespace Inworld.Playground
                     m_NextButton.interactable = !string.IsNullOrEmpty(m_PlaygroundManager.GetWorkspaceId());
                     break;
                 case 3:
-                    m_NextButton.interactable = !string.IsNullOrEmpty(m_Base64AuthToken);
+                    m_NextButton.interactable = !string.IsNullOrEmpty(m_Key) && !string.IsNullOrEmpty(m_Secret);
                     break;
                 default:
                     m_NextButton.interactable = true;

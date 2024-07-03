@@ -656,7 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data:
     agentId: 
-    brainName: workspaces/inworld-playground/characters/alice_the_rpm_ambassador
+    brainName: workspaces/inworld-playground-v2/characters/ready_player_me_brie
     givenName: Ready Player Me Brie
     characterAssets:
       rpmModelUri: 

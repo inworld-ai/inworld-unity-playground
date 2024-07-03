@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data:
     agentId: 
-    brainName: workspaces/inworld-playground/characters/emotion_emily
+    brainName: workspaces/inworld-playground-v2/characters/emotion_emily
     givenName: Emotion Emily
     characterAssets:
       rpmModelUri: 

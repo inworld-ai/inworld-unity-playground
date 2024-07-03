@@ -34,9 +34,10 @@ namespace Inworld.Playground
         
         public InworldGameData GameData => m_GameData;
         public bool Paused => m_Paused;
+        public Scene CurrentScene => m_CurrentScene;
         
-        private const string lobbySceneName = "Lobby";
-        private const string setupSceneName = "Setup";
+        public const string LobbySceneName = "Lobby";
+        public const string SetupSceneName = "Setup";
 
         [SerializeField]
         private List<InworldSceneMapping> m_InworldSceneMapping;
@@ -99,9 +100,9 @@ namespace Inworld.Playground
         /// </summary>
         public void Play()
         {
-            if (m_CurrentScene.name == setupSceneName)
+            if (m_CurrentScene.name == SetupSceneName)
             {
-                SceneManager.LoadScene(lobbySceneName);
+                SceneManager.LoadScene(LobbySceneName);
                 return;
             }
             
@@ -247,15 +248,26 @@ namespace Inworld.Playground
                 m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
             
             m_GameData = Serialization.GetGameData();
-            if (m_GameData == null && SceneManager.GetActiveScene().name != setupSceneName)
+            if (m_GameData == null && SceneManager.GetActiveScene().name != SetupSceneName)
             {
-                InworldAI.Log("The Playground GameData could not be found, switching to Setup Scene.");
-                SceneManager.LoadScene(setupSceneName);
+                InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
+                SceneManager.LoadScene(SetupSceneName);
                 return;
             }
-            
+
             if (m_GameData != null)
-                m_Settings.WorkspaceId = m_GameData.sceneFullName.Split('/')[1];
+            {
+                string workspaceId = m_GameData.sceneFullName.Split('/')[1];
+
+                int vIndex = workspaceId.IndexOf('v');
+                if (vIndex == -1 || int.Parse(workspaceId.Substring(vIndex + 1)) != PlaygroundSettings.WorkspaceVersion)
+                {
+                    InworldAI.LogWarning($"The Playground workspace is outdated, switching to Setup scene. Please follow the setup process to clone the latest Playground workspace: inworld-playground-v{PlaygroundSettings.WorkspaceVersion}");
+                    SceneManager.LoadScene(SetupSceneName);
+                    return;
+                }
+                m_Settings.WorkspaceId = workspaceId;
+            }
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
@@ -321,7 +333,7 @@ namespace Inworld.Playground
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             m_CurrentScene = scene;
-            if (m_CurrentScene.name != setupSceneName && m_GameData != null)
+            if (m_CurrentScene.name != SetupSceneName && m_GameData != null)
                 StartCoroutine(SetupScene());
         }
         #endregion
@@ -329,6 +341,10 @@ namespace Inworld.Playground
         #region Enumerators
         private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
         {
+            string sceneToLoad = $"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}";
+            if(m_CurrentInworldScene == sceneToLoad)
+                yield break;
+            
             OnStartInworldSceneChange?.Invoke();
             if(pause)
                 Pause(false);
@@ -336,8 +352,7 @@ namespace Inworld.Playground
             InworldController.CharacterHandler.CurrentCharacter = null;
             
             string currentInworldScene = m_CurrentInworldScene;
-            Debug.Log("Loading Inworld Scene: " + $"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}" + " current: " + m_CurrentInworldScene);
-            InworldController.Client.LoadScene($"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}");
+            InworldController.Client.LoadScene(sceneToLoad);
             
             yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
             
@@ -377,13 +392,9 @@ namespace Inworld.Playground
                 InworldAI.LogException("Missing scene in InworldSceneMappingDictionary: " + SceneManager.GetActiveScene().name);
             
             if (InworldController.Status != InworldConnectionStatus.Connected)
-            {
                 InworldController.Client.CurrentScene = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
-            }
             else
-            {
                 yield return StartCoroutine(ChangeInworldSceneEnumerator(inworldSceneName, false));
-            }
 
             Play();
         }

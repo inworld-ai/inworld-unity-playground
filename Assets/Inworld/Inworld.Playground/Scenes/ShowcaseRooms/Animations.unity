@@ -2853,15 +2853,6 @@ PrefabInstance:
     - {fileID: 713539338067061177, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
     - {fileID: 4015433256104576424, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 211542830668362768, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1903234853}
-    - targetCorrespondingSourceObject: {fileID: 211542830668362768, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 397673523}
-    - targetCorrespondingSourceObject: {fileID: 211542830668362768, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2114821705}
     - targetCorrespondingSourceObject: {fileID: 4373314576098449409, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1989651469}
@@ -2871,6 +2862,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4373314576098449409, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1999139856}
+    - targetCorrespondingSourceObject: {fileID: 211542830668362768, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1903234853}
+    - targetCorrespondingSourceObject: {fileID: 211542830668362768, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 397673523}
+    - targetCorrespondingSourceObject: {fileID: 211542830668362768, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2114821705}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
 --- !u!4 &712578774 stripped
@@ -5179,10 +5179,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: gesture_george_inworld-playground
       objectReference: {fileID: 0}
-    - target: {fileID: 9140899352933009873, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7043,8 +7039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data:
     agentId: 
-    brainName: workspaces/inworld-playground/characters/emotion_bot
-    givenName: Emotion Bot
+    brainName: workspaces/inworld-playground-v2/characters/emotion_innequin
+    givenName: Emotion Innequin
     characterAssets:
       rpmModelUri: 
       rpmImageUriPortrait: 
@@ -7177,11 +7173,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/gesture_bot
+      value: workspaces/inworld-playground-v2/characters/gesture_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Gesture Bot
+      value: Gesture Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Controller

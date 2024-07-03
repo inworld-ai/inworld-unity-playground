@@ -1419,11 +1419,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground/characters/narrated_action_bot
+      value: workspaces/inworld-playground-v2/characters/narrated_action_innequin
       objectReference: {fileID: 0}
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
-      value: Narrated Action Bot
+      value: Narrated Action Innequin
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -5139,6 +5139,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 712578776}
     m_Modifications:
+    - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_Data.brainName
+      value: workspaces/inworld-playground-v2/characters/memory_innequin
+      objectReference: {fileID: 0}
+    - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_Data.givenName
+      value: Memory Innequin
+      objectReference: {fileID: 0}
     - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
