@@ -55,6 +55,7 @@ namespace Inworld.Playground
         private Scene m_CurrentScene;
         private string m_CurrentInworldScene;
         private bool m_Paused;
+        private bool m_SwitchingToSetup;
         
         /// <summary>
         ///     Loads the current Game Data object into the Inworld Controller for the Playground Workspace.
@@ -252,6 +253,7 @@ namespace Inworld.Playground
             {
                 InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
                 SceneManager.LoadScene(SetupSceneName);
+                m_SwitchingToSetup = true;
                 return;
             }
 
@@ -264,6 +266,7 @@ namespace Inworld.Playground
                 {
                     InworldAI.LogWarning($"The Playground workspace is outdated, switching to Setup scene. Please follow the setup process to clone the latest Playground workspace: inworld-playground-v{PlaygroundSettings.WorkspaceVersion}");
                     SceneManager.LoadScene(SetupSceneName);
+                    m_SwitchingToSetup = true;
                     return;
                 }
                 m_Settings.WorkspaceId = workspaceId;
@@ -299,6 +302,8 @@ namespace Inworld.Playground
 
         private void Update()
         {
+            if (m_CurrentScene.name == SetupSceneName) return;
+            
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if(!m_GameMenu.activeSelf)
@@ -333,6 +338,11 @@ namespace Inworld.Playground
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             m_CurrentScene = scene;
+            if(m_CurrentScene.name == SetupSceneName)
+                m_SwitchingToSetup = false;
+
+            if (m_SwitchingToSetup) return;
+            
             if (m_CurrentScene.name != SetupSceneName && m_GameData != null)
                 StartCoroutine(SetupScene());
         }
