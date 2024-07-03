@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 6101837304953191395}
   - component: {fileID: -3813923921187074844}
   - component: {fileID: 2435686829982685765}
+  - component: {fileID: -7988688619189566040}
   m_Layer: 0
   m_Name: ready_player_me_brie_inworld-playground
   m_TagString: Untagged
@@ -759,6 +760,29 @@ MonoBehaviour:
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!136 &-7988688619189566040
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510870168005725327}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &7536534441954930037
 GameObject:
   m_ObjectHideFlags: 0

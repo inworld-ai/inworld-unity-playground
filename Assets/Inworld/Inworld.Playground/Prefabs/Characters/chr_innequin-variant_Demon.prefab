@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 2900306360108477233}
   m_EmoIcon: {fileID: 8112323708353690962}
+  m_Dots: {fileID: 0}
   m_Character: {fileID: 0}
 --- !u!1 &3894417809102357516
 GameObject:
@@ -916,6 +917,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8746152409381617235}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6253908596977535736}
   m_SourcePrefab: {fileID: 100100000, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
 --- !u!137 &82402779020258480 stripped
 SkinnedMeshRenderer:
@@ -1074,6 +1078,9 @@ MonoBehaviour:
     onEndSpeaking:
       m_PersistentCalls:
         m_Calls: []
+    onInteractionEnd:
+      m_PersistentCalls:
+        m_Calls: []
     onPacketReceived:
       m_PersistentCalls:
         m_Calls: []
@@ -1126,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HeadTransform: {fileID: 0}
-  m_CameraTransform: {fileID: 0}
+  m_PlayerTransform: {fileID: 0}
   m_SightAngle: 150
   m_SightDistance: 5
   m_PlayerAngleWeight: 1
@@ -1171,6 +1178,29 @@ MonoBehaviour:
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_BodyAnimator: {fileID: 742733535714510552}
   m_NavMeshAgent: {fileID: 0}
+--- !u!136 &-6253908596977535736
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333543557877794328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!4 &6678439002975329442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}

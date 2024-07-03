@@ -107,9 +107,15 @@ InworldAI.Playground.unitypackage.meta
 InworldExtraAssets.unitypackage
 InworldExtraAssets.unitypackage.meta
 
+# Inworld Playground Assets
+PlaygroundAssets/
+PlaygroundAssets.meta
+
 # Mac
 .DS_Store
 
 # Other
+PlaygroundAssetUtil.cs
+PlaygroundAssetUtil.cs.meta
 PlaygroundAssetNames.csv
 PlaygroundAssetNames.csv.meta

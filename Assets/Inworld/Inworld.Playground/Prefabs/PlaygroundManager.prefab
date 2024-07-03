@@ -708,7 +708,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_InworldSceneMapping:
-  - UnitySceneName: Playground
+  - UnitySceneName: Lobby
     InworldSceneName: inworld_playground_lobby
   - UnitySceneName: Avatars
     InworldSceneName: avatar_showcase
