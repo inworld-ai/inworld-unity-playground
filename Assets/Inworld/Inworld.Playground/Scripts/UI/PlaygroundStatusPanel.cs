@@ -7,7 +7,6 @@
  * Derivative of Inworld.Sample.StatusPanel
  *************************************************************************************************/
 
-using System.Collections;
 using Inworld.Sample;
 using UnityEngine;
 using UnityEngine.UI;
