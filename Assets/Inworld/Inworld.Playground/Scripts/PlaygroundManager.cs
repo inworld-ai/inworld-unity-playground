@@ -145,6 +145,15 @@ namespace Inworld.Playground
         }
         
         /// <summary>
+        ///     Updates the Brain Name of an Inworld character with the current Workspace ID.
+        /// </summary>
+        /// <param name="character">The Inworld character to update.</param>
+        public void UpdateCharacterBrain(InworldCharacter character)
+        {
+            character.Data.brainName = $"workspaces/{m_Settings.WorkspaceId}/characters/{character.Data.brainName.Split('/')[3]}";
+        }
+        
+        /// <summary>
         ///     Enables all WorldSpaceGraphicRaycasters in the scene.
         /// </summary>
         public void EnableAllWorldSpaceGraphicRaycasters()
@@ -500,7 +509,7 @@ namespace Inworld.Playground
             var characters = FindObjectsOfType<InworldCharacter>(true);
 #endif
             foreach (var character in characters)
-                character.Data.brainName = $"workspaces/{m_Settings.WorkspaceId}/characters/{character.Data.brainName.Split('/')[3]}";
+                UpdateCharacterBrain(character);
         }
         
         private void RegisterCharacters()
