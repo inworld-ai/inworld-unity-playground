@@ -349,6 +349,17 @@ namespace Inworld.Playground
         #endregion
         
         #region Enumerators
+        private IEnumerator ConnectToServer()
+        {
+            while (InworldController.Client.Status != InworldConnectionStatus.Connected)
+            {
+                if(InworldController.Client.Status == InworldConnectionStatus.Idle)
+                    InworldController.Instance.Init();
+                else if(InworldController.Client.Status == InworldConnectionStatus.Initialized)
+                    InworldController.Instance.Reconnect();
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+        }
         private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
         {
             string sceneToLoad = $"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}";
@@ -360,11 +371,18 @@ namespace Inworld.Playground
                 Pause(false);
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
-            
-            string currentInworldScene = m_CurrentInworldScene;
-            InworldController.Client.LoadScene(sceneToLoad);
-            
-            yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
+
+            if (InworldController.Client.Status != InworldConnectionStatus.Connected)
+            {
+                InworldController.Client.CurrentScene = sceneToLoad;
+                yield return StartCoroutine(ConnectToServer());
+            }
+            else
+            {
+                string currentInworldScene = m_CurrentInworldScene;
+                InworldController.Client.LoadScene(sceneToLoad);
+                yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
+            }
             
             if(currentCharacter)
                 InworldController.CurrentCharacter = currentCharacter;

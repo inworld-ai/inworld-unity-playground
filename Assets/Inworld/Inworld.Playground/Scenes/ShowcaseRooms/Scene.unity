@@ -9259,9 +9259,6 @@ MonoBehaviour:
   m_StartAsDay: 1
   m_DaySceneName: day
   m_NightSceneName: night
-  m_Interactables:
-  - {fileID: 24048744}
-  - {fileID: 1459320683}
   m_LightBulbSources:
   - {fileID: 99973388}
   - {fileID: 386403301}
