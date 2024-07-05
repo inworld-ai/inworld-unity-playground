@@ -7567,6 +7567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557b5e6070f371145a4041e3b1877a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SelectionIndicatorYOffset: 0.8
   m_InworldCharacter: {fileID: 884034637}
   m_SelectionIndicator: {fileID: 1934957228}
   m_CatObject: {fileID: 1389532195}
@@ -8961,8 +8962,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_TipText
-      value: You can interact with the UI panels using your mouse. The crosshair
-        will turn green when you are able to interact.
+      value: You can interact with the UI panels using your mouse. The reticle will
+        turn green when you are able to interact.
       objectReference: {fileID: 0}
     - target: {fileID: 7557243871365585421, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_ObjectToFace

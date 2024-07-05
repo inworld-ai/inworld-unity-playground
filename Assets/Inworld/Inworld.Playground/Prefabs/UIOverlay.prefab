@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 5564062964066480662}
   - component: {fileID: 8814362760820432137}
   m_Layer: 0
-  m_Name: Crosshair
+  m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
