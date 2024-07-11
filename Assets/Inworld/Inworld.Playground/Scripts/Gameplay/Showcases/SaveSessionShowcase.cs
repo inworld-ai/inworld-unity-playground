@@ -87,6 +87,8 @@ namespace Inworld.Playground
             yield return null;
             
             InworldController.CharacterHandler.Register(m_InworldCharacter);
+
+            yield return PlaygroundManager.Instance.Connect();
         }
         
         private void ClientOnStatusChanged(InworldConnectionStatus status)

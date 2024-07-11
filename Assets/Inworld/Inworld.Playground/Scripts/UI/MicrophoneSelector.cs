@@ -46,7 +46,8 @@ namespace Inworld.Playground
             m_MicButton.interactable = true;
             m_CalibrationButton.interactable = true;
             m_MicButton.image.sprite = m_MicOn;
-    #endif
+            IsRecording = m_MicButton.image.sprite == m_MicOn;
+#endif
         }
         
         /// <summary>
@@ -99,9 +100,17 @@ namespace Inworld.Playground
                 UpdateAudioInput(m_MicIndex);
             base.OnEnable();
         }
+
+        protected override void OnDisable()
+        {
+            IsRecording = false;
+            base.OnDisable();
+        }
         
         protected override IEnumerator Collect()
         {
+            if (!IsRecording) yield break;
+            
             GetAudioData();
             m_Volume.fillAmount = m_InputBuffer.Max();
             yield return null;

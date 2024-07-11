@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System.Collections;
 using Inworld.Entities;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,39 +24,33 @@ namespace Inworld.Playground
         [SerializeField] private Toggle m_LipsyncToggle;
 
         private Capabilities m_Capabilities;
+        private Coroutine m_CapabilityRequestCoroutine;
 
         private void Awake()
         {
             m_Capabilities = new Capabilities(InworldAI.Capabilities);
-            if(m_Button)
-                m_Button.interactable = false;
         }
         
-        private void OnEnable()
-        {
-            InworldController.Client.OnStatusChanged += OnStatusChanged;
-        }
-
-        private void OnDisable()
-        {
-            if(InworldController.Client)
-                InworldController.Client.OnStatusChanged -= OnStatusChanged;
-        }
-        
-        private void OnStatusChanged(InworldConnectionStatus status)
-        {
-            if(m_Button)
-                m_Button.interactable = status == InworldConnectionStatus.Connected;
-        }
-
         public void SendCapabilitiesRequest()
         {
+            if (m_CapabilityRequestCoroutine != null) return;
+
+            m_CapabilityRequestCoroutine = StartCoroutine(SendCapabilityRequestEnumerator());
+        }
+
+        IEnumerator SendCapabilityRequestEnumerator()
+        {
+            if(InworldController.Status != InworldConnectionStatus.Connected)
+                yield return PlaygroundManager.Instance.Connect();
+            
             m_Capabilities.audio = m_AudioToggle.isOn;
             m_Capabilities.emotions = m_EmotionToggle.isOn;
             m_Capabilities.relations = m_RelationToggle.isOn;
             m_Capabilities.phonemeInfo = m_LipsyncToggle.isOn;
             InworldAI.Capabilities = m_Capabilities;
             InworldController.Client.SendSessionConfig(false);
+
+            m_CapabilityRequestCoroutine = null;
         }
     }
 }

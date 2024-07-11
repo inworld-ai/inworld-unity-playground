@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837242077840291153, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1608077727732836083, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1244,11 +1248,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 2695766803936285698, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
@@ -1299,6 +1307,10 @@ PrefabInstance:
     - target: {fileID: 5346190362865170260, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235329346300545963, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6518984318588238720, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2511,9 +2523,9 @@ PrefabInstance:
     - target: {fileID: 6940687923261144442, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_text
       value: "Characters can remember previous conversations when you save the session.
-        \n\nTry asking Innequin to remember something, then restart the session and
-        see if he still remembers. Then try again, but this time hit 'Save' before
-        restarting the session.\r"
+        \n\nTry asking Memory Innequin to remember something, then restart the session
+        and see if they still remember. Then try again, but this time hit 'Save'
+        before restarting the session.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6940687923261144442, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_HorizontalAlignment

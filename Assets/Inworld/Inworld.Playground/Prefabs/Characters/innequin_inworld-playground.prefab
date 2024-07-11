@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_HeadTransform: {fileID: 6761323343535279898}
   m_PlayerTransform: {fileID: 0}
   m_SightAngle: 122
-  m_SightDistance: 5
+  m_SightDistance: 6
   m_PlayerAngleWeight: 1
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15

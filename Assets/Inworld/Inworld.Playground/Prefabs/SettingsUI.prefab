@@ -3764,7 +3764,7 @@ MonoBehaviour:
   m_BufferSeconds: 1
   m_AudioToPushCapacity: 100
   m_DeviceName: 
-  m_DetectPlayerSpeaking: 1
+  m_DetectPlayerSpeaking: 0
   m_AudioEvent:
     onStartCalibrating:
       m_PersistentCalls:

@@ -97,6 +97,14 @@ namespace Inworld.Playground
         }
         
         /// <summary>
+        ///     Connects to Inworld's servers.
+        /// </summary>
+        public Coroutine Connect()
+        {
+            return StartCoroutine(ConnectToServer());
+        }
+        
+        /// <summary>
         ///     Initialize and start the Playground demo.
         /// </summary>
         public void Play()
@@ -267,19 +275,7 @@ namespace Inworld.Playground
             }
 
             if (m_GameData != null)
-            {
-                string workspaceId = m_GameData.sceneFullName.Split('/')[1];
-
-                int vIndex = workspaceId.IndexOf('v');
-                if (vIndex == -1 || int.Parse(workspaceId.Substring(vIndex + 1)) != PlaygroundSettings.WorkspaceVersion)
-                {
-                    InworldAI.LogWarning($"The Playground workspace is outdated, switching to Setup scene. Please follow the setup process to clone the latest Playground workspace: inworld-playground-v{PlaygroundSettings.WorkspaceVersion}");
-                    SceneManager.LoadScene(SetupSceneName);
-                    m_SwitchingToSetup = true;
-                    return;
-                }
-                m_Settings.WorkspaceId = workspaceId;
-            }
+                m_Settings.WorkspaceId = m_GameData.sceneFullName.Split('/')[1];
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
