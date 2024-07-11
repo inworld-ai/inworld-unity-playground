@@ -23,7 +23,6 @@ namespace Inworld.Playground
         [SerializeField] private string m_DaySceneName = "day";
         [SerializeField] private string m_NightSceneName = "night";
         [Header("Objects")]
-        [SerializeField] private List<Interactable> m_Interactables;
         [SerializeField] private List<Light> m_LightBulbSources;
         [SerializeField] private List<MeshRenderer> m_LightBulbMeshRenderers;
         [SerializeField] private Light m_DayLightSource;
@@ -37,25 +36,6 @@ namespace Inworld.Playground
         private void Awake()
         {
             SetTimeOfDay(m_StartAsDay);
-            foreach (Interactable interactable in m_Interactables)
-                interactable.IsActive = false;
-        }
-        
-        private void OnEnable()
-        {
-            InworldController.Client.OnStatusChanged += OnStatusChanged;
-        }
-
-        private void OnDisable()
-        {
-            if(InworldController.Client)
-                InworldController.Client.OnStatusChanged -= OnStatusChanged;
-        }
-        
-        private void OnStatusChanged(InworldConnectionStatus status)
-        {
-            foreach (Interactable interactable in m_Interactables)
-                interactable.IsActive = status == InworldConnectionStatus.Connected;
         }
 
         private void SetTimeOfDay(bool isDay)

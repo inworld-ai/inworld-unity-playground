@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,32 +17,43 @@ namespace Inworld.Playground
     /// </summary>
     public class MutationControlUIPanel : MonoBehaviour
     {
+        [SerializeField] private float m_SelectionIndicatorYOffset = 0.8f;
         [SerializeField] private InworldCharacter m_InworldCharacter;
+        [SerializeField] private GameObject m_SelectionIndicator;
+        [SerializeField] private GameObject m_CatObject;
+        [SerializeField] private GameObject m_DogObject;
         
-        public void OnChocolateToggleValueChanged(bool value)
+        private string m_CurrentSelectedAnimal;
+
+        private void Awake()
         {
-            if (!value) return;
-            
-            m_InworldCharacter.SendTrigger("change_food_type", false, new Dictionary<string, string>()
-            {
-                {
-                    "favorite_food",
-                    "chocolate"
-                }
-            });
+            m_CurrentSelectedAnimal = "cat";
+            m_SelectionIndicator.transform.position = m_CatObject.transform.position + new Vector3(0, m_SelectionIndicatorYOffset, 0);
         }
 
-        public void OnPizzaToggleValueChanged(bool value)
+        public void OnCurrentSelectedAnimalChanged(string animalName)
         {
-            if (!value) return;
+            if (m_CurrentSelectedAnimal == animalName) return;
+
+            m_CurrentSelectedAnimal = animalName;
             
-            m_InworldCharacter.SendTrigger("change_food_type", false, new Dictionary<string, string>()
+            m_InworldCharacter.SendTrigger("change_favorite_animal", false, new Dictionary<string, string>()
             {
                 {
-                    "favorite_food",
-                    "pizza"
+                    "favorite_animal",
+                    m_CurrentSelectedAnimal
                 }
             });
+
+            switch (m_CurrentSelectedAnimal)
+            {
+                case "cat":
+                    m_SelectionIndicator.transform.position = m_CatObject.transform.position + new Vector3(0, m_SelectionIndicatorYOffset, 0);
+                    break;
+                case "dog":
+                    m_SelectionIndicator.transform.position = m_DogObject.transform.position + new Vector3(0, m_SelectionIndicatorYOffset, 0);
+                    break;
+            }
         }
     }
 }

@@ -11,10 +11,10 @@ using UnityEngine.UI;
 namespace Inworld.Playground
 {
     /// <summary>
-    ///     Handles updating the crosshair image.
+    ///     Handles updating the reticle image.
     /// </summary>
     [RequireComponent(typeof(Image))]
-    public class Crosshair : MonoBehaviour
+    public class Reticle : MonoBehaviour
     {
         [SerializeField] private Color m_InteractColor = Color.green;
         [SerializeField] private Color m_DefaultColor = Color.grey;

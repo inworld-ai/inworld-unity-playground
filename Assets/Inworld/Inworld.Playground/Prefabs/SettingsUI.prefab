@@ -1391,7 +1391,6 @@ MonoBehaviour:
   m_MicModePTTToggle: {fileID: 2108739124606228685}
   m_MicModeTurnBasedToggle: {fileID: 5070459923438176731}
   m_AECToggle: {fileID: 8551529117164444019}
-  m_ClientDropdown: {fileID: 5236987167991563390}
   m_PlayButton: {fileID: 0}
   m_ConnectButton: {fileID: 1165005314944758017}
   m_PlayerNameText: {fileID: 5919448220324923258}
@@ -1703,6 +1702,138 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2368614381559592540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900143992781839616}
+  - component: {fileID: 5443551584627843113}
+  - component: {fileID: 1576425646877833958}
+  - component: {fileID: 6062249838902657823}
+  m_Layer: 5
+  m_Name: BtnCalibrate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1900143992781839616
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368614381559592540}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8172651, y: 0.8172651, z: 0.8172651}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1271268272269794943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.7208, y: 30.7208}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5443551584627843113
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368614381559592540}
+  m_CullTransparentMesh: 1
+--- !u!114 &1576425646877833958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368614381559592540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cbc3190ba511d504a9b1fc134be8b74a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6062249838902657823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368614381559592540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+    m_PressedColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 1576425646877833958}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7807368858587438350}
+        m_TargetAssemblyTypeName: Inworld.AudioCapture, Inworld.AI
+        m_MethodName: Calibrate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2371013127194103758
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,10 +3378,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+    m_PressedColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3581,6 +3712,7 @@ RectTransform:
   - {fileID: 4961332764852005152}
   - {fileID: 4784504420282059872}
   - {fileID: 2144917056677600099}
+  - {fileID: 1900143992781839616}
   m_Father: {fileID: 1988159916390454957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3627,25 +3759,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SamplingMode: 1
+  m_PushToTalkKey: 0
   m_PlayerVolumeThreshold: 2
   m_BufferSeconds: 1
+  m_AudioToPushCapacity: 100
   m_DeviceName: 
-  OnRecordingStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnRecordingEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerStartSpeaking:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerStopSpeaking:
-    m_PersistentCalls:
-      m_Calls: []
+  m_DetectPlayerSpeaking: 0
+  m_AudioEvent:
+    onStartCalibrating:
+      m_PersistentCalls:
+        m_Calls: []
+    onStopCalibrating:
+      m_PersistentCalls:
+        m_Calls: []
+    onRecordingStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onRecordingEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onPlayerStartSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
+    onPlayerStopSpeaking:
+      m_PersistentCalls:
+        m_Calls: []
   m_Dropdown: {fileID: 846595095969076591}
   m_Text: {fileID: 4604778985008067055}
   m_Volume: {fileID: 2852785113981691308}
-  m_Button: {fileID: 563289954628526976}
+  m_MicButton: {fileID: 563289954628526976}
+  m_CalibrationButton: {fileID: 6062249838902657823}
   m_MicOn: {fileID: 21300000, guid: e30084443df9aaa449dceb2398ca713f, type: 3}
   m_MicOff: {fileID: 21300000, guid: 0f73a4fbbc74a2445ab76ee58ac7a675, type: 3}
 --- !u!1 &5659941324231712220

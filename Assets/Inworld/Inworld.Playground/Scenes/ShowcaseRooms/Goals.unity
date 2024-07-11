@@ -3045,6 +3045,14 @@ PrefabInstance:
       propertyPath: m_Data.givenName
       value: Patrol Innequin
       objectReference: {fileID: 0}
+    - target: {fileID: 992398165037816486, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_SightAngle
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 992398165037816486, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_SightDistance
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Controller
       value: 
@@ -9768,6 +9776,81 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1176807098
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1706917604}
+    m_Modifications:
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778646073423824933, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_Name
+      value: TipTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778646073423824933, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_TipText
+      value: You can interact with the UI panels using your mouse. The reticle will
+        turn green when you are able to interact.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557243871365585421, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_ObjectToFace
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+--- !u!4 &1176807099 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5765883770923247571, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+  m_PrefabInstance: {fileID: 1176807098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1188636832
 Mesh:
   m_ObjectHideFlags: 0
@@ -14465,6 +14548,38 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1706917603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1706917604}
+  m_Layer: 0
+  m_Name: Tips
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1706917604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706917603}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1176807099}
+  m_Father: {fileID: 1714411444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714411443
 GameObject:
   m_ObjectHideFlags: 0
@@ -14502,6 +14617,7 @@ Transform:
   - {fileID: 882290766}
   - {fileID: 3671185275378475336}
   - {fileID: 975771122}
+  - {fileID: 1706917604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1766832953
@@ -17603,6 +17719,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837242077840291153, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1608077727732836083, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -17715,11 +17835,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 2695766803936285698, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
@@ -17770,6 +17894,10 @@ PrefabInstance:
     - target: {fileID: 5346190362865170260, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235329346300545963, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6518984318588238720, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchorMax.y
@@ -18650,6 +18778,10 @@ PrefabInstance:
     - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Data.givenName
       value: Goals Innequin
+      objectReference: {fileID: 0}
+    - target: {fileID: 992398165037816486, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_SightAngle
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2346687256239508788, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_Controller

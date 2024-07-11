@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837242077840291153, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1608077727732836083, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1244,11 +1248,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 2695766803936285698, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964528930598859683, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
@@ -1299,6 +1307,10 @@ PrefabInstance:
     - target: {fileID: 5346190362865170260, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235329346300545963, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6518984318588238720, guid: 96057b90cace03542a94ca167e5ecfde, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2511,9 +2523,9 @@ PrefabInstance:
     - target: {fileID: 6940687923261144442, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_text
       value: "Characters can remember previous conversations when you save the session.
-        \n\nTry asking Innequin to remember something, then restart the session and
-        see if he still remembers. Then try again, but this time hit 'Save' before
-        restarting the session.\r"
+        \n\nTry asking Memory Innequin to remember something, then restart the session
+        and see if they still remember. Then try again, but this time hit 'Save'
+        before restarting the session.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6940687923261144442, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -4818,7 +4830,7 @@ MonoBehaviour:
   m_RestartButton: {fileID: 1107168383}
   m_ClearButton: {fileID: 792659093}
   m_SaveDataText: {fileID: 1989118490}
-  m_InnequinCharacterPrefab: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+  m_InnequinCharacterPrefab: {fileID: 6225786390647554280, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
   m_InworldCharacter: {fileID: 1511740140}
 --- !u!114 &1276607763
 MonoBehaviour:
@@ -5131,83 +5143,10 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1001 &1511740139
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 712578776}
-    m_Modifications:
-    - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_Data.brainName
-      value: workspaces/inworld-playground-v2/characters/memory_innequin
-      objectReference: {fileID: 0}
-    - target: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_Data.givenName
-      value: Memory Innequin
-      objectReference: {fileID: 0}
-    - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722740852517928817, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_Name
-      value: innequin_inworld-playground
-      objectReference: {fileID: 0}
-    - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_SightAngle
-      value: 180
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
 --- !u!114 &1511740140 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -1426748583640960597, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-  m_PrefabInstance: {fileID: 1511740139}
+  m_CorrespondingSourceObject: {fileID: 8926081465423613490, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+  m_PrefabInstance: {fileID: 2575430872742371293}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -5217,8 +5156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!4 &1511740141 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3407097576415040009, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-  m_PrefabInstance: {fileID: 1511740139}
+  m_CorrespondingSourceObject: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+  m_PrefabInstance: {fileID: 2575430872742371293}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1580309817
 GameObject:
@@ -7843,8 +7782,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_TipText
-      value: You can interact with the UI panels using your mouse. The crosshair
-        will turn green when you are able to interact.
+      value: You can interact with the UI panels using your mouse. The reticle will
+        turn green when you are able to interact.
       objectReference: {fileID: 0}
     - target: {fileID: 7557243871365585421, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_ObjectToFace
@@ -8018,6 +7957,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8729821585386009650, guid: 1df9bc52a1b1d2342bd355c5848ca629, type: 3}
   m_PrefabInstance: {fileID: 2528904321049943177}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2575430872742371293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 712578776}
+    m_Modifications:
+    - target: {fileID: 3732924920289035883, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081551288638909840, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225786390647554280, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
+      propertyPath: m_Name
+      value: innequin_inworld-playground
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a62eda82c184834d8eb650050d851b9, type: 3}
 --- !u!1001 &6734138368098280398
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -82,10 +82,13 @@ namespace Inworld.Playground
             yield return new WaitWhile(() => InworldController.Status == InworldConnectionStatus.Connected);
 
             m_InworldCharacter = Instantiate(m_InnequinCharacterPrefab, characterPosition, characterRotation, parentTransform).GetComponent<InworldCharacter>();
-
+            PlaygroundManager.Instance.UpdateCharacterBrain(m_InworldCharacter);
+            
             yield return null;
             
             InworldController.CharacterHandler.Register(m_InworldCharacter);
+
+            yield return PlaygroundManager.Instance.Connect();
         }
         
         private void ClientOnStatusChanged(InworldConnectionStatus status)

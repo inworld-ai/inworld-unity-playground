@@ -55,6 +55,7 @@ namespace Inworld.Playground
         private Scene m_CurrentScene;
         private string m_CurrentInworldScene;
         private bool m_Paused;
+        private bool m_SwitchingToSetup;
         
         /// <summary>
         ///     Loads the current Game Data object into the Inworld Controller for the Playground Workspace.
@@ -93,6 +94,14 @@ namespace Inworld.Playground
         {
             if(m_SceneChangeCoroutine == null)
                 m_SceneChangeCoroutine = StartCoroutine(ChangeSceneEnumerator(sceneName));
+        }
+        
+        /// <summary>
+        ///     Connects to Inworld's servers.
+        /// </summary>
+        public Coroutine Connect()
+        {
+            return StartCoroutine(ConnectToServer());
         }
         
         /// <summary>
@@ -141,6 +150,15 @@ namespace Inworld.Playground
 
             m_Paused = false;
             OnPlay?.Invoke();
+        }
+        
+        /// <summary>
+        ///     Updates the Brain Name of an Inworld character with the current Workspace ID.
+        /// </summary>
+        /// <param name="character">The Inworld character to update.</param>
+        public void UpdateCharacterBrain(InworldCharacter character)
+        {
+            character.Data.brainName = $"workspaces/{m_Settings.WorkspaceId}/characters/{character.Data.brainName.Split('/')[3]}";
         }
         
         /// <summary>
@@ -252,22 +270,12 @@ namespace Inworld.Playground
             {
                 InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
                 SceneManager.LoadScene(SetupSceneName);
+                m_SwitchingToSetup = true;
                 return;
             }
 
             if (m_GameData != null)
-            {
-                string workspaceId = m_GameData.sceneFullName.Split('/')[1];
-
-                int vIndex = workspaceId.IndexOf('v');
-                if (vIndex == -1 || int.Parse(workspaceId.Substring(vIndex + 1)) != PlaygroundSettings.WorkspaceVersion)
-                {
-                    InworldAI.LogWarning($"The Playground workspace is outdated, switching to Setup scene. Please follow the setup process to clone the latest Playground workspace: inworld-playground-v{PlaygroundSettings.WorkspaceVersion}");
-                    SceneManager.LoadScene(SetupSceneName);
-                    return;
-                }
-                m_Settings.WorkspaceId = workspaceId;
-            }
+                m_Settings.WorkspaceId = m_GameData.sceneFullName.Split('/')[1];
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
@@ -299,6 +307,8 @@ namespace Inworld.Playground
 
         private void Update()
         {
+            if (m_CurrentScene.name == SetupSceneName) return;
+            
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if(!m_GameMenu.activeSelf)
@@ -333,12 +343,28 @@ namespace Inworld.Playground
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             m_CurrentScene = scene;
+            if(m_CurrentScene.name == SetupSceneName)
+                m_SwitchingToSetup = false;
+
+            if (m_SwitchingToSetup) return;
+            
             if (m_CurrentScene.name != SetupSceneName && m_GameData != null)
                 StartCoroutine(SetupScene());
         }
         #endregion
         
         #region Enumerators
+        private IEnumerator ConnectToServer()
+        {
+            while (InworldController.Client.Status != InworldConnectionStatus.Connected)
+            {
+                if(InworldController.Client.Status == InworldConnectionStatus.Idle)
+                    InworldController.Instance.Init();
+                else if(InworldController.Client.Status == InworldConnectionStatus.Initialized)
+                    InworldController.Instance.Reconnect();
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+        }
         private IEnumerator ChangeInworldSceneEnumerator(string sceneName, bool pause = true)
         {
             string sceneToLoad = $"workspaces/{m_Settings.WorkspaceId}/scenes/{sceneName}";
@@ -350,11 +376,18 @@ namespace Inworld.Playground
                 Pause(false);
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
-            
-            string currentInworldScene = m_CurrentInworldScene;
-            InworldController.Client.LoadScene(sceneToLoad);
-            
-            yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
+
+            if (InworldController.Client.Status != InworldConnectionStatus.Connected)
+            {
+                InworldController.Client.CurrentScene = sceneToLoad;
+                yield return StartCoroutine(ConnectToServer());
+            }
+            else
+            {
+                string currentInworldScene = m_CurrentInworldScene;
+                InworldController.Client.LoadScene(sceneToLoad);
+                yield return new WaitUntil(() => currentInworldScene != m_CurrentInworldScene || InworldController.Client.Status != InworldConnectionStatus.Connected);
+            }
             
             if(currentCharacter)
                 InworldController.CurrentCharacter = currentCharacter;
@@ -472,7 +505,7 @@ namespace Inworld.Playground
             var characters = FindObjectsOfType<InworldCharacter>(true);
 #endif
             foreach (var character in characters)
-                character.Data.brainName = $"workspaces/{m_Settings.WorkspaceId}/characters/{character.Data.brainName.Split('/')[3]}";
+                UpdateCharacterBrain(character);
         }
         
         private void RegisterCharacters()

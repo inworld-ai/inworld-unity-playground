@@ -9,6 +9,7 @@
 
 using Inworld.Sample;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Inworld.Playground
 {
@@ -17,6 +18,8 @@ namespace Inworld.Playground
     /// </summary>
     public class PlaygroundStatusPanel : StatusPanel
     {
+        [SerializeField] private Color m_StatusPanelBackgroundColor;
+        [SerializeField] private Image m_StatusPanelBackground;
         private void Awake()
         {
             if (m_Board)
@@ -47,6 +50,7 @@ namespace Inworld.Playground
         {
             if (m_Board)
                 m_Board.SetActive(false);
+            m_StatusPanelBackground.color = m_StatusPanelBackgroundColor;
         }
         
         void OnStartInworldSceneChange()

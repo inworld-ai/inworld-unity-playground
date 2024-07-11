@@ -7452,6 +7452,8 @@ MonoBehaviour:
   m_Indicator: {fileID: 399670652562362028}
   m_Error: {fileID: 1676412510569029844}
   m_NoMic: {fileID: 0}
+  m_StatusPanelBackgroundColor: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_StatusPanelBackground: {fileID: 8829145138459346862}
 --- !u!1 &6946270576473902794
 GameObject:
   m_ObjectHideFlags: 0

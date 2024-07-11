@@ -37,7 +37,7 @@ namespace Inworld.Playground
         [SerializeField] private float m_MoveSpeed = 5;
         [Range(0, 1)]
         [SerializeField] private float m_MoveInterpolationFactor = 0.6f;
-        [SerializeField] private float m_RotSpeed = 2;
+        [SerializeField] private float m_RotationSpeed = 2;
         
         private FeedbackCanvas m_FeedbackDlg;
         private CharacterController m_CharacterController;
@@ -112,7 +112,7 @@ namespace Inworld.Playground
             
             Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
 
-            Vector3 newEuler = m_Camera.transform.localEulerAngles + mouseDelta * m_RotSpeed;
+            Vector3 newEuler = m_Camera.transform.localEulerAngles + mouseDelta * m_RotationSpeed;
             float xClamped = Mathf.Clamp(newEuler.x, newEuler.x <= 180 ? -89f : 271, newEuler.x <= 180 ? 89f : 360);
             m_Camera.transform.localEulerAngles = new Vector3(xClamped, newEuler.y, newEuler.z);
 

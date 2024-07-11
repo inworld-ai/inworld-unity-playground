@@ -23,7 +23,8 @@ namespace Inworld.Playground
         [SerializeField] TMP_Dropdown m_Dropdown;
         [SerializeField] TMP_Text m_Text;
         [SerializeField] Image m_Volume;
-        [SerializeField] Button m_Button;
+        [SerializeField] Button m_MicButton;
+        [SerializeField] Button m_CalibrationButton;
         [SerializeField] Sprite m_MicOn;
         [SerializeField] Sprite m_MicOff;
 
@@ -42,9 +43,11 @@ namespace Inworld.Playground
             m_MicIndex = nIndex;
             ChangeInputDevice(Microphone.devices[m_MicIndex]);
             PlaygroundManager.Instance.SetMicrophoneDevice(Microphone.devices[m_MicIndex]);
-            m_Button.interactable = true;
-            m_Button.image.sprite = m_MicOn;
-    #endif
+            m_MicButton.interactable = true;
+            m_CalibrationButton.interactable = true;
+            m_MicButton.image.sprite = m_MicOn;
+            IsRecording = m_MicButton.image.sprite == m_MicOn;
+#endif
         }
         
         /// <summary>
@@ -52,18 +55,18 @@ namespace Inworld.Playground
         /// </summary>
         public void UpdateMicrophoneMute()
         {
-            if (!m_Button.interactable)
+            if (!m_MicButton.interactable)
                 return;
-            if (m_Button.image.sprite == m_MicOn)
+            if (m_MicButton.image.sprite == m_MicOn)
             {
                 IsRecording = false;
-                m_Button.image.sprite = m_MicOff;
+                m_MicButton.image.sprite = m_MicOff;
                 m_Volume.fillAmount = 0;
             }
             else
             {
                 IsRecording = true;
-                m_Button.image.sprite = m_MicOn;
+                m_MicButton.image.sprite = m_MicOn;
             }
         }
         
@@ -97,9 +100,17 @@ namespace Inworld.Playground
                 UpdateAudioInput(m_MicIndex);
             base.OnEnable();
         }
+
+        protected override void OnDisable()
+        {
+            IsRecording = false;
+            base.OnDisable();
+        }
         
         protected override IEnumerator Collect()
         {
+            if (!IsRecording) yield break;
+            
             GetAudioData();
             m_Volume.fillAmount = m_InputBuffer.Max();
             yield return null;

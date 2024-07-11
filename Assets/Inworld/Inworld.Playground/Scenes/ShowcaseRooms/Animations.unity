@@ -5179,6 +5179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gesture_george_inworld-playground
       objectReference: {fileID: 0}
+    - target: {fileID: 9140899352933009873, guid: 9756c3ae12876ce45aeb9a6ccffad370, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9574,8 +9578,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_TipText
-      value: You can interact with the UI panels using your mouse. The crosshair
-        will turn green when you are able to interact.
+      value: You can interact with the UI panels using your mouse. The reticle will
+        turn green when you are able to interact.
       objectReference: {fileID: 0}
     - target: {fileID: 7557243871365585421, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_ObjectToFace
