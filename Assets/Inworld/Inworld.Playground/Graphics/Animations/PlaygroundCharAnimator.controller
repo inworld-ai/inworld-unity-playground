@@ -4019,10 +4019,10 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Gesture Layer
     m_StateMachine: {fileID: -4258127041013975361}
-    m_Mask: {fileID: 31900000, guid: 1be67ef3e0fe9434d9d3bb4c1733b78b, type: 2}
+    m_Mask: {fileID: 31900000, guid: 4f5b5e8aabf0aef4e96a7edcfbdddb32, type: 2}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 1
