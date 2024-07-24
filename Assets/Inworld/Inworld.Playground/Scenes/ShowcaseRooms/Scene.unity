@@ -9377,8 +9377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartAsDay: 1
-  m_DaySceneName: day
-  m_NightSceneName: night
+  m_DaySceneName: scene_room_daytime
+  m_NightSceneName: scene_room_nighttime
   m_LightBulbSources:
   - {fileID: 99973388}
   - {fileID: 386403301}

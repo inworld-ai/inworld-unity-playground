@@ -22,26 +22,28 @@ namespace Inworld.Playground
         
         [SerializeField] NavMeshAgent m_NavMeshAgent;
 
-        protected override void OnCharacterStartSpeaking(string brainName)
-        {
-            if (m_NavMeshAgent && m_NavMeshAgent.velocity.magnitude == 0)
-                base.OnCharacterStartSpeaking(brainName);
-        }
-
-        protected override void OnCharacterEndSpeaking(string brainName)
-        {
-            if (m_NavMeshAgent && m_NavMeshAgent.velocity.magnitude == 0)
-                base.OnCharacterEndSpeaking(brainName);
-        }
-
         void Update()
         {
             if (!m_NavMeshAgent) return;
-            
+
             if (m_NavMeshAgent.velocity.magnitude > 0)
-                m_BodyAnimator.SetInteger(s_Motion, MovementAnimMainStatus);
-            else if (m_BodyAnimator.GetInteger(s_Motion) == MovementAnimMainStatus)
-                HandleMainStatus(AnimMainStatus.Neutral);
+            {
+                if(m_BodyAnimator.GetInteger(s_Motion) != MovementAnimMainStatus)
+                    m_BodyAnimator.SetInteger(s_Motion, MovementAnimMainStatus);
+            }
+            else
+            {
+                if (m_BodyAnimator.GetInteger(s_Motion) == MovementAnimMainStatus)
+                    HandleMainStatus(AnimMainStatus.Neutral);
+            }
+        }
+
+        protected override void HandleMainStatus(AnimMainStatus status)
+        {
+            if (m_NavMeshAgent && m_NavMeshAgent.velocity.magnitude > 0)
+                return;
+
+            base.HandleMainStatus(status);
         }
         
         protected override void HandleEmotion(EmotionPacket packet)
