@@ -28,7 +28,7 @@ namespace Inworld.Playground
         
         static string[] s_CompletePackageAssetPathNames = 
         {
-            "Assets/Inworld/Editor",
+            "Assets/Inworld/Inworld.Playground/Scripts/Editor",
             "Assets/Inworld/InworldPlaygroundAssets.unitypackage",
             "Assets/Inworld/com.inworld.unity.core-3.4.0.tgz"
         };
