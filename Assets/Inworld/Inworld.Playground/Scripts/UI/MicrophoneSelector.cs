@@ -107,12 +107,13 @@ namespace Inworld.Playground
             base.OnDisable();
         }
         
-        protected override void Collect()
+        protected override bool Collect()
         {
-            if (!IsRecording) return;
+            if (!IsRecording) return false;
             
             GetAudioData();
             m_Volume.fillAmount = IsRecording ? CalculateSNR() * 0.05f : 0f;
+            return true;
         }
         
     }

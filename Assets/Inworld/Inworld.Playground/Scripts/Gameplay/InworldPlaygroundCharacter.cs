@@ -51,28 +51,30 @@ namespace Inworld.Playground
             InworldController.CharacterHandler.Register(this);
         }
         
-        protected override void HandleText(TextPacket packet)
+        protected override bool HandleText(TextPacket packet)
         {
             if (packet.text == null || string.IsNullOrWhiteSpace(packet.text.text))
-                return;
+                return false;
             
             base.HandleText(packet);
             
             if (packet.Source == SourceType.AGENT && packet.IsSource(ID))
                 Subtitle.Instance.SetSubtitle(Name, packet.text.text);
+            return true;
         }
         
-        protected override void HandleTrigger(CustomPacket customPacket)
+        protected override bool HandleTrigger(CustomPacket customPacket)
         {
             base.HandleTrigger(customPacket);
             
             if (customPacket.Message == InworldMessage.RelationUpdate)
-                return;
+                return true;
             
             var parameterDictionary = new Dictionary<string, string>();
             foreach (var parameter in customPacket.custom.parameters)
                 parameterDictionary.Add(parameter.name, parameter.value);
             onServerTrigger.Invoke(customPacket.TriggerName, parameterDictionary);
+            return true;
         }
     }
 }

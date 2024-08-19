@@ -42,7 +42,7 @@ namespace Inworld.Sample.RPM
         /// <summary>
         /// Mute/Unmute the microphone.
         /// </summary>
-        public void nMicrophoneControl(bool isOn)
+        public void MicrophoneControl(bool isOn)
         {
             InworldController.Audio.AutoDetectPlayerSpeaking = !isOn;
         }
