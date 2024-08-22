@@ -5,24 +5,18 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Inworld.Playground
+namespace Inworld.Map
 {
-    public class EntityManager : MonoBehaviour
+    [CreateAssetMenu(fileName = "Entity", menuName = "Inworld/Entity Item")]
+    public class Entity : ScriptableObject
     {
-        private List<EntityItem> items;
-        private void Awake()
-        {
-            items = new List<EntityItem>(FindObjectsOfType<EntityItem>());
-        }
+        public string ID => id;
+        public List<Task> Tasks => tasks;
 
-        private void Start()
-        {
-            foreach (EntityItem item in items)
-                InworldController.Client.CreateItems(new List<Packet.EntityItem>() { item.Get() }, item.GetEntities());
-        }
+        [SerializeField] private string id;
+        [SerializeField] private List<Task> tasks;
     }
 }

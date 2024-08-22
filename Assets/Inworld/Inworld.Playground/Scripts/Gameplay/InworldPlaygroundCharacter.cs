@@ -50,7 +50,7 @@ namespace Inworld.Playground
         {
             InworldController.CharacterHandler.Register(this);
         }
-        
+
         protected override bool HandleText(TextPacket packet)
         {
             if (packet.text == null || string.IsNullOrWhiteSpace(packet.text.text))

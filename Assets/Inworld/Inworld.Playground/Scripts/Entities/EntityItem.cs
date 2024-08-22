@@ -7,10 +7,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Inworld.Playground
+namespace Inworld.Map
 {
 #if UNITY_EDITOR
     [CustomEditor(typeof(EntityItem))]
@@ -45,7 +46,7 @@ namespace Inworld.Playground
         [SerializeField]
         private List<Property> m_Properties;
         [SerializeField]
-        private List<string> m_Entities;
+        private List<Entity> m_Entities;
 
         private Dictionary<string, string> m_PropertiesDictionary = new Dictionary<string, string>();
 
@@ -60,9 +61,9 @@ namespace Inworld.Playground
             return new Packet.EntityItem(m_ID, m_DisplayName, m_Description, m_PropertiesDictionary);
         }
 
-        public List<string> GetEntities()
+        public List<string> GetEntityIDs()
         {
-            return m_Entities;
+            return new List<string>(m_Entities.Select(entity => entity.ID));
         }
     }
 }
