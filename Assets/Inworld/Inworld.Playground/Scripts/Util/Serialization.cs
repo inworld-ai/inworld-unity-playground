@@ -45,9 +45,10 @@ namespace Inworld.Playground
         /// the Unity editor.</returns>
         public static InworldGameData GetGameData()
         {
-            InworldGameData gameData = null;
+            InworldGameData gameData = InworldController.Instance.GameData;
 #if UNITY_EDITOR
-            gameData = AssetDatabase.LoadAssetAtPath<InworldGameData>(GetGameDataPath());
+            if(!gameData)
+                gameData = AssetDatabase.LoadAssetAtPath<InworldGameData>(GetGameDataPath());
 #endif
             return gameData;
         }

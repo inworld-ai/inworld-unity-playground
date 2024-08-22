@@ -111,6 +111,9 @@ InworldExtraAssets.unitypackage.meta
 PlaygroundAssets/
 PlaygroundAssets.meta
 
+# Dev
+Ignore/
+
 # Mac
 .DS_Store
 
