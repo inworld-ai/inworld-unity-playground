@@ -31,6 +31,10 @@ namespace Inworld.Map
 #endif
     public class EntityItem : MonoBehaviour
     {
+        public string ID => m_ID;
+        public string DisplayName => m_DisplayName;
+        public string Description => m_Description;
+        
         [Serializable]
         public struct Property
         {

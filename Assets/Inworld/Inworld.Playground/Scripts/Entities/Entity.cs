@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Inworld.Map
 {
-    [CreateAssetMenu(fileName = "Entity", menuName = "Inworld/Entity Item")]
+    [CreateAssetMenu(fileName = "Entity", menuName = "Inworld/Entity")]
     public class Entity : ScriptableObject
     {
         public string ID => id;

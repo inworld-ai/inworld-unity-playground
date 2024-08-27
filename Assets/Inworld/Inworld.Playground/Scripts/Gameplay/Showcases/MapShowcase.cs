@@ -11,7 +11,7 @@ namespace Inworld.Playground
     public class MapShowcase : MonoBehaviour
     {
         [SerializeField] private InworldCharacter m_InworldCharacter;
-        void Start()
+        void Awake()
         {
             InworldController.CurrentCharacter = m_InworldCharacter;
         }

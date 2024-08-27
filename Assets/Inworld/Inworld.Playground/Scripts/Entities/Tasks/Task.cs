@@ -5,29 +5,38 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System.Collections;
+using System.Collections.Generic;
+using Inworld.Packet;
 using UnityEngine;
 
 namespace Inworld.Map
 {
     public abstract class Task : ScriptableObject
     {
-        public string ID => id;
-        [SerializeField] private string id;
-        public abstract bool PerformTask(InworldCharacter inworldCharacter);
-    }
-    [CreateAssetMenu(fileName = "GoTask", menuName = "Inworld/Tasks/GoTask")]
-    public class GoTask : Task
-    {
-        [SerializeField] private Transform destinationTransform;
+        public string ID => m_Id;
+        [SerializeField] private string m_Id;
+        public abstract IEnumerator Perform(InworldCharacter inworldCharacter, List<TriggerParameter> parameters);
 
-        public override bool PerformTask(InworldCharacter inworldCharacter)
+        protected Dictionary<string, string> ParseParameters(List<TriggerParameter> parameters)
         {
-            // NavMeshAgent navMeshAgent = inworldCharacter.GetComponent<NavMeshAgent>();
-            // if (navMeshAgent && NavMesh.FindClosestEdge(destinationTransform.position, out NavMeshHit navMeshHit, NavMesh.AllAreas))
-            // {
-            //     
-            // }
-            return false;
+            Dictionary<string, string> parameterDictionary = new Dictionary<string, string>();
+            foreach (TriggerParameter triggerParameter in parameters)
+                parameterDictionary.Add(triggerParameter.name, triggerParameter.value);
+            return parameterDictionary;
+        }
+        
+        
+    }
+
+    public abstract class ItemTask : Task
+    {
+        [SerializeField] protected float m_ItemNearbyThreshold = 2;
+        
+        protected virtual bool IsItemNearby(InworldCharacter inworldCharacter, EntityItem entityItem)
+        {
+            return Vector2.Distance(new Vector2(inworldCharacter.transform.position.x, inworldCharacter.transform.position.z),
+                       new Vector2(entityItem.transform.position.x, entityItem.transform.position.z)) <= m_ItemNearbyThreshold;
         }
     }
 }
