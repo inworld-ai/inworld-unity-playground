@@ -369,7 +369,7 @@ MonoBehaviour:
   - Key: location
     Value: At the lower left corner of the room.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-large-object
+  - {fileID: 0}
 --- !u!1001 &314383296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,7 +581,7 @@ MonoBehaviour:
   - Key: location
     Value: In the center of the room.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-no-task
+  - {fileID: 0}
 --- !u!1 &348273593
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +689,7 @@ MonoBehaviour:
   - Key: location
     Value: At the lower center of the room.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-no-task
+  - {fileID: 0}
 --- !u!43 &432651848
 Mesh:
   m_ObjectHideFlags: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
   - Key: location
     Value: On the table.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-small-object
+  - {fileID: 0}
 --- !u!1 &581838856
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,12 +930,12 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   - Key: location
     Value: At the upper right corner of the room.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-small-object
+  - {fileID: 0}
 --- !u!65 &582209783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   - Key: state
     Value: The lightbulb is off and not producing any light.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-decorative
+  - {fileID: 0}
 --- !u!1001 &942435817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3482,7 +3482,7 @@ MonoBehaviour:
   - Key: state
     Value: The lever is currently up (off).
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-lever
+  - {fileID: 0}
 --- !u!1 &1365703444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,7 +5256,7 @@ MonoBehaviour:
   - Key: location
     Value: In the middle of the room.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-large-object
+  - {fileID: 0}
 --- !u!1 &1590452215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7178384172046175521, guid: c885cf5e9c39dfb45a9d48fc577a744a, type: 3}
@@ -5313,6 +5313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695a9e261ecdde448af969d7e7c8ca97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entities: []
 --- !u!43 &1694391952
 Mesh:
   m_ObjectHideFlags: 0
@@ -5876,7 +5877,7 @@ MonoBehaviour:
   - Key: state
     Value: The crate is currently closed.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-crate
+  - {fileID: 0}
 --- !u!1001 &2020276677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7537,7 +7538,7 @@ MonoBehaviour:
   - Key: location
     Value: In the center of the upper wall.
   m_Entities:
-  - workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-decorative
+  - {fileID: 0}
 --- !u!4 &2207652343711800768
 Transform:
   m_ObjectHideFlags: 0
