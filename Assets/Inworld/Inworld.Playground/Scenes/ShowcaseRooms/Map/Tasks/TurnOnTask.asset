@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ffee80317574e40a3cb8b8184d6ac7, type: 3}
   m_Name: TurnOnTask
   m_EditorClassIdentifier: 
-  id: 
-  m_MaxHitDistance: 5
-  m_DestinationReachedThreshold: 0.1
+  m_Id: turn_on
+  m_ItemNearbyThreshold: 2

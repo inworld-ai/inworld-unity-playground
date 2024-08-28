@@ -16,38 +16,37 @@ namespace Inworld.Map
     public class PutTask : ItemTask
     {
         [SerializeField] private float m_ItemPlacementYOffset = 1;
-        public override IEnumerator Perform(InworldCharacter inworldCharacter, List<TriggerParameter> parameters)
+        public override IEnumerator Perform(InworldCharacter inworldCharacter, Dictionary<string, string> parameters)
         {
-            Dictionary<string, string> parameterDictionary = ParseParameters(parameters);
-            if (!parameterDictionary.TryGetValue("what", out string whatItemID) || !EntityManager.Instance.FindItem(whatItemID, out EntityItem whatEntityItem))
+            if (!parameters.TryGetValue("what", out string whatItemID) || !EntityManager.Instance.FindItem(whatItemID, out EntityItem whatEntityItem))
             {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Failed to find item: {whatItemID}.");
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Failed to find item: {whatItemID}.", parameters);
                 yield break;
             }
 
             Inventory inventory = inworldCharacter.GetComponent<Inventory>();
             if (!inventory || !inventory.Contains(whatItemID))
             {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"{inworldCharacter.Name} does not have the item: {whatEntityItem}.");
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"{inworldCharacter.Name} does not have the item: {whatEntityItem}.", parameters);
                 yield break;
             }
             
-            if (!parameterDictionary.TryGetValue("where", out string whereItemID) || !EntityManager.Instance.FindItem(whereItemID, out EntityItem whereEntityItem))
+            if (!parameters.TryGetValue("where", out string whereItemID) || !EntityManager.Instance.FindItem(whereItemID, out EntityItem whereEntityItem))
             {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Failed to find item: {whereItemID}.");
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Failed to find item: {whereItemID}.", parameters);
                 yield break;
             }
             
             if (!IsItemNearby(inworldCharacter, whereEntityItem))
             {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Item is too far away: {whereItemID}.");
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Item is too far away: {whereItemID}.", parameters);
                 yield break;
             }
             
             Collider itemCollider = whereEntityItem.GetComponentInChildren<Collider>();
             if (!itemCollider)
             {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Item can not have objects placed on top of it: {whereItemID}.");
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Item can not have objects placed on top of it: {whereItemID}.", parameters);
                 yield break;
             }
 
@@ -55,7 +54,9 @@ namespace Inworld.Map
             
             inventory.RemoveItem(whatEntityItem);
             whatEntityItem.gameObject.SetActive(true);
-            EntityManager.Instance.CompleteTask(this, inworldCharacter);
+            InworldAI.Log($"{inworldCharacter.Name} placed item: {whatEntityItem.DisplayName} on {whereEntityItem.DisplayName}");
+            whatEntityItem.UpdateProperty("location", $"On {whereEntityItem.DisplayName}.");
+            EntityManager.Instance.CompleteTask(this, inworldCharacter, parameters);
         }
     }
 }

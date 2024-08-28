@@ -48,16 +48,31 @@ namespace Inworld.Map
         [SerializeField]
         private string m_Description;
         [SerializeField]
+        private bool m_CreateOnStart = true;
+        [SerializeField]
         private List<Property> m_Properties;
         [SerializeField]
         private List<Entity> m_Entities;
 
         private Dictionary<string, string> m_PropertiesDictionary = new Dictionary<string, string>();
 
-        private void Awake()
+        public void UpdateDescription(string description, bool sync = true)
         {
-            foreach (Property property in m_Properties)
-                m_PropertiesDictionary.Add(property.Key, property.Value);
+            m_Description = description;
+            if(sync)
+                EntityManager.Instance.UpdateItem(this);
+        }
+
+        public bool UpdateProperty(string key, string value, bool sync = true)
+        {
+            if (m_PropertiesDictionary.ContainsKey(key))
+            {
+                m_PropertiesDictionary[key] = value;
+                if(sync)
+                    EntityManager.Instance.UpdateItem(this);
+                return true;
+            }
+            return false;
         }
 
         public Packet.EntityItem Get()
@@ -68,6 +83,24 @@ namespace Inworld.Map
         public List<string> GetEntityIDs()
         {
             return new List<string>(m_Entities.Select(entity => entity.ID));
+        }
+
+        protected virtual void Awake()
+        {
+            foreach (Property property in m_Properties)
+                m_PropertiesDictionary.Add(property.Key, property.Value);
+        }
+
+        protected virtual void Start()
+        {
+            if(m_CreateOnStart)
+                EntityManager.Instance.AddItem(this);
+        }
+
+        protected void OnDestroy()
+        {
+            if(EntityManager.Instance)
+                EntityManager.Instance.RemoveItem(this);
         }
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3b3dfa78590249addcfc9ceebb108, type: 3}
   m_Name: GoTask
   m_EditorClassIdentifier: Assembly-CSharp:Inworld.Map:GoTask
-  id: go
+  m_Id: go
   m_MaxHitDistance: 5
   m_DestinationReachedThreshold: 0.1

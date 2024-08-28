@@ -7,6 +7,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Inworld.Packet;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,15 +17,16 @@ namespace Inworld.Map
     [CreateAssetMenu(fileName = "ExamineTask", menuName = "Inworld/Tasks/ExamineTask")]
     public class ExamineTask : Task
     {
-        public override IEnumerator Perform(InworldCharacter inworldCharacter, List<TriggerParameter> parameters)
+        public override IEnumerator Perform(InworldCharacter inworldCharacter, Dictionary<string, string> parameters)
         {
-            Dictionary<string, string> parameterDictionary = ParseParameters(parameters);
-            if (parameterDictionary.TryGetValue("what", out string itemID) && EntityManager.Instance.FindItem(itemID, out EntityItem entityItem))
+            if (parameters.TryGetValue("what", out string itemID) && EntityManager.Instance.FindItem(itemID, out EntityItem entityItem))
             {
-                InworldAI.Log($"{inworldCharacter.Name} examines {entityItem.DisplayName}.");
-                EntityManager.Instance.CompleteTask(this, inworldCharacter);
+                string log = $"{inworldCharacter.Name} examines {entityItem.DisplayName}: {entityItem.Description}";
+                log = parameters.Aggregate(log, (current, param) => current + $"\n{param.Key}: {param.Value}");
+                InworldAI.Log(log);
+                EntityManager.Instance.CompleteTask(this, inworldCharacter, parameters);
             } else 
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Failed to find item: {itemID}.");
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Failed to find item: {itemID}.", parameters);
             yield break;
         }
     }

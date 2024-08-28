@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9913db1dae8be1842968313e4d6ba276, type: 3}
   m_Name: ExamineTask
   m_EditorClassIdentifier: 
-  id: 
-  m_MaxHitDistance: 5
-  m_DestinationReachedThreshold: 0.1
+  m_Id: examine

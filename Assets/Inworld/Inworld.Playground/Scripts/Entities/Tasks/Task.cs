@@ -16,17 +16,7 @@ namespace Inworld.Map
     {
         public string ID => m_Id;
         [SerializeField] private string m_Id;
-        public abstract IEnumerator Perform(InworldCharacter inworldCharacter, List<TriggerParameter> parameters);
-
-        protected Dictionary<string, string> ParseParameters(List<TriggerParameter> parameters)
-        {
-            Dictionary<string, string> parameterDictionary = new Dictionary<string, string>();
-            foreach (TriggerParameter triggerParameter in parameters)
-                parameterDictionary.Add(triggerParameter.name, triggerParameter.value);
-            return parameterDictionary;
-        }
-        
-        
+        public abstract IEnumerator Perform(InworldCharacter inworldCharacter, Dictionary<string, string> parameters);
     }
 
     public abstract class ItemTask : Task

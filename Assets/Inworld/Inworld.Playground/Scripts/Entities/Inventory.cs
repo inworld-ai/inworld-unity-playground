@@ -12,8 +12,8 @@ namespace Inworld.Map
 {
     public class Inventory : MonoBehaviour
     {
-        protected Dictionary<string, EntityItem> m_Items;
-
+        protected readonly Dictionary<string, EntityItem> m_Items = new Dictionary<string, EntityItem>();
+        
         public bool AddItem(EntityItem item)
         {
             if (!m_Items.TryAdd(item.ID, item))
@@ -34,11 +34,6 @@ namespace Inworld.Map
         public bool Contains(string itemID)
         {
             return m_Items.ContainsKey(itemID);
-        }
-        
-        protected virtual void Awake()
-        {
-            m_Items = new Dictionary<string, EntityItem>();
         }
     }
 }
