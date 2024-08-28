@@ -16,6 +16,7 @@ namespace Inworld.Map
         public UnityEvent onUnlocked;
         
         [SerializeField] private EntityItemKey m_Key;
+        [SerializeField] private string m_UnlockedPropertyValue = "Unlocked.";
         private EntityItem m_EntityItem;
 
         protected virtual void Awake()
@@ -29,7 +30,7 @@ namespace Inworld.Map
             {
                 Destroy(this);
                 InworldAI.Log($"Unlocked {m_EntityItem.DisplayName}");
-                m_EntityItem.UpdateProperty("lock", "Unlocked.");
+                m_EntityItem.UpdateProperty("lock", m_UnlockedPropertyValue);
                 onUnlocked?.Invoke();
                 return true;
             }

@@ -33,7 +33,7 @@ namespace Inworld.Map
             EntityItemLock entityEntityItemLock = entityItem.GetComponent<EntityItemLock>();
             if (entityEntityItemLock)
             {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Could not open {itemID}, it is locked.", parameters);
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Could not open {itemID}: {entityItem.GetPropertyValue("lock")}.", parameters);
                 yield break;
             }
             

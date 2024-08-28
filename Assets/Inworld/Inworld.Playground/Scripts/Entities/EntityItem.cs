@@ -75,6 +75,11 @@ namespace Inworld.Map
             return false;
         }
 
+        public string GetPropertyValue(string key)
+        {
+            return m_PropertiesDictionary[key];
+        }
+
         public Packet.EntityItem Get()
         {
             return new Packet.EntityItem(m_ID, m_DisplayName, m_Description, m_PropertiesDictionary);
