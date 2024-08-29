@@ -35,7 +35,7 @@ namespace Inworld.Map
             
             m_Items.Add(entityItem);
             if(InworldController.Client)
-                InworldController.Client.CreateItems(new List<Packet.EntityItem>() { entityItem.Get() }, entityItem.GetEntityIDs());
+                InworldController.Client.CreateOrUpdateItems(new List<Packet.EntityItem>() { entityItem.Get() }, entityItem.GetEntityIDs());
         }
 
         public void UpdateItem(EntityItem entityItem)
@@ -47,7 +47,7 @@ namespace Inworld.Map
             }
             
             if(InworldController.Client)
-                InworldController.Client.CreateItems(new List<Packet.EntityItem>() { entityItem.Get() }, entityItem.GetEntityIDs());
+                InworldController.Client.CreateOrUpdateItems(new List<Packet.EntityItem>() { entityItem.Get() }, entityItem.GetEntityIDs());
         }
 
         public void RemoveItem(EntityItem entityItem)
