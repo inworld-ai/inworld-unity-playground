@@ -35,13 +35,7 @@ namespace Inworld.Map
                 EntityManager.Instance.FailTask(this, inworldCharacter, $"{inworldCharacter.Name} already has item: {whatItemID}.", parameters);
                 yield break;
             }
-
-            if (!IsItemNearby(inworldCharacter, whatEntityItem))
-            {
-                EntityManager.Instance.FailTask(this, inworldCharacter, $"Item is too far away: {whatItemID}.", parameters);
-                yield break;
-            }
-            
+ 
             if (parameters.TryGetValue("from", out string fromItemID) && EntityManager.Instance.FindItem(fromItemID, out EntityItem fromEntityItem))
             {
                 if (!IsItemNearby(inworldCharacter, fromEntityItem))
@@ -49,6 +43,10 @@ namespace Inworld.Map
                     EntityManager.Instance.FailTask(this, inworldCharacter, $"Item is too far away: {fromItemID}.", parameters);
                     yield break;
                 }
+            } else if (!IsItemNearby(inworldCharacter, whatEntityItem))
+            {
+                EntityManager.Instance.FailTask(this, inworldCharacter, $"Item is too far away: {whatItemID}.", parameters);
+                yield break;
             }
             
             if (!inventory.AddItem(whatEntityItem))
@@ -61,7 +59,5 @@ namespace Inworld.Map
             whatEntityItem.UpdateProperty("location", $"In {inworldCharacter.Name}'s inventory.");
             EntityManager.Instance.CompleteTask(this, inworldCharacter, parameters);
         }
-
-
     }
 }
