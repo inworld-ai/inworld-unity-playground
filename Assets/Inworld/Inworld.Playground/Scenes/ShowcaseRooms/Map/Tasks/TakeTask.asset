@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84f96de0d8800140990381a2d1037c6, type: 3}
   m_Name: TakeTask
   m_EditorClassIdentifier: 
-  m_Id: take
+  m_TaskName: take
   m_ItemNearbyThreshold: 2

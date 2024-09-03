@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9913db1dae8be1842968313e4d6ba276, type: 3}
   m_Name: ExamineTask
   m_EditorClassIdentifier: 
-  m_Id: examine
+  m_TaskName: examine

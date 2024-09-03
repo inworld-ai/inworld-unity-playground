@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d713687bcda01464a83b4c824510f63e, type: 3}
   m_Name: TurnOffTask
   m_EditorClassIdentifier: 
-  m_Id: turn_off
+  m_TaskName: turn_off
   m_ItemNearbyThreshold: 2

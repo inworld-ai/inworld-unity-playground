@@ -39,11 +39,11 @@ namespace Inworld.Map
             EntityManager.Instance.onTaskComplete.RemoveListener(OnTaskComplete);
         }
 
-        private void OnTaskComplete(string brainName, string taskID, Dictionary<string, string> parameters)
+        private void OnTaskComplete(string brainName, string taskName, Dictionary<string, string> parameters)
         {
             if (parameters.TryGetValue("what", out string itemID) && itemID == m_ItemTaskPerformedOn.ID)
             {
-                if (taskID == m_TurnOnTask.ID)
+                if (taskName == m_TurnOnTask.TaskName)
                 {
                     Material[] materials = m_MeshRenderer.materials;
                     materials[0] = m_LightOnMaterial;
@@ -51,7 +51,7 @@ namespace Inworld.Map
                     m_LightSource.enabled = true;
                     m_EntityItem.UpdateProperty("state", "On and producing light.");
                     InworldAI.Log("Lightbulb has been turned on");
-                } else if (taskID == m_TurnOffTask.ID)
+                } else if (taskName == m_TurnOffTask.TaskName)
                 {
                     Material[] materials = m_MeshRenderer.materials;
                     materials[0] = m_LightOffMaterial;

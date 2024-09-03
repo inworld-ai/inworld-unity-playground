@@ -664,6 +664,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: innequin_inworld-playground
       objectReference: {fileID: 0}
+    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_ChatOptions.task
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_ChatOptions.tasks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
+      propertyPath: m_ChatOptions.trigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8924218559802244073, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SightAngle
       value: 180

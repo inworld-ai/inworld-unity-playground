@@ -38,7 +38,7 @@ namespace Inworld.Map
 
         private void OnTaskComplete(string brainName, string taskID, Dictionary<string, string> parameters)
         {
-            if (taskID == m_Task.ID && parameters.TryGetValue("what", out string itemID) && itemID == m_ItemTaskPerformedOn.ID)
+            if (taskID == m_Task.TaskName && parameters.TryGetValue("what", out string itemID) && itemID == m_ItemTaskPerformedOn.ID)
                 EntityManager.Instance.AddItem(m_EntityItemToCreate);
         }
     }

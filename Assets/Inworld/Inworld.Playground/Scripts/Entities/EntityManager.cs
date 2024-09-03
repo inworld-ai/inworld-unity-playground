@@ -63,9 +63,9 @@ namespace Inworld.Map
                 InworldController.Client.DestroyItems(new List<string>() { entityItem.ID });
         }
 
-        public bool FindTask(string id, out Task task)
+        public bool FindTask(string taskName, out Task task)
         {
-            return m_Tasks.TryGetValue(id, out task);
+            return m_Tasks.TryGetValue(taskName, out task);
         }
 
         public bool FindItem(string id, out EntityItem item)
@@ -80,7 +80,7 @@ namespace Inworld.Map
             m_Tasks = new Dictionary<string, Task>();
             m_Entities.ForEach(entity =>
             {
-                entity.Tasks?.ForEach(task => { m_Tasks.TryAdd(task.ID, task); });
+                entity.Tasks?.ForEach(task => { m_Tasks.TryAdd(task.TaskName, task); });
             });
         }
 
@@ -97,13 +97,13 @@ namespace Inworld.Map
                     character.Event.onTaskReceived.RemoveListener(OnTaskReceived));
         }
 
-        protected virtual void OnTaskReceived(string brainName, string taskID, List<TriggerParameter> parameters)
+        protected virtual void OnTaskReceived(string brainName, string taskName, List<TriggerParameter> parameters)
         {
             InworldCharacter inworldCharacter = InworldController.CharacterHandler.GetCharacterByBrainName(brainName);
-            if (FindTask(taskID, out Task task))
+            if (FindTask(taskName, out Task task))
                 StartTask(task, inworldCharacter, ParseParameters(parameters));
             else
-                InworldAI.LogWarning($"Unsupported task: {taskID}");
+                InworldAI.LogWarning($"Unsupported task: {taskName}");
         }
         
         protected Dictionary<string, string> ParseParameters(List<TriggerParameter> parameters)
@@ -116,22 +116,22 @@ namespace Inworld.Map
 
         internal void StartTask(Task task, InworldCharacter inworldCharacter, Dictionary<string, string> parameters)
         {
-            onTaskStart?.Invoke(inworldCharacter.BrainName, task.ID, parameters);
+            onTaskStart?.Invoke(inworldCharacter.BrainName, task.TaskName, parameters);
             InworldAI.Log($"{inworldCharacter.Name} started task: {task.name}");
             StartCoroutine(task.Perform(inworldCharacter, parameters));
         }
         
         internal void CompleteTask(Task task, InworldCharacter inworldCharacter, Dictionary<string, string> parameters)
         {
-            InworldMessenger.SendTaskSucceeded(task.ID, inworldCharacter.BrainName);
-            onTaskComplete?.Invoke(inworldCharacter.BrainName, task.ID, parameters);
+            InworldMessenger.SendTaskSucceeded(parameters["task_id"], inworldCharacter.BrainName);
+            onTaskComplete?.Invoke(inworldCharacter.BrainName, task.TaskName, parameters);
             InworldAI.Log($"{inworldCharacter.Name} completed task: {task.name}");
         }
         
         internal void FailTask(Task task, InworldCharacter inworldCharacter, string reason, Dictionary<string, string> parameters)
         {
-            InworldMessenger.SendTaskFailed(task.ID, reason, inworldCharacter.BrainName);
-            onTaskFail?.Invoke(inworldCharacter.BrainName, task.ID, reason, parameters);
+            InworldMessenger.SendTaskFailed(parameters["task_id"], reason, inworldCharacter.BrainName);
+            onTaskFail?.Invoke(inworldCharacter.BrainName, task.TaskName, reason, parameters);
             InworldAI.Log($"{inworldCharacter.Name} failed task: {task.name} because: {reason}");
         }
     }

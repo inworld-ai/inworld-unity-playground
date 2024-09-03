@@ -7,15 +7,14 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Inworld.Packet;
 using UnityEngine;
 
 namespace Inworld.Map
 {
     public abstract class Task : ScriptableObject
     {
-        public string ID => m_Id;
-        [SerializeField] private string m_Id;
+        public string TaskName => m_TaskName;
+        [SerializeField] private string m_TaskName;
         public abstract IEnumerator Perform(InworldCharacter inworldCharacter, Dictionary<string, string> parameters);
     }
 

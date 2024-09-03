@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6d692d17abafe4a997c03d05f76c20, type: 3}
   m_Name: CloseTask
   m_EditorClassIdentifier: 
-  m_Id: close
+  m_TaskName: close
   m_ItemNearbyThreshold: 2
