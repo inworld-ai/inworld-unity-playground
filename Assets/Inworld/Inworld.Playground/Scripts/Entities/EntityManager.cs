@@ -10,7 +10,6 @@ using Inworld.Entities;
 using Inworld.Packet;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Inworld.Map
 {
