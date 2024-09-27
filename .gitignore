@@ -119,3 +119,7 @@ PlaygroundAssetUtil.cs
 PlaygroundAssetUtil.cs.meta
 PlaygroundAssetNames.csv
 PlaygroundAssetNames.csv.meta
+
+# Dev
+Assets/Ignore/
+Assets/Ignore.meta
