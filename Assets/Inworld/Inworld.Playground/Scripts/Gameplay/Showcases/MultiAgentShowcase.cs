@@ -142,17 +142,17 @@ namespace Inworld.Playground
         private void OnCharacterBeginSpeaking(string brainName)
         {
             m_CurrentSpeakingCharacter = InworldController.CharacterHandler.GetCharacterByBrainName(brainName);
-            Debug.Log($"Character {brainName} Start Speaking");
+            Debug.Log($"Character {m_CurrentSpeakingCharacter.Name} Start Speaking");
         }
 
         private void OnCharacterEndSpeaking(string brainName)
         {
-            m_CurrentSpeakingCharacter = null;
             if (Math.Abs(m_TimeBeforeNextTurn - m_TimeBeforeNextTurnAfterPlayer) < 0.1f)
                 m_TimeBeforeNextTurn = m_TimeBeforeNextTurnAfterPlayer / 2f;
             else
                 m_TimeBeforeNextTurn = m_DefaultTimeBeforeNextTurn;
-            Debug.Log($"Character {brainName} Stop Speaking");
+            Debug.Log($"Character {m_CurrentSpeakingCharacter.Name} Stop Speaking");
+            m_CurrentSpeakingCharacter = null;
         }
 
     }

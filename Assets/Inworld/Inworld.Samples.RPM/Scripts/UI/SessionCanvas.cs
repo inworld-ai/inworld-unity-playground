@@ -9,7 +9,7 @@ using Inworld.Runtime.RPM;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,10 +32,10 @@ namespace Inworld.Sample.RPM
         [SerializeField] Button m_SaveGame;
         [SerializeField] Button m_LoadGame;
         [SerializeField] InworldAudioInteraction m_Interaction;
-        string ipv4;
+
         float m_CurrentDuration;
-        bool m_IsConnecting;
         bool m_IsLoad;
+        bool m_IsConnecting;
         IEnumerator m_CurrentCoroutine;
         readonly Queue<float> m_LagQueue = new Queue<float>(12);
         
@@ -59,6 +59,7 @@ namespace Inworld.Sample.RPM
 
         public void QuitGame()
         {
+            m_Character.CancelResponse();
             InworldController.CharacterHandler.Unregister(m_Character);
             InworldController.Instance.Disconnect();
         }
@@ -79,8 +80,6 @@ namespace Inworld.Sample.RPM
         public void SaveGame() => InworldController.Client.GetHistoryAsync(InworldController.Instance.CurrentScene);
         protected void Awake()
         {
-            if (string.IsNullOrEmpty(ipv4))
-                ipv4 = Dns.GetHostAddresses(InworldController.Client.Server.web)[0].ToString();
             _SessionButtonReadyToStart();
         }
         protected override void Start()
@@ -107,18 +106,18 @@ namespace Inworld.Sample.RPM
             {
                 case InworldConnectionStatus.Idle:
                     m_Indicator.color = Color.white;
-                    m_IsConnecting = false;
                     _SessionButtonReadyToStart();
+                    m_IsConnecting = false;
                     break;
                 case InworldConnectionStatus.Connecting:
                     _SessionButtonConnecting();
+                    m_IsConnecting = true;
                     break;
                 case InworldConnectionStatus.Connected:
                     _SessionButtonConnected();
                     break;
                 case InworldConnectionStatus.Initializing:
                     m_Indicator.color = m_ColorGraph.Evaluate(0.5f);
-                    m_IsConnecting = true;
                     break;
                 case InworldConnectionStatus.Error:
                     m_Indicator.color = m_ColorGraph.Evaluate(1f);
@@ -178,19 +177,10 @@ namespace Inworld.Sample.RPM
         {
             while (enabled)
             {
-                #if !UNITY_WEBGL
                 if (m_IsConnecting)
                 {
-                    Ping ping = new Ping(ipv4);
-                    while (!ping.isDone && m_CurrentDuration < m_PingDuration)
-                    {
-                        m_CurrentDuration += Time.fixedDeltaTime;
-                        yield return new WaitForFixedUpdate();
-                    }
-                    m_CurrentDuration = 0;
-                    _UpdatePing(ping.isDone ? ping.time : 1000);
+                    _UpdatePing(InworldController.Instance ? InworldController.Client.Ping : 1000);
                 }
-                #endif
                 yield return new WaitForSeconds(m_PingDuration);
             }
         }
