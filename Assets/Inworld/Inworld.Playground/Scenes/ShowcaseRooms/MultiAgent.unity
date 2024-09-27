@@ -5775,7 +5775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47184ff8b7422ca48832ac090bce34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TimeBeforeNextTurn: 2.5
+  m_DefaultTimeBeforeNextTurn: 1
+  m_TimeBeforeNextTurnAfterPlayer: 5
+  m_NextTurnDelay: 10
   m_CharactersInConversation:
   - {fileID: 1989651471}
   - {fileID: 1187995592}
