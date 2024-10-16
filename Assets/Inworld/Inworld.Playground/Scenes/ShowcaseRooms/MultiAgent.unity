@@ -1601,8 +1601,8 @@ PrefabInstance:
       objectReference: {fileID: 1027746784}
     - target: {fileID: 6777048405600670059, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_text
-      value: Using Inworld's Multi-Agent capabilities characters can be setup to
-        have full on conversations amongst themselves and with the player. Try interrupting
+      value: Using Inworld's Multi-Agent capabilities, characters can be set up to
+        have full conversations among themselves and with the player. Try interrupting
         their conversation and see what happens.
       objectReference: {fileID: 0}
     - target: {fileID: 6777048405600670059, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
