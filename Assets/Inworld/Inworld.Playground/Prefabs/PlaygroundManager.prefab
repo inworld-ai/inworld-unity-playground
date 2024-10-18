@@ -536,7 +536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 512.0807, y: -22.357452}
+  m_AnchoredPosition: {x: 567.77814, y: -22.357452}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4708745251954095320
@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 702165050075810327}
   - component: {fileID: 694066665452716828}
   - component: {fileID: 2840956508465157608}
+  - component: {fileID: 6152172413652305878}
   m_Layer: 0
   m_Name: PlaygroundManager
   m_TagString: Untagged
@@ -686,9 +687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c8346cc3d1dab4ea45b9dd37a5e705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnClientChanged:
-    m_PersistentCalls:
-      m_Calls: []
   OnPlay:
     m_PersistentCalls:
       m_Calls: []
@@ -746,6 +744,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameData: {fileID: 0}
+  m_APIKey: 
+  m_APISecret: 
+  m_ServerConfig: {fileID: 11400000, guid: 5d4b4994cd4c627409e9c619e5e369e5, type: 2}
+  m_CustomToken: 
+  m_PublicWorkspace: 
+  m_GameSessionID: 
 --- !u!114 &702165050075810327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,10 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a83291b474642d697cd7963c55a608e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ServerConfig: {fileID: 11400000, guid: 5d4b4994cd4c627409e9c619e5e369e5, type: 2}
   m_SceneFullName: 
-  m_APIKey: 
-  m_APISecret: 
   m_AutoScene: 0
   m_MaxWaitingListSize: 100
   m_Continuation:
@@ -770,9 +771,7 @@ MonoBehaviour:
       history: []
     externallySavedState: 
   m_EnableGroupChat: 1
-  m_CustomToken: 
-  m_PublicWorkspace: 
-  m_GameSessionID: 
+  m_AutoChat: 0
 --- !u!114 &694066665452716828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,12 +813,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SamplingMode: 1
-  m_PushToTalkKey: 0
   m_PlayerVolumeThreshold: 6
+  m_CaptureCheckingDuration: 0.5
   m_BufferSeconds: 1
   m_AudioToPushCapacity: 100
   m_DeviceName: 
   m_DetectPlayerSpeaking: 1
+  m_MutePlayerMic: 0
+  m_TestMode: 0
   m_AudioEvent:
     onStartCalibrating:
       m_PersistentCalls:
@@ -839,7 +840,35 @@ MonoBehaviour:
     onPlayerStopSpeaking:
       m_PersistentCalls:
         m_Calls: []
-  m_DumpAudioHotKey: 0
+  m_AECResetCountDown: 5
+--- !u!114 &6152172413652305878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818464701975237251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b6f91b2e7f4dda9f33fd704df850b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ModelName: 0
+  m_TextGenerationConfig:
+    frequency_penalty: 0
+    logit_bias: []
+    max_tokens: 2500
+    n: 1
+    presence_penalty: 0
+    stop: []
+    stream: 0
+    temperature: 1
+    top_p: 1
+    repetition_penalty: 1
+  m_MaxChatHistorySize: 100
+  onChatHistoryUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9086650760301671909
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 512.0807, y: -553.6426}
+  m_AnchoredPosition: {x: 567.77814, y: -553.6426}
   m_SizeDelta: {x: 129.68658, y: 43.5925}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8171515707796103849
@@ -1111,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1988159916390454957, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 512.0807
+      value: 567.77814
       objectReference: {fileID: 0}
     - target: {fileID: 1988159916390454957, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_AnchoredPosition.y

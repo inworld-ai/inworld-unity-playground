@@ -50,24 +50,37 @@ namespace Inworld.Playground
             m_FeedbackDlg.Open(interactionID, correlationID);
         }
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             m_CharacterController = GetComponent<CharacterController>();
             m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
             m_Camera = Camera.main;
         }
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             onPlayerSpeaks.AddListener(OnPlayerSpeaks);
+            onCanvasOpen.AddListener(OnCanvasOpen);
+            onCanvasClosed.AddListener(OnCanvasClosed);
         }
 
-        protected override void OnDisable()
+        void OnCanvasClosed()
         {
-            base.OnDisable();
+            CursorHandler.LockCursor();
+            PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
+        }
+
+        void OnCanvasOpen()
+        {
+            CursorHandler.UnlockCursor();
+            PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
+        }
+
+        protected void OnDisable()
+        {
             onPlayerSpeaks.RemoveListener(OnPlayerSpeaks);
+            onCanvasOpen.RemoveListener(OnCanvasOpen);
+            onCanvasClosed.RemoveListener(OnCanvasClosed);
         }
 
         void OnPlayerSpeaks(string text)
@@ -83,32 +96,18 @@ namespace Inworld.Playground
             if (!BlockKeyInput)
             {
                 base.HandleInput();
-            
-                if (Input.GetKeyUp(KeyCode.BackQuote))
-                {
-                    if (!m_ChatCanvas.activeSelf)
-                    {
-                        CursorHandler.LockCursor();
-                        PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
-                    }
-                    else
-                    {
-                        CursorHandler.UnlockCursor();
-                        PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
-                    }
-                }
             }
             
             if(Input.GetMouseButtonDown(0) && InteractionSystem.Instance.IsHoveringInteractable)
                 InteractionSystem.Instance.Interact();
-            
-            if (!m_ChatCanvas.activeSelf)
-                HandleMovement();
+            HandleMovement();
         }
 
         protected void HandleMovement()
         {
             if (PlaygroundManager.Instance.Paused)
+                return;
+            if (UILayer > 0)
                 return;
             
             Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
