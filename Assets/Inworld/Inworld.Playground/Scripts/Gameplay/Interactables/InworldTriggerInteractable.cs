@@ -24,7 +24,7 @@ namespace Inworld.Playground
 
         private Dictionary<string, string> m_TriggerParameters;
 
-        void Awake()
+        protected virtual void Awake()
         {
             m_TriggerParameters = new Dictionary<string, string>();
             foreach (var triggerParameter in m_TriggerParameterList)
@@ -37,7 +37,6 @@ namespace Inworld.Playground
         protected override void _Interact()
         {
             if (!m_InworldCharacter) return;
-            
             m_InworldCharacter.SendTrigger(m_TriggerName, true, m_TriggerParameters);
         }
         
