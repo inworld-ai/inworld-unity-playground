@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 #if UNITY_EDITOR
+using Inworld.Sample;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,7 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine.Networking;
+using Object = UnityEngine.Object;
 
 
 namespace Inworld.Editors
@@ -128,6 +130,8 @@ namespace Inworld.Editors
                     return;
                 }
                 uwr.SetRequestHeader("Authorization", InworldEditor.Token);
+                if (!InworldEditor.IsLegacyEntry)
+                    uwr.SetRequestHeader("Grpc-Metadata-X-Authorization-Bearer-Type", "studio_api");
             }
             UnityWebRequestAsyncOperation updateRequest = uwr.SendWebRequest();
             updateRequest.completed += callback;
@@ -165,6 +169,18 @@ namespace Inworld.Editors
                 menu.AddItem(new GUIContent(value), false, () => callback(value));
             }
             menu.ShowAsContext();
+        }
+        public static void AddPlayerController(GameObject playerController)
+        {
+            Camera mainCamera = Camera.main;
+            if (mainCamera)
+            {
+                if (EditorUtility.DisplayDialog("Note", "Adding player controller will delete current main camera. Continue?", "OK", "Cancel"))
+                {
+                    Undo.DestroyObjectImmediate(mainCamera.gameObject);
+                }
+            }
+            Object.Instantiate(playerController);
         }
         static void _OpenUserPanel()
         {

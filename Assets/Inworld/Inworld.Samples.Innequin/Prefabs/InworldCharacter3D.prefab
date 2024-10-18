@@ -1136,14 +1136,28 @@ MonoBehaviour:
     agentId: 
     brainName: workspaces/unitytest/characters/innequin
     givenName: Innequin
+    description:
+      givenName: 
+      description: 
+      pronoun: 0
+      nickNames: []
+      motivation: 
+      personalityAdjectives: []
+      lifeStage: 0
+      hobbyOrInterests: []
+      characterRole: 
+      flaws: 
     characterAssets:
       rpmModelUri: 
-      rpmImageUriPortrait: 
-      rpmImageUriPosture: 
+      rpmImageUri: 
       avatarImg: 
       avatarImgOriginal: 
+      rpmAvatar:
+        rpmModelUri: 
+        rpmImageUri: 
       thumbnailProgress: 0
       avatarProgress: 0
+    language: 
     thumbnail: {fileID: 0}
   m_CharacterEvents:
     onCharacterSelected:
@@ -1176,6 +1190,9 @@ MonoBehaviour:
     onGoalCompleted:
       m_PersistentCalls:
         m_Calls: []
+    onTaskReceived:
+      m_PersistentCalls:
+        m_Calls: []
     onRelationUpdated:
       m_PersistentCalls:
         m_Calls: []
@@ -1193,8 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0023079ae244cf88d8e53bebcd9542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ContinueKey: 32
-  m_SkipKey: 306
   m_ContinueButton: {fileID: 6103775307306153032}
   m_Interruptable: 1
   m_AutoProceed: 1

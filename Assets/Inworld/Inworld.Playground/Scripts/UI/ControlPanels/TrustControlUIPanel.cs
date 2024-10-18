@@ -6,7 +6,9 @@
  *************************************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -21,28 +23,46 @@ namespace Inworld.Playground
 
         int m_CurrentTrustLevel = 1;
 
+        void _OnTrustLevelChanged(int newTrustLevel)
+        {
+            int nDiff = Mathf.Abs(newTrustLevel - m_CurrentTrustLevel);
+            switch (nDiff)
+            {
+                case 0:
+                    return;
+                case 1:
+                    m_CurrentTrustLevel = newTrustLevel;
+                    m_InworldCharacter.SendTrigger($"trust_level{m_CurrentTrustLevel}");
+                    break;
+                case 2:
+                    m_CurrentTrustLevel = newTrustLevel;
+                    StartCoroutine(_ResetSession());
+                    break;
+            }
+        }
+
+        IEnumerator _ResetSession()
+        {
+            yield return InworldController.Client.DisconnectAsync();
+            InworldController.Instance.GetAccessToken();
+        }
+
         public void OnSuspiciousToggleValueChanged(bool value)
         {
-            if (!value || m_CurrentTrustLevel == 1) return;
-
-            m_CurrentTrustLevel = 1;
-            m_InworldCharacter.SendTrigger("trust_level1");
+            if (value);
+                _OnTrustLevelChanged(1);
         }
 
         public void OnUncertainToggleValueChanged(bool value)
         {
-            if (!value || m_CurrentTrustLevel == 2) return;
-
-            m_CurrentTrustLevel = 2;
-            m_InworldCharacter.SendTrigger("trust_level2");
+            if (value);
+                _OnTrustLevelChanged(2);
         }
         
         public void OnTrustingToggleValueChanged(bool value)
         {
-            if (!value || m_CurrentTrustLevel == 3) return;
-
-            m_CurrentTrustLevel = 3;
-            m_InworldCharacter.SendTrigger("trust_level3");
+            if (value);
+                _OnTrustLevelChanged(3);
         }
 
         void OnEnable()

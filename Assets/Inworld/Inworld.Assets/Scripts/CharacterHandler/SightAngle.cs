@@ -1,4 +1,4 @@
-﻿/*************************************************************************************************
+/*************************************************************************************************
  * Copyright 2022-2024 Theai, Inc. dba Inworld AI
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement

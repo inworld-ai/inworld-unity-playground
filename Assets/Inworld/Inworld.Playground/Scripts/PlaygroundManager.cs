@@ -24,7 +24,6 @@ namespace Inworld.Playground
     /// </summary>
     public class PlaygroundManager : SingletonBehavior<PlaygroundManager>
     {
-        public UnityEvent OnClientChanged;
         public UnityEvent OnPlay;
         public UnityEvent OnPause;
         public UnityEvent OnStartSceneChange;

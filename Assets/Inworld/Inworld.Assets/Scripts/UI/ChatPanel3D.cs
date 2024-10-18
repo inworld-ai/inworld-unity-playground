@@ -34,10 +34,14 @@ namespace Inworld.Assets
             if (m_Character && incomingPacket.IsRelated(m_Character.ID))
                 base.OnInteraction(incomingPacket);
         }
-        protected override void HandleRelation(CustomPacket packet)
+        protected override void OnChatUpdated()
+        {
+            // YAN: 3D Character does not need to process LLM data.
+        }
+        protected override bool HandleRelation(CustomPacket packet)
         {
             if (!m_Relation)
-                return;
+                return false;
             string result = "";
 
             RelationState currentRelation = new RelationState();
@@ -56,13 +60,14 @@ namespace Inworld.Assets
             if (currentRelation.trust != 0)
                 result += $"Trust: {GetRelationIcon(currentRelation.trust)}\n";
             m_Relation.text = result;
+            return true;
         }
 
-        protected override void HandleText(TextPacket textPacket)
+        protected override bool HandleText(TextPacket textPacket)
         {
             if (m_Dots)
                 m_Dots.SetActive(true);
-            base.HandleText(textPacket);
+            return base.HandleText(textPacket);
         }
         protected override void HandleControl(ControlPacket packet)
         {

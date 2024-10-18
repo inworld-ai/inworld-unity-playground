@@ -5,11 +5,14 @@
 * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
 *************************************************************************************************/
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Inworld.Sample.RPM
 {
     public class DynamicCharCanvas : DemoCanvas
     {
+        [SerializeField] protected InputAction m_CreateCharacterInputAction;
+        [SerializeField] GameObject m_SpotLight;
         [SerializeField] Transform m_Player;
         [SerializeField] InworldCharacter m_Model;
         [SerializeField] float m_Distance = 5f;
@@ -19,11 +22,17 @@ namespace Inworld.Sample.RPM
         protected override void OnEnable()
         {
             base.OnEnable();
+            m_CreateCharacterInputAction.Enable();
             m_Content.text = k_Instruction;
+        }
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            m_CreateCharacterInputAction.Disable();
         }
         void Update()
         {
-            if (Input.GetKeyUp(KeyCode.F))
+            if (m_CreateCharacterInputAction.WasReleasedThisFrame())
             {
                 _CreateCharacter();
             }
@@ -34,6 +43,8 @@ namespace Inworld.Sample.RPM
             if (m_CurrentCharacter)
                 DestroyImmediate(m_CurrentCharacter.gameObject);
             m_CurrentCharacter = Instantiate(m_Model, m_Player.position + m_Player.rotation * Vector3.forward * m_Distance, Quaternion.identity);
+            if (m_SpotLight)
+                m_SpotLight.transform.LookAt(m_CurrentCharacter.transform);
         }
 
         protected override void OnCharacterJoined(InworldCharacter character)
