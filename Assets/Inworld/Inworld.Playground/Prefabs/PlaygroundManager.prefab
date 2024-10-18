@@ -536,7 +536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 567.77814, y: -22.357452}
+  m_AnchoredPosition: {x: 512.0807, y: -22.357452}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4708745251954095320
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 702165050075810327}
   - component: {fileID: 694066665452716828}
   - component: {fileID: 2840956508465157608}
-  - component: {fileID: 6152172413652305878}
+  - component: {fileID: 2017079038124923032}
   m_Layer: 0
   m_Name: PlaygroundManager
   m_TagString: Untagged
@@ -722,8 +722,6 @@ MonoBehaviour:
     InworldSceneName: environment_room
   - UnitySceneName: Interactions
     InworldSceneName: interactions_room
-  - UnitySceneName: MultiAgent
-    InworldSceneName: multi-agent_room
   m_Settings:
     PlayerName: 
     WorkspaceId: 
@@ -770,7 +768,7 @@ MonoBehaviour:
     dialogHistory:
       history: []
     externallySavedState: 
-  m_EnableGroupChat: 1
+  m_EnableGroupChat: 0
   m_AutoChat: 0
 --- !u!114 &694066665452716828
 MonoBehaviour:
@@ -841,7 +839,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   m_AECResetCountDown: 5
---- !u!114 &6152172413652305878
+--- !u!114 &2017079038124923032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -905,7 +903,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 567.77814, y: -553.6426}
+  m_AnchoredPosition: {x: 512.0807, y: -553.6426}
   m_SizeDelta: {x: 129.68658, y: 43.5925}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8171515707796103849
@@ -1140,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1988159916390454957, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 567.77814
+      value: 512.0807
       objectReference: {fileID: 0}
     - target: {fileID: 1988159916390454957, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -71,7 +71,6 @@ namespace Inworld.Playground
             if(gameData.capabilities == null)
                 gameData.capabilities = new Capabilities();
             gameData.capabilities.CopyFrom(InworldAI.Capabilities);
-            gameData.capabilities.multiAgent = true;
 
 #if UNITY_EDITOR
             if (!AssetDatabase.Contains(gameData))
