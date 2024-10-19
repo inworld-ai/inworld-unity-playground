@@ -43,12 +43,12 @@ namespace Inworld.Playground
         
         void InputFieldOnSelect(string text)
         {
-            PlayerController.Instance.BlockKeyInput = true;
+            // PlayerControllerPlayground.Instance.BlockKeyInput = true;
         }
         
         void InputFieldOnDeselect(string text)
         {
-            PlayerController.Instance.BlockKeyInput = false;
+            // PlayerControllerPlayground.Instance.BlockKeyInput = false;
         }
 
         void InputFieldOnValueChanged(string text)

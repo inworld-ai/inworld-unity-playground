@@ -104,9 +104,6 @@ namespace Inworld.Sample
 
             m_InterpolatingCameraState.UpdateTransform(transform);
         }
-
-
-
         Vector3 GetInputTranslationDirection()
         {
             return m_MoveInputAction.ReadValue<Vector3>();

@@ -8,6 +8,7 @@
 using Inworld.Assets;
 using Inworld.Sample;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Inworld.Playground
 {
@@ -17,48 +18,41 @@ namespace Inworld.Playground
     ///     Handles movement using Unity's legacy input system.
     /// </summary>
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerController : PlayerController3D
+    public class PlayerControllerPlayground : PlayerController3D
     {
-        private static PlayerController m_Instance;
-        public new static PlayerController Instance
-        {
-            get
-            {
-                if (m_Instance)
-                    return m_Instance;
-                m_Instance = FindObjectOfType<PlayerController>();
-                return m_Instance;
-            }
-        }
-        
         public bool BlockKeyInput { get; set; }
-
+        
         [Header("Movement")]
         [SerializeField] private float m_MoveSpeed = 5;
         [Range(0, 1)]
         [SerializeField] private float m_MoveInterpolationFactor = 0.6f;
         [SerializeField] private float m_RotationSpeed = 2;
-        
-        private FeedbackCanvas m_FeedbackDlg;
+
         private CharacterController m_CharacterController;
         private Camera m_Camera;
         private float m_HorizontalAxis = 0, m_VerticalAxis = 0;
         private bool m_InFocus;
-        
-        public override void OpenFeedback(string interactionID, string correlationID)
-        {
-            m_FeedbackDlg.Open(interactionID, correlationID);
-        }
 
-        protected void Awake()
-        {
-            m_CharacterController = GetComponent<CharacterController>();
-            m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
-            m_Camera = Camera.main;
-        }
 
+        InputAction m_LeftClickInputAction;
+        InputAction m_MouseDeltaInputAction;
+        InputAction m_SpeedUpInputAction;
+        InputAction m_SpeedInputAction;
+        InputAction m_MoveInputAction;
+
+        protected new void Awake()
+        {
+            base.Awake();
+            m_LeftClickInputAction = InworldAI.InputActions["LeftClick"];
+            m_MouseDeltaInputAction = InworldAI.InputActions["MouseDelta"];
+            m_SpeedUpInputAction = InworldAI.InputActions["SpeedUp"];
+            m_SpeedInputAction = InworldAI.InputActions["Speed"];
+            m_MoveInputAction = InworldAI.InputActions["Move"];
+        }
         protected void OnEnable()
         {
+            m_Camera = Camera.main;
+            m_CharacterController = GetComponent<CharacterController>();
             onPlayerSpeaks.AddListener(OnPlayerSpeaks);
             onCanvasOpen.AddListener(OnCanvasOpen);
             onCanvasClosed.AddListener(OnCanvasClosed);
@@ -102,14 +96,16 @@ namespace Inworld.Playground
                 InteractionSystem.Instance.Interact();
             HandleMovement();
         }
-
+        Vector3 GetInputTranslationDirection()
+        {
+            return m_MoveInputAction.ReadValue<Vector3>();
+        }
         protected void HandleMovement()
         {
             if (PlaygroundManager.Instance.Paused)
                 return;
             if (UILayer > 0)
                 return;
-            
             Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
 
             Vector3 newEuler = m_Camera.transform.localEulerAngles + mouseDelta * m_RotationSpeed;
@@ -136,5 +132,6 @@ namespace Inworld.Playground
                             
             m_CharacterController.SimpleMove(direction * m_MoveSpeed);
         }
+
     }
 }

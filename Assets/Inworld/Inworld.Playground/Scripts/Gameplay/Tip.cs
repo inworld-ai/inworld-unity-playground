@@ -36,13 +36,13 @@ namespace Inworld.Playground
         
         private void Start()
         {
-            m_PlayerInitialPosition = PlayerController.Instance.transform.position;
+            m_PlayerInitialPosition = PlayerControllerPlayground.Instance.transform.position;
         }
 
         private void Update()
         {
             if (Vector3.Distance(m_PlayerInitialPosition,
-                    PlayerController.Instance.transform.position) >
+                    PlayerControllerPlayground.Instance.transform.position) >
                 m_DestroyDistance)
             {
                 if (m_DestroyCoroutine == null)
