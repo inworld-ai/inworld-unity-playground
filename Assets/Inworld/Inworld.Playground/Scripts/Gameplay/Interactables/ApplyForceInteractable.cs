@@ -19,8 +19,9 @@ namespace Inworld.Playground
         [SerializeField] private Vector3 m_Force;
         private Rigidbody m_Rigidbody;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             m_Rigidbody = GetComponent<Rigidbody>();
         }
 

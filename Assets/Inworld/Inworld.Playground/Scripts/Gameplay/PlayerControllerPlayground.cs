@@ -27,13 +27,12 @@ namespace Inworld.Playground
         [Range(0, 1)]
         [SerializeField] private float m_MoveInterpolationFactor = 0.6f;
         [SerializeField] private float m_RotationSpeed = 2;
-
+        [SerializeField] bool m_InvertY;
         private CharacterController m_CharacterController;
         private Camera m_Camera;
         private float m_HorizontalAxis = 0, m_VerticalAxis = 0;
         private bool m_InFocus;
-
-
+        
         InputAction m_LeftClickInputAction;
         InputAction m_MouseDeltaInputAction;
         InputAction m_SpeedUpInputAction;
@@ -106,12 +105,14 @@ namespace Inworld.Playground
                 return;
             if (UILayer > 0)
                 return;
-            Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
 
+            Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
+            mouseDelta.x = Mathf.Clamp(mouseDelta.x, -1, 1);
+            mouseDelta.y = Mathf.Clamp(mouseDelta.y, -1, 1);
             Vector3 newEuler = m_Camera.transform.localEulerAngles + mouseDelta * m_RotationSpeed;
             float xClamped = Mathf.Clamp(newEuler.x, newEuler.x <= 180 ? -89f : 271, newEuler.x <= 180 ? 89f : 360);
             m_Camera.transform.localEulerAngles = new Vector3(xClamped, newEuler.y, newEuler.z);
-
+            
             if (BlockKeyInput) return;
             
             float newHorizontalAxis = 0, newVerticalAxis = 0;
@@ -129,7 +130,6 @@ namespace Inworld.Playground
             Vector3 inputAxis = new Vector3(m_HorizontalAxis, 0, m_VerticalAxis);
             Vector3 direction = Matrix4x4.Rotate(m_Camera.transform.rotation) * inputAxis;
             direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
-                            
             m_CharacterController.SimpleMove(direction * m_MoveSpeed);
         }
 
