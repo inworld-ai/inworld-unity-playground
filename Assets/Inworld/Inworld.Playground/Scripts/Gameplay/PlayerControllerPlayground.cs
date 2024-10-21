@@ -105,28 +105,20 @@ namespace Inworld.Playground
                 return;
             if (UILayer > 0)
                 return;
-
-            Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
-            mouseDelta.x = Mathf.Clamp(mouseDelta.x, -1, 1);
-            mouseDelta.y = Mathf.Clamp(mouseDelta.y, -1, 1);
+            Vector2 mouseMovement = m_MouseDeltaInputAction.ReadValue<Vector2>() * 0.1f;
+            mouseMovement.y *= m_InvertY ? 1 : -1;
+            mouseMovement.x = Mathf.Clamp(mouseMovement.x, -1, 1);
+            mouseMovement.y = Mathf.Clamp(mouseMovement.y, -1, 1);
+            Vector3 mouseDelta = new Vector3(mouseMovement.y, mouseMovement.x, 0);
             Vector3 newEuler = m_Camera.transform.localEulerAngles + mouseDelta * m_RotationSpeed;
             float xClamped = Mathf.Clamp(newEuler.x, newEuler.x <= 180 ? -89f : 271, newEuler.x <= 180 ? 89f : 360);
             m_Camera.transform.localEulerAngles = new Vector3(xClamped, newEuler.y, newEuler.z);
             
             if (BlockKeyInput) return;
-            
-            float newHorizontalAxis = 0, newVerticalAxis = 0;
-            if (Input.GetKey(KeyCode.W))
-                newVerticalAxis += 1;
-            if (Input.GetKey(KeyCode.S))
-                newVerticalAxis += -1;
-            m_VerticalAxis = Mathf.Lerp(m_VerticalAxis, newVerticalAxis, m_MoveInterpolationFactor);
-            
-            if (Input.GetKey(KeyCode.A))
-                newHorizontalAxis += -1;
-            if (Input.GetKey(KeyCode.D))
-                newHorizontalAxis += 1;
-            m_HorizontalAxis = Mathf.Lerp(m_HorizontalAxis, newHorizontalAxis, m_MoveInterpolationFactor);
+
+            Vector3 delta = GetInputTranslationDirection();
+            m_VerticalAxis = Mathf.Lerp(m_VerticalAxis, delta.z, m_MoveInterpolationFactor);
+            m_HorizontalAxis = Mathf.Lerp(m_HorizontalAxis, delta.x, m_MoveInterpolationFactor);
             Vector3 inputAxis = new Vector3(m_HorizontalAxis, 0, m_VerticalAxis);
             Vector3 direction = Matrix4x4.Rotate(m_Camera.transform.rotation) * inputAxis;
             direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
