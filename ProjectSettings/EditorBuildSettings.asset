@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Interactions.unity
     guid: 060664be02e4043409f05cc342f67a2f
+  - enabled: 1
+    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/MultiAgent.unity
+    guid: 870a2a27ac856994c8d7c2160592daad
   m_configObjects: {}

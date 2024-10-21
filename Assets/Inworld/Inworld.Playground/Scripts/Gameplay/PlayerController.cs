@@ -50,8 +50,9 @@ namespace Inworld.Playground
             m_FeedbackDlg.Open(interactionID, correlationID);
         }
 
-        protected void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             m_CharacterController = GetComponent<CharacterController>();
             m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
             m_Camera = Camera.main;

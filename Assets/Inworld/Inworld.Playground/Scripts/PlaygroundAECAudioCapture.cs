@@ -26,11 +26,6 @@ namespace Inworld.Playground
         /// <param name="micSampleMode">The sample mode to set as default.</param>
         public void UpdateDefaultSampleMode(MicSampleMode micSampleMode)
         {
-            if (micSampleMode == MicSampleMode.PUSH_TO_TALK) 
-                m_PushToTalkKey = KeyCode.V;
-            else
-                m_PushToTalkKey = KeyCode.None;
-            m_InitSampleMode = micSampleMode;
             m_SamplingMode = micSampleMode;
         }
     }
