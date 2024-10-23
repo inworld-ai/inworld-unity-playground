@@ -24,7 +24,6 @@ namespace Inworld.Playground
     /// </summary>
     public class PlaygroundManager : SingletonBehavior<PlaygroundManager>
     {
-        public UnityEvent OnClientChanged;
         public UnityEvent OnPlay;
         public UnityEvent OnPause;
         public UnityEvent OnStartSceneChange;
@@ -114,8 +113,6 @@ namespace Inworld.Playground
                 SceneManager.LoadScene(LobbySceneName);
                 return;
             }
-            
-            m_GameMenu.SetActive(false);
             
             if (!CheckNetworkComponent())
                 throw new MissingComponentException("Missing Inworld client.");
@@ -308,12 +305,6 @@ namespace Inworld.Playground
         private void Update()
         {
             if (m_CurrentScene.name == SetupSceneName) return;
-            
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if(!m_GameMenu.activeSelf)
-                    Pause();
-            }
             
             if((Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) && Input.GetKeyDown(KeyCode.F4))
                 Application.Quit();

@@ -50,7 +50,7 @@ namespace Inworld.Playground
         private void Awake()
         {
             PlaygroundManager.Instance.GameData.capabilities.multiAgent = true;
-            InworldController.CharacterHandler.SelectingMethod = CharSelectingMethod.AutoChat;
+            InworldController.Client.AutoChat = true;
         }
 
         private void OnDestroy()

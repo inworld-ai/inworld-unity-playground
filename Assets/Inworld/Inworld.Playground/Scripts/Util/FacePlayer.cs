@@ -17,9 +17,9 @@ namespace Inworld.Playground
         [SerializeField] private bool m_Reverse;
         private void Update()
         {
-            if(PlayerController.Instance)
+            if(PlayerControllerPlayground.Instance)
                 transform.forward = (m_Reverse ? -1 : 1) * 
-                                    (PlayerController.Instance.transform.position - transform.position);
+                                    (PlayerControllerPlayground.Instance.transform.position - transform.position);
         }
     }
 }

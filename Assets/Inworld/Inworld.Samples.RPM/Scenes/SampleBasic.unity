@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -383,6 +382,46 @@ PrefabInstance:
       propertyPath: m_EnableGroupChat
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.continuationType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.data[0].text
+      value: How are you
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.data[1].text
+      value: I'm good
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.data[0].actor.name
+      value: Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.data[0].actor.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.data[1].actor.name
+      value: Jenny
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109287189565502095, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_Continuation.dialogHistory.history.Array.data[1].actor.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395919966041133306, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_APIKey
+      value: 2og83K3KNs8ImVaoL93pVNPc0XzKk9XV
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395919966041133306, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_APISecret
+      value: 5aRjDzBGPf5PTzd25rHFiazxIyqZ88n1qLjJlQV2ZQA31nmx62QcQta9q24R8GT7
+      objectReference: {fileID: 0}
     - target: {fileID: 3753617577465698405, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -440,8 +479,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7934926759504941807, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_SamplingMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934926759504941807, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+      propertyPath: m_AECResetCountDown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934926759504941807, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
       propertyPath: m_PlayerVolumeThreshold
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7934926759504941807, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
       propertyPath: m_CaptureCheckingDuration
