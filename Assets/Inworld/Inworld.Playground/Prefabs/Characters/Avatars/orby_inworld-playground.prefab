@@ -594,8 +594,8 @@ GameObject:
   - component: {fileID: 7712990536318244411}
   - component: {fileID: -5408584216436277067}
   - component: {fileID: 6042682841280510793}
-  - component: {fileID: 7875638674686581422}
   - component: {fileID: 7440755404964317608}
+  - component: {fileID: 8844997153488735067}
   m_Layer: 0
   m_Name: orby_inworld-playground
   m_TagString: Untagged
@@ -636,14 +636,28 @@ MonoBehaviour:
     agentId: 
     brainName: workspaces/inworld-playground-v2/characters/orby
     givenName: Orby
+    description:
+      givenName: 
+      description: 
+      pronoun: 0
+      nickNames: []
+      motivation: 
+      personalityAdjectives: []
+      lifeStage: 0
+      hobbyOrInterests: []
+      characterRole: 
+      flaws: 
     characterAssets:
       rpmModelUri: 
-      rpmImageUriPortrait: 
-      rpmImageUriPosture: 
+      rpmImageUri: 
       avatarImg: 
       avatarImgOriginal: 
+      rpmAvatar:
+        rpmModelUri: 
+        rpmImageUri: 
       thumbnailProgress: 0
       avatarProgress: 0
+    language: 
     thumbnail: {fileID: 0}
   m_CharacterEvents:
     onCharacterSelected:
@@ -674,6 +688,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     onGoalCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    onTaskReceived:
       m_PersistentCalls:
         m_Calls: []
     onRelationUpdated:
@@ -779,26 +796,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7875638674686581422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7142177979337930576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0023079ae244cf88d8e53bebcd9542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ContinueKey: 32
-  m_SkipKey: 306
-  m_ContinueButton: {fileID: 5759300607640923005}
-  m_Interruptable: 1
-  m_AutoProceed: 1
-  m_MaxItemCount: 100
-  m_TextSpeedMultipler: 0.02
-  m_VolumeOnPlayerSpeaking: 1
 --- !u!114 &7440755404964317608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +816,23 @@ MonoBehaviour:
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!114 &8844997153488735067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142177979337930576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55387cda81d4cd7a8fe70b7564b2d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ContinueButton: {fileID: 5759300607640923005}
+  m_AutoProceed: 1
+  m_MaxItemCount: 100
+  m_TextSpeedMultipler: 0.02
+  m_VolumeOnPlayerSpeaking: 1
 --- !u!1 &7196103261730395975
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +897,7 @@ MonoBehaviour:
     relation: 1
     trigger: 0
     longBubbleMode: 0
+    task: 0
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 5685645793644611199}

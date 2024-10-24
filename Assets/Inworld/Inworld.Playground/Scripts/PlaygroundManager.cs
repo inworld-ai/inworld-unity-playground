@@ -44,9 +44,6 @@ namespace Inworld.Playground
         [SerializeField]
         private PlaygroundSettings m_Settings;
 
-        [SerializeField] 
-        private GameObject m_GameMenu;
-
         private Dictionary<string, string> m_InworldSceneMappingDictionary;
         private InworldGameData m_GameData;
         private EventSystem m_EventSystem;
@@ -121,28 +118,22 @@ namespace Inworld.Playground
                 throw new MissingComponentException("Missing PlaygroundAECAudioCapture component.");
             
             CursorHandler.LockCursor();
-
-            // Time.timeScale = 1;
-            
-            InworldController.Audio.enabled = true;
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
-
-            PlaygroundAECAudioCapture audioCapture = (PlaygroundAECAudioCapture)InworldController.Audio;
-            switch (m_Settings.InteractionMode)
+            if (InworldController.Audio.SampleMode != MicSampleMode.NO_MIC)
             {
-                case MicrophoneMode.Interactive:
-                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.AEC);
-                    break;
-                case MicrophoneMode.PushToTalk:
-                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
-                    break;
-                case MicrophoneMode.TurnByTurn:
-                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
-                    break;
+                switch (m_Settings.InteractionMode)
+                {
+                    case MicrophoneMode.Interactive:
+                        InworldController.Audio.SampleMode = MicSampleMode.AEC;
+                        break;
+                    case MicrophoneMode.PushToTalk:
+                        InworldController.Audio.SampleMode = MicSampleMode.PUSH_TO_TALK;
+                        break;
+                    case MicrophoneMode.TurnByTurn:
+                        InworldController.Audio.SampleMode = MicSampleMode.TURN_BASED;
+                        break;
+                }
             }
-
-            ResumeAllCharacterInteractions();
-            
             EnableAllWorldSpaceGraphicRaycasters();
 
             m_Paused = false;
@@ -276,7 +267,8 @@ namespace Inworld.Playground
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
-
+            PlayerControllerPlayground.Instance.onCanvasOpen.AddListener(Pause);
+            PlayerControllerPlayground.Instance.onCanvasClosed.AddListener(Play);
             m_Paused = true;
         }
 
@@ -290,6 +282,7 @@ namespace Inworld.Playground
             SceneManager.sceneLoaded += OnSceneLoaded;
             InworldController.Client.OnStatusChanged += OnStatusChanged;
             InworldController.Client.OnPacketReceived += OnPacketReceived;
+
         }
 
         private void OnDisable()
@@ -300,6 +293,10 @@ namespace Inworld.Playground
                 InworldController.Client.OnStatusChanged -= OnStatusChanged;
                 InworldController.Client.OnPacketReceived -= OnPacketReceived;
             }
+            // if (!PlayerControllerPlayground.Instance)
+            //     return;
+            // PlayerControllerPlayground.Instance.onCanvasOpen.RemoveListener(Pause);
+            // PlayerControllerPlayground.Instance.onCanvasClosed.RemoveListener(Play);
         }
 
         private void Update()
@@ -364,7 +361,7 @@ namespace Inworld.Playground
             
             OnStartInworldSceneChange?.Invoke();
             if(pause)
-                Pause(false);
+                Pause();
             var currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
 
@@ -391,7 +388,7 @@ namespace Inworld.Playground
         private IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             OnStartSceneChange?.Invoke();
-            Pause(false);
+            Pause();
             
             InworldAI.Log("Starting scene load: " + sceneName);
             var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -419,30 +416,16 @@ namespace Inworld.Playground
                 InworldController.Client.CurrentScene = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
             else
                 yield return StartCoroutine(ChangeInworldSceneEnumerator(inworldSceneName, false));
-
             Play();
         }
         #endregion
         
-        private void Pause(bool showGameMenu = true)
+        public void Pause()
         {
             if(m_Paused)
                 return;
-            
             DisableAllWorldSpaceGraphicRaycasters();
-
-            PauseAllCharacterInteractions();
-
-            InworldController.Audio.enabled = false;
-            
             Subtitle.Instance.Clear();
-
-            if (showGameMenu)
-            {
-                CursorHandler.UnlockCursor();
-                m_GameMenu.SetActive(true);
-            }
-            
             m_Paused = true;
             OnPause?.Invoke();
         }
@@ -456,38 +439,6 @@ namespace Inworld.Playground
         {
             return InworldController.Instance.GetComponent<InworldClient>();
         }
-        
-        private void PauseAllCharacterInteractions()
-        {
-#if UNITY_2022_3_OR_NEWER
-            var interactions = FindObjectsByType<InworldInteraction>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-#else
-            var interactions = FindObjectsOfType<InworldInteraction>();
-#endif
-            foreach (var interaction in interactions)
-            {
-                interaction.CancelResponse();
-                interaction.enabled = false;
-                if (interaction is InworldAudioInteraction)
-                {
-                    interaction.GetComponent<AudioSource>().Stop();
-                }
-            }
-        }
-
-        private void ResumeAllCharacterInteractions()
-        {
-#if UNITY_2022_3_OR_NEWER
-            var interactions = FindObjectsByType<InworldInteraction>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-#else
-            var interactions = FindObjectsOfType<InworldInteraction>();
-#endif
-            foreach (var interaction in interactions)
-            {
-                interaction.enabled = true;
-            }
-        }
-
         private void SetCharacterBrains()
         {
 #if UNITY_2022_3_OR_NEWER

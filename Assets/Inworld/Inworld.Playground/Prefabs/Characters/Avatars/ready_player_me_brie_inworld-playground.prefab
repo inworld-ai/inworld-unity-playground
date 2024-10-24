@@ -475,12 +475,12 @@ GameObject:
   - component: {fileID: 8460584197298896669}
   - component: {fileID: 4680326775755363266}
   - component: {fileID: 1202148832981489313}
-  - component: {fileID: 6002721619249533418}
   - component: {fileID: -5507854072997562813}
   - component: {fileID: 6101837304953191395}
   - component: {fileID: -3813923921187074844}
   - component: {fileID: 2435686829982685765}
   - component: {fileID: -7988688619189566040}
+  - component: {fileID: 616396305967764192}
   m_Layer: 0
   m_Name: ready_player_me_brie_inworld-playground
   m_TagString: Untagged
@@ -622,26 +622,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6002721619249533418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5510870168005725327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0023079ae244cf88d8e53bebcd9542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ContinueKey: 32
-  m_SkipKey: 306
-  m_ContinueButton: {fileID: 8182870568416564588}
-  m_Interruptable: 1
-  m_AutoProceed: 1
-  m_MaxItemCount: 100
-  m_TextSpeedMultipler: 0.02
-  m_VolumeOnPlayerSpeaking: 1
 --- !u!114 &-5507854072997562813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,14 +638,28 @@ MonoBehaviour:
     agentId: 
     brainName: workspaces/inworld-playground-v2/characters/ready_player_me_brie
     givenName: Ready Player Me Brie
+    description:
+      givenName: 
+      description: 
+      pronoun: 0
+      nickNames: []
+      motivation: 
+      personalityAdjectives: []
+      lifeStage: 0
+      hobbyOrInterests: []
+      characterRole: 
+      flaws: 
     characterAssets:
       rpmModelUri: 
-      rpmImageUriPortrait: 
-      rpmImageUriPosture: 
+      rpmImageUri: 
       avatarImg: 
       avatarImgOriginal: 
+      rpmAvatar:
+        rpmModelUri: 
+        rpmImageUri: 
       thumbnailProgress: 0
       avatarProgress: 0
+    language: 
     thumbnail: {fileID: 2800000, guid: 09c5def229661e44a990e95599bf9d66, type: 3}
   m_CharacterEvents:
     onCharacterSelected:
@@ -696,6 +690,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     onGoalCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    onTaskReceived:
       m_PersistentCalls:
         m_Calls: []
     onRelationUpdated:
@@ -783,6 +780,23 @@ CapsuleCollider:
   m_Height: 1.65
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &616396305967764192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510870168005725327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55387cda81d4cd7a8fe70b7564b2d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ContinueButton: {fileID: 8182870568416564588}
+  m_AutoProceed: 1
+  m_MaxItemCount: 100
+  m_TextSpeedMultipler: 0.02
+  m_VolumeOnPlayerSpeaking: 1
 --- !u!1 &7536534441954930037
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +861,7 @@ MonoBehaviour:
     relation: 1
     trigger: 0
     longBubbleMode: 0
+    task: 0
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 295876353961630660}

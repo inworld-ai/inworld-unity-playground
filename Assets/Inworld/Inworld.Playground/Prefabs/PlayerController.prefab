@@ -1420,9 +1420,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2387198409836921600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 892, y: -42.93215}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1743.5396, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2116540082319679582
@@ -1712,7 +1712,6 @@ GameObject:
   - component: {fileID: 775538348932092785}
   - component: {fileID: 3167867678771990920}
   - component: {fileID: 1332255759013478718}
-  - component: {fileID: 3730907652939111891}
   m_Layer: 5
   m_Name: ConnectionCanvas
   m_TagString: Untagged
@@ -1828,8 +1827,6 @@ MonoBehaviour:
   m_Indicator: {fileID: 399670652562362028}
   m_Error: {fileID: 2932977091950210517}
   m_NoMic: {fileID: 3242831823147258299}
-  m_StatusPanelBackgroundColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_StatusPanelBackground: {fileID: 3730907652939111891}
 --- !u!114 &1332255759013478718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1844,36 +1841,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionName: 
   m_CanvasObj: {fileID: 6604634044852989816}
---- !u!114 &3730907652939111891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720639803517878975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1800597404750914836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,9 +2743,9 @@ RectTransform:
   - {fileID: 9031144793516065592}
   m_Father: {fileID: 2387198409836921600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1870, y: 0.067848206}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 86, y: 86}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6674580174301466429
@@ -7017,6 +6984,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Inworld.Playground.PlaygroundManager, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCanvasClosed:
     m_PersistentCalls:
       m_Calls:
@@ -7032,9 +7011,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Inworld.Playground.PlaygroundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_MoveSpeed: 4
   m_MoveInterpolationFactor: 1
   m_RotationSpeed: 2
+  m_InvertY: 0
 --- !u!114 &8853781112703536260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9060,7 +9052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00018310547, y: -50}
+  m_AnchoredPosition: {x: -0.00024414062, y: -50}
   m_SizeDelta: {x: 0, y: 85.8643}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &5006535011636939237
@@ -9563,7 +9555,7 @@ PrefabInstance:
     - target: {fileID: 6324352257510048748, guid: f3accf5b99b74554aaf15144227a78e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1332255759013478718}
     - target: {fileID: 6324352257510048748, guid: f3accf5b99b74554aaf15144227a78e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Close

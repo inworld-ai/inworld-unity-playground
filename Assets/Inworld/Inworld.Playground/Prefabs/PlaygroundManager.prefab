@@ -863,7 +863,6 @@ MonoBehaviour:
     MicrophoneDevice: 
     InteractionMode: 0
     EnableAEC: 1
-  m_GameMenu: {fileID: 5555797869773105223}
 --- !u!114 &9078245995055248184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SamplingMode: 1
-  m_PlayerVolumeThreshold: 6
+  m_PlayerVolumeThreshold: 10
   m_CaptureCheckingDuration: 0.5
   m_BufferSeconds: 1
   m_AudioToPushCapacity: 100
@@ -973,7 +972,14 @@ MonoBehaviour:
     onPlayerStopSpeaking:
       m_PersistentCalls:
         m_Calls: []
-  m_AECResetCountDown: 5
+  m_AECResetCountDown: 10
+  m_Dropdown: {fileID: 3047175345003685652}
+  m_Text: {fileID: 2166651447259693972}
+  m_Volume: {fileID: 459693612657039319}
+  m_MicButton: {fileID: 2749233370943394299}
+  m_CalibrationButton: {fileID: 8491387624087400804}
+  m_MicOn: {fileID: 21300000, guid: e30084443df9aaa449dceb2398ca713f, type: 3}
+  m_MicOff: {fileID: 21300000, guid: 0f73a4fbbc74a2445ab76ee58ac7a675, type: 3}
 --- !u!114 &2017079038124923032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,6 +1309,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7640976611993631935}
     m_Modifications:
+    - target: {fileID: 563289954628526976, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2840956508465157608}
+    - target: {fileID: 563289954628526976, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Inworld.Playground.PlaygroundAECAudioCapture, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 780301101005454982, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1314,6 +1328,14 @@ PrefabInstance:
     - target: {fileID: 780301101005454982, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_SizeDelta.x
       value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 846595095969076591, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2840956508465157608}
+    - target: {fileID: 846595095969076591, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Inworld.Playground.PlaygroundAECAudioCapture, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 920327262803936989, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1671,6 +1693,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6062249838902657823, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2840956508465157608}
+    - target: {fileID: 6062249838902657823, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Recalibrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062249838902657823, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Inworld.Playground.PlaygroundAECAudioCapture, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6723507649484025199, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
       propertyPath: m_PlayButton
       value: 
@@ -1836,8 +1870,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+--- !u!114 &459693612657039319 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2852785113981691308, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+  m_PrefabInstance: {fileID: 2447152338047529595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2166651447259693972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4604778985008067055, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+  m_PrefabInstance: {fileID: 2447152338047529595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2749233370943394299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 563289954628526976, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+  m_PrefabInstance: {fileID: 2447152338047529595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3047175345003685652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 846595095969076591, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+  m_PrefabInstance: {fileID: 2447152338047529595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4206736972435776726 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1988159916390454957, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
   m_PrefabInstance: {fileID: 2447152338047529595}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8491387624087400804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6062249838902657823, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
+  m_PrefabInstance: {fileID: 2447152338047529595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
