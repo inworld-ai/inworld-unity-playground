@@ -21,8 +21,9 @@ namespace Inworld.Playground
         private MeshRenderer m_MeshRenderer;
         private Material m_CurrentMaterial;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             m_MeshRenderer = GetComponent<MeshRenderer>();
             SetMaterial();
         }

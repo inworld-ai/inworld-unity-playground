@@ -453,12 +453,12 @@ GameObject:
   - component: {fileID: 4550034613420978969}
   - component: {fileID: 6836277416808973287}
   - component: {fileID: 4472744466570671365}
-  - component: {fileID: 3009096547279513657}
   - component: {fileID: 3541915529858783742}
   - component: {fileID: 223203700561416751}
   - component: {fileID: 1757959859848508943}
   - component: {fileID: 6990636592307854137}
   - component: {fileID: -1612793128926588284}
+  - component: {fileID: 1943610373926555035}
   m_Layer: 0
   m_Name: emotion_emily_inworld-playground
   m_TagString: Untagged
@@ -600,26 +600,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3009096547279513657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302111882359236030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0023079ae244cf88d8e53bebcd9542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ContinueKey: 32
-  m_SkipKey: 306
-  m_ContinueButton: {fileID: 2810329079979785897}
-  m_Interruptable: 1
-  m_AutoProceed: 1
-  m_MaxItemCount: 100
-  m_TextSpeedMultipler: 0.02
-  m_VolumeOnPlayerSpeaking: 1
 --- !u!114 &3541915529858783742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,14 +651,28 @@ MonoBehaviour:
     agentId: 
     brainName: workspaces/inworld-playground-v2/characters/emotion_emily
     givenName: Emotion Emily
+    description:
+      givenName: 
+      description: 
+      pronoun: 0
+      nickNames: []
+      motivation: 
+      personalityAdjectives: []
+      lifeStage: 0
+      hobbyOrInterests: []
+      characterRole: 
+      flaws: 
     characterAssets:
       rpmModelUri: 
-      rpmImageUriPortrait: 
-      rpmImageUriPosture: 
+      rpmImageUri: 
       avatarImg: 
       avatarImgOriginal: 
+      rpmAvatar:
+        rpmModelUri: 
+        rpmImageUri: 
       thumbnailProgress: 0
       avatarProgress: 0
+    language: 
     thumbnail: {fileID: 2800000, guid: 27a406e3292ecb74484b5dcfd17e6cb6, type: 3}
   m_CharacterEvents:
     onCharacterSelected:
@@ -709,6 +703,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     onGoalCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    onTaskReceived:
       m_PersistentCalls:
         m_Calls: []
     onRelationUpdated:
@@ -761,6 +758,23 @@ CapsuleCollider:
   m_Height: 1.65
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &1943610373926555035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302111882359236030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55387cda81d4cd7a8fe70b7564b2d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ContinueButton: {fileID: 2810329079979785897}
+  m_AutoProceed: 1
+  m_MaxItemCount: 100
+  m_TextSpeedMultipler: 0.02
+  m_VolumeOnPlayerSpeaking: 1
 --- !u!1 &5406179152816764902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,6 +1133,7 @@ MonoBehaviour:
     relation: 1
     trigger: 0
     longBubbleMode: 0
+    task: 0
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 2414774307476128223}

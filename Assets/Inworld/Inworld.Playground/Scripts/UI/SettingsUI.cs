@@ -94,7 +94,6 @@ namespace Inworld.Playground
         private void OnEnable()
         {
             InworldController.Client.OnStatusChanged += OnStatusChanged;
-            PlaygroundManager.Instance.OnClientChanged.AddListener(OnClientChanged);
             m_PlayerNameText.text = $"Player Name: {m_PlaygroundManager.GetPlayerName()}";
             m_WorkspaceText.text = $"Workspace: {m_PlaygroundManager.GetWorkspaceId()}";
 
@@ -130,8 +129,6 @@ namespace Inworld.Playground
         private void OnDisable()
         {
             UpdatePlayButton(false);
-            if(PlaygroundManager.Instance)
-                PlaygroundManager.Instance.OnClientChanged.RemoveListener(OnClientChanged);
             if(InworldController.Instance)
                 InworldController.Client.OnStatusChanged -= OnStatusChanged;
         }
@@ -158,12 +155,6 @@ namespace Inworld.Playground
             }
             if(PlaygroundManager.Instance.CurrentScene.name == PlaygroundManager.SetupSceneName)
                 UpdatePlayButton(status == InworldConnectionStatus.Connected);
-        }
-        
-        private void OnClientChanged()
-        {
-            InworldController.Client.OnStatusChanged += OnStatusChanged;
-            OnStatusChanged(InworldController.Status);
         }
         #endregion
         

@@ -979,6 +979,7 @@ MonoBehaviour:
     relation: 1
     trigger: 0
     longBubbleMode: 0
+    task: 0
   m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
   m_Emotion: {fileID: 11400000, guid: 1950e7dba45ab6b439c74be8a0f8dd73, type: 2}
   m_Relation: {fileID: 7538353914859535353}
@@ -4101,9 +4102,6 @@ PrefabInstance:
       addedObject: {fileID: 4032040907208412069}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2610994830098913605}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5509555223321962496}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
       insertIndex: -1
@@ -4114,6 +4112,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5725365063865495493}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5621076935169860253}
   m_SourcePrefab: {fileID: 100100000, guid: 2e5a576a2c36c3f40839d94a327ddc79, type: 3}
 --- !u!95 &3797598418246447800 stripped
 Animator:
@@ -4242,14 +4243,28 @@ MonoBehaviour:
     agentId: 
     brainName: workspaces/inworld-playground-v2/characters/innequin
     givenName: Innequin
+    description:
+      givenName: 
+      description: 
+      pronoun: 0
+      nickNames: []
+      motivation: 
+      personalityAdjectives: []
+      lifeStage: 0
+      hobbyOrInterests: []
+      characterRole: 
+      flaws: 
     characterAssets:
       rpmModelUri: 
-      rpmImageUriPortrait: 
-      rpmImageUriPosture: 
+      rpmImageUri: 
       avatarImg: 
       avatarImgOriginal: 
+      rpmAvatar:
+        rpmModelUri: 
+        rpmImageUri: 
       thumbnailProgress: 0
       avatarProgress: 0
+    language: 
     thumbnail: {fileID: 0}
   m_CharacterEvents:
     onCharacterSelected:
@@ -4282,6 +4297,9 @@ MonoBehaviour:
     onGoalCompleted:
       m_PersistentCalls:
         m_Calls: []
+    onTaskReceived:
+      m_PersistentCalls:
+        m_Calls: []
     onRelationUpdated:
       m_PersistentCalls:
         m_Calls: []
@@ -4289,26 +4307,6 @@ MonoBehaviour:
   onServerTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2610994830098913605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572868589785952888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0023079ae244cf88d8e53bebcd9542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ContinueKey: 32
-  m_SkipKey: 306
-  m_ContinueButton: {fileID: 0}
-  m_Interruptable: 1
-  m_AutoProceed: 1
-  m_MaxItemCount: 100
-  m_TextSpeedMultipler: 0.02
-  m_VolumeOnPlayerSpeaking: 1
 --- !u!114 &5509555223321962496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4321,7 +4319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accf62cedd854ed08422a6cf04d9af8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeadTransform: {fileID: 0}
+  m_HeadTransform: {fileID: 4669864818962017100}
   m_PlayerTransform: {fileID: 0}
   m_SightAngle: 150
   m_SightDistance: 5
@@ -4390,3 +4388,20 @@ CapsuleCollider:
   m_Height: 1.65
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &5621076935169860253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572868589785952888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55387cda81d4cd7a8fe70b7564b2d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ContinueButton: {fileID: 0}
+  m_AutoProceed: 1
+  m_MaxItemCount: 100
+  m_TextSpeedMultipler: 0.02
+  m_VolumeOnPlayerSpeaking: 1
