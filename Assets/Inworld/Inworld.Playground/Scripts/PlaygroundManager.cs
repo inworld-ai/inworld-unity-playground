@@ -312,10 +312,6 @@ namespace Inworld.Playground
         private void OnStatusChanged(InworldConnectionStatus status)
         {
             Debug.Log("Status Changed: " + status);
-            if (status == InworldConnectionStatus.Initialized)
-            {
-                InworldController.Client.StartSession();
-            }
         }
         
         private void OnPacketReceived(InworldPacket incomingPacket)
