@@ -8,9 +8,9 @@
       "url": "https://packages.unity.com"
     },
     "com.inworld.unity.core": {
-      "version": "file:../../inworld-unity-core",
+      "version": "file:../Assets/Inworld/com.inworld.unity.core-3.6.0.tgz",
       "depth": 0,
-      "source": "local",
+      "source": "local-tarball",
       "dependencies": {
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1",

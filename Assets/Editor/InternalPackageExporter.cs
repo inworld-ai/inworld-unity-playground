@@ -30,7 +30,7 @@ namespace Inworld.Playground
         {
             "Assets/Inworld/Inworld.Playground/Scripts/Editor",
             "Assets/Inworld/InworldPlaygroundAssets.unitypackage",
-            "Assets/Inworld/com.inworld.unity.core-3.4.0.tgz"
+            "Assets/Inworld/com.inworld.unity.core-3.6.0.tgz"
         };
         
         [MenuItem("Inworld/Playground/Export Assets", priority = 101)]
