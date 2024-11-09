@@ -52,8 +52,7 @@ namespace Inworld.Editors
                 EditorGUI.EndDisabledGroup();
                 if (GUILayout.Button("Generate Default TaskHandler ScriptableObject"))
                 {
-                    Task task = BehaviorEngineEditorUtil.GetTaskObject(targetTask.TaskShortName);
-                    BehaviorEngineEditorUtil.GenerateTaskHandlerObject(BehaviorEngineEditorUtil.GetTaskHandlerClassName(targetTask.TaskShortName), task);
+                    BehaviorEngineEditorUtil.GenerateTaskHandlerObject(BehaviorEngineEditorUtil.GetTaskHandlerClassName(targetTask.TaskShortName));
                 }
                 EditorGUI.BeginDisabledGroup(true);
                 GUILayout.Button("Link Default TaskHandler");
