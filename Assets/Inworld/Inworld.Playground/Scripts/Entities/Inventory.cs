@@ -6,6 +6,7 @@
  *************************************************************************************************/
 
 using System.Collections.Generic;
+using Inworld.BehaviorEngine;
 using UnityEngine;
 
 namespace Inworld.Map

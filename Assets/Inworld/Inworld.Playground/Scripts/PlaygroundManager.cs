@@ -7,7 +7,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Inworld.Entities;
 using Inworld.Interactions;
 using Inworld.Packet;
 using Inworld.Sample;
@@ -130,19 +129,19 @@ namespace Inworld.Playground
             InworldController.Audio.enabled = true;
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
 
-            PlaygroundAECAudioCapture audioCapture = (PlaygroundAECAudioCapture)InworldController.Audio;
-            switch (m_Settings.InteractionMode)
-            {
-                case MicrophoneMode.Interactive:
-                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.AEC);
-                    break;
-                case MicrophoneMode.PushToTalk:
-                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
-                    break;
-                case MicrophoneMode.TurnByTurn:
-                    audioCapture.UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
-                    break;
-            }
+            // PlaygroundAECAudioCapture audioCapture = (PlaygroundAECAudioCapture)InworldController.Audio;
+            // switch (m_Settings.InteractionMode)
+            // {
+            //     case MicrophoneMode.Interactive:
+            //         audioCapture.UpdateDefaultSampleMode(MicSampleMode.AEC);
+            //         break;
+            //     case MicrophoneMode.PushToTalk:
+            //         audioCapture.UpdateDefaultSampleMode(MicSampleMode.PUSH_TO_TALK);
+            //         break;
+            //     case MicrophoneMode.TurnByTurn:
+            //         audioCapture.UpdateDefaultSampleMode(MicSampleMode.TURN_BASED);
+            //         break;
+            // }
 
             ResumeAllCharacterInteractions();
             

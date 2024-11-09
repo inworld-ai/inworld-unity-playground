@@ -6,6 +6,7 @@
  *************************************************************************************************/
 using System;
 using System.Collections.Generic;
+using Inworld.BehaviorEngine;
 using UnityEngine;
 
 namespace Inworld.Map
@@ -19,6 +20,7 @@ namespace Inworld.Map
         [SerializeField] private Task m_TurnOnTask;
         [SerializeField] private Task m_TurnOffTask;
         [SerializeField] private EntityItem m_ItemTaskPerformedOn;
+        [SerializeField] private InworldCharacterTaskHandler m_CharacterTaskHandler;
 
         private MeshRenderer m_MeshRenderer;
         private EntityItem m_EntityItem;
@@ -31,12 +33,12 @@ namespace Inworld.Map
 
         private void OnEnable()
         {
-            EntityManager.Instance.onTaskComplete.AddListener(OnTaskComplete);
+            m_CharacterTaskHandler.onTaskComplete.AddListener(OnTaskComplete);
         }
-
+        
         private void OnDisable()
         {
-            EntityManager.Instance.onTaskComplete.RemoveListener(OnTaskComplete);
+            m_CharacterTaskHandler.onTaskComplete.RemoveListener(OnTaskComplete);
         }
 
         private void OnTaskComplete(string brainName, string taskName, Dictionary<string, string> parameters)

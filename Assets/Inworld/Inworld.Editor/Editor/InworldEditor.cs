@@ -11,29 +11,28 @@ using UnityEditor;
 using UnityEngine;
 using Inworld.Sample;
 using Inworld.UI;
-using UnityEngine.Serialization;
+using System.IO;
+using TMPro;
+
 
 namespace Inworld.Editors
 {
-    public enum EditorStatus
-    {
-        Init,
-        SelectGameData,
-        SelectCharacter,
-        Error
-    }
+
     public class InworldEditor : ScriptableObject
     {
         [Header("Assets")]
         [SerializeField] Texture2D m_Banner;
-        [FormerlySerializedAs("m_Readme")][SerializeField] InworldReadme m_InworldReadme;
+        [SerializeField] InworldReadme m_InworldReadme;
         [SerializeField] bool m_DisplayReadmeOnLoad;
         [SerializeField] InworldController m_ControllerPrefab;
         [SerializeField] InworldCharacter m_Character2DPrefab;
         // TODO(Yan): Let other package's editor script to Upload those characters.
         [SerializeField] InworldCharacter m_RPMPrefab;
         [SerializeField] InworldCharacter m_InnequinPrefab;
-        [SerializeField] PlayerController m_PlayerController;
+        [SerializeField] GameObject m_PlayerController;
+        [SerializeField] GameObject m_PlayerController2D;
+        [SerializeField] GameObject m_PlayerControllerLLM;
+        [SerializeField] GameObject m_EntityManagerPrefab;
         [Space(10)][Header("Status")]
         [SerializeField] EditorStatus m_CurrentStatus;
         EditorStatus m_LastStatus;
@@ -43,23 +42,52 @@ namespace Inworld.Editors
         [SerializeField] string m_ThumbnailPath;
         [SerializeField] string m_AvatarPath;
         [SerializeField] string m_PrefabPath;
+        [SerializeField] string m_EntityPath;
+        [SerializeField] string m_TaskPath;
+        [SerializeField] string m_TaskHandlerPath;
         [Header("URLs:")]
         [SerializeField] InworldServerConfig m_ServerConfig;
-        [SerializeField] string m_BillingAccountURL;
         [SerializeField] string m_WorkspaceURL;
         [SerializeField] string m_KeyURL;
         [SerializeField] string m_ScenesURL;
-        
-        const string k_GlobalDataPath = "InworldEditor";
+        [SerializeField] string m_CharactersURL;
+        [SerializeField] string m_EntitiesURL;
+        [SerializeField] string m_TasksURL;
+
+        const string k_EntryV1Alpha = "v1alpha";
+        const string k_EntryV1 = "studio/v1";
+        const string k_DefaultPlayerName = "player";
         const string k_InstancePath = "Assets/Inworld/Inworld.Editor/Data/InworldEditor.asset";
+        const string k_BehaviorEngineDirectory = "BehaviorEngine";
         public const string k_TokenErrorInstruction = "Token Error or Expired.\nPlease login again";
         const float k_LuminanceRed = 0.2126f;
         const float k_LuminanceGreen = 0.7152f;
         const float k_LuminanceBlue = 0.0722f;
         static InworldEditor __inst;
-        
-        Dictionary<EditorStatus, IEditorState> m_InworldEditorStates = new Dictionary<EditorStatus, IEditorState>();
+
+        Dictionary<EditorStatus, IEditorState> m_InworldEditorStates = new Dictionary<EditorStatus, IEditorState>()
+        {
+            {
+                EditorStatus.Init, new InworldEditorInit()
+            },
+            {
+                EditorStatus.SelectGameData, new InworldEditorSelectGameData()
+            },
+            {
+                EditorStatus.SelectLLMConfig, new InworldEditorSelectLLMConfig()
+            },
+            {
+                EditorStatus.SelectBehaviorEngine, new InworldEditorSelectBehaviorEngine()
+            },
+            {
+                EditorStatus.SelectCharacter, new InworldEditorSelectCharacter()
+            },
+            {
+                EditorStatus.Error, new InworldEditorError()
+            }
+        };
         string m_StudioTokenForExchange;
+        string m_InputUserName;
         string m_ErrorMsg;
 
         /// <summary>
@@ -136,13 +164,46 @@ namespace Inworld.Editors
         /// </summary>
         public static string PrefabPath => Instance.m_PrefabPath;
         /// <summary>
+        /// Gets the location for the Behavior Engine directory.
+        /// </summary>
+        public static string BehaviorEngineDirectoryPath => k_BehaviorEngineDirectory;
+        /// <summary>
+        /// Gets the location for generating and storing the entities for Behavior Engine.
+        /// </summary>
+        public static string EntityPath => Path.Combine(k_BehaviorEngineDirectory, Instance.m_EntityPath);
+        /// <summary>
+        /// Gets the location for generating and storing the tasks for Behavior Engine.
+        /// </summary>
+        public static string TaskPath => Path.Combine(k_BehaviorEngineDirectory, Instance.m_TaskPath);
+        /// <summary>
+        /// Gets the location for generating and storing the task handlers for Behavior Engine.
+        /// </summary>
+        public static string TaskHandlerPath => Path.Combine(k_BehaviorEngineDirectory, Instance.m_TaskHandlerPath);
+        public static string Entry => 
+            Instance && !string.IsNullOrEmpty(Instance.m_StudioTokenForExchange) && 
+            Instance.m_StudioTokenForExchange.Split(':').Length >= 2 
+                ? k_EntryV1Alpha 
+                : k_EntryV1;
+        /// <summary>
         /// Gets if the current Inworld Character prefab is 3D.
         /// </summary>
-        public static bool Is3D => Instance.m_RPMPrefab != null || Instance.m_InnequinPrefab != null;
+        public static bool Is3D { get; set; } = true;
         /// <summary>
         /// Gets the current Player Controller prefab.
         /// </summary>
-        public static PlayerController PlayerController => Instance.m_PlayerController;
+        public static GameObject PlayerController => Instance.m_PlayerController;
+        /// <summary>
+        /// Gets the current Player Controller prefab for 2D integration.
+        /// </summary>
+        public static GameObject PlayerController2D => Instance.m_PlayerController2D;
+        /// <summary>
+        /// Gets the current Player Controller prefab for LLM.
+        /// </summary>
+        public static GameObject PlayerControllerLLM => Instance.m_PlayerControllerLLM;
+        /// <summary>
+        /// Gets the current Entity Manager prefab.
+        /// </summary>
+        public static GameObject EntityManagerPrefab => Instance.m_EntityManagerPrefab;
         /// <summary>
         /// Gets if it's using Innequin model.
         /// </summary>
@@ -172,6 +233,27 @@ namespace Inworld.Editors
             set => m_InnequinPrefab = value;
         }
         /// <summary>
+        /// Gets/Sets the input user name.
+        /// </summary>
+        public static string InputUserName
+        {
+            get
+            {
+                if (Instance.m_InputUserName == null)
+                {
+                    if (InworldAI.User.Name.ToLower() != k_DefaultPlayerName)
+                        return InworldAI.User.Name;
+                }
+                return Instance.m_InputUserName;
+            }
+            set
+            {
+                if (Instance && value == Instance.m_InputUserName)
+                    return;
+                Instance.m_InputUserName = value;
+            }
+        }
+        /// <summary>
         /// Gets/Sets the token used for login Inworld Studio.
         /// </summary>
         public static string TokenForExchange
@@ -182,8 +264,9 @@ namespace Inworld.Editors
         /// <summary>
         /// Gets the actual token part.
         /// </summary>
-        public static string Token => $"Bearer {TokenForExchange.Split(':')[0]}";
+        public static string Token => TokenForExchange.Split(':').Length >= 2 ? $"Bearer {TokenForExchange.Split(':')[0]}" : $"Basic {TokenForExchange}";
 
+        public static bool IsLegacyEntry => Entry == k_EntryV1Alpha;
         /// <summary>
         /// Gets the GUI style for the title in Inworld Studio Panel.
         /// </summary>
@@ -225,13 +308,9 @@ namespace Inworld.Editors
             margin = new RectOffset(10, 10, 0, 0)
         };
         /// <summary>
-        /// Gets the URL for fetching billing account.
-        /// </summary>
-        public static string BillingAccountURL => $"https://{Instance.m_ServerConfig.web}/v1alpha/{Instance.m_BillingAccountURL}";
-        /// <summary>
         /// Gets the URL for listing workspaces
         /// </summary>
-        public static string ListWorkspaceURL => $"https://{Instance.m_ServerConfig.web}/v1alpha/{Instance.m_WorkspaceURL}";
+        public static string ListWorkspaceURL => $"https://{Instance.m_ServerConfig.web}/{Entry}/{Instance.m_WorkspaceURL}";
         /// <summary>
         /// Gets/Sets the current Error message.
         /// If setting, also set the current status of InworldEditor.
@@ -282,12 +361,28 @@ namespace Inworld.Editors
         /// Gets the url for listing Inworld scenes.
         /// </summary>
         /// <param name="wsFullName">the full name of the target workspace</param>
-        public static string ListScenesURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/v1alpha/{wsFullName}/{Instance.m_ScenesURL}";
+        public static string ListScenesURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/{Entry}/{wsFullName}/{Instance.m_ScenesURL}";
+        
+        /// <summary>
+        /// Gets the url for listing Inworld characters.
+        /// </summary>
+        /// <param name="wsFullName">the full name of the target workspace</param>
+        public static string ListCharactersURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/{Entry}/{wsFullName}/{Instance.m_CharactersURL}";
         /// <summary>
         /// Gets the url for listing keys.
         /// </summary>
         /// <param name="wsFullName">the full name of the target workspace</param>
-        public static string ListKeyURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/v1alpha/{wsFullName}/{Instance.m_KeyURL}";
+        public static string ListKeyURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/{Entry}/{wsFullName}/{Instance.m_KeyURL}";
+        /// <summary>
+        /// Gets the url for fetching entities.
+        /// </summary>
+        /// <param name="wsFullName">the full name of the target workspace</param>
+        public static string GetEntitiesURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/{Entry}/{wsFullName}/{Instance.m_EntitiesURL}";
+        /// <summary>
+        /// Gets the url for fetching tasks.
+        /// </summary>
+        /// <param name="wsFullName">the full name of the target workspace</param>
+        public static string GetTasksURL(string wsFullName) => $"https://{Instance.m_ServerConfig.web}/{Entry}/{wsFullName}/{Instance.m_TasksURL}";
 
         /// <summary>
         /// Save all the current scriptable objects.
@@ -299,13 +394,6 @@ namespace Inworld.Editors
             EditorUtility.SetDirty(Instance);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-        }
-        void OnEnable()
-        {
-            m_InworldEditorStates[EditorStatus.Init] = new InworldEditorInit();
-            m_InworldEditorStates[EditorStatus.SelectGameData] = new InworldEditorSelectGameData();
-            m_InworldEditorStates[EditorStatus.SelectCharacter] = new InworldEditorSelectCharacter();
-            m_InworldEditorStates[EditorStatus.Error] = new InworldEditorError();
         }
     }
 }

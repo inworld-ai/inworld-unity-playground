@@ -5,7 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
-using Inworld.Entities;
+using Inworld.Data;
 using Inworld.Packet;
 using TMPro;
 using UnityEngine;
@@ -39,6 +39,8 @@ namespace Inworld.Sample
         }
         protected virtual void OnCharacterJoined(InworldCharacter character)
         {
+            if (InworldController.Instance && InworldController.CurrentCharacter == null)
+                InworldController.CurrentCharacter = character;
             // YAN: Clear existing event listener to avoid adding multiple times.
             character.Event.onPacketReceived.RemoveListener(OnInteraction); 
             character.Event.onPacketReceived.AddListener(OnInteraction);

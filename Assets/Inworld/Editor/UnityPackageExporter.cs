@@ -23,7 +23,7 @@ namespace Inworld
         // The name of the unitypackage to output.
         const string k_FullPackageName = "InworldAI.Full";
         // The path to the package under the `Assets/` folder.
-        const string k_CorePackagePath = "../inworld-unity-core";
+        const string k_CorePackagePath = "c:/code/inworld-unity";
         const string k_FullPackagePath = "Assets/Inworld";
         const string k_ExtraPackagePath = "Assets/Inworld/InworldExtraAssets.unitypackage";
         const string k_TestScenePath = "Assets/Inworld/Inworld.Samples.RPM/Scenes/SampleBasic.unity";
@@ -31,7 +31,7 @@ namespace Inworld
         [MenuItem("Inworld/Export Package/Core")]
         public static async void ExportCore()
         {
-            PackRequest req = Client.Pack(k_CorePackagePath, k_FullPackagePath);
+            PackRequest req = UnityEditor.PackageManager.Client.Pack(k_CorePackagePath, k_FullPackagePath);
             while (!req.IsCompleted)
             {
                 await Task.Yield();

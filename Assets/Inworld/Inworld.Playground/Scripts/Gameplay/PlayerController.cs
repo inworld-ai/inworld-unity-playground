@@ -39,34 +39,25 @@ namespace Inworld.Playground
         [SerializeField] private float m_MoveInterpolationFactor = 0.6f;
         [SerializeField] private float m_RotationSpeed = 2;
         
-        private FeedbackCanvas m_FeedbackDlg;
         private CharacterController m_CharacterController;
         private Camera m_Camera;
         private float m_HorizontalAxis = 0, m_VerticalAxis = 0;
         private bool m_InFocus;
-        
-        public override void OpenFeedback(string interactionID, string correlationID)
-        {
-            m_FeedbackDlg.Open(interactionID, correlationID);
-        }
 
         protected override void Awake()
         {
             base.Awake();
             m_CharacterController = GetComponent<CharacterController>();
-            m_FeedbackDlg = m_FeedbackCanvas.GetComponent<FeedbackCanvas>();
             m_Camera = Camera.main;
         }
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             onPlayerSpeaks.AddListener(OnPlayerSpeaks);
         }
 
-        protected override void OnDisable()
+        protected void OnDisable()
         {
-            base.OnDisable();
             onPlayerSpeaks.RemoveListener(OnPlayerSpeaks);
         }
 
@@ -84,25 +75,25 @@ namespace Inworld.Playground
             {
                 base.HandleInput();
             
-                if (Input.GetKeyUp(KeyCode.BackQuote))
-                {
-                    if (!m_ChatCanvas.activeSelf)
-                    {
-                        CursorHandler.LockCursor();
-                        PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
-                    }
-                    else
-                    {
-                        CursorHandler.UnlockCursor();
-                        PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
-                    }
-                }
+                // if (Input.GetKeyUp(KeyCode.BackQuote))
+                // {
+                //     if (!m_ChatCanvas.activeSelf)
+                //     {
+                //         CursorHandler.LockCursor();
+                //         PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
+                //     }
+                //     else
+                //     {
+                //         CursorHandler.UnlockCursor();
+                //         PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
+                //     }
+                // }
             }
             
             if(Input.GetMouseButtonDown(0) && InteractionSystem.Instance.IsHoveringInteractable)
                 InteractionSystem.Instance.Interact();
             
-            if (!m_ChatCanvas.activeSelf)
+            // if (!m_ChatCanvas.activeSelf)
                 HandleMovement();
         }
 

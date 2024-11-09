@@ -26,7 +26,7 @@ namespace Inworld.Playground
         /// <param name="micSampleMode">The sample mode to set as default.</param>
         public void UpdateDefaultSampleMode(MicSampleMode micSampleMode)
         {
-            m_InitSampleMode = micSampleMode;
+            // m_InitSampleMode = micSampleMode;
             m_SamplingMode = micSampleMode;
         }
     }

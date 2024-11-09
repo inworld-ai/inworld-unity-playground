@@ -33,8 +33,8 @@ namespace Inworld.Sample.Innequin
         Material m_matMouth;
         
         bool m_IsBlinking;
-        float m_CurrentAudioTime;
         static readonly int s_Emotion = Animator.StringToHash("Emotion");
+        static readonly int s_BaseMap = Shader.PropertyToID("_BaseMap");
         const int k_VisemeSil = 0;
         const int k_VisemeCount = 15;
 
@@ -68,10 +68,10 @@ namespace Inworld.Sample.Innequin
             FaceTransform facialData = m_FaceTransformData[emotion.ToString()];
             if (facialData == null)
                 return;
-            m_matEyeBlow.mainTexture = facialData.eyeBrow;
+            m_matEyeBlow.SetTexture(s_BaseMap, facialData.eyeBrow); 
             m_CurrentEyeOpen = facialData.eye;
             m_CurrentEyeClosed = facialData.eyeClosed;
-            m_matNose.mainTexture = facialData.nose;
+            m_matNose.SetTexture(s_BaseMap, facialData.nose);
             m_DefaultMouth = facialData.mouthDefault;
             m_LipsyncTextures = facialData.mouth;
         }
@@ -90,14 +90,14 @@ namespace Inworld.Sample.Innequin
         protected override void BlinkEyes()
         {
             m_IsBlinking = Mathf.Sin(Time.time) < m_BlinkRate;
-            m_matEye.mainTexture = m_IsBlinking ? m_CurrentEyeClosed : m_CurrentEyeOpen;
+            m_matEye.SetTexture(s_BaseMap, m_IsBlinking ? m_CurrentEyeClosed : m_CurrentEyeOpen);
         }
         protected override void Reset()
         {
             if (m_LipsyncTextures.Count == k_VisemeCount)
-                m_matMouth.mainTexture = m_LipsyncTextures[k_VisemeSil];
+                m_matMouth.SetTexture(s_BaseMap, m_LipsyncTextures[k_VisemeSil]); 
             else
-                m_matMouth.mainTexture = m_DefaultMouth;
+                m_matMouth.SetTexture(s_BaseMap, m_DefaultMouth); 
         }
         protected override void ProcessLipSync()
         {
@@ -106,8 +106,7 @@ namespace Inworld.Sample.Innequin
                 Reset();
                 return;
             }
-            m_CurrentAudioTime += Time.fixedDeltaTime;
-            PhonemeInfo data = m_CurrentPhoneme?.LastOrDefault(p => p.StartOffset < m_CurrentAudioTime);
+            PhonemeInfo data = m_CurrentPhoneme?.LastOrDefault(p => p.StartOffset < m_Interaction.AnimFactor);
             if (data == null || string.IsNullOrEmpty(data.phoneme))
             {
                 Reset();
@@ -120,12 +119,11 @@ namespace Inworld.Sample.Innequin
                 return;
             }
             if (p2v.visemeIndex >= 0 && p2v.visemeIndex < m_LipsyncTextures.Count)
-                m_matMouth.mainTexture = m_LipsyncTextures[p2v.visemeIndex];
+                m_matMouth.SetTexture(s_BaseMap, m_LipsyncTextures[p2v.visemeIndex]); 
         }
 
         protected override void HandleLipSync(AudioPacket audioPacket)
         {
-            m_CurrentAudioTime = 0;
             m_CurrentPhoneme = audioPacket.dataChunk.additionalPhonemeInfo;
         }
         protected override void HandleEmotion(EmotionPacket packet)

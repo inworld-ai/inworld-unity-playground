@@ -6,7 +6,7 @@
  *************************************************************************************************/
 
 using System.Collections;
-using Inworld.Entities;
+using Inworld.Data;
 using UnityEngine;
 using UnityEngine.UI;
 

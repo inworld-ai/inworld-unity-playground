@@ -8,13 +8,11 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
 using TMPro.EditorUtilities;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-
 
 namespace Inworld
 {
@@ -57,7 +55,7 @@ namespace Inworld
         }
         static async Task _AddUnityPackage(string package, string detail = "")
         {
-            ListRequest listRequest = Client.List();
+            ListRequest listRequest = UnityEditor.PackageManager.Client.List();
 
             while (!listRequest.IsCompleted)
             {
@@ -74,7 +72,7 @@ namespace Inworld
                 return;
             }
             string pkgToLoad = string.IsNullOrEmpty(detail) ? package : detail;
-            AddRequest addRequest = Client.Add(pkgToLoad);
+            AddRequest addRequest = UnityEditor.PackageManager.Client.Add(pkgToLoad);
             while (!addRequest.IsCompleted)
             {
                 await Task.Yield();
@@ -92,11 +90,10 @@ namespace Inworld
             await _AddUnityPackage(k_DependencyPackage, _GetTgzFileName());
             if (!Directory.Exists(k_InworldAssetsPath) && File.Exists(k_ExtraPackagePath))
                 AssetDatabase.ImportPackage(k_ExtraPackagePath, false);
-            if (!File.Exists("Assets/TextMesh Pro/Resources/TMP Settings.asset"))
-            {
-                string packageFullPath = TMP_EditorUtility.packageFullPath;
-                AssetDatabase.ImportPackage(packageFullPath + "/Package Resources/TMP Essential Resources.unitypackage", false);
-            }
+            if (System.Type.GetType("TMPro.TextMeshPro, Unity.TextMeshPro") != null)
+                return;
+            string packageFullPath = TMP_EditorUtility.packageFullPath;
+            AssetDatabase.ImportPackage(packageFullPath + "/Package Resources/TMP Essential Resources.unitypackage", false);
         }
     }
 }

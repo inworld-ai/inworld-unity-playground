@@ -5,11 +5,9 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
-using System;
 using System.Collections.Generic;
-using Inworld.Packet;
+using Inworld.BehaviorEngine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Inworld.Map
 {
@@ -17,6 +15,7 @@ namespace Inworld.Map
     public class CreateEntityOnTaskComplete : MonoBehaviour
     {
         [SerializeField] private Task m_Task;
+        [SerializeField] private InworldCharacterTaskHandler m_CharacterTaskHandler;
         [SerializeField] private EntityItem m_ItemTaskPerformedOn;
         
         private EntityItem m_EntityItemToCreate;
@@ -28,12 +27,12 @@ namespace Inworld.Map
 
         private void OnEnable()
         {
-            EntityManager.Instance.onTaskComplete.AddListener(OnTaskComplete);
+            m_CharacterTaskHandler.onTaskComplete.AddListener(OnTaskComplete);
         }
 
         private void OnDisable()
         {
-            EntityManager.Instance.onTaskComplete.RemoveListener(OnTaskComplete);
+            m_CharacterTaskHandler.onTaskComplete.RemoveListener(OnTaskComplete);
         }
 
         private void OnTaskComplete(string brainName, string taskID, Dictionary<string, string> parameters)

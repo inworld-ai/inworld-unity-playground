@@ -8,12 +8,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using TMPro;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine.Networking;
+using Object = UnityEngine.Object;
 
 
 namespace Inworld.Editors
@@ -128,6 +128,8 @@ namespace Inworld.Editors
                     return;
                 }
                 uwr.SetRequestHeader("Authorization", InworldEditor.Token);
+                if (!InworldEditor.IsLegacyEntry)
+                    uwr.SetRequestHeader("Grpc-Metadata-X-Authorization-Bearer-Type", "studio_api");
             }
             UnityWebRequestAsyncOperation updateRequest = uwr.SendWebRequest();
             updateRequest.completed += callback;
@@ -166,6 +168,18 @@ namespace Inworld.Editors
             }
             menu.ShowAsContext();
         }
+        public static void AddPlayerController(GameObject playerController)
+        {
+            Camera mainCamera = Camera.main;
+            if (mainCamera)
+            {
+                if (EditorUtility.DisplayDialog("Note", "Adding player controller will delete current main camera. Continue?", "OK", "Cancel"))
+                {
+                    Undo.DestroyObjectImmediate(mainCamera.gameObject);
+                }
+            }
+            Object.Instantiate(playerController);
+        }
         static void _OpenUserPanel()
         {
             if (!Directory.Exists(InworldEditor.UserDataPath))
@@ -184,17 +198,19 @@ namespace Inworld.Editors
         static void _AddDebugMacro()
         {
             BuildTargetGroup buildTargetGroup = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
-            string strSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+            NamedBuildTarget namedBuildTarget = NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup);
+            string strSymbols = PlayerSettings.GetScriptingDefineSymbols(namedBuildTarget);
             if (!strSymbols.Contains("INWORLD_DEBUG"))
                 strSymbols = string.IsNullOrEmpty(strSymbols) ? "INWORLD_DEBUG" : strSymbols + ";INWORLD_DEBUG";
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, strSymbols);
+            PlayerSettings.SetScriptingDefineSymbols(namedBuildTarget, strSymbols);
         }
         static void _RemoveDebugMacro()
         {
             BuildTargetGroup buildTargetGroup = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
-            string strSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+            NamedBuildTarget namedBuildTarget = NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup);
+            string strSymbols = PlayerSettings.GetScriptingDefineSymbols(namedBuildTarget);
             strSymbols = strSymbols.Replace(";INWORLD_DEBUG", "").Replace("INWORLD_DEBUG", "");
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, strSymbols);
+            PlayerSettings.SetScriptingDefineSymbols(namedBuildTarget, strSymbols);
         }
     }
 }
