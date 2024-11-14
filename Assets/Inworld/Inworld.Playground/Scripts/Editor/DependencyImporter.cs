@@ -24,7 +24,7 @@ namespace Inworld.Playground
 #if UNITY_2022_3_OR_NEWER
             "com.unity.sentis",
 #endif
-            $"file:{Application.dataPath}/Inworld/com.inworld.unity.core-3.4.0.tgz"
+            $"file:{Application.dataPath}/Inworld/com.inworld.unity.core-3.6.0.tgz"
         };
         
         static readonly string[] s_DependencyPackagesCheck = 
