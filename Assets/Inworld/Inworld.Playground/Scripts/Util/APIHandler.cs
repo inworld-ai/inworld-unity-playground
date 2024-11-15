@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,17 +13,21 @@ using UnityEngine.Networking;
 
 namespace Inworld.Playground
 {
+    
     /// <summary>
     /// Handles sending requests to web servers.
     /// </summary>
     public class APIHandler : MonoBehaviour
     {
+
+        #region Event
         /// <summary>
-        /// Event is invoked when a response is received from a web request.
+        /// Action is invoked when a response is received from a web request.
         /// Contains the result and text body of the response message.
         /// </summary>
-        public UnityEvent<UnityWebRequest.Result, string> onResponseEvent;
-        
+        public event Action<UnityWebRequest.Result, string> OnResponseEvent;
+        #endregion
+
         /// <summary>
         /// Sends a GET request to the provided URI.
         /// </summary>
@@ -37,7 +42,7 @@ namespace Inworld.Playground
         {
             using var request = UnityWebRequest.Get(uri);
             yield return request.SendWebRequest();
-            onResponseEvent.Invoke(request.result, request.downloadHandler.text);
+            OnResponseEvent(request.result, request.downloadHandler.text);
         }
     }
 }

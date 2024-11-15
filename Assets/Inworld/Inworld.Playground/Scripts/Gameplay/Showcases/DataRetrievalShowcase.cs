@@ -22,13 +22,13 @@ namespace Inworld.Playground
 
         void OnEnable()
         {
-            m_InworldPlaygroundCharacter.onServerTrigger.AddListener(OnDataRetrievalBotServerTrigger);
+            m_InworldPlaygroundCharacter.OnServerTrigger +=  OnDataRetrievalBotServerTrigger;
         }
         
         void OnDisable()
         {
             if(m_InworldPlaygroundCharacter)
-                m_InworldPlaygroundCharacter.onServerTrigger.RemoveListener(OnDataRetrievalBotServerTrigger);
+                m_InworldPlaygroundCharacter.OnServerTrigger -= OnDataRetrievalBotServerTrigger;
         }
 
         void OnDataRetrievalBotServerTrigger(string triggerName, Dictionary<string, string> parameters) 

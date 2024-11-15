@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,10 +17,14 @@ namespace Inworld.Playground
     /// </summary>
     public class OnTrigger : MonoBehaviour
     {
-        public UnityEvent OnTriggerEnterEvent;
+        #region Actions
+
+        public event Action OnTriggerEnterEvent;
+
+        #endregion
         private void OnTriggerEnter(Collider other)
         {
-            OnTriggerEnterEvent?.Invoke();
+            OnTriggerEnterEvent();
         }
 
     }

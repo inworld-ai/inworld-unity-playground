@@ -14,8 +14,8 @@ namespace Inworld.Playground
         protected override void OnEnable()
         {
             base.OnEnable();
-            PlaygroundManager.Instance.OnPause.AddListener(OnPause);
-            PlaygroundManager.Instance.OnPlay.AddListener(OnPlay);
+            PlaygroundManager.Instance.OnPause += OnPause;
+            PlaygroundManager.Instance.OnPlay += OnPlay;
         }
 
         protected override void OnDisable()
@@ -23,8 +23,8 @@ namespace Inworld.Playground
             base.OnDisable();
             if (!PlaygroundManager.Instance)
                 return;
-            PlaygroundManager.Instance.OnPause.RemoveListener(OnPause);
-            PlaygroundManager.Instance.OnPlay.RemoveListener(OnPlay);
+            PlaygroundManager.Instance.OnPause -= OnPause;
+            PlaygroundManager.Instance.OnPlay -= OnPlay;
         }
 
         void OnPlay()
