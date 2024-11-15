@@ -24,13 +24,13 @@ namespace Inworld.Playground
 
         private void OnEnable()
         {
-            PlaygroundManager.Instance.OnPlay.AddListener(OnPlay);
+            PlaygroundManager.Instance.OnPlay += OnPlay;
         }
 
         private void OnDisable()
         {
             if(PlaygroundManager.Instance)
-                PlaygroundManager.Instance.OnPlay.RemoveListener(OnPlay);
+                PlaygroundManager.Instance.OnPlay -= OnPlay;
         }
 
         private void OnPlay()

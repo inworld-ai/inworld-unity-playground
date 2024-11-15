@@ -29,9 +29,9 @@ namespace Inworld.Playground
         protected override void OnEnable()
         {
             base.OnEnable();
-            PlaygroundManager.Instance.OnPlay.AddListener(OnEndSceneChange);
-            PlaygroundManager.Instance.OnStartInworldSceneChange.AddListener(OnStartInworldSceneChange);
-            PlaygroundManager.Instance.OnEndInworldSceneChange.AddListener(OnEndInworldSceneChange);
+            PlaygroundManager.Instance.OnPlay += OnEndSceneChange;
+            PlaygroundManager.Instance.OnStartInworldSceneChange += OnStartInworldSceneChange;
+            PlaygroundManager.Instance.OnEndInworldSceneChange += OnEndInworldSceneChange;
         }
 
         protected override void OnDisable()
@@ -39,9 +39,9 @@ namespace Inworld.Playground
             if (!InworldController.Instance || !PlaygroundManager.Instance)
                 return;
             base.OnDisable();
-            PlaygroundManager.Instance.OnPlay.RemoveListener(OnEndSceneChange);
-            PlaygroundManager.Instance.OnStartInworldSceneChange.RemoveListener(OnStartInworldSceneChange);
-            PlaygroundManager.Instance.OnEndInworldSceneChange.RemoveListener(OnEndInworldSceneChange);
+            PlaygroundManager.Instance.OnPlay += OnEndSceneChange;
+            PlaygroundManager.Instance.OnStartInworldSceneChange += OnStartInworldSceneChange;
+            PlaygroundManager.Instance.OnEndInworldSceneChange += OnEndInworldSceneChange;
         }
         
         void OnEndSceneChange()

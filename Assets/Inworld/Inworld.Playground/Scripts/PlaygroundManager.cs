@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Inworld.Entities;
@@ -19,17 +20,21 @@ using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
 {
+    
     /// <summary>
     ///     Manages the Playground: changing scenes, updating settings, play/pausing.
     /// </summary>
     public class PlaygroundManager : SingletonBehavior<PlaygroundManager>
     {
-        public UnityEvent OnPlay;
-        public UnityEvent OnPause;
-        public UnityEvent OnStartSceneChange;
-        public UnityEvent OnEndSceneChange;
-        public UnityEvent OnStartInworldSceneChange;
-        public UnityEvent OnEndInworldSceneChange;
+        
+        #region Event
+        public event Action OnPlay;
+        public event Action OnPause;
+        public event Action OnStartSceneChange;
+        public event Action OnEndSceneChange;
+        public event Action OnStartInworldSceneChange;
+        public event Action OnEndInworldSceneChange;
+        #endregion
         
         public InworldGameData GameData => m_GameData;
         public bool Paused => m_Paused;
