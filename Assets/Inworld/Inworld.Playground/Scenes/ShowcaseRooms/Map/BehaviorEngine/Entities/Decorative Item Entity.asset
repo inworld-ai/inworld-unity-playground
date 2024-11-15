@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ba0b8821d7d044f84650a89020ffea, type: 3}
+  m_Name: Decorative Item Entity
+  m_EditorClassIdentifier: 
+  m_Id: workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/entities/map-decorative
+  m_DisplayName: Decorative Item
+  m_Description: An object used for aesthetic purposes to enhance the visual appeal
+    of a space.

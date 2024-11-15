@@ -24,7 +24,7 @@ namespace Inworld.BehaviorEngine
                 InworldAI.LogWarning($"Attempted to add an entity item that already exists: {entityItem.ID}");
                 return;
             }
-            
+
             m_Items.Add(entityItem);
             if(InworldController.Client)
                 InworldController.Client.CreateOrUpdateItems(new List<Packet.EntityItem>() { entityItem.Get() }, entityItem.GetEntityIDs());

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a41545f09d21a4997b4c0d9bb85a53, type: 3}
+  m_Name: examineTask
+  m_EditorClassIdentifier: 
+  m_TaskName: workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/custom-tasks/examine
+  m_TaskParameters:
+  - m_Name: what
+    m_Description: 
+    m_Entities:
+    - {fileID: 11400000, guid: 3372716c8ab73cb459cbfb550f4a94ae, type: 2}
+    - {fileID: 11400000, guid: 08f1ee70d11c4a149a62deebc5d07eb0, type: 2}
+    - {fileID: 11400000, guid: 03371df5acacbef42b9d2cfe846dd23e, type: 2}
+    - {fileID: 11400000, guid: 6a35d3eb46cf59747b525093714ba094, type: 2}
+    - {fileID: 11400000, guid: 4e8a199df3e4fb54db6b9fd60f7d8ba5, type: 2}
+  m_TaskHandler: {fileID: 11400000, guid: bb2ccc20802f3c54ba95cf8738fa98ad, type: 2}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a41545f09d21a4997b4c0d9bb85a53, type: 3}
+  m_Name: takeTask
+  m_EditorClassIdentifier: 
+  m_TaskName: workspaces/ae8f311b-a8d9-4fc5-9a7e-2ff31860907a/custom-tasks/take
+  m_TaskParameters:
+  - m_Name: what
+    m_Description: 
+    m_Entities:
+    - {fileID: 11400000, guid: ab1c2aa2232fd58479f87cb79b5b36a0, type: 2}
+  m_TaskHandler: {fileID: 11400000, guid: 55ad1494d81386d4a88e92c36e4acfb2, type: 2}
