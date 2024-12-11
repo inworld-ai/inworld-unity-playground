@@ -5,6 +5,8 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
+using TMPro;
 using UnityEngine;
 
 namespace Inworld.Playground
@@ -14,15 +16,14 @@ namespace Inworld.Playground
     /// </summary>
     public class Portal : MonoBehaviour
     {
-        [SerializeField] 
-        private string m_SceneName;
-        
+        [SerializeField] TMP_Text m_PortalName;
+
         /// <summary>
         ///     Change scene to the one specified by m_SceneName on the component.
         /// </summary>
-        public void Activate()
+        void OnTriggerEnter(Collider other)
         {
-            PlaygroundManager.Instance.ChangeScene(m_SceneName);
+            PlaygroundManager.Instance.ChangeScene(m_PortalName.text);
         }
     }
 }

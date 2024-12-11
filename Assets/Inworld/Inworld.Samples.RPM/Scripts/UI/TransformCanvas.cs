@@ -41,7 +41,7 @@ namespace Inworld.Sample.RPM
                 m_CurrentCharacter.SendTrigger(m_InitTrigger);
         }
         /// <summary>
-        /// Callback function registered in the Action of InworldCharacter.
+        /// Callback function registered in the UnityEvent of InworldCharacter.
         /// </summary>
         /// <param name="brainName">the character's brain Name who received the goal.</param>
         /// <param name="trigger">the callback trigger to process.</param>
