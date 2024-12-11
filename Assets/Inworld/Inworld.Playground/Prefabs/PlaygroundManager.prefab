@@ -204,15 +204,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -744,15 +746,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -822,24 +826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c8346cc3d1dab4ea45b9dd37a5e705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlay:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPause:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStartSceneChange:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEndSceneChange:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStartInworldSceneChange:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEndInworldSceneChange:
-    m_PersistentCalls:
-      m_Calls: []
   m_InworldSceneMapping:
   - UnitySceneName: Lobby
     InworldSceneName: playground_lobby
@@ -857,6 +843,8 @@ MonoBehaviour:
     InworldSceneName: environment_room
   - UnitySceneName: Interactions
     InworldSceneName: interactions_room
+  - UnitySceneName: MultiAgent
+    InworldSceneName: multi-agent_room
   m_Settings:
     PlayerName: 
     WorkspaceId: 
@@ -929,7 +917,7 @@ MonoBehaviour:
     onConversationUpdated:
       m_PersistentCalls:
         m_Calls: []
-  m_SelectingMethod: 2
+  m_SelectingMethod: 3
   m_SelectingThreshold: 1.5
   m_RefreshRate: 0.5
 --- !u!114 &2840956508465157608
@@ -1130,15 +1118,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
