@@ -40,9 +40,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213081522884565785}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
   m_Range: 10
@@ -92,8 +91,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &520969779390976094
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772092836694591753}
-  - component: {fileID: 5784752620231615943}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -130,19 +132,6 @@ Transform:
   - {fileID: 3516814022918480955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5784752620231615943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520969779390976094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9304633ac74358a4a9b5d889fdc6ac0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneName: Lobby
 --- !u!1 &4955056702399164583
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,8 +141,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3516814022918480955}
-  - component: {fileID: 5376654340464495070}
   - component: {fileID: 729645757084393328}
+  - component: {fileID: 2103567414869317533}
   m_Layer: 2
   m_Name: Portal
   m_TagString: Untagged
@@ -176,33 +165,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 772092836694591753}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &5376654340464495070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4955056702399164583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f098db505ebcb4599fe900f1c35d79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnTriggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5784752620231615943}
-        m_TargetAssemblyTypeName: Inworld.Playground.Portal, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!135 &729645757084393328
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -224,6 +186,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: -0.00000047683716}
+--- !u!114 &2103567414869317533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955056702399164583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9304633ac74358a4a9b5d889fdc6ac0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PortalName: {fileID: 694916693786922020}
 --- !u!1001 &894216419421247676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,6 +370,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 9080934092475089424, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -404,6 +391,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
+--- !u!114 &694916693786922020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
+  m_PrefabInstance: {fileID: 7345060046754447325}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6758843635970952020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4045034319713088649, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
@@ -470,7 +468,7 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 061904180fd5d2f4c995cac611208c7c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3d2c70be4b446e847a04a6cfb7e28002, type: 2}
     - target: {fileID: 919132149155446097, guid: 061904180fd5d2f4c995cac611208c7c, type: 3}
@@ -696,7 +694,7 @@ MonoBehaviour:
   InteractionEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5784752620231615943}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Inworld.Playground.Portal, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1

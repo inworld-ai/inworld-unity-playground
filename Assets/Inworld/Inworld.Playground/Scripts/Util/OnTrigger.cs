@@ -11,6 +11,7 @@ using UnityEngine.Events;
 
 namespace Inworld.Playground
 {
+    // TODO(Yan): Remove this class as it's too inefficient. All the MonoBehavior should handle OnTriggerEnter itself.
     /// <summary>
     ///     Actives the OnTriggerEnterEvent when OnTriggerEnter is called.
     ///     For use with Trigger Collider objects.
@@ -24,7 +25,7 @@ namespace Inworld.Playground
         #endregion
         private void OnTriggerEnter(Collider other)
         {
-            OnTriggerEnterEvent();
+            OnTriggerEnterEvent?.Invoke();
         }
 
     }

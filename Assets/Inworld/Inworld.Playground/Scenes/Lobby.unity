@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -192,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 1292292200}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -361,8 +358,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -758,6 +755,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -797,14 +797,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494736067789068
-  m_Size: {x: -2, y: 0.5, z: -19}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 11715
-  m_ShapeBox:
-    m_Center: {x: -1, y: 0.25, z: -9.5}
-    m_Extent: {x: 1, y: 0.25, z: 9.5}
+  m_Size: {x: -2, y: 0.5, z: -19}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -1227,6 +1223,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1266,14 +1265,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494715160231983
-  m_Size: {x: -3, y: 1, z: 0.125}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 4142
-  m_ShapeBox:
-    m_Center: {x: -1.5, y: 0.5, z: 0.0625}
-    m_Extent: {x: 1.5, y: 0.5, z: 0.0625}
+  m_Size: {x: -3, y: 1, z: 0.125}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -1776,9 +1771,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355847413}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -1828,8 +1822,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &366644585 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 099ac42bc3ba4014fa5ac7320aa77694, type: 3}
@@ -1992,8 +1990,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 66.76765
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 66.76765
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -2342,8 +2340,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -2994,8 +2992,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -3072,7 +3070,7 @@ PrefabInstance:
       objectReference: {fileID: 414468067}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3241,8 +3239,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 162.30772
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 162.30772
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -3398,6 +3396,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3760,8 +3761,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -3925,8 +3926,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -4003,7 +4004,7 @@ PrefabInstance:
       objectReference: {fileID: 1529731759}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4229,8 +4230,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -4521,8 +4522,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -4635,7 +4636,7 @@ PrefabInstance:
       objectReference: {fileID: 1663851770}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4717,7 +4718,7 @@ PrefabInstance:
       objectReference: {fileID: 1443301225}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4812,6 +4813,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4851,14 +4855,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494736067789176
-  m_Size: {x: 12.25, y: 0, z: -27.25}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 2861
-  m_ShapeBox:
-    m_Center: {x: 6.125, y: 0.0001, z: -13.625}
-    m_Extent: {x: 0.5, y: 0, z: 0.5}
+  m_Size: {x: 12.25, y: 0, z: -27.25}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -5216,8 +5216,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 523.4947
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 523.4947
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -5381,8 +5381,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -5612,8 +5612,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6002,8 +6002,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6167,8 +6167,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6332,8 +6332,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1.0000011
-  m_MeshMetrics[1]: 7.102245
+  'm_MeshMetrics[0]': 1.0000011
+  'm_MeshMetrics[1]': 7.102245
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6365,9 +6365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 694916693786922020, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_text
-      value: 'Multi-Agent
-
-'
+      value: MultiAgent
       objectReference: {fileID: 0}
     - target: {fileID: 772092836694591753, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6423,7 +6421,7 @@ PrefabInstance:
       objectReference: {fileID: 636776368}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6592,8 +6590,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6890,8 +6888,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 162.30772
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 162.30772
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6992,6 +6990,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7031,14 +7032,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494736067789068
-  m_Size: {x: -2, y: 0.5, z: -19}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 11715
-  m_ShapeBox:
-    m_Center: {x: -1, y: 0.25, z: -9.5}
-    m_Extent: {x: 1, y: 0.25, z: 9.5}
+  m_Size: {x: -2, y: 0.5, z: -19}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -7595,8 +7592,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 523.4947
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 523.4947
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -7829,7 +7826,7 @@ PrefabInstance:
       objectReference: {fileID: 1665814797}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9763
+      value: 9769
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8341,14 +8338,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494715160231983
-  m_Size: {x: -3, y: 1, z: 0.125}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 4142
-  m_ShapeBox:
-    m_Center: {x: -1.5, y: 0.5, z: 0.0625}
-    m_Extent: {x: 1.5, y: 0.5, z: 0.0625}
+  m_Size: {x: -3, y: 1, z: 0.125}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -8388,6 +8381,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8427,14 +8423,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494715160231971
-  m_Size: {x: -9, y: 0.5, z: -3}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 2066
-  m_ShapeBox:
-    m_Center: {x: -4.5, y: 0.25, z: -1.5}
-    m_Extent: {x: 4.5, y: 0.25, z: 1.5}
+  m_Size: {x: -9, y: 0.5, z: -3}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -8458,6 +8450,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8781,6 +8776,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8841,14 +8839,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494715160231983
-  m_Size: {x: -3, y: 1, z: 0.125}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 4142
-  m_ShapeBox:
-    m_Center: {x: -1.5, y: 0.5, z: 0.0625}
-    m_Extent: {x: 1.5, y: 0.5, z: 0.0625}
+  m_Size: {x: -3, y: 1, z: 0.125}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -8872,6 +8866,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9228,14 +9225,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494715160231983
-  m_Size: {x: -3, y: 1, z: 0.125}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 4142
-  m_ShapeBox:
-    m_Center: {x: -1.5, y: 0.5, z: 0.0625}
-    m_Extent: {x: 1.5, y: 0.5, z: 0.0625}
+  m_Size: {x: -3, y: 1, z: 0.125}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -9299,6 +9292,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2103567414869317533, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
+      propertyPath: m_SceneName
+      value: Interactions
+      objectReference: {fileID: 0}
     - target: {fileID: 5784752620231615943, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_SceneName
       value: Interactions
@@ -9313,7 +9310,7 @@ PrefabInstance:
       objectReference: {fileID: 1058136445}
     - target: {fileID: 8889263695325818832, guid: 7e9276cdb96fe10428af336c39ad9963, type: 3}
       propertyPath: m_VersionIndex
-      value: 9760
+      value: 9766
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9564,6 +9561,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10024,14 +10024,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7816494715160231973
-  m_Size: {x: 9, y: 0.5, z: 3}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 11979
-  m_ShapeBox:
-    m_Center: {x: 4.5, y: 0.25, z: 1.5}
-    m_Extent: {x: 4.5, y: 0.25, z: 1.5}
+  m_Size: {x: 9, y: 0.5, z: 3}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
