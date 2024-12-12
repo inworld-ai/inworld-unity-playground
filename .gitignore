@@ -119,3 +119,11 @@ PlaygroundAssetUtil.cs
 PlaygroundAssetUtil.cs.meta
 PlaygroundAssetNames.csv
 PlaygroundAssetNames.csv.meta
+
+# Inworld SDK Related Files
+/[Ss]DK/
+/[Aa]ssets/Inworld/Inworld.Assets/
+/[Aa]ssets/Inworld/Inworld.Editor/
+/[Aa]ssets/Inworld/Inworld.Native/
+/[Aa]ssets/Inworld/Inworld.Samples.Innequin/
+/[Aa]ssets/Inworld/Inworld.Samples.RPM/
