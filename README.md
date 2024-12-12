@@ -7,7 +7,17 @@ For more in-depth documentation of the playground, visit the [Inworld AI docs](h
 - [Unity](https://unity.com/download) 2022.2+
 - [Playground Demo](https://github.com/inworld-ai/inworld-unity-playground/) Unity package file
 
+
 ## Quickstart
+
+* For GitHub Repo:
+Please follow the following steps:
+1. clone this repo.
+2. Navigate to the folder `inworld-unity-playground`.
+3. Run `python importSDK.py`.
+4. Open the Unity project `inworld-unity-playground`.
+
+* For Unitypackage on Release page:
 Create a new Unity project and import the [Playground Demo](https://github.com/inworld-ai/inworld-unity-playground/releases/latest) Unity package. Then select and run the **Setup** scene located at: `Assets/Inworld/Inworld.Playground/Scenes/Setup.unity` and follow the instructions.
 
 ## Install
