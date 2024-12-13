@@ -29,15 +29,15 @@ jobs:
           with:
             lfs: true        
 
-        - name: Import SDK
-          run: |
-            python importSDK.py
-
         - name: Cleanup before build
           run: |
             docker system prune -af
             docker volume prune -f
 
+        - name: Import SDK
+          run: |
+            python importSDK.py
+            
         - name: Cache Library          
           uses: actions/cache@v3
           with:
