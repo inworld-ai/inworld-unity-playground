@@ -49,7 +49,7 @@ jobs:
           uses: game-ci/unity-builder@v4
           with:
             buildMethod: Inworld.Playground.PlaygroundExporter.BuildPlaygroundScene            
-            unityVersion: 2022.3.34f1
+            unityVersion: 6000.0.25f1
             targetPlatform: ${{ matrix.targetPlatform }}
 
 
