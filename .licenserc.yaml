@@ -96,13 +96,15 @@ header:
     - '**/*.uxml'
     - '**/*.xml'
     - '**/*.asmdef'
+    - '**/*.mesh'
     - '**/*.shadergraph'
+    - '**/*.ShaderGraph'
     - '**/*.shader'
     - '**/*.mask'
     - '**/*.controller'
     - '**/*.yaml'
     - '**/*.yml'
-    - '**/*.config'   
+    - '**/*.config'      
     - '**/*.editorconfig'     
     
   comment: on-failure
