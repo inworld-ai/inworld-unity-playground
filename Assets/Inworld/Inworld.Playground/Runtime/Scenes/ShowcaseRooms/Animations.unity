@@ -2643,6 +2643,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1723005008}
+    - target: {fileID: 1626900139722568074, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 12890
+      objectReference: {fileID: 0}
     - target: {fileID: 2884741562164049352, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -2683,10 +2687,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2134053105}
+    - target: {fileID: 3859731627302479628, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 6083
+      objectReference: {fileID: 0}
     - target: {fileID: 4157877121817460730, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 164873527}
+    - target: {fileID: 4157877121817460730, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4619
+      objectReference: {fileID: 0}
     - target: {fileID: 4199022759943704971, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_Name
       value: BuildingMiddle
@@ -2703,6 +2715,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 879079336}
+    - target: {fileID: 5408178612012125593, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2403
+      objectReference: {fileID: 0}
     - target: {fileID: 5513628442178771632, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2711,6 +2727,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2049161320}
+    - target: {fileID: 5677627040474519578, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4320
+      objectReference: {fileID: 0}
     - target: {fileID: 5913722838491923243, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -2743,6 +2763,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 499136943}
+    - target: {fileID: 7194888282097570160, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4338
+      objectReference: {fileID: 0}
     - target: {fileID: 7238599646606319910, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_text
       value: Emotions
@@ -2755,6 +2779,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1833836646}
+    - target: {fileID: 7407242698673447129, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4619
+      objectReference: {fileID: 0}
     - target: {fileID: 7432622490219660481, guid: bfdbb674573fdd64394f60888df233cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
