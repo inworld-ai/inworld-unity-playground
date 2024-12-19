@@ -1874,7 +1874,7 @@ GameObject:
   - component: {fileID: 757635372}
   - component: {fileID: 757635371}
   - component: {fileID: 757635375}
-  - component: {fileID: 757635374}
+  - component: {fileID: 757635377}
   - component: {fileID: 757635376}
   m_Layer: 0
   m_Name: ToyRocketItem
@@ -1950,29 +1950,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757635369}
-  m_Mesh: {fileID: -3049823344224239988, guid: 0b41e39b2895fce4bab840137f69f08f, type: 3}
---- !u!64 &757635374
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757635369}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3049823344224239988, guid: 0b41e39b2895fce4bab840137f69f08f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 791d65c75cf894e4fac8d67e1bd696e8, type: 2}
 --- !u!54 &757635375
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2023,6 +2001,27 @@ MonoBehaviour:
   - Key: cost
     Value: 1000
   m_Force: {x: 0, y: 4, z: 0}
+--- !u!65 &757635377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757635369}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.114827275, y: 0.11049028, z: 0.3085725}
+  m_Center: {x: 0.0000017564744, y: 0.01142283, z: 0.15428625}
 --- !u!1 &855690417
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,7 +2110,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855690417}
-  m_Mesh: {fileID: -696875643852561040, guid: 8b42d6567197b314c9e3d956fbe0254d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 33aaa6a70ab27e341b51cfbd7dcfc1c6, type: 2}
 --- !u!54 &855690423
 Rigidbody:
   m_ObjectHideFlags: 0
