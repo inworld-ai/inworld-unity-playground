@@ -11,7 +11,10 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
 {
@@ -36,7 +39,11 @@ namespace Inworld.Playground
             AssetDatabase.importPackageCompleted += name =>
             {
                 if (name == k_PkgName)
+                {
                     CheckDependencies();
+                    _UpgradeIntensity();
+                }
+                    
                 if (name == k_AssetPkgName)
                     Debug.Log($"{k_PkgName} installed.");
             };
@@ -75,6 +82,27 @@ namespace Inworld.Playground
             }
             Debug.Log("Import Playground Dependency Packages...");
             AssetDatabase.ImportPackage($"{k_InworldPath}/{k_PlaygroundPath}/{k_AssetPkgName}.unitypackage", false);
+        }
+        static void _UpgradeIntensity()
+        {
+            if (GraphicsSettings.currentRenderPipeline == null)
+                return;
+            string[] data = AssetDatabase.FindAssets("t:SceneAsset", new[] { "Assets/Inworld/Inworld.Playground" });
+            
+            foreach (string str in data)
+            {
+                string scenePath = AssetDatabase.GUIDToAssetPath(str);
+                Debug.Log($"Process on {scenePath}");
+                Scene scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+                foreach (Light light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
+                {
+                    light.intensity = 50;
+                }
+                EditorSceneManager.MarkSceneDirty(scene);
+                EditorSceneManager.SaveScene(scene);
+            }
+            if (data.Length > 0)
+                EditorSceneManager.OpenScene(AssetDatabase.GUIDToAssetPath(data[0]), OpenSceneMode.Single);
         }
     }
 }

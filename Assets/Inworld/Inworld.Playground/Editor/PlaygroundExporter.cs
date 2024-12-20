@@ -40,7 +40,7 @@ namespace Inworld.Playground
             }; 
             AssetDatabase.ExportPackage(assetPaths, s_PlaygroundPackagePath, ExportPackageOptions.Recurse); 
         }
-        [MenuItem("Inworld/Build Playground")]
+        // Used in Github Actions.
         public static void BuildPlaygroundScene()
         {
             string[] scenes = { s_PlayGroundScenePath };
