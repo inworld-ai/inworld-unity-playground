@@ -13,6 +13,7 @@ using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
+
 namespace Inworld.Playground
 {
     [InitializeOnLoad]
@@ -35,10 +36,15 @@ namespace Inworld.Playground
         {
             AssetDatabase.importPackageCompleted += name =>
             {
-                if (name == k_PkgName)
-                    CheckDependencies();
-                if (name == k_AssetPkgName)
-                    Debug.Log($"{k_PkgName} installed.");
+                switch (name)
+                {
+                    case k_PkgName:
+                        CheckDependencies();
+                        break;
+                    case k_AssetPkgName:
+                        Debug.Log($"{k_PkgName} installed.");
+                        break;
+                }
             };
         }
         [MenuItem("Inworld/Playground/Reinstall")]
@@ -50,7 +56,7 @@ namespace Inworld.Playground
                 EditorUtility.DisplayDialog(k_ErrorTitle, k_UpgradeContent, "OK");
                 return;
             } 
-            ListRequest listRequest = UnityEditor.PackageManager.Client.List();
+            ListRequest listRequest = Client.List();
 
             while (!listRequest.IsCompleted)
             {

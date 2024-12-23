@@ -122,19 +122,20 @@ PlaygroundAssetNames.csv
 PlaygroundAssetNames.csv.meta
 
 # Inworld SDK Related Files
-/SDK/
-/Assets/Inworld.meta
-/Assets/Inworld/Editor.meta
-/Assets/Inworld/Editor/
-/Assets/Inworld/Inworld.Assets.meta
-/Assets/Inworld/Inworld.Assets/
-/Assets/Inworld/Inworld.Editor.meta
-/Assets/Inworld/Inworld.Editor/
-/Assets/Inworld/Inworld.Native.meta
-/Assets/Inworld/Inworld.Native/
-/Assets/Inworld/Inworld.Samples.Innequin.meta
-/Assets/Inworld/Inworld.Samples.Innequin/
-/Assets/Inworld/Inworld.Samples.RPM.meta
-/Assets/Inworld/Inworld.Samples.RPM/
+SDK/
+Assets/Inworld.meta
+Assets/Inworld/Editor.meta
+Assets/Inworld/Editor/
+Assets/Inworld/Inworld.Assets.meta
+Assets/Inworld/Inworld.Assets/
+Assets/Inworld/Inworld.Editor.meta
+Assets/Inworld/Inworld.Editor/
+Assets/Inworld/Inworld.Native.meta
+Assets/Inworld/Inworld.Native/
+Assets/Inworld/Inworld.Samples.Innequin.meta
+Assets/Inworld/Inworld.Samples.Innequin/
+Assets/Inworld/Inworld.Samples.RPM.meta
+Assets/Inworld/Inworld.Samples.RPM/
+Assets/Inworld/Inworld.Playground.meta
 Assets/Inworld/*.tgz
 Assets/Inworld/*.tgz.meta

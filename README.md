@@ -27,6 +27,19 @@ If you import the Playground Demo through the Unity package from the [Release](h
 
 In case something goes wrong during the install process, here are the required dependencies and settings:
 
+## Update SDK
+The playground references [Inworld Unity SDK](https://github.com/inworld-ai/inworld-unity-full/) as the submodule. By default, whenever it's fetched, the Submodule's version will never change.
+
+If you'd like to upgrade SDK. Please follow the following steps:
+1. Navigate to the folder `inworld-unity-playground/SDK`.
+2. Run `git checkout main`.
+3. Run `git pull`.
+
+If you want to submit the change, plese:
+1. Navigate back to the folder `inworld-unity-playground`.
+2. Run `git add SDK`.
+Then you can commit and push.
+
 ### Required Components
 
 #### Dependencies

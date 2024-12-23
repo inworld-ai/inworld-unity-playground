@@ -18,7 +18,7 @@ namespace Inworld.Playground
         const string k_ExportPath = "Inworld.Playground";
         static readonly string s_PlaygroundAssetPath = $"{k_FullPackagePath}/{k_ExportPath}/InworldPlaygroundAssets.unitypackage";
         static readonly string s_PlaygroundPackagePath = $"{k_FullPackagePath}/InworldPlayground.unitypackage";
-        static readonly string s_PlayGroundScenePath = $"{k_FullPackagePath}/{k_ExportPath}/Scenes/Lobby.unity";
+        static readonly string s_PlayGroundScenePath = $"{k_FullPackagePath}/{k_ExportPath}/Runtime/Scenes/Lobby.unity";
         
         [MenuItem("Inworld/Export Package/Playground/Playground Assets", false, 110)]
         public static void ExportPlaygroundAssets()
@@ -40,7 +40,7 @@ namespace Inworld.Playground
             }; 
             AssetDatabase.ExportPackage(assetPaths, s_PlaygroundPackagePath, ExportPackageOptions.Recurse); 
         }
-        
+        // Used in Github Actions.
         public static void BuildPlaygroundScene()
         {
             string[] scenes = { s_PlayGroundScenePath };
