@@ -11,10 +11,8 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
+
 
 namespace Inworld.Playground
 {
@@ -58,7 +56,7 @@ namespace Inworld.Playground
                 EditorUtility.DisplayDialog(k_ErrorTitle, k_UpgradeContent, "OK");
                 return;
             } 
-            ListRequest listRequest = UnityEditor.PackageManager.Client.List();
+            ListRequest listRequest = Client.List();
 
             while (!listRequest.IsCompleted)
             {

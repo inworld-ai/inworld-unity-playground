@@ -6,33 +6,34 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/Setup.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/Setup.unity
     guid: 41d518c89c031c84ea8c9a621a159b4e
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/Lobby.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/Lobby.unity
     guid: c5238ee9c48032340805785f84024341
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Animations.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Animations.unity
     guid: 7b44e83535223304cb3106201af5ac33
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Avatars.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Avatars.unity
     guid: fb3e1555e4f01d74bbd875100aa88f95
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Goals.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Goals.unity
     guid: 65ba4427987bcef4e9fca9a3d7252475
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Mutations.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Mutations.unity
     guid: e6a4043543d723940b81f2c9546a85c1
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Environment.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Environment.unity
     guid: c4b921adf14b2254781e02a2d099a0f6
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Scene.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Scene.unity
     guid: 05f532fca441e7f4baaa21e118ccf927
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/Interactions.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/Interactions.unity
     guid: 060664be02e4043409f05cc342f67a2f
   - enabled: 1
-    path: Assets/Inworld/Inworld.Playground/Scenes/ShowcaseRooms/MultiAgent.unity
+    path: Assets/Inworld/Inworld.Playground/Runtime/Scenes/ShowcaseRooms/MultiAgent.unity
     guid: 870a2a27ac856994c8d7c2160592daad
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
