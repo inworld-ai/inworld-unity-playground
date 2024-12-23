@@ -38,14 +38,15 @@ namespace Inworld.Playground
         {
             AssetDatabase.importPackageCompleted += name =>
             {
-                if (name == k_PkgName)
+                switch (name)
                 {
-                    CheckDependencies();
-                    _UpgradeIntensity();
+                    case k_PkgName:
+                        CheckDependencies();
+                        break;
+                    case k_AssetPkgName:
+                        Debug.Log($"{k_PkgName} installed.");
+                        break;
                 }
-                    
-                if (name == k_AssetPkgName)
-                    Debug.Log($"{k_PkgName} installed.");
             };
         }
         [MenuItem("Inworld/Playground/Reinstall")]
@@ -82,27 +83,6 @@ namespace Inworld.Playground
             }
             Debug.Log("Import Playground Dependency Packages...");
             AssetDatabase.ImportPackage($"{k_InworldPath}/{k_PlaygroundPath}/{k_AssetPkgName}.unitypackage", false);
-        }
-        static void _UpgradeIntensity()
-        {
-            if (GraphicsSettings.currentRenderPipeline == null)
-                return;
-            string[] data = AssetDatabase.FindAssets("t:SceneAsset", new[] { "Assets/Inworld/Inworld.Playground" });
-            
-            foreach (string str in data)
-            {
-                string scenePath = AssetDatabase.GUIDToAssetPath(str);
-                Debug.Log($"Process on {scenePath}");
-                Scene scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
-                foreach (Light light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
-                {
-                    light.intensity = 50;
-                }
-                EditorSceneManager.MarkSceneDirty(scene);
-                EditorSceneManager.SaveScene(scene);
-            }
-            if (data.Length > 0)
-                EditorSceneManager.OpenScene(AssetDatabase.GUIDToAssetPath(data[0]), OpenSceneMode.Single);
         }
     }
 }
