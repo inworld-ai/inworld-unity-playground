@@ -43,7 +43,7 @@ namespace Inworld.Playground
         
         void Update()
         {
-            var graphicRaycasters = FindObjectsOfType<WorldSpaceGraphicRaycaster>(false);
+            WorldSpaceGraphicRaycaster[] graphicRaycasters = FindObjectsByType<WorldSpaceGraphicRaycaster>(FindObjectsSortMode.None);
             m_IsHoveringUI = false;
             foreach (var graphicRaycaster in graphicRaycasters)
             {
