@@ -20,11 +20,7 @@ namespace Inworld.Playground
     /// </summary>
     public class PlaygroundManager : SingletonBehavior<PlaygroundManager>
     {
-        public const string LobbySceneName = "Lobby";
-        public const string SetupSceneName = "Setup";
-
         [SerializeField] List<InworldSceneMapping> m_InworldSceneMapping;
-
         [SerializeField] PlaygroundSettings m_Settings;
 
         string m_CurrentInworldScene;
@@ -33,10 +29,7 @@ namespace Inworld.Playground
 
         Dictionary<string, string> m_InworldSceneMappingDictionary;
         Coroutine m_SceneChangeCoroutine;
-        bool m_SwitchingToSetup;
-
-        public InworldGameData GameData { get; private set; }
-
+        
         public bool Paused { get; private set; }
 
         public Scene CurrentScene => m_CurrentScene;
@@ -48,8 +41,8 @@ namespace Inworld.Playground
         {
             if (m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name,
                     out string inworldSceneName))
-                GameData.sceneFullName = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
-            InworldController.Instance.LoadData(GameData);
+                InworldPlayground.GameData.sceneFullName = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
+            InworldController.Instance.LoadData(InworldPlayground.GameData);
         }
 
         /// <summary>
@@ -68,7 +61,9 @@ namespace Inworld.Playground
         /// <param name="secret">The API secret for the Playground Workspace.</param>
         public void CreateGameData(string key, string secret)
         {
-            GameData = Serialization.CreateGameData(key, secret, m_Settings.WorkspaceId);
+            //TODO(Yan): Put CreateGameData to EditorUtil to avoid building error.
+            //           Also get rid of Serialization class.
+            InworldPlayground.GameData = Serialization.CreateGameData(key, secret, m_Settings.WorkspaceId);
         }
 
         /// <summary>
@@ -94,11 +89,11 @@ namespace Inworld.Playground
         /// </summary>
         public void Play()
         {
-            if (m_CurrentScene.name == SetupSceneName)
-            {
-                SceneManager.LoadScene(LobbySceneName);
-                return;
-            }
+            // if (m_CurrentScene.name == SetupSceneName)
+            // {
+            //     SceneManager.LoadScene(LobbySceneName);
+            //     return;
+            // }
 
             if (!CheckNetworkComponent())
                 throw new MissingComponentException("Missing Inworld client.");
@@ -296,17 +291,17 @@ namespace Inworld.Playground
             foreach (InworldSceneMapping sceneMapping in m_InworldSceneMapping)
                 m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
 
-            GameData = Serialization.GetGameData();
-            if (GameData == null && SceneManager.GetActiveScene().name != SetupSceneName)
-            {
-                InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
-                SceneManager.LoadScene(SetupSceneName);
-                m_SwitchingToSetup = true;
-                return;
-            }
+            // TODO(Yan): If GameData is null, it should be invoked by PlaygroundPanel. 
+            // if (GameData == null && SceneManager.GetActiveScene().name != SetupSceneName)
+            // {
+            //     InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
+            //     SceneManager.LoadScene(SetupSceneName);
+            //     m_SwitchingToSetup = true;
+            //     return;
+            // }
 
-            if (GameData != null)
-                m_Settings.WorkspaceId = GameData.sceneFullName.Split('/')[1];
+            if (InworldPlayground.GameData != null)
+                m_Settings.WorkspaceId = InworldPlayground.GameData.sceneFullName.Split('/')[1];
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
@@ -322,14 +317,13 @@ namespace Inworld.Playground
 
         void OnEnable()
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            //TODO(Yan): OnSceneLoaded Should be handled by PlaygroundPanel.
             InworldController.Client.OnStatusChanged += OnStatusChanged;
             InworldController.Client.OnPacketReceived += OnPacketReceived;
         }
 
         void OnDisable()
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
             if (InworldController.Client)
             {
                 InworldController.Client.OnStatusChanged -= OnStatusChanged;
@@ -343,8 +337,6 @@ namespace Inworld.Playground
 
         void Update()
         {
-            if (m_CurrentScene.name == SetupSceneName) return;
-
             if ((Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) && Input.GetKeyDown(KeyCode.F4))
                 Application.Quit();
         }
@@ -367,18 +359,8 @@ namespace Inworld.Playground
                 m_CurrentInworldScene = currentSceneStatusEvent.currentSceneStatus.sceneName;
             }
         }
+        //TODO(Yan): OnSceneLoaded Should be handled by PlaygroundPanel.
 
-        void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            m_CurrentScene = scene;
-            if (m_CurrentScene.name == SetupSceneName)
-                m_SwitchingToSetup = false;
-
-            if (m_SwitchingToSetup) return;
-
-            if (m_CurrentScene.name != SetupSceneName && GameData != null)
-                StartCoroutine(SetupScene());
-        }
 
         #endregion
 
