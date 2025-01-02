@@ -54,14 +54,11 @@ namespace Inworld.Playground
             Debug.Log("Getting population data for: " + cityName);
             try
             {
-                TextAsset populationDataTextAsset = Resources.Load<TextAsset>("PopulationData");
-                var populationData = JsonUtility.FromJson<PopulationData>(populationDataTextAsset.text);
-            
-                foreach (City city in populationData.Cities)
+                foreach (City city in InworldPlayground.Instance.PopulationData.cities)
                 {
-                    if (city.Name == cityName)
+                    if (city.name == cityName)
                     {
-                        GivePopulationInfo(cityName, city.Population.ToString());
+                        GivePopulationInfo(cityName, city.population.ToString());
                         break;
                     }
                 }

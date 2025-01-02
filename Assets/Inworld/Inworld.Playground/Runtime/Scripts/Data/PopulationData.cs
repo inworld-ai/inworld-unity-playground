@@ -7,19 +7,21 @@
 
 using System;
 
+
 namespace Inworld.Playground.Data
 {
     [Serializable]
     public class PopulationData
     {
-        public City[] Cities;
+        public City[] cities;
+        public string source;
     }
 
     [Serializable]
     public class City
     {
-        public string Name;
-        public int Population;
-        public int Year;
+        public string name;
+        public int population;
+        public int year;
     }
 }

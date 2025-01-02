@@ -35,7 +35,7 @@ If you'd like to upgrade SDK. Please follow the following steps:
 2. Run `git checkout main`.
 3. Run `git pull`.
 
-If you want to submit the change, plese:
+If you want to submit the change, please:
 1. Navigate back to the folder `inworld-unity-playground`.
 2. Run `git add SDK`.
 Then you can commit and push.

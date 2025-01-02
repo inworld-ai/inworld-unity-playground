@@ -161,14 +161,12 @@ namespace Inworld.Playground
         private void UpdatePlayButton(bool interactable)
         {
             string micDevice = m_PlaygroundManager.GetMicrophoneDevice();
-
             if (Microphone.devices.Length == 0 || 
                 (!string.IsNullOrEmpty(micDevice) && !Microphone.devices.Contains(micDevice)))
             {
                 m_PlayButton.interactable = false;
                 return;
             }
-            
             m_PlayButton.interactable = interactable;
         }
     }
