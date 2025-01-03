@@ -349,8 +349,6 @@ namespace Inworld.Playground
             }
         }
         //TODO(Yan): OnSceneLoaded Should be handled by PlaygroundPanel.
-
-
         #endregion
 
         #region Enumerators

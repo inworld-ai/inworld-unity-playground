@@ -8,7 +8,6 @@
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
@@ -17,19 +16,19 @@ namespace Inworld.Playground
     public class PlaygroundEditorUtil : IPreprocessBuildWithReport
     {
         public int callbackOrder { get; }
+        const string k_PlaygroundPath = "Inworld.Playground";
+        const string k_NoDataTitle = "Loading Playground Data failed";
+        const string k_NoDataDescription = "Cannot find User Data. Please login first.";
 
-        static PlaygroundEditorUtil()
+        static PlaygroundEditorUtil() => EditorApplication.playModeStateChanged += newMode =>
         {
-            EditorApplication.playModeStateChanged += newMode =>
-            {
-                if (newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.GameData) 
-                    return;
-                if (EditorUtility.DisplayDialog("Loading User Data failed",
-                        "Cannot find User Data. Please login first.", "OK"))
-                    PlaygroundEditorPanel.Instance.ShowPanel();
-                EditorApplication.isPlaying = false;
-            };
-        }
+            if (!SceneManager.GetActiveScene().path.Contains(k_PlaygroundPath) 
+                || newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.GameData) 
+                return;
+            if (EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "OK"))
+                PlaygroundEditorPanel.Instance.ShowPanel();
+            EditorApplication.isPlaying = false;
+        };
         
         public void OnPreprocessBuild(BuildReport report)
         {
