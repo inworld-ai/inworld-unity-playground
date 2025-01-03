@@ -19,7 +19,7 @@ namespace Inworld.Playground
     /// </summary>
     public class InworldPlayground : ScriptableObject
     {
-        const string k_InstancePath = "Assets/Inworld/Inworld.Playground/Runtime/InworldPlayground.asset";
+        const string k_InstancePath = "Assets/Inworld/Inworld.Playground/Runtime/Data/InworldPlayground.asset";
         const string k_CloneToken = "p9ZYx2gBsFHH";
         static InworldPlayground __inst;
 

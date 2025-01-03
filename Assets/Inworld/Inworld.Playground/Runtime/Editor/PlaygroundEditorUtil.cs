@@ -8,12 +8,28 @@
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
 {
+    [InitializeOnLoad]
     public class PlaygroundEditorUtil : IPreprocessBuildWithReport
     {
         public int callbackOrder { get; }
+
+        static PlaygroundEditorUtil()
+        {
+            EditorApplication.playModeStateChanged += newMode =>
+            {
+                if (newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.GameData) 
+                    return;
+                if (EditorUtility.DisplayDialog("Loading User Data failed",
+                        "Cannot find User Data. Please login first.", "OK"))
+                    PlaygroundEditorPanel.Instance.ShowPanel();
+                EditorApplication.isPlaying = false;
+            };
+        }
         
         public void OnPreprocessBuild(BuildReport report)
         {

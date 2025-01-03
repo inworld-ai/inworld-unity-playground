@@ -292,13 +292,6 @@ namespace Inworld.Playground
                 m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
 
             // TODO(Yan): If GameData is null, it should be invoked by PlaygroundPanel. 
-            // if (GameData == null && SceneManager.GetActiveScene().name != SetupSceneName)
-            // {
-            //     InworldAI.Log("The Playground GameData could not be found, switching to Setup scene.");
-            //     SceneManager.LoadScene(SetupSceneName);
-            //     m_SwitchingToSetup = true;
-            //     return;
-            // }
 
             if (InworldPlayground.GameData != null)
                 m_Settings.WorkspaceId = InworldPlayground.GameData.sceneFullName.Split('/')[1];
@@ -329,10 +322,6 @@ namespace Inworld.Playground
                 InworldController.Client.OnStatusChanged -= OnStatusChanged;
                 InworldController.Client.OnPacketReceived -= OnPacketReceived;
             }
-            // if (!PlayerControllerPlayground.Instance)
-            //     return;
-            // PlayerControllerPlayground.Instance.onCanvasOpen.RemoveListener(Pause);
-            // PlayerControllerPlayground.Instance.onCanvasClosed.RemoveListener(Play);
         }
 
         void Update()
