@@ -4,9 +4,6 @@
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 using Inworld.Playground.Data;
 using UnityEngine;
@@ -19,16 +16,15 @@ namespace Inworld.Playground
     /// </summary>
     public class InworldPlayground : ScriptableObject
     {
-        const string k_InstancePath = "Assets/Inworld/Inworld.Playground/Runtime/Data/InworldPlayground.asset";
-        const string k_CloneToken = "p9ZYx2gBsFHH";
-        static InworldPlayground __inst;
-
         [SerializeField] InworldGameData m_GameData;
         [SerializeField] PopulationData m_PopulationData;
+
+        const string k_InstancePath = "InworldPlayground";
+        static InworldPlayground __inst;
         
         /// <summary>
-        /// Gets an instance of InworldAI.
-        /// By default, it is at `Assets/Inworld/Inworld.Playground/Runtime/InworldPlayground.asset`.
+        /// Gets an instance of Playground.
+        /// By default, it is at `Assets/Inworld/Inworld.Playground/Runtime/Resources/InworldPlayground.asset`.
         /// Please do not modify it.
         /// </summary>
         public static InworldPlayground Instance
@@ -37,7 +33,7 @@ namespace Inworld.Playground
             {
                 if (__inst)
                     return __inst;
-                __inst = AssetDatabase.LoadAssetAtPath<InworldPlayground>(k_InstancePath);
+                __inst = Resources.Load<InworldPlayground>(k_InstancePath);
                 return __inst;
             }
         }
@@ -50,9 +46,8 @@ namespace Inworld.Playground
             internal set => Instance.m_GameData = value;
         } 
         /// <summary>
-        /// Gets the clone token
+        /// Gets the Population Data.
         /// </summary>
-        public static string CloneToken => k_CloneToken;
         public PopulationData PopulationData => m_PopulationData;
     }
 }

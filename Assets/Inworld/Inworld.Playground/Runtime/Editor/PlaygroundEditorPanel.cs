@@ -6,6 +6,7 @@
  *************************************************************************************************/
 
 #if UNITY_EDITOR
+using Inworld.Editors;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,6 +28,42 @@ namespace Inworld.Playground
         {
             titleContent = new GUIContent("Inworld Playground");
             Show();
+        }
+        void OnEnable()
+        {
+            PlaygroundEditor.Instance.CurrentState.OnOpenWindow();
+        }
+        void OnDisable()
+        {
+            PlaygroundEditor.Instance.CurrentState.OnClose();
+        }
+        void OnGUI()
+        {
+            _DrawBanner();
+            if (!PlaygroundEditor.Instance)
+                return;
+            PlaygroundEditor.Instance.CurrentState.DrawTitle();
+            PlaygroundEditor.Instance.CurrentState.DrawContent();
+            PlaygroundEditor.Instance.CurrentState.DrawButtons();
+        }
+        //TODO(Yan): Use UIElement.
+        void _DrawBanner()
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUIUtility.fieldWidth = 1200f;
+            Texture2D banner = InworldEditor.Banner;
+            GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = 32, 
+                fontStyle = FontStyle.BoldAndItalic,
+                alignment = TextAnchor.LowerLeft, 
+                wordWrap = false
+            };
+            GUILayout.Label(new GUIContent(banner), GUILayout.Width(banner.width * 0.08f), GUILayout.Height(banner.height * 0.08f));
+            GUILayout.Label("Playground", labelStyle, GUILayout.Height(banner.height * 0.09f)); // Slightly Lower.
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(100);
         }
     }
 }
