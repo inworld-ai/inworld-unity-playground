@@ -23,9 +23,9 @@ namespace Inworld.Playground
         [SerializeField] List<InworldSceneMapping> m_InworldSceneMapping;
         [SerializeField] PlaygroundSettings m_Settings;
 
+        //TODO(Yan): Mark why the plgMgr needs to handle the scene switching globally.
         string m_CurrentInworldScene;
         Scene m_CurrentScene;
-        EventSystem m_EventSystem;
 
         Dictionary<string, string> m_InworldSceneMappingDictionary;
         Coroutine m_SceneChangeCoroutine;
@@ -89,16 +89,10 @@ namespace Inworld.Playground
         /// </summary>
         public void Play()
         {
-            // if (m_CurrentScene.name == SetupSceneName)
-            // {
-            //     SceneManager.LoadScene(LobbySceneName);
-            //     return;
-            // }
-
-            if (!CheckNetworkComponent())
+            if (!InworldController.Client)
                 throw new MissingComponentException("Missing Inworld client.");
 
-            if (!CheckAudioComponent())
+            if (!InworldController.Audio)
                 throw new MissingComponentException("Missing PlaygroundAECAudioCapture component.");
 
             CursorHandler.LockCursor();
@@ -172,17 +166,6 @@ namespace Inworld.Playground
             Paused = true;
             OnPause?.Invoke();
         }
-
-        bool CheckAudioComponent()
-        {
-            return InworldController.Instance.GetComponent<PlaygroundAECAudioCapture>();
-        }
-
-        bool CheckNetworkComponent()
-        {
-            return InworldController.Instance.GetComponent<InworldClient>();
-        }
-
         void SetCharacterBrains()
         {
 #if UNITY_2022_3_OR_NEWER
@@ -191,6 +174,7 @@ namespace Inworld.Playground
 #else
             var characters = FindObjectsOfType<InworldCharacter>(true);
 #endif
+            //TODO(Yan): Mark why the brains need to be controlled by PlgMgr
             foreach (InworldCharacter character in characters)
                 UpdateCharacterBrain(character);
         }
@@ -276,7 +260,6 @@ namespace Inworld.Playground
 
         void Awake()
         {
-            m_EventSystem = GetComponentInChildren<EventSystem>();
             if (Instance != this)
             {
                 gameObject.SetActive(false);
@@ -290,22 +273,21 @@ namespace Inworld.Playground
             m_InworldSceneMappingDictionary = new Dictionary<string, string>();
             foreach (InworldSceneMapping sceneMapping in m_InworldSceneMapping)
                 m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
-
-            // TODO(Yan): If GameData is null, it should be invoked by PlaygroundPanel. 
-
-            if (InworldPlayground.GameData != null)
-                m_Settings.WorkspaceId = InworldPlayground.GameData.sceneFullName.Split('/')[1];
+            if (InworldPlayground.GameData)
+                m_Settings.WorkspaceId = InworldPlayground.GameData.workspaceFullName.Split('/')[1];
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
             PlayerControllerPlayground.Instance.onCanvasOpen.AddListener(Pause);
             PlayerControllerPlayground.Instance.onCanvasClosed.AddListener(Play);
             Paused = true;
+            StartCoroutine(SetupScene());
         }
 
         void Start()
         {
-            m_EventSystem.enabled = true;
+            if (EventSystem.current)
+                EventSystem.current.enabled = true;
         }
 
         void OnEnable()

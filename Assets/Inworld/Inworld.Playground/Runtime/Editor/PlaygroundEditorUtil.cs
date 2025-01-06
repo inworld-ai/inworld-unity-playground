@@ -25,7 +25,7 @@ namespace Inworld.Playground
         static PlaygroundEditorUtil() => EditorApplication.playModeStateChanged += newMode =>
         {
             if (!SceneManager.GetActiveScene().path.Contains(k_PlaygroundPath) 
-                || newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.GameData) 
+                || newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.IsDefaultGameData) 
                 return;
             if (!EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "Create", "Cancel")) 
                 return;
@@ -35,8 +35,10 @@ namespace Inworld.Playground
         
         public void OnPreprocessBuild(BuildReport report)
         {
-            if (InworldPlayground.GameData == null)
+            if (InworldPlayground.IsDefaultGameData)
+            {
                 Debug.LogError(k_DefaultData);
+            }
         }
     }
 }

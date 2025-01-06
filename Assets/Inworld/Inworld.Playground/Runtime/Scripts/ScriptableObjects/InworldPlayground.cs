@@ -17,6 +17,8 @@ namespace Inworld.Playground
     public class InworldPlayground : ScriptableObject
     {
         [SerializeField] InworldGameData m_GameData;
+        [Header("Default Settings:")]
+        [SerializeField] InworldGameData m_DefaultGameData;
         [SerializeField] PopulationData m_PopulationData;
 
         const string k_InstancePath = "InworldPlayground";
@@ -42,9 +44,13 @@ namespace Inworld.Playground
         /// </summary>
         public static InworldGameData GameData
         {
-            get => Instance.m_GameData;
+            get => Instance.m_GameData ?? Instance.m_DefaultGameData;
             internal set => Instance.m_GameData = value;
-        } 
+        }
+        /// <summary>
+        /// Gets if the game data is default.
+        /// </summary>
+        public static bool IsDefaultGameData => Instance && Instance.m_GameData == Instance.m_DefaultGameData;
         /// <summary>
         /// Gets the Population Data.
         /// </summary>

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: InworldPlayground
   m_EditorClassIdentifier: 
   m_GameData: {fileID: 0}
-  m_EditorConfig: {fileID: 11400000, guid: 30be3cebb4daade47868df8f121da147, type: 2}
+  m_DefaultGameData: {fileID: 11400000, guid: 8ac6ba82d1f931d4fa26eca19395f1da, type: 2}
   m_PopulationData:
     cities:
     - name: San Francisco
