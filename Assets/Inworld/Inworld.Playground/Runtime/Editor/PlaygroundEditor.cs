@@ -17,11 +17,14 @@ namespace Inworld.Playground
     {
         [SerializeField] EditorState m_CurrentState = EditorState.Init;
         EditorState m_LastState = EditorState.Init;
-        
+
         const string k_InstancePath = "Assets/Inworld/Inworld.Playground/Runtime/Data/PlaygroundEditor.asset";
         const string k_CloneToken = "p9ZYx2gBsFHH";
+
         static PlaygroundEditor __inst;
                 
+        string m_ErrorMsg;
+        string m_InputUserName;
         Dictionary<EditorState, IEditorState> m_PlaygroundEditorStates = new Dictionary<EditorState, IEditorState>();
         /// <summary>
         /// Gets an instance of PlaygroundEditor.
@@ -42,6 +45,7 @@ namespace Inworld.Playground
         /// Get the clone token.
         /// </summary>
         public static string CloneToken => k_CloneToken;
+
         /// <summary>
         /// Gets/Sets the current state of Inworld Editor.
         /// </summary>
@@ -64,7 +68,22 @@ namespace Inworld.Playground
         /// Gets the current Editor State.
         /// </summary>
         public IEditorState CurrentState => m_PlaygroundEditorStates[m_CurrentState];
-        
+
+        /// <summary>
+        /// Gets/Sets the current Error message.
+        /// If setting, also set the current status of InworldEditor.
+        /// </summary>
+        public string Error
+        {
+            get => m_ErrorMsg;
+            set
+            {
+                Debug.LogError(value);
+                State = EditorState.Error;
+                m_ErrorMsg = value;
+            }
+        }
+
         void OnEnable()
         {
             m_PlaygroundEditorStates[EditorState.Init] = new PlaygroundEditorInit();

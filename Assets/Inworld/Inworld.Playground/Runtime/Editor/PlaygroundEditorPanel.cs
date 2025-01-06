@@ -13,6 +13,9 @@ using UnityEngine;
 
 namespace Inworld.Playground
 {
+    // TODO(Yan): The Editor panel will mostly copy the code of InworldEditor for now.
+    //            We will replace both SDK and playground with UIElement, and make them reusable.
+    //            (Adding Serializable sequences in InworldEditor)
     public class PlaygroundEditorPanel : EditorWindow
     {
         /// <summary>
@@ -46,7 +49,7 @@ namespace Inworld.Playground
             PlaygroundEditor.Instance.CurrentState.DrawContent();
             PlaygroundEditor.Instance.CurrentState.DrawButtons();
         }
-        //TODO(Yan): Use UIElement.
+        
         void _DrawBanner()
         {
             EditorGUILayout.Space();
@@ -63,7 +66,6 @@ namespace Inworld.Playground
             GUILayout.Label(new GUIContent(banner), GUILayout.Width(banner.width * 0.08f), GUILayout.Height(banner.height * 0.08f));
             GUILayout.Label("Playground", labelStyle, GUILayout.Height(banner.height * 0.09f)); // Slightly Lower.
             EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(100);
         }
     }
 }

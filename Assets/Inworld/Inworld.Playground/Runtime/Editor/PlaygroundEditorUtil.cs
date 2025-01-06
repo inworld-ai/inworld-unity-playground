@@ -8,6 +8,7 @@
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
@@ -17,23 +18,25 @@ namespace Inworld.Playground
     {
         public int callbackOrder { get; }
         const string k_PlaygroundPath = "Inworld.Playground";
-        const string k_NoDataTitle = "Loading Playground Data failed";
-        const string k_NoDataDescription = "Cannot find User Data. Please login first.";
+        const string k_NoDataTitle = "Cannot find Playground data";
+        const string k_DefaultData = "Cannot find Playground data. Will use the default one.";
+        const string k_NoDataDescription = "Do you want to create your own Playground data, or use the default one?";
 
         static PlaygroundEditorUtil() => EditorApplication.playModeStateChanged += newMode =>
         {
             if (!SceneManager.GetActiveScene().path.Contains(k_PlaygroundPath) 
                 || newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.GameData) 
                 return;
-            if (EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "OK"))
-                PlaygroundEditorPanel.Instance.ShowPanel();
+            if (!EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "Create", "Cancel")) 
+                return;
+            PlaygroundEditorPanel.Instance.ShowPanel();
             EditorApplication.isPlaying = false;
         };
         
         public void OnPreprocessBuild(BuildReport report)
         {
             if (InworldPlayground.GameData == null)
-                PlaygroundEditorPanel.Instance.ShowPanel();
+                Debug.LogError(k_DefaultData);
         }
     }
 }
