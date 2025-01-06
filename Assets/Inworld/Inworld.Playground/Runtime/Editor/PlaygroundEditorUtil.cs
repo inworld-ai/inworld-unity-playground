@@ -24,10 +24,13 @@ namespace Inworld.Playground
 
         static PlaygroundEditorUtil() => EditorApplication.playModeStateChanged += newMode =>
         {
-            if (!SceneManager.GetActiveScene().path.Contains(k_PlaygroundPath) 
-                || newMode != PlayModeStateChange.ExitingEditMode || InworldPlayground.IsDefaultGameData) 
+            if (!SceneManager.GetActiveScene().path.Contains(k_PlaygroundPath))
                 return;
-            if (!EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "Create", "Cancel")) 
+            if (newMode != PlayModeStateChange.ExitingEditMode)
+                return;
+            if (!InworldPlayground.IsDefaultGameData)
+                return;
+            if (!EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "Create", "Cancel", DialogOptOutDecisionType.ForThisMachine, "DontClone")) 
                 return;
             PlaygroundEditorPanel.Instance.ShowPanel();
             EditorApplication.isPlaying = false;
@@ -40,6 +43,12 @@ namespace Inworld.Playground
                 Debug.LogError(k_DefaultData);
             }
         }
+        
+        [MenuItem("Inworld/Playground Settings", false, 1)]
+        static void TopMenuPlaygroundShowPanel() => PlaygroundEditorPanel.Instance.ShowPanel();
+        
+        [MenuItem("Assets/Inworld/Playground Settings", false, 1)]
+        static void PlaygroundShowPanel() => PlaygroundEditorPanel.Instance.ShowPanel();
     }
 }
 #endif

@@ -7,6 +7,7 @@
 
 #if UNITY_EDITOR
 using Inworld.Editors;
+using UnityEditor;
 
 namespace Inworld.Playground
 {
@@ -19,12 +20,16 @@ namespace Inworld.Playground
 
         public void DrawTitle()
         {
-            
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField($"Now you're all set!", InworldEditor.Instance.TitleStyle);
+            EditorGUILayout.Space();
         }
 
         public void DrawContent()
         {
-            
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField($"You can close the panel now.");
+            EditorGUILayout.Space();
         }
 
         public void DrawButtons()

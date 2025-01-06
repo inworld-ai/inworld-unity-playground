@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365cd7e702eb4f5ba4f3bdfb29176368, type: 3}
   m_Name: PlaygroundEditor
   m_EditorClassIdentifier: 
-  isCreated: 0
+  m_CurrentState: 0
+  m_InstructionCloneWS: {fileID: 2800000, guid: 1f7bdd5c96a972f49b5b369cc435192b, type: 3}
+  m_InstructionAPIKey: {fileID: 2800000, guid: 3deed505ed613cd48823db934e34f809, type: 3}
+  m_PlaygroundDataPath: Playground

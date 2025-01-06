@@ -16,6 +16,9 @@ namespace Inworld.Playground
     public class PlaygroundEditor : ScriptableObject
     {
         [SerializeField] EditorState m_CurrentState = EditorState.Init;
+        [SerializeField] Texture2D m_InstructionCloneWS;
+        [SerializeField] Texture2D m_InstructionAPIKey;
+        [SerializeField] string m_PlaygroundDataPath;
         EditorState m_LastState = EditorState.Init;
 
         const string k_InstancePath = "Assets/Inworld/Inworld.Playground/Runtime/Data/PlaygroundEditor.asset";
@@ -44,7 +47,9 @@ namespace Inworld.Playground
         /// <summary>
         /// Get the clone token.
         /// </summary>
-        public static string CloneToken => k_CloneToken;
+        public static string CloneToken => $"https://studio.inworld.ai/workspaces?workspaceCloningToken={k_CloneToken}";
+        
+        public string GetInstructionAPIKeyURL(string workspace) => $"https://studio.inworld.ai/{workspace}/integrations";
 
         /// <summary>
         /// Gets/Sets the current state of Inworld Editor.
@@ -83,6 +88,9 @@ namespace Inworld.Playground
                 m_ErrorMsg = value;
             }
         }
+        public string DataPath => m_PlaygroundDataPath;
+        public Texture2D InstructionCloneWS => m_InstructionCloneWS;
+        public Texture2D InstructionAPIKey => m_InstructionAPIKey;
 
         void OnEnable()
         {

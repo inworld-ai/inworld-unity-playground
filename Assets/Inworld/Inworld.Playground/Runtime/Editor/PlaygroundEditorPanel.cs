@@ -16,6 +16,9 @@ namespace Inworld.Playground
     // TODO(Yan): The Editor panel will mostly copy the code of InworldEditor for now.
     //            We will replace both SDK and playground with UIElement, and make them reusable.
     //            (Adding Serializable sequences in InworldEditor)
+    
+    // TODO(Yan): Auto check User login status when open. 
+    //            If not logged in, set back to Init. Also apply to InworldEditor.
     public class PlaygroundEditorPanel : EditorWindow
     {
         /// <summary>

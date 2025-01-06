@@ -45,12 +45,13 @@ namespace Inworld.Playground
         public static InworldGameData GameData
         {
             get => Instance.m_GameData ?? Instance.m_DefaultGameData;
-            internal set => Instance.m_GameData = value;
+            set => Instance.m_GameData = value;
         }
+        public InworldGameData DefaultGameData => m_DefaultGameData;
         /// <summary>
         /// Gets if the game data is default.
         /// </summary>
-        public static bool IsDefaultGameData => Instance && Instance.m_GameData == Instance.m_DefaultGameData;
+        public static bool IsDefaultGameData => GameData == Instance.m_DefaultGameData;
         /// <summary>
         /// Gets the Population Data.
         /// </summary>
