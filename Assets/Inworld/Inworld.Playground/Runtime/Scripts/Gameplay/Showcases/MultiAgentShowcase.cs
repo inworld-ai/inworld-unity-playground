@@ -49,7 +49,7 @@ namespace Inworld.Playground
         
         private void Awake()
         {
-            PlaygroundManager.Instance.GameData.capabilities.multiAgent = true;
+            InworldPlayground.GameData.capabilities.multiAgent = true;
             InworldController.Client.AutoChat = true;
         }
 

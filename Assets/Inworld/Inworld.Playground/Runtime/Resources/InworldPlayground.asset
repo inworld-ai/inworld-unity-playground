@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea3760a390745a0a6abc4b6cb4eeaa5, type: 3}
+  m_Name: InworldPlayground
+  m_EditorClassIdentifier: 
+  m_GameData: {fileID: 0}
+  m_DefaultGameData: {fileID: 11400000, guid: 8ac6ba82d1f931d4fa26eca19395f1da, type: 2}
+  m_PopulationData:
+    cities:
+    - name: San Francisco
+      population: 808437
+      year: 2022
+    - name: New York City
+      population: 8335897
+      year: 2022
+    source: https://www2.census.gov/programs-surveys/popest/tables/2020-2022/cities/totals/

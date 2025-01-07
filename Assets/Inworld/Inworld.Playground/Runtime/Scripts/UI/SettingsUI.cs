@@ -117,12 +117,9 @@ namespace Inworld.Playground
                     break;
             }
             
-            var aecEnabled = m_PlaygroundManager.GetEnableAEC();
+            bool aecEnabled = m_PlaygroundManager.GetEnableAEC();
             m_AECToggle.isOn = aecEnabled;
-            
-            if(PlaygroundManager.Instance.CurrentScene.name != PlaygroundManager.SetupSceneName)
-                UpdatePlayButton(true);
-            
+            UpdatePlayButton(true);
             OnStatusChanged(InworldController.Status);
         }
 
@@ -153,22 +150,20 @@ namespace Inworld.Playground
                     m_ConnectButton.interactable = false;
                     break;
             }
-            if(PlaygroundManager.Instance.CurrentScene.name == PlaygroundManager.SetupSceneName)
-                UpdatePlayButton(status == InworldConnectionStatus.Connected);
+            //TODO(Yan): This is called If current scene is setup.
+            UpdatePlayButton(status == InworldConnectionStatus.Connected);
         }
         #endregion
         
         private void UpdatePlayButton(bool interactable)
         {
             string micDevice = m_PlaygroundManager.GetMicrophoneDevice();
-
             if (Microphone.devices.Length == 0 || 
                 (!string.IsNullOrEmpty(micDevice) && !Microphone.devices.Contains(micDevice)))
             {
                 m_PlayButton.interactable = false;
                 return;
             }
-            
             m_PlayButton.interactable = interactable;
         }
     }

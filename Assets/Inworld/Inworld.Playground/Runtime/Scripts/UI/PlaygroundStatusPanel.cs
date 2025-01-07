@@ -18,14 +18,6 @@ namespace Inworld.Playground
     /// </summary>
     public class PlaygroundStatusPanel : StatusPanel
     {
-        private void Awake()
-        {
-            if (m_Board)
-                m_Board.SetActive(true);
-            if (m_Indicator)
-                m_Indicator.text = "Loading";
-        }
-
         protected override void OnEnable()
         {
             base.OnEnable();

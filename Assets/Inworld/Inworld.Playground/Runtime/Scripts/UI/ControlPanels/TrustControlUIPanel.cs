@@ -49,19 +49,19 @@ namespace Inworld.Playground
 
         public void OnSuspiciousToggleValueChanged(bool value)
         {
-            if (value);
+            if (value)
                 _OnTrustLevelChanged(1);
         }
 
         public void OnUncertainToggleValueChanged(bool value)
         {
-            if (value);
+            if (value)
                 _OnTrustLevelChanged(2);
         }
         
         public void OnTrustingToggleValueChanged(bool value)
         {
-            if (value);
+            if (value)
                 _OnTrustLevelChanged(3);
         }
 
