@@ -30,8 +30,13 @@ namespace Inworld.Playground
                 return;
             if (!InworldPlayground.IsDefaultGameData)
                 return;
-            if (!EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "Create", "Cancel", DialogOptOutDecisionType.ForThisMachine, "DontClone")) 
+            if (EditorPrefs.GetBool("InworldPlayground.DoNotClone"))
                 return;
+            if (!EditorUtility.DisplayDialog(k_NoDataTitle, k_NoDataDescription, "Clone", "Use Default"))
+            {
+                EditorPrefs.SetBool("InworldPlayground.DoNotClone", true); 
+                return;
+            }
             PlaygroundEditorPanel.Instance.ShowPanel();
             EditorApplication.isPlaying = false;
         };
