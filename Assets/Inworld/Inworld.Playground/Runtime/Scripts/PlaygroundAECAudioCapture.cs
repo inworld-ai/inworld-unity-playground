@@ -126,9 +126,10 @@ namespace Inworld.Playground
                 if (option.text == currentMicDevice)
                     m_Dropdown.value = i;
             }
-            
+#if !UNITY_WEBGL
             if (Microphone.devices.Length > m_MicIndex)
-                UpdateAudioInput(m_MicIndex);
+                UpdateAudioInput(m_MicIndex);  
+#endif            
         }
     }
 }

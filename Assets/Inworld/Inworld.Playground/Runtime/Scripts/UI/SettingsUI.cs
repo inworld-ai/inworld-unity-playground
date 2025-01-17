@@ -158,6 +158,7 @@ namespace Inworld.Playground
         private void UpdatePlayButton(bool interactable)
         {
             string micDevice = m_PlaygroundManager.GetMicrophoneDevice();
+#if !UNITY_WEBGL
             if (Microphone.devices.Length == 0 || 
                 (!string.IsNullOrEmpty(micDevice) && !Microphone.devices.Contains(micDevice)))
             {
@@ -165,6 +166,8 @@ namespace Inworld.Playground
                 return;
             }
             m_PlayButton.interactable = interactable;
+#endif
+
         }
     }
 }

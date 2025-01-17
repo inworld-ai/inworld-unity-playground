@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 856348468037402455}
   - component: {fileID: 4345278681541685490}
   - component: {fileID: 1993248252867003448}
-  - component: {fileID: 700950210118779565}
   m_Layer: 0
   m_Name: SM_Wall_door_L
   m_TagString: Untagged
@@ -88,28 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &700950210118779565
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47724068595688941}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1094288307938775316, guid: 3a9ff0e4aac25c04383eb54d6b12a6fb, type: 3}
 --- !u!1 &520969779390976094
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,14 +609,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorSign
       objectReference: {fileID: 0}
-    - target: {fileID: 695431843034218350, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212365870328287245, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
-      propertyPath: m_VersionIndex
-      value: 9760
-      objectReference: {fileID: 0}
     - target: {fileID: 4045034319713088649, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.12055206
@@ -679,22 +648,6 @@ PrefabInstance:
     - target: {fileID: 4045034319713088649, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 7803104551696790521, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
-      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
-      value: 1801810542
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080934092475089424, guid: 34a696f1465793a4b81e105db34da5bb, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

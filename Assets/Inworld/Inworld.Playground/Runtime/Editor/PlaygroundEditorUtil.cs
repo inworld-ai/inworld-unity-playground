@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 #if UNITY_EDITOR
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -45,7 +46,7 @@ namespace Inworld.Playground
         {
             if (InworldPlayground.IsDefaultGameData)
             {
-                Debug.LogError(k_DefaultData);
+                Debug.LogWarning(k_DefaultData);
             }
         }
         
@@ -54,6 +55,36 @@ namespace Inworld.Playground
         
         [MenuItem("Assets/Inworld/Playground Settings", false, 1)]
         static void PlaygroundShowPanel() => PlaygroundEditorPanel.Instance.ShowPanel();
+        
+        [MenuItem("Inworld/Playground/CombineMesh", false, 1)]
+        static void CombineMeshes()
+        {
+            // 获取所有子对象中的 MeshFilter
+            MeshFilter[] meshFilters = Selection.activeGameObject.GetComponentsInChildren<MeshFilter>();
+            CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+
+            for (int i = 0; i < meshFilters.Length; i++)
+            {
+                // 跳过没有网格的物体
+                if (meshFilters[i].sharedMesh == null) continue;
+
+                combine[i].mesh = meshFilters[i].sharedMesh;
+                combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+                meshFilters[i].gameObject.SetActive(false); // 隐藏原始物体
+            }
+
+            // 创建新的合并网格
+            MeshFilter combinedMeshFilter = Selection.activeGameObject.AddComponent<MeshFilter>();
+            combinedMeshFilter.sharedMesh = new Mesh();
+            combinedMeshFilter.sharedMesh.CombineMeshes(combine, true); // true 表示合并为一个 Submesh
+
+            // 添加 MeshRenderer 并复用材质
+            MeshRenderer meshRenderer = Selection.activeGameObject.AddComponent<MeshRenderer>();
+            meshRenderer.sharedMaterial = meshFilters[0].GetComponent<MeshRenderer>().sharedMaterial;
+
+            // 激活新网格
+            Selection.activeGameObject.SetActive(true);
+        }
     }
 }
 #endif
