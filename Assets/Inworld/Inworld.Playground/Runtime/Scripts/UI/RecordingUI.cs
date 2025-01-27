@@ -17,11 +17,11 @@ namespace Inworld.Playground
     {
         [SerializeField] private Image m_RecordingIcon;
 
-        private void Update()
-        {
-            m_RecordingIcon.enabled = InworldController.Audio.SampleMode == MicSampleMode.PUSH_TO_TALK ? 
-                                          Input.GetKey(KeyCode.V) :
-                                          InworldController.Audio && InworldController.Audio.IsCapturing;
-        }
+        // private void Update()
+        // {
+        //     m_RecordingIcon.enabled = InworldController.Audio.SampleMode == MicSampleMode.PUSH_TO_TALK ? 
+        //                                   Input.GetKey(KeyCode.V) :
+        //                                   InworldController.Audio && InworldController.Audio.IsCapturing;
+        // }
     }
 }

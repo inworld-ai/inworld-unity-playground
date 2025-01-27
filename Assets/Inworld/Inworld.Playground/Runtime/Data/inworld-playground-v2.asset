@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5abd9eaac9cc3e4585d7e8574c2511c, type: 3}
   m_Name: inworld-playground-v2
   m_EditorClassIdentifier: 
-  workspaceFullName: workspaces/inworld-playground-v2
-  sceneFullName: 
+  workspaceName: inworld-playground-v2
+  sceneName: 
   apiKey: d5DPwXIVPyYu75gd4wt5SUqtfNHgCnFp
   apiSecret: ate2AXk6y9TYR5BVaKhMIkAUhd3wRydS5Sp475mkpCJuUekxEDsx4F8IhhqaaNfm
   characters: []

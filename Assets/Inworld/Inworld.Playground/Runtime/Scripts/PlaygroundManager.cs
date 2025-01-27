@@ -41,7 +41,7 @@ namespace Inworld.Playground
         {
             if (m_InworldSceneMappingDictionary.TryGetValue(SceneManager.GetActiveScene().name,
                     out string inworldSceneName))
-                InworldPlayground.GameData.sceneFullName = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
+                InworldPlayground.GameData.sceneName = $"workspaces/{m_Settings.WorkspaceId}/scenes/{inworldSceneName}";
             InworldController.Instance.LoadData(InworldPlayground.GameData);
         }
 
@@ -97,19 +97,21 @@ namespace Inworld.Playground
 
             CursorHandler.LockCursor();
             InworldController.Audio.ChangeInputDevice(m_Settings.MicrophoneDevice);
-            if (InworldController.Audio.SampleMode != MicSampleMode.NO_MIC)
-                switch (m_Settings.InteractionMode)
-                {
-                    case MicrophoneMode.Interactive:
-                        InworldController.Audio.SampleMode = MicSampleMode.AEC;
-                        break;
-                    case MicrophoneMode.PushToTalk:
-                        InworldController.Audio.SampleMode = MicSampleMode.PUSH_TO_TALK;
-                        break;
-                    case MicrophoneMode.TurnByTurn:
-                        InworldController.Audio.SampleMode = MicSampleMode.TURN_BASED;
-                        break;
-                }
+            // if (InworldController.Audio.SampleMode != MicSampleMode.NO_MIC)
+            // {
+            //     switch (m_Settings.InteractionMode)
+            //     {
+            //         case MicrophoneMode.Interactive:
+            //             InworldController.Audio.SampleMode = MicSampleMode.AEC;
+            //             break;
+            //         case MicrophoneMode.PushToTalk:
+            //             InworldController.Audio.SampleMode = MicSampleMode.PUSH_TO_TALK;
+            //             break;
+            //         case MicrophoneMode.TurnByTurn:
+            //             InworldController.Audio.SampleMode = MicSampleMode.TURN_BASED;
+            //             break;
+            //     }
+            // }
 
             EnableAllWorldSpaceGraphicRaycasters();
 
@@ -274,7 +276,7 @@ namespace Inworld.Playground
             foreach (InworldSceneMapping sceneMapping in m_InworldSceneMapping)
                 m_InworldSceneMappingDictionary.Add(sceneMapping.UnitySceneName, sceneMapping.InworldSceneName);
             if (InworldPlayground.GameData)
-                m_Settings.WorkspaceId = InworldPlayground.GameData.workspaceFullName.Split('/')[1];
+                m_Settings.WorkspaceId = InworldPlayground.GameData.workspaceName;
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
