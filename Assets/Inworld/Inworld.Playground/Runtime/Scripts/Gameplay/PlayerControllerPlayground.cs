@@ -83,9 +83,6 @@ namespace Inworld.Playground
 
         protected override void HandleInput()
         {
-            if(PlaygroundManager.Instance.Paused)
-                return;
-
             if (!BlockKeyInput)
             {
                 base.HandleInput();
@@ -101,8 +98,6 @@ namespace Inworld.Playground
         }
         protected void HandleMovement()
         {
-            if (PlaygroundManager.Instance.Paused)
-                return;
             if (UILayer > 0)
                 return;
             Vector2 mouseMovement = m_MouseDeltaInputAction.ReadValue<Vector2>() * 0.1f;

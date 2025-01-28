@@ -30,7 +30,7 @@ namespace Inworld.Playground
         Dictionary<string, string> m_InworldSceneMappingDictionary;
         Coroutine m_SceneChangeCoroutine;
         
-        public bool Paused { get; private set; }
+        //public bool Paused { get; private set; }
 
         public Scene CurrentScene => m_CurrentScene;
 
@@ -114,8 +114,6 @@ namespace Inworld.Playground
             // }
 
             EnableAllWorldSpaceGraphicRaycasters();
-
-            Paused = false;
             OnPlay?.Invoke();
         }
 
@@ -157,16 +155,6 @@ namespace Inworld.Playground
 #endif
             foreach (WorldSpaceGraphicRaycaster worldSpaceGraphicRaycaster in worldSpaceGraphicRaycasters)
                 worldSpaceGraphicRaycaster.enabled = false;
-        }
-
-        public void Pause()
-        {
-            if (Paused)
-                return;
-            DisableAllWorldSpaceGraphicRaycasters();
-            Subtitle.Instance.Clear();
-            Paused = true;
-            OnPause?.Invoke();
         }
         void SetCharacterBrains()
         {
@@ -280,9 +268,7 @@ namespace Inworld.Playground
 
             if (string.IsNullOrEmpty(m_Settings.PlayerName))
                 SetPlayerName("Player");
-            PlayerControllerPlayground.Instance.onCanvasOpen.AddListener(Pause);
             PlayerControllerPlayground.Instance.onCanvasClosed.AddListener(Play);
-            Paused = true;
             StartCoroutine(SetupScene());
         }
 
@@ -356,8 +342,6 @@ namespace Inworld.Playground
                 yield break;
 
             OnStartInworldSceneChange?.Invoke();
-            if (pause)
-                Pause();
             InworldCharacter currentCharacter = InworldController.CharacterHandler.CurrentCharacter;
             InworldController.CharacterHandler.CurrentCharacter = null;
 
@@ -386,8 +370,6 @@ namespace Inworld.Playground
         IEnumerator ChangeSceneEnumerator(string sceneName)
         {
             OnStartSceneChange?.Invoke();
-            Pause();
-
             InworldAI.Log("Starting scene load: " + sceneName);
             AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
             sceneLoadOperation.allowSceneActivation = false;
