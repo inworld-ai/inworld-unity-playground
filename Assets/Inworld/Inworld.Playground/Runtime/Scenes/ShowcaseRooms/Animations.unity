@@ -9543,6 +9543,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1310028227}
     m_Modifications:
+    - target: {fileID: 2263161625663889914, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_Text
+      value: You can interact with the UI panels using your mouse. The reticle will
+        turn green when you are able to interact.
+      objectReference: {fileID: 0}
     - target: {fileID: 4475720632629173847, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_fontAsset
       value: 

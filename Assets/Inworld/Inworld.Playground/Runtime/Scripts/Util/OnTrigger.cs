@@ -16,6 +16,7 @@ namespace Inworld.Playground
     ///     Actives the OnTriggerEnterEvent when OnTriggerEnter is called.
     ///     For use with Trigger Collider objects.
     /// </summary>
+    [Obsolete]
     public class OnTrigger : MonoBehaviour
     {
         #region Actions

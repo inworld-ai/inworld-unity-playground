@@ -1209,11 +1209,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453028163}
   m_Mesh: {fileID: 1128999532}
---- !u!1 &468323396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4293560447058188878, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-  m_PrefabInstance: {fileID: 1900630898}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &474315819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3115,6 +3110,39 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1292596954}
     m_Modifications:
+    - target: {fileID: 485816405461948597, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485816405461948597, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485816405461948597, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485816405461948597, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485816405461948597, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485816405461948597, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263161625663889914, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_Text
+      value: In the Chat Panel (<b>~</b>) you can submit feedback for a character
+        response by clicking the chat bubble.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2671056421841469589, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4475720632629173847, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_text
       value: '?'
@@ -3178,6 +3206,30 @@ PrefabInstance:
     - target: {fileID: 5778646073423824933, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443062472412137650, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443062472412137650, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443062472412137650, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443062472412137650, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443062472412137650, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443062472412137650, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080094233059900150, guid: 350c691acc0c2824aa42fc095857b711, type: 3}
       propertyPath: m_TipText
@@ -3829,11 +3881,6 @@ Transform:
   - {fileID: 1290424954}
   m_Father: {fileID: 4219251691643239558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1776668852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3385724260246708934, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-  m_PrefabInstance: {fileID: 1900630898}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1836876938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,14 +3923,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1348433471}
     m_Modifications:
-    - target: {fileID: 1542126654848210090, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 1542126654848210090, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 2603897641775675890, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -3932,22 +3971,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: innequin_inworld-playground
       objectReference: {fileID: 0}
-    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_Dots
-      value: 
-      objectReference: {fileID: 468323396}
-    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_Canvas
-      value: 
-      objectReference: {fileID: 1776668852}
-    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_BubbleLeft
-      value: 
-      objectReference: {fileID: 4370749978030050877, guid: 6e31716df34c4f04a8a382ad03c5790d, type: 3}
-    - target: {fileID: 6205853951264669694, guid: 7b75a9dff27c8e3469bebe8c6b8eb2c7, type: 3}
-      propertyPath: m_BubbleRight
-      value: 
-      objectReference: {fileID: 3195912804919175791, guid: ce19183024b657340b5e830b1549618e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
