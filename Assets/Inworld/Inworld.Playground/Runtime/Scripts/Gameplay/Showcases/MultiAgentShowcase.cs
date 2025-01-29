@@ -101,14 +101,12 @@ namespace Inworld.Playground
             while (true)
             {
                 if (InworldController.Status != InworldConnectionStatus.Connected)
-                    yield return PlaygroundManager.Instance.Connect();
-
+                    yield break;
                 if (!InworldAI.Capabilities.multiAgent)
                 {
                     InworldAI.Capabilities.multiAgent = true;
                     InworldController.Client.SendSessionConfig(false);
                 }
-
                 if (!m_CurrentSpeakingCharacter && !m_IsPlayerSpeaking)
                 {
                     m_ConversationTimer += Time.deltaTime;

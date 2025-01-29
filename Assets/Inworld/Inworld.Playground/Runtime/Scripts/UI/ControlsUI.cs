@@ -6,36 +6,38 @@
  *************************************************************************************************/
 
 using System;
+using Inworld.Sample;
 using UnityEngine;
 
 namespace Inworld.Playground
 {
+    // TODO(Yan): We don't need this.
     /// <summary>
     ///     Handles user input controls UI for the UI overlay.
     /// </summary>
+    [Obsolete]
     public class ControlsUI : MonoBehaviour
     {
-        [SerializeField] private GameObject m_PushToTalkControl;
+        [SerializeField] GameObject m_PushToTalkControl;
 
-        private void Awake()
+        void Awake()
         {
             m_PushToTalkControl.SetActive(false);
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
-            PlaygroundManager.Instance.OnPlay += OnPlay;
+            PlayerController.Instance.onCanvasClosed.AddListener(OnPlay);
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
-            if(PlaygroundManager.Instance)
-                PlaygroundManager.Instance.OnPlay -= OnPlay;
+            PlayerController.Instance.onCanvasClosed.RemoveListener(OnPlay);
         }
 
-        private void OnPlay()
+        void OnPlay()
         {
-            m_PushToTalkControl.SetActive(PlaygroundManager.Instance.GetInteractionMode() == MicrophoneMode.PushToTalk);
+            // m_PushToTalkControl.SetActive(PlaygroundManagerBak.InteractionMode == MicSampleMode.PUSH_TO_TALK);
         }
     }
 }

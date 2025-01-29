@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,6 +16,9 @@ namespace Inworld.Playground
     /// <summary>
     ///     Handles Player interactions with objects.
     /// </summary>
+    // TODO(Yan): 1. Get rid of singleton. 
+    //            2. The whole system should not be code based. Just use masks.
+    [Obsolete]
     public class InteractionSystem : SingletonBehavior<InteractionSystem>
     {
         [Header("Item Interaction")]

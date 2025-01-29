@@ -1,4 +1,4 @@
-/*************************************************************************************************
+﻿/*************************************************************************************************
  * Copyright 2024 Theai, Inc. (DBA Inworld)
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
@@ -6,19 +6,25 @@
  *************************************************************************************************/
 
 using System;
+using Newtonsoft.Json;
+
 namespace Inworld.Playground
 {
-    /// <summary>
-    ///     Settings for the Inworld Playground
-    /// </summary>
+    [Serializable]
+    public class AudioSettings
+    {
+        public string microphoneDevice;
+        public MicSampleMode interactionMode;
+        public bool enableAEC;
+        public bool enableVAD;
+    }
     [Serializable]
     public class PlaygroundSettings
     {
-        public const int WorkspaceVersion = 2;
-        public string PlayerName = "Player";
-        public string WorkspaceId;
-        public string MicrophoneDevice;
-        public MicrophoneMode InteractionMode;
-        public bool EnableAEC = true;
+        public string playerName = "Player";
+        public string workspaceName;
+        public string sceneName;
+        public bool enableGroupChat;
+        public AudioSettings audioSettings;
     }
 }

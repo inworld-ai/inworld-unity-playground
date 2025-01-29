@@ -17,122 +17,19 @@ namespace Inworld.Playground
     /// </summary>
     public class SettingsUI : MonoBehaviour
     {
-        [SerializeField] 
-        private Toggle m_MicModeInteractionToggle;
-        [SerializeField] 
-        private Toggle m_MicModePTTToggle;
-        [SerializeField] 
-        private Toggle m_MicModeTurnBasedToggle;
-        [SerializeField] 
-        private Toggle m_AECToggle;
-        [SerializeField] 
-        private Button m_PlayButton;
-        [SerializeField]
-        private Button m_ConnectButton;
-        [SerializeField]
-        private TMP_Text m_PlayerNameText;
-        [SerializeField]
-        private TMP_Text m_WorkspaceText;
-        [SerializeField]
-        private TMP_Text m_ConnectionStatusText;
-        
-        private PlaygroundManager m_PlaygroundManager;
-
-        #region UI Callback Functions
-        public void Play()
-        {
-            UpdatePlayButton(false);
-            m_PlaygroundManager.Play();
-        }
-        
-        public void SetMicrophoneModeInteractive(bool value)
-        {
-            if (!value) return;
-            m_PlaygroundManager.UpdateMicrophoneMode(MicrophoneMode.Interactive);
-        }
-        
-        public void SetMicrophoneModePushToTalk(bool value)
-        {
-            if (!value) return;
-            m_PlaygroundManager.UpdateMicrophoneMode(MicrophoneMode.PushToTalk);
-        }
-        
-        public void SetMicrophoneModeTurnByTurn(bool value)
-        {
-            if (!value) return;
-            m_PlaygroundManager.UpdateMicrophoneMode(MicrophoneMode.TurnByTurn);
-        }
-        
-        public void SetAECEnabled(bool value)
-        {
-            m_PlaygroundManager.UpdateEnableAEC(value);
-        }
-
-        public void Connect()
-        {
-            switch (InworldController.Status)
-            {
-                case InworldConnectionStatus.Error:
-                case InworldConnectionStatus.Idle:
-                    PlaygroundManager.Instance.LoadData();
-                    InworldController.Instance.Init();
-                    m_ConnectButton.interactable = false;
-                    break;
-                case InworldConnectionStatus.Connected:
-                    InworldController.Instance.Disconnect();
-                    break;
-            }
-        }
-        #endregion
-
-        #region Unity Event Functions
-        private void Awake()
-        {
-            m_PlaygroundManager = PlaygroundManager.Instance;
-        }
-
-        private void OnEnable()
-        {
-            InworldController.Client.OnStatusChanged += OnStatusChanged;
-            m_PlayerNameText.text = $"Player Name: {m_PlaygroundManager.GetPlayerName()}";
-            m_WorkspaceText.text = $"Workspace: {m_PlaygroundManager.GetWorkspaceId()}";
-
-            var interactionMode = m_PlaygroundManager.GetInteractionMode();
-            switch (interactionMode)
-            {
-                case MicrophoneMode.Interactive:
-                    m_MicModeInteractionToggle.isOn = true;
-                    m_MicModePTTToggle.isOn = false;
-                    m_MicModeTurnBasedToggle.isOn = false;
-                    break;
-                case MicrophoneMode.PushToTalk:
-                    m_MicModePTTToggle.isOn = true;
-                    m_MicModeInteractionToggle.isOn = false;
-                    m_MicModeTurnBasedToggle.isOn = false;
-                    break;
-                case MicrophoneMode.TurnByTurn:
-                    m_MicModeTurnBasedToggle.isOn = true;
-                    m_MicModeInteractionToggle.isOn = false;
-                    m_MicModePTTToggle.isOn = false;
-                    break;
-            }
-            
-            bool aecEnabled = m_PlaygroundManager.GetEnableAEC();
-            m_AECToggle.isOn = aecEnabled;
-            UpdatePlayButton(true);
-            OnStatusChanged(InworldController.Status);
-        }
-
-        private void OnDisable()
-        {
-            UpdatePlayButton(false);
-            if(InworldController.Instance)
-                InworldController.Client.OnStatusChanged -= OnStatusChanged;
-        }
-        #endregion
+        [SerializeField] Toggle m_MicModeInteractionToggle;
+        [SerializeField] Toggle m_MicModePTTToggle;
+        [SerializeField] Toggle m_MicModeTurnBasedToggle;
+        [SerializeField] Toggle m_AECToggle;
+        [SerializeField] Button m_PlayButton;
+        [SerializeField] Button m_ConnectButton;
+        [SerializeField] TMP_Text m_PlayerNameText;
+        [SerializeField] TMP_Text m_WorkspaceText;
+        [SerializeField] TMP_Text m_ConnectionStatusText;
 
         #region Event Callback Functions
-        private void OnStatusChanged(InworldConnectionStatus status)
+
+        void OnStatusChanged(InworldConnectionStatus status)
         {
             m_ConnectionStatusText.text = status.ToString();
             switch (status)
@@ -150,24 +47,120 @@ namespace Inworld.Playground
                     m_ConnectButton.interactable = false;
                     break;
             }
+
             //TODO(Yan): This is called If current scene is setup.
             UpdatePlayButton(status == InworldConnectionStatus.Connected);
         }
+
         #endregion
-        
-        private void UpdatePlayButton(bool interactable)
+
+        //TODO(Yan): Mic Device
+        void UpdatePlayButton(bool interactable)
         {
-            string micDevice = m_PlaygroundManager.GetMicrophoneDevice();
+            string micDevice = "";//PlaygroundManagerBak.MicDevice;
 #if !UNITY_WEBGL
-            if (Microphone.devices.Length == 0 || 
+            if (Microphone.devices.Length == 0 ||
                 (!string.IsNullOrEmpty(micDevice) && !Microphone.devices.Contains(micDevice)))
             {
                 m_PlayButton.interactable = false;
                 return;
             }
+
             m_PlayButton.interactable = interactable;
 #endif
-
         }
+
+        #region UI Callback Functions
+
+        public void Play()
+        {
+            UpdatePlayButton(false);
+            // PlaygroundManagerBak.Instance.Play();
+        }
+
+        public void SetMicrophoneModeInteractive(bool value)
+        {
+            if (!value) 
+                return;
+            // PlaygroundManagerBak.InteractionMode = MicSampleMode.INTERACTIVE;
+        }
+
+        public void SetMicrophoneModePushToTalk(bool value)
+        {
+            if (!value) 
+                return;
+            // PlaygroundManagerBak.InteractionMode = MicSampleMode.PUSH_TO_TALK;
+        }
+
+        public void SetMicrophoneModeTurnByTurn(bool value) 
+        {
+            if (!value) 
+                return;
+            // PlaygroundManagerBak.InteractionMode = MicSampleMode.TURN_BASED;
+        }
+
+        public void SetAECEnabled(bool value)
+        {
+            // PlaygroundManagerBak.EnableAEC = value;
+        }
+
+
+        public void Connect()
+        {
+            switch (InworldController.Status)
+            {
+                case InworldConnectionStatus.Error:
+                case InworldConnectionStatus.Idle:
+                    // PlaygroundManagerBak.Instance.LoadData();
+                    InworldController.Instance.Init();
+                    m_ConnectButton.interactable = false;
+                    break;
+                case InworldConnectionStatus.Connected:
+                    InworldController.Instance.Disconnect();
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Unity Event Functions
+
+        void OnEnable()
+        {
+            InworldController.Client.OnStatusChanged += OnStatusChanged;
+            // m_PlayerNameText.text = $"Player Name: {PlaygroundManagerBak.PlayerName}";
+            // m_WorkspaceText.text = $"Workspace: {PlaygroundManagerBak.WorkspaceName}";
+            //
+            // switch (PlaygroundManagerBak.InteractionMode)
+            // {
+            //     case MicSampleMode.INTERACTIVE:
+            //         m_MicModeInteractionToggle.isOn = true;
+            //         m_MicModePTTToggle.isOn = false;
+            //         m_MicModeTurnBasedToggle.isOn = false;
+            //         break;
+            //     case MicSampleMode.PUSH_TO_TALK:
+            //         m_MicModePTTToggle.isOn = true;
+            //         m_MicModeInteractionToggle.isOn = false;
+            //         m_MicModeTurnBasedToggle.isOn = false;
+            //         break;
+            //     case MicSampleMode.TURN_BASED:
+            //         m_MicModeTurnBasedToggle.isOn = true;
+            //         m_MicModeInteractionToggle.isOn = false;
+            //         m_MicModePTTToggle.isOn = false;
+            //         break;
+            // }
+            // m_AECToggle.isOn = PlaygroundManagerBak.EnableAEC;
+            UpdatePlayButton(true);
+            OnStatusChanged(InworldController.Status);
+        }
+
+        void OnDisable()
+        {
+            UpdatePlayButton(false);
+            if (InworldController.Instance)
+                InworldController.Client.OnStatusChanged -= OnStatusChanged;
+        }
+
+        #endregion
     }
 }

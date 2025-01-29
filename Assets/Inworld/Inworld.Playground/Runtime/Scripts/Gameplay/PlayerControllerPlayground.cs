@@ -60,13 +60,13 @@ namespace Inworld.Playground
         void OnCanvasClosed()
         {
             CursorHandler.LockCursor();
-            PlaygroundManager.Instance.EnableAllWorldSpaceGraphicRaycasters();
+            //PlaygroundManagerBak.Instance.EnableAllWorldSpaceGraphicRaycasters();
         }
 
         void OnCanvasOpen()
         {
             CursorHandler.UnlockCursor();
-            PlaygroundManager.Instance.DisableAllWorldSpaceGraphicRaycasters();
+            //PlaygroundManagerBak.Instance.DisableAllWorldSpaceGraphicRaycasters();
         }
 
         protected void OnDisable()

@@ -5,12 +5,14 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using UnityEngine;
 namespace Inworld.Playground
 {
     /// <summary>
     ///     An object that can be interacted with by the Player.
     /// </summary>
+    [Obsolete]
     public abstract class Interactable : MonoBehaviour
     {
         /// <summary>

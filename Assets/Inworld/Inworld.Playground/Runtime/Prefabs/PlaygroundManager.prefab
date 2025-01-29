@@ -794,7 +794,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5593351496906298277}
-  - component: {fileID: 6824202508536700761}
   - component: {fileID: 6526271315783903613}
   m_Layer: 0
   m_Name: PlaygroundManager
@@ -820,43 +819,6 @@ Transform:
   - {fileID: 4888937887968883158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6824202508536700761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7818464701975237251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c8346cc3d1dab4ea45b9dd37a5e705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InworldSceneMapping:
-  - UnitySceneName: Lobby
-    InworldSceneName: playground_lobby
-  - UnitySceneName: Avatars
-    InworldSceneName: avatars_room
-  - UnitySceneName: Animations
-    InworldSceneName: animations_room
-  - UnitySceneName: Goals
-    InworldSceneName: goals_room
-  - UnitySceneName: Mutations
-    InworldSceneName: mutations_room
-  - UnitySceneName: Scene
-    InworldSceneName: scene_room_daytime
-  - UnitySceneName: Environment
-    InworldSceneName: environment_room
-  - UnitySceneName: Interactions
-    InworldSceneName: interactions_room
-  - UnitySceneName: MultiAgent
-    InworldSceneName: multi-agent_room
-  m_Settings:
-    PlayerName: 
-    WorkspaceId: 
-    MicrophoneDevice: 
-    InteractionMode: 0
-    EnableAEC: 1
 --- !u!114 &6526271315783903613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,7 +1090,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6824202508536700761}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Inworld.Playground.PlaygroundManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
@@ -1716,7 +1678,8 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7807368858587438350, guid: 9bbac7ae893ac8f4db650dd9d41d5ba7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
