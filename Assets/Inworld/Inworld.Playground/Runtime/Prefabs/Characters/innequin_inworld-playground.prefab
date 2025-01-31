@@ -1821,11 +1821,11 @@ GameObject:
   - component: {fileID: 2346687256239508788}
   - component: {fileID: 4556164660693250602}
   - component: {fileID: -1426748583640960597}
-  - component: {fileID: 3301041991868291101}
+  - component: {fileID: 658747990621466298}
   - component: {fileID: -5582474277413410702}
   - component: {fileID: 992398165037816486}
   - component: {fileID: 7809206396683079184}
-  - component: {fileID: 658747990621466298}
+  - component: {fileID: 2207039278120131201}
   m_Layer: 0
   m_Name: innequin_inworld-playground
   m_TagString: Untagged
@@ -2047,7 +2047,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   m_VerboseLog: 0
---- !u!114 &3301041991868291101
+--- !u!114 &658747990621466298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2056,17 +2056,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4722740852517928817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87294da2ba36448dbd537c4808c2263f, type: 3}
+  m_Script: {fileID: 11500000, guid: c55387cda81d4cd7a8fe70b7564b2d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
-  m_EmoteAnimator: {fileID: 9153061277033768134}
-  m_FaceMesh: {fileID: 1751923672519857469}
-  m_FaceTransformData: {fileID: 11400000, guid: cdb6717a81f76c54cbb32bcf5b87d6e5, type: 2}
-  m_FaceAnimData: {fileID: 11400000, guid: 0e4837ff3c714034a885f361813776b2, type: 2}
-  m_DefaultMouth: {fileID: 2800000, guid: 521bfee8a24170b46ad2720f99ec56ca, type: 3}
-  m_Facial: {fileID: 2100000, guid: d3f813bf6ca82f640936c4c08e041cbb, type: 2}
-  m_BlinkRate: -0.999
+  m_ContinueButton: {fileID: 0}
+  m_AutoProceed: 1
+  m_MaxItemCount: 100
+  m_TextSpeedMultipler: 0.02
+  m_VolumeOnPlayerSpeaking: 1
 --- !u!114 &-5582474277413410702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,7 +2122,7 @@ CapsuleCollider:
   m_Height: 1.65
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &658747990621466298
+--- !u!114 &2207039278120131201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2134,14 +2131,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4722740852517928817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c55387cda81d4cd7a8fe70b7564b2d59, type: 3}
+  m_Script: {fileID: 11500000, guid: 87294da2ba36448dbd537c4808c2263f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ContinueButton: {fileID: 0}
-  m_AutoProceed: 1
-  m_MaxItemCount: 100
-  m_TextSpeedMultipler: 0.02
-  m_VolumeOnPlayerSpeaking: 1
+  m_EmotionMap: {fileID: 11400000, guid: 9991e8a9d037f9842aef3b51e6c79262, type: 2}
+  m_EmoteAnimator: {fileID: 9153061277033768134}
+  m_FaceMesh: {fileID: 1751923672519857469}
+  m_FaceTransformData: {fileID: 11400000, guid: cdb6717a81f76c54cbb32bcf5b87d6e5, type: 2}
+  m_FaceAnimData: {fileID: 11400000, guid: 0e4837ff3c714034a885f361813776b2, type: 2}
+  m_DefaultMouth: {fileID: 2800000, guid: 521bfee8a24170b46ad2720f99ec56ca, type: 3}
+  m_Facial: {fileID: 2100000, guid: d3f813bf6ca82f640936c4c08e041cbb, type: 2}
+  m_BlinkRate: 0
 --- !u!1 &4792743591842147495
 GameObject:
   m_ObjectHideFlags: 0

@@ -3214,6 +3214,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Environment
       objectReference: {fileID: 0}
+    - target: {fileID: 7719356910154708581, guid: 642e3a798e4b3d6489bb1fd0043f2169, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719356910154708581, guid: 642e3a798e4b3d6489bb1fd0043f2169, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3531,6 +3539,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7215017233088924273, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_Audio
+      value: 
+      objectReference: {fileID: 1797763209}
+    - target: {fileID: 7215017233088924273, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_VolumeDetector
+      value: 
+      objectReference: {fileID: 1797763208}
     - target: {fileID: 7818464701975237251, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
       propertyPath: m_Name
       value: PlaygroundManager
@@ -4104,6 +4120,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+--- !u!114 &1797763208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1340402167059864240, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+  m_PrefabInstance: {fileID: 1797763207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156494d7c5734e5ab08c81540848ba22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1797763209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 36363206940008120, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+  m_PrefabInstance: {fileID: 1797763207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87e374328fd42828582b926dfde774b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1823945187
 Mesh:
   m_ObjectHideFlags: 0

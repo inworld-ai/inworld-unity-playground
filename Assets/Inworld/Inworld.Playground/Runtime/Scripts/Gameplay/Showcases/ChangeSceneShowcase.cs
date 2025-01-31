@@ -62,7 +62,9 @@ namespace Inworld.Playground
         public void SwitchScene()
         {
             SetTimeOfDay(!m_IsDay);
-            InworldController.Instance.LoadScene(m_IsDay ? m_DaySceneName : m_NightSceneName);
+            string sceneName = m_IsDay ? m_DaySceneName : m_NightSceneName;
+            string sceneFullName = InworldAI.GetSceneFullName(InworldController.Instance.GameData.workspaceName, sceneName);
+            InworldController.Instance.LoadScene(sceneFullName);
         }
     }
 }

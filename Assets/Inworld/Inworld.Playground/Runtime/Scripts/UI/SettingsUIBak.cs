@@ -15,7 +15,7 @@ namespace Inworld.Playground
     /// <summary>
     ///     Handles the Settings UI.
     /// </summary>
-    public class SettingsUI : MonoBehaviour
+    public class SettingsUIBak : MonoBehaviour
     {
         [SerializeField] Toggle m_MicModeInteractionToggle;
         [SerializeField] Toggle m_MicModePTTToggle;
@@ -28,7 +28,6 @@ namespace Inworld.Playground
         [SerializeField] TMP_Text m_ConnectionStatusText;
 
         #region Event Callback Functions
-
         void OnStatusChanged(InworldConnectionStatus status)
         {
             m_ConnectionStatusText.text = status.ToString();
@@ -128,8 +127,8 @@ namespace Inworld.Playground
         void OnEnable()
         {
             InworldController.Client.OnStatusChanged += OnStatusChanged;
-            // m_PlayerNameText.text = $"Player Name: {PlaygroundManagerBak.PlayerName}";
-            // m_WorkspaceText.text = $"Workspace: {PlaygroundManagerBak.WorkspaceName}";
+            m_PlayerNameText.text = $"Player Name: {InworldAI.User.Name}";
+            m_WorkspaceText.text = $"Workspace: {InworldController.Instance.GameData.workspaceName}";
             //
             // switch (PlaygroundManagerBak.InteractionMode)
             // {

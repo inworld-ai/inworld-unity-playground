@@ -32,7 +32,8 @@ namespace Inworld.Playground
 
         void OnDisable()
         {
-            PlayerController.Instance.onCanvasClosed.RemoveListener(OnPlay);
+            if (PlayerController.Instance)
+                PlayerController.Instance.onCanvasClosed.RemoveListener(OnPlay);
         }
 
         void OnPlay()

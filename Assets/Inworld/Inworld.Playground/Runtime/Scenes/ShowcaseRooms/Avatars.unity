@@ -1023,6 +1023,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+--- !u!114 &527409231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1340402167059864240, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+  m_PrefabInstance: {fileID: 527409230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156494d7c5734e5ab08c81540848ba22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &527409232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 36363206940008120, guid: f787cea5870c91b4ebe8571dc197a25f, type: 3}
+  m_PrefabInstance: {fileID: 527409230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87e374328fd42828582b926dfde774b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &573201311
 Mesh:
   m_ObjectHideFlags: 0
@@ -3333,6 +3355,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7215017233088924273, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_Audio
+      value: 
+      objectReference: {fileID: 527409232}
+    - target: {fileID: 7215017233088924273, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
+      propertyPath: m_VolumeDetector
+      value: 
+      objectReference: {fileID: 527409231}
     - target: {fileID: 7290265432141093723, guid: 2d36525cec1ebc349b8abfeb613a49cf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
