@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3958487445749875713}
   - component: {fileID: 7137538564816739321}
   - component: {fileID: 1146089100288263888}
+  - component: {fileID: 3737191966390413484}
   m_Layer: 5
   m_Name: SecAudio
   m_TagString: Untagged
@@ -87,6 +88,28 @@ MonoBehaviour:
   m_CalibButton: {fileID: 6062249838902657823}
   m_MicOn: {fileID: 21300000, guid: e30084443df9aaa449dceb2398ca713f, type: 3}
   m_MicOff: {fileID: 21300000, guid: 0f73a4fbbc74a2445ab76ee58ac7a675, type: 3}
+--- !u!114 &3737191966390413484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279578547515763650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8438107db39453391f8722f578b7697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AECAudioManager: {fileID: 8125216449275139937, guid: 15f739b13a1577742bc8003b9e2cf6a8, type: 3}
+  m_TurnBasedAudioManager: {fileID: 5408148874250187113, guid: aac31c02fff014f42821c8d09d853c38, type: 3}
+  m_PTTAudioManager: {fileID: 8687522768840527925, guid: 18689668e2bde9247beb31b62d38103a, type: 3}
+  m_NoFilter: {fileID: 1042530060820833721, guid: c511673a90e468f44ac45e2a5073a5ed, type: 3}
+  m_NoVAD: {fileID: 4426508044186588485, guid: f740a0b5adbeec04788814c66c63d856, type: 3}
+  m_TglInteractive: {fileID: 8005728966673648161}
+  m_TglPtt: {fileID: 2108739124606228685}
+  m_TglTurnBased: {fileID: 5070459923438176731}
+  m_TglAEC: {fileID: 8551529117164444019}
+  m_TglVAD: {fileID: 763977511893006013}
 --- !u!1 &406675991748794039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,10 +1408,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inworld.Playground.SettingsMenu, Assembly-CSharp
-        m_MethodName: SetAECEnabled
-        m_Mode: 0
+      - m_Target: {fileID: 3737191966390413484}
+        m_TargetAssemblyTypeName: Inworld.Playground.AudioManagerSwitcher, Assembly-CSharp
+        m_MethodName: OnSampleModeChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1991,7 +2014,7 @@ GameObject:
   - component: {fileID: 5467262337216505144}
   - component: {fileID: 5070459923438176731}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: TglTurnBased
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2065,10 +2088,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inworld.Playground.SettingsMenu, Assembly-CSharp
-        m_MethodName: SetMicrophoneModeTurnByTurn
-        m_Mode: 0
+      - m_Target: {fileID: 3737191966390413484}
+        m_TargetAssemblyTypeName: Inworld.Playground.AudioManagerSwitcher, Assembly-CSharp
+        m_MethodName: OnSampleModeChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3043,10 +3066,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inworld.Playground.SettingsMenu, Assembly-CSharp
-        m_MethodName: SetAECEnabled
-        m_Mode: 0
+      - m_Target: {fileID: 3737191966390413484}
+        m_TargetAssemblyTypeName: Inworld.Playground.AudioManagerSwitcher, Assembly-CSharp
+        m_MethodName: OnSampleModeChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3403,7 +3426,7 @@ GameObject:
   - component: {fileID: 7186496394176216358}
   - component: {fileID: 8005728966673648161}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: TglInteractive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3477,10 +3500,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inworld.Playground.SettingsMenu, Assembly-CSharp
-        m_MethodName: SetMicrophoneModeInteractive
-        m_Mode: 0
+      - m_Target: {fileID: 3737191966390413484}
+        m_TargetAssemblyTypeName: Inworld.Playground.AudioManagerSwitcher, Assembly-CSharp
+        m_MethodName: OnSampleModeChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3849,7 +3872,7 @@ GameObject:
   - component: {fileID: 7129306946165065070}
   - component: {fileID: 2108739124606228685}
   m_Layer: 5
-  m_Name: Toggle (1)
+  m_Name: TglPTT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3923,10 +3946,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inworld.Playground.SettingsMenu, Assembly-CSharp
-        m_MethodName: SetMicrophoneModePushToTalk
-        m_Mode: 0
+      - m_Target: {fileID: 3737191966390413484}
+        m_TargetAssemblyTypeName: Inworld.Playground.AudioManagerSwitcher, Assembly-CSharp
+        m_MethodName: OnSampleModeChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

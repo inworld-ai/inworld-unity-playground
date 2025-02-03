@@ -24,6 +24,8 @@ namespace Inworld.Playground
         /// </summary>
         void OnTriggerEnter(Collider other)
         {
+            if (InworldController.Instance)
+                InworldController.Client.StopAudioTo(true);
             SceneManager.LoadSceneAsync(m_PortalName.text);
         }
     }

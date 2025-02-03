@@ -20,6 +20,7 @@ namespace Inworld.Playground
         [Header("Default Settings:")]
         [SerializeField] InworldGameData m_DefaultGameData;
         [SerializeField] PopulationData m_PopulationData;
+        [SerializeField] MicSampleMode m_MicSampleMode = MicSampleMode.AEC;
 
         const string k_InstancePath = "InworldPlayground";
         static InworldPlayground __inst;
