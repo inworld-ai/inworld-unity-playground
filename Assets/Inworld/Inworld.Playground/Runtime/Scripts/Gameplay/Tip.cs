@@ -1,59 +1,52 @@
-/*************************************************************************************************
+﻿/*************************************************************************************************
  * Copyright 2024 Theai, Inc. (DBA Inworld)
  *
  * Use of this source code is governed by the Inworld.ai Software Development Kit License Agreement
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
-using System.Collections;
+using System;
 using TMPro;
 using UnityEngine;
 
 namespace Inworld.Playground
 {
-    /// <summary>
-    ///     Handles a tip object.
-    /// </summary>
     public class Tip : MonoBehaviour
     {
-        [SerializeField] 
-        private float m_DestroyDistance = 0.5f;
+        [SerializeField] GameObject m_Icon;
+        [SerializeField] GameObject m_Bubble;
+        [SerializeField] float m_TipDistance = 1f;
+        [SerializeField] TMP_Text m_TextPanel;
+        [SerializeField] string m_Text;
+        [SerializeField] bool m_Reverse;
 
-        [SerializeField] 
-        private TMP_Text m_TextElement;
+        Vector3 m_LastPlayerPosition;
 
-        private Vector3 m_PlayerInitialPosition;
-        private Coroutine m_DestroyCoroutine;
-        
-        /// <summary>
-        ///     Set the text of the tip.
-        /// </summary>
-        /// <param name="text">The text string to set as the tip.</param>
-        public void SetTip(string text)
+        void Awake()
         {
-            m_TextElement.text = text;
-        }
-        
-        private void Start()
-        {
-            m_PlayerInitialPosition = PlayerControllerPlayground.Instance.transform.position;
+            if (m_TextPanel)
+                m_TextPanel.text = m_Text;
         }
 
-        private void Update()
+        void Update()
         {
-            if (Vector3.Distance(m_PlayerInitialPosition,
-                    PlayerControllerPlayground.Instance.transform.position) >
-                m_DestroyDistance)
-            {
-                if (m_DestroyCoroutine == null)
-                    m_DestroyCoroutine = StartCoroutine(IDestroy());
-            }
+            if (m_Icon)
+                m_Icon.transform.LookAt(PlayerControllerPlayground.Instance.transform);
         }
-
-        private IEnumerator IDestroy()
+        private void OnTriggerEnter(Collider other)
         {
-            yield return new WaitForSecondsRealtime(1);
-            Destroy(gameObject);
+            if (!other.GetComponent<PlayerControllerPlayground>() || !m_Bubble) 
+                return;
+            m_Bubble.SetActive(true);
+            Transform playerTransform = PlayerControllerPlayground.Instance.transform;
+            m_Bubble.transform.position = playerTransform.position + playerTransform.forward * m_TipDistance;
+            m_Bubble.transform.LookAt(playerTransform);
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.GetComponent<PlayerControllerPlayground>() || !m_Bubble) 
+                return;
+            m_Bubble.SetActive(false);
         }
     }
 }

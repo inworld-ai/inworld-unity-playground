@@ -384,7 +384,6 @@ GameObject:
   - component: {fileID: 5294849196985273011}
   - component: {fileID: 7971338370121023097}
   - component: {fileID: 6155324660809360660}
-  - component: {fileID: 3586863621304488495}
   m_Layer: 0
   m_Name: SM_Door_L
   m_TagString: Untagged
@@ -483,34 +482,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.013505708, y: 0.021421963, z: 0.0008492422}
   m_Center: {x: -0.006752868, y: 0.010710982, z: 0.00016614696}
---- !u!114 &3586863621304488495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475526504232427436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e45a8e10c706ee4b8c8be1b09d809ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 1
-  InteractionEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inworld.Playground.Portal, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &8768558855026641227
 GameObject:
   m_ObjectHideFlags: 0

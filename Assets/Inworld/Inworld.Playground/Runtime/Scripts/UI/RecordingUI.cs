@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,11 +18,12 @@ namespace Inworld.Playground
     {
         [SerializeField] private Image m_RecordingIcon;
 
-        private void Update()
+        void OnEnable()
         {
-            m_RecordingIcon.enabled = InworldController.Audio.SampleMode == MicSampleMode.PUSH_TO_TALK ? 
-                                          Input.GetKey(KeyCode.V) :
-                                          InworldController.Audio && InworldController.Audio.IsCapturing;
+            if (!InworldController.Instance)
+                return;
+            InworldController.Audio.Event.onPlayerStartSpeaking.AddListener(() => m_RecordingIcon.enabled = true);
+            InworldController.Audio.Event.onPlayerStopSpeaking.AddListener(() => m_RecordingIcon.enabled = false);
         }
     }
 }

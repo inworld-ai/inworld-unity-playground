@@ -16,24 +16,25 @@ namespace Inworld.Playground
     /// <summary>
     ///     Handles the status panel for connection and scene changes.
     /// </summary>
+    // TODO(Yan): Investigate Playground Status Panel.
     public class PlaygroundStatusPanel : StatusPanel
     {
         protected override void OnEnable()
         {
             base.OnEnable();
-            PlaygroundManager.Instance.OnPlay += OnEndSceneChange;
-            PlaygroundManager.Instance.OnStartInworldSceneChange += OnStartInworldSceneChange;
-            PlaygroundManager.Instance.OnEndInworldSceneChange += OnEndInworldSceneChange;
+            // PlaygroundManagerBak.Instance.OnPlay += OnEndSceneChange;
+            // PlaygroundManagerBak.Instance.OnStartInworldSceneChange += OnStartInworldSceneChange;
+            // PlaygroundManagerBak.Instance.OnEndInworldSceneChange += OnEndInworldSceneChange;
         }
 
         protected override void OnDisable()
         {
-            if (!InworldController.Instance || !PlaygroundManager.Instance)
-                return;
-            base.OnDisable();
-            PlaygroundManager.Instance.OnPlay += OnEndSceneChange;
-            PlaygroundManager.Instance.OnStartInworldSceneChange += OnStartInworldSceneChange;
-            PlaygroundManager.Instance.OnEndInworldSceneChange += OnEndInworldSceneChange;
+            // if (!InworldController.Instance || !PlaygroundManagerBak.Instance)
+            //     return;
+            // base.OnDisable();
+            // PlaygroundManagerBak.Instance.OnPlay += OnEndSceneChange;
+            // PlaygroundManagerBak.Instance.OnStartInworldSceneChange += OnStartInworldSceneChange;
+            // PlaygroundManagerBak.Instance.OnEndInworldSceneChange += OnEndInworldSceneChange;
         }
         
         void OnEndSceneChange()

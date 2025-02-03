@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using Inworld.Entities;
 using Inworld.Packet;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Inworld.Playground
@@ -77,7 +78,7 @@ namespace Inworld.Playground
             var parameterDictionary = new Dictionary<string, string>();
             foreach (var parameter in customPacket.custom.parameters)
                 parameterDictionary.Add(parameter.name, parameter.value);
-            OnServerTrigger(customPacket.TriggerName, parameterDictionary);
+            //OnServerTrigger(customPacket.TriggerName, parameterDictionary);
             
             return base.HandleTrigger(customPacket);
         }

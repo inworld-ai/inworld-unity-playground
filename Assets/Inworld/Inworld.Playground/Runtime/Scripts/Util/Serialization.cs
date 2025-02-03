@@ -65,7 +65,7 @@ namespace Inworld.Playground
                 gameData = ScriptableObject.CreateInstance<InworldGameData>();
             
             string sceneFullName = $"workspaces/{workspaceId}/scenes/{sceneName}";
-            gameData.sceneFullName = sceneFullName;
+            gameData.sceneName = sceneFullName;
             gameData.apiKey = key;
             gameData.apiSecret = secret;
             if(gameData.capabilities == null)

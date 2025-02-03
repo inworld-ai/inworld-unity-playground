@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using UnityEngine;
 
 namespace Inworld.Playground
@@ -12,6 +13,7 @@ namespace Inworld.Playground
     /// <summary>
     ///     Rotates the object to face the PlayerController (if one exists in the scene).
     /// </summary>
+    [Obsolete]
     public class FacePlayer : MonoBehaviour
     {
         [SerializeField] private bool m_Reverse;

@@ -15,25 +15,12 @@ namespace Inworld.Playground
     /// </summary>
     public class PlayerNameShowcase : InputShowcase
     {
-        private Coroutine m_UpdatePlayerNameCoroutine;
-        
         public void SendPlayerNameChangeRequest()
         {
-            if (PlaygroundManager.Instance.GetPlayerName() == m_InputField.text || m_UpdatePlayerNameCoroutine != null)
-                return;
-
-            m_UpdatePlayerNameCoroutine = StartCoroutine(UpdatePlayerNameEnumerator());
-        }
-        
-        IEnumerator UpdatePlayerNameEnumerator()
-        {
             if(InworldController.Status != InworldConnectionStatus.Connected)
-                yield return PlaygroundManager.Instance.Connect();
-            
-            PlaygroundManager.Instance.SetPlayerName(m_InputField.text);
+                return;
+            InworldAI.User.Name = m_InputField.text;
             InworldController.Client.SendSessionConfig(false);
-
-            m_UpdatePlayerNameCoroutine = null;
         }
     }
 }

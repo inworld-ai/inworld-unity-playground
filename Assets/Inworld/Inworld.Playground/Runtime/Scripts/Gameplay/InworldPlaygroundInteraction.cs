@@ -6,6 +6,7 @@
  *************************************************************************************************/
 
 using Inworld.Interactions;
+using Inworld.Sample;
 
 namespace Inworld.Playground
 {
@@ -14,17 +15,19 @@ namespace Inworld.Playground
         protected override void OnEnable()
         {
             base.OnEnable();
-            PlaygroundManager.Instance.OnPause += OnPause;
-            PlaygroundManager.Instance.OnPlay += OnPlay;
+            if (!PlayerController.Instance)
+                return;
+            PlayerController.Instance.onCanvasOpen.AddListener(OnPause);
+            PlayerController.Instance.onCanvasClosed.AddListener(OnPlay);
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
-            if (!PlaygroundManager.Instance)
+            if (!PlayerController.Instance)
                 return;
-            PlaygroundManager.Instance.OnPause -= OnPause;
-            PlaygroundManager.Instance.OnPlay -= OnPlay;
+            PlayerController.Instance.onCanvasOpen.RemoveListener(OnPause);
+            PlayerController.Instance.onCanvasClosed.RemoveListener(OnPlay);
         }
 
         void OnPlay()

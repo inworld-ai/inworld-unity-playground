@@ -8,6 +8,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Inworld.Playground
 {
@@ -23,7 +24,9 @@ namespace Inworld.Playground
         /// </summary>
         void OnTriggerEnter(Collider other)
         {
-            PlaygroundManager.Instance.ChangeScene(m_PortalName.text);
+            if (InworldController.Instance)
+                InworldController.Client.StopAudioTo(true);
+            SceneManager.LoadSceneAsync(m_PortalName.text);
         }
     }
 }

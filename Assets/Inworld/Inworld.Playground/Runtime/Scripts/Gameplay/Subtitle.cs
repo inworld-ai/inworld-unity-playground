@@ -5,6 +5,7 @@
  * that can be found in the LICENSE.md file or at https://www.inworld.ai/sdk-license
  *************************************************************************************************/
 
+using System;
 using System.Collections;
 using Inworld.Packet;
 using TMPro;
@@ -26,11 +27,12 @@ namespace Inworld.Playground
 
         private Coroutine m_FadeCoroutine;
         private Color m_OriginalBackgroundColor;
-        
+
+
         /// <summary>
         ///     Resets and clears the current subtitle.
         /// </summary>
-        public void Clear()
+        void Clear()
         {
             if (m_FadeCoroutine != null)
                 StopCoroutine(m_FadeCoroutine);
