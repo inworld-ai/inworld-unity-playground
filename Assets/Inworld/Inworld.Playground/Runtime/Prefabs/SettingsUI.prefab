@@ -103,8 +103,8 @@ MonoBehaviour:
   m_AECAudioManager: {fileID: 8125216449275139937, guid: 15f739b13a1577742bc8003b9e2cf6a8, type: 3}
   m_TurnBasedAudioManager: {fileID: 5408148874250187113, guid: aac31c02fff014f42821c8d09d853c38, type: 3}
   m_PTTAudioManager: {fileID: 8687522768840527925, guid: 18689668e2bde9247beb31b62d38103a, type: 3}
-  m_NoFilter: {fileID: 1042530060820833721, guid: c511673a90e468f44ac45e2a5073a5ed, type: 3}
-  m_NoVAD: {fileID: 4426508044186588485, guid: f740a0b5adbeec04788814c66c63d856, type: 3}
+  m_NoFilter: {fileID: 1042530060820833721, guid: b47fde653169b944296cc2a3007072ed, type: 3}
+  m_NoVAD: {fileID: 4426508044186588485, guid: bbb517ac99a4bcd4084a87a91941b662, type: 3}
   m_TglInteractive: {fileID: 8005728966673648161}
   m_TglPtt: {fileID: 2108739124606228685}
   m_TglTurnBased: {fileID: 5070459923438176731}
